@@ -28,34 +28,35 @@ title: Alpine.js をはじめよう！
 
 ブラウザを開いたて、`I ❤️ Alpine` と表示されたら準備完了です！
 
-Now that you're all set up to play around, let's look at three practical examples as a foundation for teaching you the basics of Alpine. By the end of this exercise, you should be more than equipped to start building stuff on your own. Let's goooooo.
+<!-- Now that you're all set up to play around, let's look at three practical examples as a foundation for teaching you the basics of Alpine. By the end of this exercise, you should be more than equipped to start building stuff on your own. Let's goooooo. -->
 
 <!-- START_VERBATIM -->
-<ul class="flex flex-col space-y-2 list-inside !list-decimal">
+<!-- <ul class="flex flex-col space-y-2 list-inside !list-decimal">
     <li><a href="#building-a-counter">Building a counter</a></li>
     <li><a href="#building-a-dropdown">Building a dropdown</a></li>
     <li><a href="#building-a-search-input">Building a search Input</a></li>
-</ul>
+</ul> -->
 <!-- END_VERBATIM -->
 
-準備が整ったので、アルパインの基本を教えるための基礎として、3つの実用的な例を見てみましょう。この演習が終了するまでに、自分で作成を開始する準備が整っているはずです。gooooooしましょう。
+準備が整ったので、Alpine.js の基本を学ぶための基礎として、3つの実用的な例を見てみましょう。この演習が終了するまでに、自分で作成を開始する準備が整っているはずです。
 
-カウンターの構築
-ドロップダウンの作成
-検索入力の作成
+<ul class="flex flex-col space-y-2 list-inside !list-decimal">
+    <li><a href="#building-a-counter">カウンターの構築</a></li>
+    <li><a href="#building-a-dropdown">ドロップダウンの作成</a></li>
+    <li><a href="#building-a-search-input">検索入力の作成</a></li>
+</ul>
 
 <a name="building-a-counter"></a>
 
-## Building a counter
+## カウンターの構築
 
-Let's start with a simple "counter" component to demonstrate the basics of state and event listening in Alpine, two core features.
+<!-- Let's start with a simple "counter" component to demonstrate the basics of state and event listening in Alpine, two core features. -->
 
-Insert the following into the `<body>` tag:
+単純な「カウンター」コンポーネントから始めて、2つのコア機能である Alpine での基本の状態とイベントリスニングを示しましょう。
 
-カウンターの構築
-単純な「カウンター」コンポーネントから始めて、2つのコア機能であるAlpineでの状態とイベントのリスニングの基本を示しましょう。
+<!-- Insert the following into the `<body>` tag: -->
 
-<body>タグに以下を挿入します。
+`<body>` タグに以下を挿入します。
 
 ```alpine
 <div x-data="{ count: 0 }">
