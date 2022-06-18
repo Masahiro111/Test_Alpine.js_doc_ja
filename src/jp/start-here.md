@@ -38,7 +38,7 @@ title: Alpine.js をはじめよう！
 </ul> -->
 <!-- END_VERBATIM -->
 
-準備が整ったので、Alpine.js の基本を学ぶための基礎として、3つの実用的な例を見てみましょう。この演習が終了するまでに、自分で作成を開始する準備が整っているはずです。
+準備が整ったので、Alpine の基本を学ぶために、3つの実用的な例を見てみましょう。この演習が終了するまでに、自分で作成を開始する準備が整っているはずです。
 
 <ul class="flex flex-col space-y-2 list-inside !list-decimal">
     <li><a href="#building-a-counter">カウンターの構築</a></li>
@@ -214,21 +214,21 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 <div ... @click.outside="open = false">Contents...</div>
 ```
 
-You'll notice something new in this example: `.outside`. Many directives in Alpine accept "modifiers" that are chained onto the end of the directive and are separated by periods.
+<!-- You'll notice something new in this example: `.outside`. Many directives in Alpine accept "modifiers" that are chained onto the end of the directive and are separated by periods. -->
 
-In this case, `.outside` tells Alpine to instead of listening for a click INSIDE the `<div>`, to listen for the click only if it happens OUTSIDE the `<div>`.
+<!-- In this case, `.outside` tells Alpine to instead of listening for a click INSIDE the `<div>`, to listen for the click only if it happens OUTSIDE the `<div>`. -->
 
-This is a convenience helper built into Alpine because this is a common need and implementing it by hand is annoying and complex.
+<!-- This is a convenience helper built into Alpine because this is a common need and implementing it by hand is annoying and complex. -->
 
-[→ Read more about `x-on` modifiers](/directives/on#modifiers)
+<!-- [→ 「x-on」の詳細を読む](/directives/on#modifiers) -->
 
-この例では、何か新しいことに気付くでしょう.outside。Alpineの多くのディレクティブは、ディレクティブの最後にチェーンされ、ピリオドで区切られた「修飾子」を受け入れます。
+この例では、何か新しいことに気付くでしょう（`.outside`）。Alpineの多くのディレクティブは、ディレクティブの最後にチェーンされ、ピリオドで区切られた **「修飾子」** を付け加えることができます。
 
-この場合、.outsideAlpineに、の内側でクリックをリッスンする代わりに、の<div>外側でクリックが発生した場合にのみクリックをリッスンするように指示します<div>。
+この場合、`.outside` は、Alpineに対して `<div>` の内側でクリックをリッスンする代わりに、`<div>` の外側でクリックが発生した場合にのみクリックをリッスンするように指示します。
 
-これはAlpineに組み込まれている便利なヘルパーです。これは一般的なニーズであり、手動で実装するのは面倒で複雑だからです。
+これは Alpine に組み込まれている便利なヘルパーです。これは一般的なニーズであり、手動で実装するのは面倒で複雑だからです。
 
-x-on→修飾子についてもっと読む
+[→ 「x-on」の修飾子の詳細を読む](/directives/on#modifiers)
 
 <a name="building-a-search-input"></a>
 
