@@ -75,11 +75,11 @@ title: Alpine.js をはじめよう！
 </div>
 <!-- END_VERBATIM -->
 
-Now, you can see with 3 bits of Alpine sprinkled into this HTML, we've created an interactive "counter" component.
+<!-- Now, you can see with 3 bits of Alpine sprinkled into this HTML, we've created an interactive "counter" component. -->
 
-Let's walk through what's happening briefly:
+<!-- Let's walk through what's happening briefly: -->
 
-これで、このHTMLに3ビットのAlpineが散りばめられていることがわかります。これで、インタラクティブな「カウンター」コンポーネントが作成されました。
+これで、このHTMLに 3つのAlpine が散りばめられていることがわかります。これで、インタラクティブな「カウンター」コンポーネントが作成されました。
 
 何が起こっているのかを簡単に見ていきましょう。
 
@@ -91,17 +91,17 @@ Let's walk through what's happening briefly:
 <div x-data="{ count: 0 }">
 ```
 
-Everything in Alpine starts with an `x-data` directive. Inside of `x-data`, in plain JavaScript, you declare an object of data that Alpine will track.
+<!-- Everything in Alpine starts with an `x-data` directive. Inside of `x-data`, in plain JavaScript, you declare an object of data that Alpine will track. -->
 
-Every property inside this object will be made available to other directives inside this HTML element. In addition, when one of these properties changes, everything that relies on it will change as well.
+<!-- Every property inside this object will be made available to other directives inside this HTML element. In addition, when one of these properties changes, everything that relies on it will change as well. -->
 
-[→ Read more about `x-data`](/directives/data)
 
-x-dataアルパインのすべてはディレクティブで始まります。の内部でx-data、プレーンJavaScriptで、Alpineが追跡するデータのオブジェクトを宣言します。
+アルパインのすべては `x-data` ディレクティブで始まります。プレーンな JavaScript を含むことができる `x-data` の内部で、Alpine が追跡するデータのオブジェクトを宣言します。
 
 このオブジェクト内のすべてのプロパティは、このHTML要素内の他のディレクティブで使用できるようになります。さらに、これらのプロパティの1つが変更されると、それに依存するすべてのものも変更されます。
 
-→詳細を読むx-data
+[→ 詳細を読む`x-data`](/directives/data)
+
 
 Let's look at `x-on` and see how it can access and modify the `count` property from above:
 
@@ -437,13 +437,22 @@ Now any element inside the `<template>` tag will be repeated for every item insi
 
 これで、タグ内のすべての要素が内部の<template>すべてのアイテムに対して繰り返され、ループ内で評価されたすべての式が反復変数（この場合）にfilteredItems直接アクセスできるようになります。item
 
-→詳細を読むx-for
+[→ 詳細を読む `x-for`](/directives/for)
 
 <a name="recap"></a>
 
 ## 要約
 
-If you've made it this far, you've been exposed to the following directives in Alpine:
+<!-- If you've made it this far, you've been exposed to the following directives in Alpine: -->
+
+<!-- * x-data
+* x-on
+* x-text
+* x-show
+* x-model
+* x-for -->
+
+これまでに達成した場合は、Alpine で次のディレクティブにさらされています。
 
 * x-data
 * x-on
@@ -452,21 +461,12 @@ If you've made it this far, you've been exposed to the following directives in A
 * x-model
 * x-for
 
-これまでに達成した場合は、Alpineで次のディレクティブにさらされています。
+<!-- That's a great start, however, there are many more directives to sink your teeth into. The best way to absorb Alpine is to read through this documentation. No need to comb over every word, but if you at least glance through every page you will be MUCH more effective when using Alpine.
 
-x-data
-x-on
-x-text
-x-show
-xモデル
-x-for
-
-That's a great start, however, there are many more directives to sink your teeth into. The best way to absorb Alpine is to read through this documentation. No need to comb over every word, but if you at least glance through every page you will be MUCH more effective when using Alpine.
-
-Happy Coding!
+Happy Coding! -->
 
 
-それは素晴らしいスタートです、しかし、あなたの歯を沈めるためのより多くの指示があります。アルパインを吸収する最良の方法は、このドキュメントを読むことです。すべての単語をくしでとかす必要はありませんが、少なくともすべてのページを一瞥すれば、Alpineを使用するときにはるかに効果的です。
+それは素晴らしいスタートです、しかし、あなたの歯を沈めるためのより多くの指示があります。アルパインを吸収する最良の方法は、このドキュメントを読むことです。すべての単語をくしでとかす必要はありませんが、少なくともすべてのページを一瞥すれば、Alpine を使用するときにはるかに効果的です。
 
 ハッピーコーディング！
 
