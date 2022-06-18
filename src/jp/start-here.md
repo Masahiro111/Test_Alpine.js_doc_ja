@@ -234,13 +234,13 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ## 検索入力の作成
 
-Let's now build a more complex component and introduce a handful of other directives and patterns.
+<!-- Let's now build a more complex component and introduce a handful of other directives and patterns. -->
 
 Insert the following code into the `<body>` tag:
 
 次に、より複雑なコンポーネントを作成し、他のいくつかのディレクティブとパターンを紹介しましょう。
 
-<body>次のコードをタグに挿入します。
+次のコードを `<body>` タグに挿入します。
 
 ```alpine
 <div
@@ -292,11 +292,11 @@ Insert the following code into the `<body>` tag:
 </div>
 <!-- END_VERBATIM -->
 
-By default, all of the "items" (foo, bar, and baz) will be shown on the page, but you can filter them by typing into the text input. As you type, the list of items will change to reflect what you're searching for.
+<!-- By default, all of the "items" (foo, bar, and baz) will be shown on the page, but you can filter them by typing into the text input. As you type, the list of items will change to reflect what you're searching for. -->
 
-Now there's quite a bit happening here, so let's go through this snippet piece by piece.
+<!-- Now there's quite a bit happening here, so let's go through this snippet piece by piece. -->
 
-デフォルトでは、すべての「アイテム」（foo、bar、およびbaz）がページに表示されますが、テキスト入力に入力することでそれらをフィルタリングできます。入力すると、アイテムのリストが変更され、検索内容が反映されます。
+デフォルトでは、すべての「アイテム」（foo、bar、および baz）がページに表示されますが、テキスト入力に入力することでそれらをフィルタリングできます。入力すると、アイテムのリストが変更され、検索内容が反映されます。
 
 ここではかなりのことが起こっているので、このスニペットを少しずつ見ていきましょう。
 
@@ -304,9 +304,9 @@ Now there's quite a bit happening here, so let's go through this snippet piece b
 
 ### 複数行のフォーマット
 
-The first thing I'd like to point out is that `x-data` now has a lot more going on in it than before. To make it easier to write and read, we've split it up into multiple lines in our HTML. This is completely optional and we'll talk more in a bit about how to avoid this problem altogether, but for now, we'll keep all of this JavaScript directly in the HTML.
+<!-- The first thing I'd like to point out is that `x-data` now has a lot more going on in it than before. To make it easier to write and read, we've split it up into multiple lines in our HTML. This is completely optional and we'll talk more in a bit about how to avoid this problem altogether, but for now, we'll keep all of this JavaScript directly in the HTML. -->
 
-私が最初に指摘したいのは、x-data今では以前よりも多くのことが起こっているということです。書き込みと読み取りを簡単にするために、HTMLでは複数の行に分割しています。これは完全にオプションであり、この問題を完全に回避する方法についてもう少し詳しく説明しますが、今のところ、このJavaScriptをすべてHTMLに直接保持します。
+私が最初に指摘したいのは、今回の `x-data` は、以前よりも多くのことが起こっているということです。書き込みと読み取りを簡単にするために、HTML では複数の行に分割しています。これは完全にオプションであり、この問題を完全に回避する方法についてもう少し詳しく説明しますが、今のところ、この JavaScript をすべて HTML 内に直接保持します。
 
 <a name="binding-to-inputs"></a>
 
@@ -316,25 +316,25 @@ The first thing I'd like to point out is that `x-data` now has a lot more going 
 <input x-model="search" placeholder="Search...">
 ```
 
-You'll notice a new directive we haven't seen yet: `x-model`.
+<!-- You'll notice a new directive we haven't seen yet: `x-model`. -->
 
-`x-model` is used to "bind" the value of an input element with a data property: "search" from `x-data="{ search: '', ... }"` in our case.
+<!-- `x-model` is used to "bind" the value of an input element with a data property: "search" from `x-data="{ search: '', ... }"` in our case. -->
 
-This means that anytime the value of the input changes, the value of "search" will change to reflect that.
+<!-- This means that anytime the value of the input changes, the value of "search" will change to reflect that. -->
 
-`x-model` is capable of much more than this simple example.
+<!-- `x-model` is capable of much more than this simple example. -->
 
-[→ Read more about `x-model`](/directives/model)
+<!-- [→ Read more about `x-model`](/directives/model) -->
 
-まだ見たことがない新しいディレクティブに気付くでしょう：x-model。
+まだ見たことがない `x-model` という新しいディレクティブに気付くでしょう。
 
-x-modelinput要素の値をデータプロパティに「バインド」するために使用されます。この場合は「search」からx-data="{ search: '', ... }"です。
+`x-model` は、input 要素の値をデータプロパティに「バインド」するために使用されます。今回の x-model の `search` は `x-data="{ search: '', ... }"` から来ています。
 
-これは、入力の値が変更されるたびに、「検索」の値がそれを反映して変更されることを意味します。
+これは、入力の値が変更されるたびに、「search」の値がそれを反映して変更されることを意味します。
 
-x-modelこの単純な例よりもはるかに多くのことができます。
+`x-model` は、この単純な例よりもはるかに多くのことができます。
 
-→詳細を読むx-model
+[→ 「x-model」の詳細を読む](/directives/model)
 
 <a name="computed-properties-using-getters"></a>
 
