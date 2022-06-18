@@ -96,16 +96,16 @@ title: Alpine.js をはじめよう！
 <!-- Every property inside this object will be made available to other directives inside this HTML element. In addition, when one of these properties changes, everything that relies on it will change as well. -->
 
 
-アルパインのすべては `x-data` ディレクティブで始まります。プレーンな JavaScript を含むことができる `x-data` の内部で、Alpine が追跡するデータのオブジェクトを宣言します。
+Alpine.js のすべては `x-data` ディレクティブで始まります。プレーンな JavaScript を含んでいる `x-data` の内部で、Alpine.js が追跡するデータのオブジェクトを宣言します。
 
-このオブジェクト内のすべてのプロパティは、このHTML要素内の他のディレクティブで使用できるようになります。さらに、これらのプロパティの1つが変更されると、それに依存するすべてのものも変更されます。
+このオブジェクト内のすべてのプロパティは、この HTML 要素内の他のディレクティブで使用できるようになります。さらに、これらのプロパティの1つが変更されると、それに依存するすべてのものも変更されます。
 
-[→ 詳細を読む`x-data`](/directives/data)
+[→「x-data」の詳細を読む](/directives/data)
 
 
 Let's look at `x-on` and see how it can access and modify the `count` property from above:
 
-上からプロパティにx-onアクセスして変更する方法を見てみましょう。count
+上記コードを参考に、`count` プロパティを変更する方法を `x-on`を利用して学んでいきましょう。
 
 <a name="listening-for-events"></a>
 
@@ -115,23 +115,23 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 <button x-on:click="count++">Increment</button>
 ```
 
-`x-on` is a directive you can use to listen for any event on an element. We're listening for a `click` event in this case, so ours looks like `x-on:click`.
+<!-- `x-on` is a directive you can use to listen for any event on an element. We're listening for a `click` event in this case, so ours looks like `x-on:click`. -->
 
-You can listen for other events as you'd imagine. For example, listening for a `mouseenter` event would look like this: `x-on:mouseenter`.
+<!-- You can listen for other events as you'd imagine. For example, listening for a `mouseenter` event would look like this: `x-on:mouseenter`. -->
 
-When a `click` event happens, Alpine will call the associated JavaScript expression, `count++` in our case. As you can see, we have direct access to data declared in the `x-data` expression.
+<!-- When a `click` event happens, Alpine will call the associated JavaScript expression, `count++` in our case. As you can see, we have direct access to data declared in the `x-data` expression. -->
 
-x-on要素のイベントをリッスンするために使用できるディレクティブです。clickこの場合、イベントをリッスンしているので、のようになりx-on:clickます。
+`x-on` は、要素のイベントをリッスンするために使用できるディレクティブです。この場合、`click` イベントをリッスンしているので、`x-on:click` のようになります。
 
-あなたが想像するようにあなたは他のイベントを聞くことができます。たとえば、mouseenterイベントをリッスンすると、次のようになりますx-on:mouseenter。
+あなたが想像するように、あなたは他のイベントをリッスンすることができます。たとえば、`mouseenter` イベントをリッスンすると、`x-on:mouseenter` のようになります。
 
-イベントが発生するclickと、Alpineは関連するJavaScript式を呼び出しますcount++（この場合）。ご覧のとおり、x-data式で宣言されたデータに直接アクセスできます。
+`click` イベントが発生すると、Alpine は関連する JavaScript 式を呼び出します（今回の例では、`count++`）。ご覧のとおり、 `x-data` 式で宣言されたデータに直接アクセスできます。
 
-> You will often see `@` instead of `x-on:`. This is a shorter, friendlier syntax that many prefer. From now on, this documentation will likely use `@` instead of `x-on:`.
+<!-- > You will often see `@` instead of `x-on:`. This is a shorter, friendlier syntax that many prefer. From now on, this documentation will likely use `@` instead of `x-on:`. -->
 
-@の代わりによく表示されx-on:ます。これは、多くの人が好む、短くて親しみやすい構文です。今後、このドキュメントでは@の代わりに使用する可能性がありx-on:ます。
+> `x-on:` の代わりに `@` を使用することもできます。これは、多くの人が好む、短くて親しみやすい構文です。今後、このドキュメントでは`x-on` の代わりに `@` を使用することもあります。
 
-[→ Read more about `x-on`](/directives/on)
+[→ 「x-on」の詳細を読む](/directives/on)
 
 <a name="reacting-to-changes"></a>
 
@@ -141,21 +141,19 @@ x-on要素のイベントをリッスンするために使用できるディレ�
 <h1 x-text="count"></h1>
 ```
 
-`x-text` is an Alpine directive you can use to set the text content of an element to the result of a JavaScript expression.
+<!-- `x-text` is an Alpine directive you can use to set the text content of an element to the result of a JavaScript expression. -->
 
-In this case, we're telling Alpine to always make sure that the contents of this `h1` tag reflect the value of the `count` property.
+<!-- In this case, we're telling Alpine to always make sure that the contents of this `h1` tag reflect the value of the `count` property. -->
 
-In case it's not clear, `x-text`, like most directives accepts a plain JavaScript expression as an argument. So for example, you could instead set its contents to: `x-text="count * 2"` and the text content of the `h1` will now always be 2 times the value of `count`.
+<!-- In case it's not clear, `x-text`, like most directives accepts a plain JavaScript expression as an argument. So for example, you could instead set its contents to: `x-text="count * 2"` and the text content of the `h1` will now always be 2 times the value of `count`. -->
 
-x-text要素のテキストコンテンツをJavaScript式の結果に設定するために使用できるAlpineディレクティブです。
+`x-text` は、要素のテキストコンテンツを JavaScript 式の結果に設定するために使用できる Alpine のディレクティブです。
 
-この場合、このh1タグの内容がプロパティの値を反映していることを常に確認するようにAlpineに指示していcountます。
+この場合、この `h1` タグの内容が `count` プロパティの値を反映していることを常に確認するように Alpine に指示しています。
 
-明確でない場合はx-text、ほとんどのディレクティブが引数としてプレーンなJavaScript式を受け入れるように。したがって、たとえば、代わりにその内容を：に設定するx-text="count * 2"と、のテキストの内容はh1常にの値の2倍になりますcount。
+`x-text` は、引数に JavaScript 式を受け入れることができます。たとえば、内容を `x-text="count * 2"` に設定すると、`h1` のテキストの内容は常に `count` の値の2倍になります。
 
-[→ Read more about `x-text`](/directives/text)
-
-詳細を読むx-text
+[→ 「x-text」の詳細を読む](/directives/text)
 
 <a name="building-a-dropdown"></a>
 
