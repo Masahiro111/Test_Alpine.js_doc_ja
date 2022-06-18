@@ -159,13 +159,13 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ## ドロップダウンの作成
 
-Now that we've seen some basic functionality, let's keep going and look at an important directive in Alpine: `x-show`, by building a contrived "dropdown" component.
+<!-- Now that we've seen some basic functionality, let's keep going and look at an important directive in Alpine: `x-show`, by building a contrived "dropdown" component. -->
 
-Insert the following code into the `<body>` tag:
+<!-- Insert the following code into the `<body>` tag: -->
 
-いくつかの基本的な機能を確認したので、続けて、Alpineの重要なディレクティブを見てみましょうx-show。考案された「ドロップダウン」コンポーネントを作成します。
+いくつかの基本的な機能を確認したので、続けて、Alpine の重要な `x-show` ディレクティブを見てみましょう。今回は「ドロップダウン」コンポーネントを作成してみます。
 
-<body>次のコードをタグに挿入します。
+次のコードを `body` タグに挿入してください。
 
 ```alpine
 <div x-data="{ open: false }">
@@ -184,13 +184,13 @@ Insert the following code into the `<body>` tag:
 </div>
 <!-- END_VERBATIM -->
 
-If you load this component, you should see that the "Contents..." are hidden by default. You can toggle showing them on the page by clicking the "Toggle" button.
+<!-- If you load this component, you should see that the "Contents..." are hidden by default. You can toggle showing them on the page by clicking the "Toggle" button. -->
 
-The `x-data` and `x-on` directives should be familiar to you from the previous example, so we'll skip those explanations.
+<!-- The `x-data` and `x-on` directives should be familiar to you from the previous example, so we'll skip those explanations. -->
 
-このコンポーネントをロードすると、「コンテンツ...」がデフォルトで非表示になっていることがわかります。「トグル」ボタンをクリックすると、ページへの表示を切り替えることができます。
+このコンポーネントをロードすると、「Contents...」がデフォルトで非表示になっていることがわかります。「Toggle」ボタンをクリックすると、ページの表示を切り替えることができます。
 
-x-dataandディレクティブは前の例でおなじみのx-onはずなので、これらの説明はスキップします。
+`x-data` と `x-on` ディレクティブは前の例でおなじみのはずなので、これらの説明はスキップします。
 
 <a name="toggling-elements"></a>
 
@@ -200,13 +200,11 @@ x-dataandディレクティブは前の例でおなじみのx-onはずなので�
 <div x-show="open" ...>Contents...</div>
 ```
 
-`x-show` is an extremely powerful directive in Alpine that can be used to show and hide a block of HTML on a page based on the result of a JavaScript expression, in our case: `open`.
+<!-- `x-show` is an extremely powerful directive in Alpine that can be used to show and hide a block of HTML on a page based on the result of a JavaScript expression, in our case: `open`. -->
 
-[→ Read more about `x-show`](/directives/show)
+`x-show` は Alpine の非常に強力なディレクティブであり、JavaScript 式の結果に基づいてページ上の HTML のブロックを表示および非表示にするために使用できます。この場合は次のようになります。
 
-x-showはAlpineの非常に強力なディレクティブであり、JavaScript式の結果に基づいてページ上のHTMLのブロックを表示および非表示にするために使用できます。この場合は次のようになりますopen。
-
-→詳細を読むx-show
+[→ 「x-show」の詳細を読む](/directives/show)
 
 <a name="listening-for-a-click-outside"></a>
 
