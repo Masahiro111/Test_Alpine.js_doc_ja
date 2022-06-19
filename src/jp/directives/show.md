@@ -33,11 +33,11 @@ title: show
 
 <a name="with-transitions"></a>
 
-## With transitions トランジション付き
+## トランジション付き
 
-If you want to apply smooth transitions to the `x-show` behavior, you can use it in conjunction with `x-transition`. You can learn more about that directive [here](/directives/transition), but here's a quick example of the same component as above, just with transitions applied.
+<!-- If you want to apply smooth transitions to the `x-show` behavior, you can use it in conjunction with `x-transition`. You can learn more about that directive [here](/directives/transition), but here's a quick example of the same component as above, just with transitions applied. -->
 
-動作にスムーズな遷移を適用する場合はx-show、と組み合わせて使用​​できますx-transition。このディレクティブの詳細については、ここを参照してください。ただし、トランジションを適用した、上記と同じコンポーネントの簡単な例を次に示します。
+`x-show` の動作にスムーズな遷移を適用する場合は、`x-transition` と組み合わせて使用​​できます。このディレクティブの詳細については、[ここ](/directives/transition)　を参照してください。ただし、トランジションを適用した、上記と同じコンポーネントの簡単な例を次に示します。
 
 ```alpine
 <div x-data="{ open: false }">
