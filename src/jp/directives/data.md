@@ -5,17 +5,17 @@ title: data
 
 # x-data
 
-Everything in Alpine starts with the `x-data` directive.
+<!-- Everything in Alpine starts with the `x-data` directive. -->
 
-`x-data` defines a chunk of HTML as an Alpine component and provides the reactive data for that component to reference.
+<!-- `x-data` defines a chunk of HTML as an Alpine component and provides the reactive data for that component to reference. -->
 
-x-dataアルパインのすべては、ディレクティブで始まります。
+Alpine のすべては、`x-data` ディレクティブから始まります。
 
-x-dataHTMLのチャンクをAlpineコンポーネントとして定義し、そのコンポーネントが参照するためのリアクティブデータを提供します。
+`x-data` は、HTMLのチャンクを Alpine コンポーネントとして定義し、そのコンポーネントが参照するためのリアクティブデータを提供します。
 
 考案されたドロップダウンコンポーネントの例を次に示します。
 
-Here's an example of a contrived dropdown component:
+<!-- Here's an example of a contrived dropdown component: -->
 
 ```alpine
 <div x-data="{ open: false }">
@@ -27,9 +27,9 @@ Here's an example of a contrived dropdown component:
 </div>
 ```
 
-Don't worry about the other directives in this example (`@click` and `x-show`), we'll get to those in a bit. For now, let's focus on `x-data`.
+<!-- Don't worry about the other directives in this example (`@click` and `x-show`), we'll get to those in a bit. For now, let's focus on `x-data`. -->
 
-@clickこの例（および）の他のディレクティブについては心配しないでくださいx-show。これらについては後で説明します。今のところ、に焦点を当てましょうx-data。
+この例の「`@click` および `x-show`」などのディレクティブについては心配しないでください。これらについては後で説明します。今は `x-data` に焦点を当てましょう。
 
 <a name="scope"></a>
 
@@ -37,9 +37,9 @@ Don't worry about the other directives in this example (`@click` and `x-show`), 
 
 Properties defined in an `x-data` directive are available to all element children. Even ones inside other, nested `x-data` components.
 
-ディレクティブで定義されたプロパティは、x-dataすべての要素の子で使用できます。他のネストされたx-dataコンポーネント内のものですら。
+`x-data` ディレクティブで定義されたプロパティは、すべての要素の子で使用できます。他のネストされた `x-data` コンポーネントも同様です。
 
-For example:
+<!-- For example: -->
 
 例えば：
 
@@ -59,14 +59,13 @@ For example:
 
 <a name="methods"></a>
 
-## Methods
+## メソッド
 
 Because `x-data` is evaluated as a normal JavaScript object, in addition to state, you can store methods and even getters.
 
 For example, let's extract the "Toggle Content" behavior into a method on  `x-data`.
 
-メソッド
-は通常のJavaScriptオブジェクトとして評価されるためx-data、状態に加えて、メソッドやゲッターを保存することもできます。
+`x-data` は通常の JavaScript オブジェクトとして評価されるため、状態に加えて、メソッドやゲッターを保存することもできます。
 
 たとえば、「コンテンツの切り替え」動作をのメソッドに抽出してみましょう x-data。
 
