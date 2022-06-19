@@ -140,11 +140,11 @@ JavaScript の [ゲッター](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 <a name="data-less-components"></a>
 
-## Data-less components
+## データのないコンポーネント
 
-Occasionally, you want to create an Alpine component, but you don't need any data.
+<!-- Occasionally, you want to create an Alpine component, but you don't need any data. -->
 
-In these cases, you can always pass in an empty object.
+<!-- In these cases, you can always pass in an empty object. -->
 
 Alpine コンポーネントを作成したい場合がありますが、データは必要ありません。
 

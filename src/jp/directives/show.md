@@ -5,13 +5,13 @@ title: show
 
 # x-show
 
-`x-show` is one of the most useful and powerful directives in Alpine. It provides an expressive way to show and hide DOM elements.
+<!-- `x-show` is one of the most useful and powerful directives in Alpine. It provides an expressive way to show and hide DOM elements. -->
 
 Here's an example of a simple dropdown component using `x-show`.
 
-x-showAlpineで最も便利で強力なディレクティブの1つです。DOM要素を表示および非表示にする表現力豊かな方法を提供します。
+`x-show` は、Alpine で最も便利で強力なディレクティブの1つです。DOM要素を表示および非表示にする表現力豊かな方法を提供します。
 
-を使用した単純なドロップダウンコンポーネントの例を次に示しますx-show。
+`x-show` を使用した単純なドロップダウンコンポーネントの例を次に示します。
 
 ```alpine
 <div x-data="{ open: false }">
