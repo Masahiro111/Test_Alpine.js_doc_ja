@@ -53,16 +53,16 @@ Here's a simple example of a simple dropdown toggle, but instead of using `x-sho
 </div>
 ```
 
-Now, when `open` is `false`, the "hidden" class will be added to the dropdown.
-これで、openがの場合false、「非表示」クラスがドロップダウンに追加されます。
+<!-- Now, when `open` is `false`, the "hidden" class will be added to the dropdown. -->
+
+これで、`open`が `false` の場合、「非表示」クラスがドロップダウンに追加されます。
 
 <a name="shorthand-conditionals"></a>
 
-### Shorthand conditionals
+### 省略形の条件
 
-In cases like these, if you prefer a less verbose syntax you can use JavaScript's short-circuit evaluation instead of standard conditionals:
+<!-- In cases like these, if you prefer a less verbose syntax you can use JavaScript's short-circuit evaluation instead of standard conditionals: -->
 
-省略形の条件
 このような場合、より冗長でない構文が必要な場合は、標準の条件の代わりにJavaScriptの短絡評価を使用できます。
 
 ```alpine
@@ -71,9 +71,9 @@ In cases like these, if you prefer a less verbose syntax you can use JavaScript'
 <div :class="show || 'hidden'">
 ```
 
-The inverse is also available to you. Suppose instead of `open`, we use a variable with the opposite value: `closed`.
+<!-- The inverse is also available to you. Suppose instead of `open`, we use a variable with the opposite value: `closed`. -->
 
-逆も利用できます。の代わりにopen、反対の値を持つ変数を使用するとしますclosed。
+逆も利用できます。`open` の代わりに、反対の値を持つ変数 `closed` を使用するとします。
 
 ```alpine
 <div :class="closed ? 'hidden' : ''">
@@ -83,24 +83,23 @@ The inverse is also available to you. Suppose instead of `open`, we use a variab
 
 <a name="class-object-syntax"></a>
 
-### Class object syntax
+### クラスオブジェクト構文
 
-Alpine offers an additional syntax for toggling classes if you prefer. By passing a JavaScript object where the classes are the keys and booleans are the values, Alpine will know which classes to apply and which to remove. For example:
+<!-- Alpine offers an additional syntax for toggling classes if you prefer. By passing a JavaScript object where the classes are the keys and booleans are the values, Alpine will know which classes to apply and which to remove. For example: -->
 
-クラスオブジェクト構文
-Alpineは、必要に応じてクラスを切り替えるための追加の構文を提供します。クラスがキーでブール値が値であるJavaScriptオブジェクトを渡すことにより、Alpineは、適用するクラスと削除するクラスを認識します。例えば：
+Alpine は、必要に応じてクラスを切り替えるための追加の構文を提供します。クラスがキーでブール値が値である JavaScript オブジェクトを渡すことにより、Alpine は、適用するクラスと削除するクラスを認識します。以下のような例となります。
 
 ```alpine
 <div :class="{ 'hidden': ! show }">
 ```
 
-This technique offers a unique advantage to other methods. When using object-syntax, Alpine will NOT preserve original classes applied to an element's `class` attribute.
+<!-- This technique offers a unique advantage to other methods. When using object-syntax, Alpine will NOT preserve original classes applied to an element's `class` attribute. -->
 
-For example, if you wanted to apply the "hidden" class to an element before Alpine loads, AND use Alpine to toggle its existence you can only achieve that behavior using object-syntax:
+<!-- For example, if you wanted to apply the "hidden" class to an element before Alpine loads, AND use Alpine to toggle its existence you can only achieve that behavior using object-syntax: -->
 
-この手法は、他の方法に固有の利点を提供します。classobject-syntaxを使用する場合、Alpineは要素の属性に適用された元のクラスを保持しません。
+この手法は、他の方法に固有の利点を提供します。 `object-syntax` を使用する場合、Alpine は要素の`class`属性に適用された元のクラスを保持しません。
 
-たとえば、Alpineが読み込まれる前に「hidden」クラスを要素に適用し、Alpineを使用してその存在を切り替える場合、object-syntaxを使用してのみその動作を実現できます。
+たとえば、Alpine が読み込まれる前に「hidden」クラスを要素に適用し、Alpine を使用してその存在を切り替える場合、`object-syntax` を使用してのみその動作を実現できます。
 
 ```alpine
 <div class="hidden" :class="{ 'hidden': ! show }">
@@ -108,7 +107,7 @@ For example, if you wanted to apply the "hidden" class to an element before Alpi
 
 In case that confused you, let's dig deeper into how Alpine handles `x-bind:class` differently than other attributes.
 
-混乱した場合は、Alpineがx-bind:class他の属性とは異なる方法で処理する方法を詳しく見ていきましょう。
+混乱した場合に備えて、Alpine が他の属性とは異なる方法で `x-bind:class`を処理する方法を詳しく見ていきましょう。
 
 <a name="special-behavior"></a>
 
