@@ -105,21 +105,19 @@ Alpine は、必要に応じてクラスを切り替えるための追加の構�
 <div class="hidden" :class="{ 'hidden': ! show }">
 ```
 
-In case that confused you, let's dig deeper into how Alpine handles `x-bind:class` differently than other attributes.
+<!-- In case that confused you, let's dig deeper into how Alpine handles `x-bind:class` differently than other attributes. -->
 
 混乱した場合に備えて、Alpine が他の属性とは異なる方法で `x-bind:class`を処理する方法を詳しく見ていきましょう。
 
 <a name="special-behavior"></a>
 
-### Special behavior
+### 特別な振る舞い
 
-特別な行動
+<!-- `x-bind:class` behaves differently than other attributes under the hood. -->
 
-`x-bind:class` behaves differently than other attributes under the hood.
+<!-- Consider the following case. -->
 
-Consider the following case.
-
-x-bind:class内部で他の属性とは異なる動作をします。
+`x-bind:class` は、内部で他の属性とは異なる動作をします。
 
 次の場合を考えてみましょう。
 
@@ -127,17 +125,17 @@ x-bind:class内部で他の属性とは異なる動作をします。
 <div class="opacity-50" :class="hide && 'hidden'">
 ```
 
-If "class" were any other attribute, the `:class` binding would overwrite any existing class attribute, causing `opacity-50` to be overwritten by either `hidden` or `''`.
+<!-- If "class" were any other attribute, the `:class` binding would overwrite any existing class attribute, causing `opacity-50` to be overwritten by either `hidden` or `''`. -->
 
-However, Alpine treats `class` bindings differently. It's smart enough to preserve existing classes on an element.
+<!-- However, Alpine treats `class` bindings differently. It's smart enough to preserve existing classes on an element. -->
 
-For example, if `hide` is true, the above example will result in the following DOM element:
+<!-- For example, if `hide` is true, the above example will result in the following DOM element: -->
 
-「クラス」が他の属性である場合、:classバインディングは既存のクラス属性を上書きし、またはopacity-50のいずれかで上書きされhiddenます''。
+「class」が他の属性である場合、`:class` バインディングは既存のクラス属性を上書きし、`opacity-50` を `hidden` または `''` で上書きします。
 
-ただし、Alpineはclassバインディングの扱いが異なります。要素の既存のクラスを保持するのに十分賢いです。
+ただし、Alpine は `class` バインディングを異なる方法で処理します。要素の既存のクラスを保持するのに役立ちます。
 
-たとえば、hidetrueの場合、上記の例は次のDOM要素になります。
+たとえば、`hide` が true の場合、上記の例は次のDOM要素になります。
 
 ```alpine
 <div class="opacity-50 hidden">
@@ -256,10 +254,10 @@ x-bindさまざまなディレクティブと属性のオブジェクトを要�
 </script>
 ```
 
-There are a couple of caveats to this usage of `x-bind`:
+<!-- There are a couple of caveats to this usage of `x-bind`: -->
 
-> When the directive being "bound" or "applied" is `x-for`, you should return a normal expression string from the callback. For example: `['x-for']() { return 'item in items' }`
+<!-- > When the directive being "bound" or "applied" is `x-for`, you should return a normal expression string from the callback. For example: `['x-for']() { return 'item in items' }` -->
 
-この使用法にはいくつかの注意点がありますx-bind：
+この `x-bind` の使用法にはいくつかの注意点があります。
 
-「バインド」または「適用」されているディレクティブがの場合x-for、コールバックから通常の式の文字列を返す必要があります。例えば：['x-for']() { return 'item in items' }
+> 「バインド (bound)」または「適用 (applied)」されているディレクティブがの `x-for` 場合、コールバックから通常の式の文字列を返す必要があります。例えば：`['x-for']() { return 'item in items' }`
