@@ -33,7 +33,7 @@ title: show
 
 <a name="with-transitions"></a>
 
-## トランジション付き
+## トランジション
 
 <!-- If you want to apply smooth transitions to the `x-show` behavior, you can use it in conjunction with `x-transition`. You can learn more about that directive [here](/directives/transition), but here's a quick example of the same component as above, just with transitions applied. -->
 
