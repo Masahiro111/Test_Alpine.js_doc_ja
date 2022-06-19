@@ -9,7 +9,7 @@ title: on
 
 <!-- Here's an example of simple button that shows an alert when clicked. -->
 
-`x-on` はディスパッチされたDOMイベントでコードを簡単に実行できます。
+`x-on` はディスパッチされた (割り当てられた) DOMイベントでコードを簡単に実行できます。
 
 クリックするとアラートを表示するシンプルなボタンの例を次に示します。
 
@@ -31,12 +31,12 @@ title: on
 
 ## 省略構文
 
-If `x-on:` is too verbose for your tastes, you can use the shorthand syntax: `@`.
+<!-- If `x-on:` is too verbose for your tastes, you can use the shorthand syntax: `@`. -->
 
-Here's the same component as above, but using the shorthand syntax instead:
+<!-- Here's the same component as above, but using the shorthand syntax instead: -->
 
 
-x-on:好みに合わない場合は、省略構文を使用できます@。
+`x-on:` が冗長すぎて好みに合わない場合は、省略構文 `@` を使用できます。
 
 上記と同じコンポーネントですが、代わりに省略構文を使用しています。
 
@@ -46,20 +46,19 @@ x-on:好みに合わない場合は、省略構文を使用できます@。
 
 <a name="the-event-object"></a>
 
-## The event object
+## イベントオブジェクト
 
-If you wish to access the native JavaScript event object from your expression, you can use Alpine's magic `$event` property.
+<!-- If you wish to access the native JavaScript event object from your expression, you can use Alpine's magic `$event` property. -->
 
-イベントオブジェクト
-式からネイティブJavaScriptイベントオブジェクトにアクセスする場合は、Alpineのマジック$eventプロパティを使用できます。
+式からネイティブ JavaScript イベントオブジェクトにアクセスする場合は、Alpineの魔法の `$event` プロパティを使用できます。
 
 ```alpine
 <button @click="alert($event.target.getAttribute('message'))" message="Hello World">Say Hi</button>
 ```
 
-In addition, Alpine also passes the event object to any methods referenced without trailing parenthesis. For example:
+<!-- In addition, Alpine also passes the event object to any methods referenced without trailing parenthesis. For example: -->
 
-さらに、Alpineは、末尾の括弧なしで参照されるメソッドにイベントオブジェクトを渡します。例えば：
+さらに、Alpineは、末尾の括弧なしで参照されるメソッドにイベントオブジェクトを渡します。例えば
 
 ```alpine
 <button @click="handleClick">...</button>
@@ -73,16 +72,15 @@ In addition, Alpine also passes the event object to any methods referenced witho
 
 <a name="keyboard-events"></a>
 
-## Keyboard events
+## キーボードイベント
 
-Alpine makes it easy to listen for `keydown` and `keyup` events on specific keys.
+<!-- Alpine makes it easy to listen for `keydown` and `keyup` events on specific keys. -->
 
-Here's an example of listening for the `Enter` key inside an input element.
+<!-- Here's an example of listening for the `Enter` key inside an input element. -->
 
-キーボードイベント
-keydownアルパインを使用するとkeyup、特定のキーのイベントを簡単に聞くことができます。
+Alpine を使用すると、特定のキーの `keydown` および `keyup` イベントを簡単にリッスンできます。
 
-Enterこれは、入力要素内のキーをリッスンする例です。
+これは、入力要素内で「Enter」キーをリッスンする例です。
 
 ```alpine
 <input type="text" @keyup.enter="alert('Submitted!')">
