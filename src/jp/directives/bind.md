@@ -143,26 +143,25 @@ Alpine は、必要に応じてクラスを切り替えるための追加の構�
 
 If `hide` is false, the DOM element will look like:
 
-falseの場合hide、DOM要素は次のようになります。
+`hide` が `false` の場合、DOM要素は次のようになります。
 
 ```alpine
 <div class="opacity-50">
 ```
 
-This behavior should be invisible and intuitive to most users, but it is worth mentioning explicitly for the inquiring developer or any special cases that might crop up.
+<!-- This behavior should be invisible and intuitive to most users, but it is worth mentioning explicitly for the inquiring developer or any special cases that might crop up. -->
 
 この動作は、ほとんどのユーザーには見えず、直感的である必要がありますが、問い合わせを行う開発者や、発生する可能性のある特殊なケースについては、明示的に言及する価値があります。
 
 <a name="binding-styles"></a>
 
-## Binding styles
+## CSS スタイルを結合する
 
-Similar to the special syntax for binding classes with JavaScript objects, Alpine also offers an object-based syntax for binding `style` attributes.
+<!-- Similar to the special syntax for binding classes with JavaScript objects, Alpine also offers an object-based syntax for binding `style` attributes. -->
 
-Just like the class objects, this syntax is entirely optional. Only use it if it affords you some advantage.
+<!-- Just like the class objects, this syntax is entirely optional. Only use it if it affords you some advantage. -->
 
-製本スタイル
-styleクラスをJavaScriptオブジェクトにバインドするための特別な構文と同様に、Alpineは属性をバインドするためのオブジェクトベースの構文も提供します。
+クラスを JavaScript オブジェクトにバインドするための特別な構文と同様に、Alpine は `style` 属性をバインドするためのオブジェクトベースの構文も提供します。
 
 クラスオブジェクトと同様に、この構文は完全にオプションです。それがあなたにいくらかの利点を与える場合にのみそれを使用してください。
 
@@ -173,9 +172,9 @@ styleクラスをJavaScriptオブジェクトにバインドするための特�
 <div style="color: red; display: flex;" ...>
 ```
 
-Conditional inline styling is possible using expressions just like with x-bind:class. Short circuit operators can be used here as well by using a styles object as the second operand.
+<!-- Conditional inline styling is possible using expressions just like with x-bind:class. Short circuit operators can be used here as well by using a styles object as the second operand. -->
 
-x-bind：classと同じように、式を使用して条件付きインラインスタイルを設定できます。ここでも、スタイルオブジェクトを第2オペランドとして使用することにより、短絡演算子を使用できます。
+`x-bind:class` と同じように、式を使用して条件付きインラインスタイルを設定できます。ここでも、スタイルオブジェクトを第2引数として使用することにより、短絡演算子を使用できます。
 
 ```alpine
 <div x-bind:style="true && { color: 'red' }">
@@ -184,7 +183,7 @@ x-bind：classと同じように、式を使用して条件付きインライン
 <div style="color: red;">
 ```
 
-One advantage of this approach is being able to mix it in with existing styles on an element:
+<!-- One advantage of this approach is being able to mix it in with existing styles on an element: -->
 
 このアプローチの利点の1つは、要素の既存のスタイルと組み合わせることができることです。
 
@@ -195,8 +194,9 @@ One advantage of this approach is being able to mix it in with existing styles o
 <div style="padding: 1rem; color: red; display: flex;" ...>
 ```
 
-And like most expressions in Alpine, you can always use the result of a JavaScript expression as the reference:
-また、Alpineのほとんどの式と同様に、JavaScript式の結果をいつでも参照として使用できます。
+<!-- And like most expressions in Alpine, you can always use the result of a JavaScript expression as the reference: -->
+
+また、Alpine のほとんどの式と同様に、JavaScript 式の結果をいつでも参照として使用できます。
 
 ```alpine
 <div x-data="{ styles: { color: 'red', display: 'flex' }}">
@@ -211,16 +211,15 @@ And like most expressions in Alpine, you can always use the result of a JavaScri
 
 <a name="bind-directives"></a>
 
-## Binding Alpine Directives Directly
+## Alpine ディレクティブを直接結合する
 
-`x-bind` allows you to bind an object of different directives and attributes to an element.
+<!-- `x-bind` allows you to bind an object of different directives and attributes to an element. -->
 
-The object keys can be anything you would normally write as an attribute name in Alpine. This includes Alpine directives and modifiers, but also plain HTML attributes. The object values are either plain strings, or in the case of dynamic Alpine directives, callbacks to be evaluated by Alpine.
+<!-- The object keys can be anything you would normally write as an attribute name in Alpine. This includes Alpine directives and modifiers, but also plain HTML attributes. The object values are either plain strings, or in the case of dynamic Alpine directives, callbacks to be evaluated by Alpine. -->
 
-アルパイン指令を直接結合する
-x-bindさまざまなディレクティブと属性のオブジェクトを要素にバインドできます。
+`x-bind` を使用すると、さまざまなディレクティブと属性のオブジェクトを要素にバインドできます。
 
-オブジェクトキーは、Alpineで属性名として通常書き込むものであれば何でもかまいません。これには、Alpineディレクティブと修飾子だけでなく、プレーンHTML属性も含まれます。オブジェクト値はプレーン文字列であるか、動的Alpineディレクティブの場合は、Alpineによって評価されるコールバックです。
+オブジェクトキーは、Alpine で属性名として通常書き込むものであれば何でもかまいません。これには、Alpine ディレクティブと修飾子だけでなく、プレーン HTML 属性も含まれます。オブジェクト値はプレーン文字列であるか、動的な Alpine ディレクティブの場合は、Alpine によって評価されるコールバックです。
 
 ```alpine
 <div x-data="dropdown()">
@@ -260,4 +259,4 @@ x-bindさまざまなディレクティブと属性のオブジェクトを要�
 
 この `x-bind` の使用法にはいくつかの注意点があります。
 
-> 「バインド (bound)」または「適用 (applied)」されているディレクティブがの `x-for` 場合、コールバックから通常の式の文字列を返す必要があります。例えば：`['x-for']() { return 'item in items' }`
+> 「バインド (bound)」または「適用 (applied)」されているディレクティブがの `x-for` 場合、コールバックから通常の式の文字列を返す必要があります。（ 例えば `['x-for']() { return 'item in items' }` ）
