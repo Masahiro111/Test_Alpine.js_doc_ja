@@ -310,7 +310,7 @@ Insert the following code into the `<body>` tag:
 
 <a name="binding-to-inputs"></a>
 
-### 入力へのバインド
+### 入力値へのバインド
 
 ```alpine
 <input x-model="search" placeholder="Search...">
@@ -340,9 +340,9 @@ Insert the following code into the `<body>` tag:
 
 ### ゲッターを使用して計算されたプロパティ
 
-The next bit I'd like to draw your attention to is the `items` and `filteredItems` properties from the `x-data` directive.
+<!-- The next bit I'd like to draw your attention to is the `items` and `filteredItems` properties from the `x-data` directive. -->
 
-次に注目したいのは、ディレクティブのitemsandfilteredItemsプロパティです。x-data
+次に注目したいのは、`x-data` ディレクティブの`items` と `filteredItems` プロパティです。
 
 ```js
 {
@@ -357,29 +357,29 @@ The next bit I'd like to draw your attention to is the `items` and `filteredItem
 }
 ```
 
-The `items` property should be self-explanatory. Here we are setting the value of `items` to a JavaScript array of 3 different items (foo, bar, and baz).
+<!-- The `items` property should be self-explanatory. Here we are setting the value of `items` to a JavaScript array of 3 different items (foo, bar, and baz). -->
 
-The interesting part of this snippet is the `filteredItems` property.
+<!-- The interesting part of this snippet is the `filteredItems` property. -->
 
-Denoted by the `get` prefix for this property, `filteredItems` is a "getter" property in this object. This means we can access `filteredItems` as if it was a normal property in our data object, but when we do, JavaScript will evaluate the provided function under the hood and return the result.
+<!-- Denoted by the `get` prefix for this property, `filteredItems` is a "getter" property in this object. This means we can access `filteredItems` as if it was a normal property in our data object, but when we do, JavaScript will evaluate the provided function under the hood and return the result. -->
 
-It's completely acceptable to forgo the `get` and just make this a method that you can call from the template, but some prefer the nicer syntax of the getter.
+<!-- It's completely acceptable to forgo the `get` and just make this a method that you can call from the template, but some prefer the nicer syntax of the getter. -->
 
-[→ Read more about JavaScript getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
+<!-- [→ Read more about JavaScript getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) -->
 
-Now let's look inside the `filteredItems` getter and make sure we understand what's going on there:
+<!-- Now let's look inside the `filteredItems` getter and make sure we understand what's going on there: -->
 
-プロパティはitems自明である必要があります。itemsここでは、の値を3つの異なるアイテム（foo、bar、baz）のJavaScript配列に設定しています。
+`items` プロパティは自明である必要があります。ここでは、`items`の値を3つの異なるアイテム（foo、bar、baz）の JavaScript 配列として設定しています。
 
-このスニペットの興味深い部分はfilteredItemsプロパティです。
+このスニペットの興味深い部分は `filteredItems` プロパティです。
 
-getこのプロパティのプレフィックスで示されるのfilteredItemsは、このオブジェクトの「getter」プロパティです。これはfilteredItems、データオブジェクトの通常のプロパティであるかのようにアクセスできることを意味しますが、アクセスすると、JavaScriptは内部で提供された関数を評価し、結果を返します。
+このプロパティの `get` プレフィックスで示される `filteredItems` は、このオブジェクトの「getter」プロパティです。これは、データオブジェクトの通常のプロパティであるかのように `filteredItems` にアクセスできることを意味しますが、アクセスすると、JavaScript は内部で提供された関数を評価し、結果を返します。
 
-を省略して、これをテンプレートから呼び出すことができるメソッドにすることは完全に許容されgetますが、ゲッターのより優れた構文を好む人もいます。
+`get` を省略して、これをテンプレートから呼び出すことができるメソッドにすることは完全に許容されますが、ゲッターのより優れた構文を好む人もいます。
 
-→JavaScriptゲッターについてもっと読む
+[→ JavaScriptゲッターについてもっと読む](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
 
-それでは、filteredItemsゲッターの内部を見て、そこで何が起こっているのかを理解していることを確認しましょう。
+それでは、`filteredItems` ゲッターの内部を見て、そこで何が起こっているのかを理解していることを確認しましょう。
 
 ```js
 return this.items.filter(
@@ -387,17 +387,17 @@ return this.items.filter(
 )
 ```
 
-This is all plain JavaScript. We are first getting the array of items (foo, bar, and baz) and filtering them using the provided callback: `i => i.startsWith(this.search)`.
+<!-- This is all plain JavaScript. We are first getting the array of items (foo, bar, and baz) and filtering them using the provided callback: `i => i.startsWith(this.search)`. -->
 
-By passing in this callback to `filter`, we are telling JavaScript to only return the items that start with the string: `this.search`, which like we saw with `x-model` will always reflect the value of the input.
+<!-- By passing in this callback to `filter`, we are telling JavaScript to only return the items that start with the string: `this.search`, which like we saw with `x-model` will always reflect the value of the input. -->
 
 You may notice that up until now, we haven't had to use `this.` to reference properties. However, because we are working directly inside the `x-data` object, we must reference any properties using `this.[property]` instead of simply `[property]`.
 
 Because Alpine is a "reactive" framework. Any time the value of `this.search` changes, parts of the template that use `filteredItems` will automatically be updated.
 
-これはすべてプレーンなJavaScriptです。まず、アイテムの配列（foo、bar、baz）を取得し、提供されたコールバックを使用してそれらをフィルタリングしますi => i.startsWith(this.search)。
+これはすべてプレーンな JavaScript です。まず、アイテムの配列（foo、bar、baz）を取得し、提供されたコールバックを使用してそれらをフィルタリングします。「`i => i.startsWith(this.search)`」
 
-このコールバックをに渡すことでfilter、JavaScriptに、文字列：で始まるアイテムのみを返すように指示しています。this.searchこれは、で見たように、x-model常に入力の値を反映します。
+このコールバックを `filter` に渡すことで、JavaScriptに文字列 `this.search` で始まるアイテムのみを返すように指示しています。これは、`x-model` で見たように、常に入力の値を反映します。
 
 これまで、this.プロパティを参照するために使用する必要がなかったことにお気づきかもしれません。ただし、オブジェクト内で直接作業しているため、単に。ではなくをx-data使用してプロパティを参照する必要があります。this.[property][property]
 
