@@ -13,7 +13,7 @@ For example, here's a component where we will use `x-bind` to set the placeholde
 
 たとえば、これは、`x-bind`を使用して入力のプレースホルダー値を設定するコンポーネントです。
 
-```alpine
+```html
 <div x-data="{ placeholder: 'Type here...' }">
   <input type="text" x-bind:placeholder="placeholder">
 </div>
@@ -27,7 +27,7 @@ For example, here's a component where we will use `x-bind` to set the placeholde
 
 `x-bind：`が冗長すぎて好みに合わない場合は、省略形 `：` を使用できます。たとえば、これは上記と同じ入力要素ですが、短縮構文を使用するようにリファクタリングされています。
 
-```alpine
+```html
 <input type="text" :placeholder="placeholder">
 ```
 
@@ -43,7 +43,7 @@ Here's a simple example of a simple dropdown toggle, but instead of using `x-sho
 
 これは単純なドロップダウントグルの簡単な例ですが、`x-show`を使用する代わりに、「hidden」クラスを使用して要素をトグルします。
 
-```alpine
+```html
 <div x-data="{ open: false }">
   <button x-on:click="open = ! open">Toggle Dropdown</button>
 
@@ -65,7 +65,7 @@ Here's a simple example of a simple dropdown toggle, but instead of using `x-sho
 
 このような場合、より冗長でない構文が必要な場合は、標準の条件の代わりにJavaScriptの短絡評価を使用できます。
 
-```alpine
+```html
 <div :class="show ? '' : 'hidden'">
 <!-- Is equivalent to: -->
 <div :class="show || 'hidden'">
@@ -75,7 +75,7 @@ Here's a simple example of a simple dropdown toggle, but instead of using `x-sho
 
 逆も利用できます。`open` の代わりに、反対の値を持つ変数 `closed` を使用するとします。
 
-```alpine
+```html
 <div :class="closed ? 'hidden' : ''">
 <!-- Is equivalent to: -->
 <div :class="closed && 'hidden'">
@@ -89,7 +89,7 @@ Here's a simple example of a simple dropdown toggle, but instead of using `x-sho
 
 Alpine は、必要に応じてクラスを切り替えるための追加の構文を提供します。クラスがキーでブール値が値である JavaScript オブジェクトを渡すことにより、Alpine は、適用するクラスと削除するクラスを認識します。以下のような例となります。
 
-```alpine
+```html
 <div :class="{ 'hidden': ! show }">
 ```
 
@@ -101,7 +101,7 @@ Alpine は、必要に応じてクラスを切り替えるための追加の構�
 
 たとえば、Alpine が読み込まれる前に「hidden」クラスを要素に適用し、Alpine を使用してその存在を切り替える場合、`object-syntax` を使用してのみその動作を実現できます。
 
-```alpine
+```html
 <div class="hidden" :class="{ 'hidden': ! show }">
 ```
 
@@ -121,7 +121,7 @@ Alpine は、必要に応じてクラスを切り替えるための追加の構�
 
 次の場合を考えてみましょう。
 
-```alpine
+```html
 <div class="opacity-50" :class="hide && 'hidden'">
 ```
 
@@ -137,7 +137,7 @@ Alpine は、必要に応じてクラスを切り替えるための追加の構�
 
 たとえば、`hide` が true の場合、上記の例は次のDOM要素になります。
 
-```alpine
+```html
 <div class="opacity-50 hidden">
 ```
 
@@ -145,7 +145,7 @@ If `hide` is false, the DOM element will look like:
 
 `hide` が `false` の場合、DOM要素は次のようになります。
 
-```alpine
+```html
 <div class="opacity-50">
 ```
 
@@ -165,7 +165,7 @@ If `hide` is false, the DOM element will look like:
 
 クラスオブジェクトと同様に、この構文は完全にオプションです。それがあなたにいくらかの利点を与える場合にのみそれを使用してください。
 
-```alpine
+```html
 <div :style="{ color: 'red', display: 'flex' }">
 
 <!-- Will render: -->
@@ -176,7 +176,7 @@ If `hide` is false, the DOM element will look like:
 
 `x-bind:class` と同じように、式を使用して条件付きインラインスタイルを設定できます。ここでも、スタイルオブジェクトを第2引数として使用することにより、短絡演算子を使用できます。
 
-```alpine
+```html
 <div x-bind:style="true && { color: 'red' }">
 
 <!-- Will render: -->
@@ -187,7 +187,7 @@ If `hide` is false, the DOM element will look like:
 
 このアプローチの利点の1つは、要素の既存のスタイルと組み合わせることができることです。
 
-```alpine
+```html
 <div style="padding: 1rem;" :style="{ color: 'red', display: 'flex' }">
 
 <!-- Will render: -->
@@ -198,7 +198,7 @@ If `hide` is false, the DOM element will look like:
 
 また、Alpine のほとんどの式と同様に、JavaScript 式の結果をいつでも参照として使用できます。
 
-```alpine
+```html
 <div x-data="{ styles: { color: 'red', display: 'flex' }}">
     <div :style="styles">
 </div>
@@ -221,7 +221,7 @@ If `hide` is false, the DOM element will look like:
 
 オブジェクトキーは、Alpine で属性名として通常書き込むものであれば何でもかまいません。これには、Alpine ディレクティブと修飾子だけでなく、プレーン HTML 属性も含まれます。オブジェクト値はプレーン文字列であるか、動的な Alpine ディレクティブの場合は、Alpine によって評価されるコールバックです。
 
-```alpine
+```html
 <div x-data="dropdown()">
     <button x-bind="trigger">Open Dropdown</button>
 
