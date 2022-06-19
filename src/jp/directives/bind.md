@@ -5,13 +5,13 @@ title: bind
 
 # x-bind
 
-`x-bind` allows you to set HTML attributes on elements based on the result of JavaScript expressions.
+<!-- `x-bind` allows you to set HTML attributes on elements based on the result of JavaScript expressions.
 
-For example, here's a component where we will use `x-bind` to set the placeholder value of an input.
+For example, here's a component where we will use `x-bind` to set the placeholder value of an input. -->
 
-x-bindJavaScript式の結果に基づいて要素にHTML属性を設定できます。
+`x-bind` を使用すると、JavaScript 式の結果に基づいて要素にHTML属性を設定できます。
 
-たとえばx-bind、入力のプレースホルダー値を設定するために使用するコンポーネントを次に示します。
+たとえば、これは、`x-bind`を使用して入力のプレースホルダー値を設定するコンポーネントです。
 
 ```alpine
 <div x-data="{ placeholder: 'Type here...' }">
@@ -20,28 +20,28 @@ x-bindJavaScript式の結果に基づいて要素にHTML属性を設定できま
 ```
 
 <a name="shorthand-syntax"></a>
-## Shorthand syntax
 
-If `x-bind:` is too verbose for your liking, you can use the shorthand: `:`. For example, here is the same input element as above, but refactored to use the shorthand syntax.
+## 省略構文
 
-省略構文
-x-bind:冗長すぎて好みに合わない場合は、省略形を使用できます:。たとえば、これは上記と同じ入力要素ですが、短縮構文を使用するようにリファクタリングされています。
+<!-- If `x-bind:` is too verbose for your liking, you can use the shorthand: `:`. For example, here is the same input element as above, but refactored to use the shorthand syntax. -->
+
+`x-bind：`が冗長すぎて好みに合わない場合は、省略形 `：` を使用できます。たとえば、これは上記と同じ入力要素ですが、短縮構文を使用するようにリファクタリングされています。
 
 ```alpine
 <input type="text" :placeholder="placeholder">
 ```
 
 <a name="binding-classes"></a>
-## Binding classes
 
-`x-bind` is most often useful for setting specific classes on an element based on your Alpine state.
+## バインディングクラス
 
-Here's a simple example of a simple dropdown toggle, but instead of using `x-show`, we'll use a "hidden" class to toggle an element.
+<!-- `x-bind` is most often useful for setting specific classes on an element based on your Alpine state.
 
-バインディングクラス
-x-bindほとんどの場合、アルペン諸州に基づいて要素に特定のクラスを設定するのに役立ちます。
+Here's a simple example of a simple dropdown toggle, but instead of using `x-show`, we'll use a "hidden" class to toggle an element. -->
 
-単純なドロップダウントグルの簡単な例を次に示しますがx-show、を使用する代わりに、「hidden」クラスを使用して要素をトグルします。
+`x-bind` は、Alpineの状態に基づいて要素に特定のクラスを設定する場合に最もよく役立ちます。
+
+これは単純なドロップダウントグルの簡単な例ですが、`x-show`を使用する代わりに、「hidden」クラスを使用して要素をトグルします。
 
 ```alpine
 <div x-data="{ open: false }">
@@ -57,6 +57,7 @@ Now, when `open` is `false`, the "hidden" class will be added to the dropdown.
 これで、openがの場合false、「非表示」クラスがドロップダウンに追加されます。
 
 <a name="shorthand-conditionals"></a>
+
 ### Shorthand conditionals
 
 In cases like these, if you prefer a less verbose syntax you can use JavaScript's short-circuit evaluation instead of standard conditionals:
@@ -81,6 +82,7 @@ The inverse is also available to you. Suppose instead of `open`, we use a variab
 ```
 
 <a name="class-object-syntax"></a>
+
 ### Class object syntax
 
 Alpine offers an additional syntax for toggling classes if you prefer. By passing a JavaScript object where the classes are the keys and booleans are the values, Alpine will know which classes to apply and which to remove. For example:
@@ -109,6 +111,7 @@ In case that confused you, let's dig deeper into how Alpine handles `x-bind:clas
 混乱した場合は、Alpineがx-bind:class他の属性とは異なる方法で処理する方法を詳しく見ていきましょう。
 
 <a name="special-behavior"></a>
+
 ### Special behavior
 
 特別な行動
@@ -154,6 +157,7 @@ This behavior should be invisible and intuitive to most users, but it is worth m
 この動作は、ほとんどのユーザーには見えず、直感的である必要がありますが、問い合わせを行う開発者や、発生する可能性のある特殊なケースについては、明示的に言及する価値があります。
 
 <a name="binding-styles"></a>
+
 ## Binding styles
 
 Similar to the special syntax for binding classes with JavaScript objects, Alpine also offers an object-based syntax for binding `style` attributes.
@@ -209,6 +213,7 @@ And like most expressions in Alpine, you can always use the result of a JavaScri
 ```
 
 <a name="bind-directives"></a>
+
 ## Binding Alpine Directives Directly
 
 `x-bind` allows you to bind an object of different directives and attributes to an element.
