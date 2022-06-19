@@ -28,6 +28,7 @@ title: on
 > キャメルケース名のカスタムイベントをリッスンする必要がある場合は、`.camel` ヘルパーを使用してこの制限を回避できます。または、JavaScript コードの要素に `x-on` ディレクティブをアタッチするために `x-bind` を使用できます （大文字と小文字は区別されます）。
 
 <a name="shorthand-syntax"></a>
+
 ## 省略構文
 
 If `x-on:` is too verbose for your tastes, you can use the shorthand syntax: `@`.
@@ -44,6 +45,7 @@ x-on:好みに合わない場合は、省略構文を使用できます@。
 ```
 
 <a name="the-event-object"></a>
+
 ## The event object
 
 If you wish to access the native JavaScript event object from your expression, you can use Alpine's magic `$event` property.
@@ -70,6 +72,7 @@ In addition, Alpine also passes the event object to any methods referenced witho
 ```
 
 <a name="keyboard-events"></a>
+
 ## Keyboard events
 
 Alpine makes it easy to listen for `keydown` and `keyup` events on specific keys.
@@ -127,6 +130,7 @@ For easy reference, here is a list of common keys you may want to listen for.
 | `.slash`                    | Foward Slash, `/`           |
 
 <a name="custom-events"></a>
+
 ## Custom events
 
 Alpine event listeners are a wrapper for native DOM event listeners. Therefore, they can listen for ANY DOM event, including custom events.
@@ -167,6 +171,7 @@ $dispatchこれは、 magicプロパティで書き直された同じコンポ�
 詳細を読む$dispatch
 
 <a name="modifiers"></a>
+
 ## Modifiers
 
 Alpine offers a number of directive modifiers to customize the behavior of your event listeners.
@@ -175,6 +180,7 @@ Alpine offers a number of directive modifiers to customize the behavior of your 
 Alpineには、イベントリスナーの動作をカスタマイズするためのディレクティブ修飾子がいくつか用意されています。
 
 <a name="prevent"></a>
+
 ### .prevent
 
 `.prevent` is the equivalent of calling `.preventDefault()` inside a listener on the browser event object.
@@ -192,6 +198,7 @@ In the above example, with the `.prevent`, clicking the button will NOT submit t
 上記の例では、ボタンをクリックしてもフォームはエンドポイント.preventに送信されません。/foo代わりに、Alpineのリスナーがそれを処理し、イベントがそれ以上処理されないようにします。
 
 <a name="stop"></a>
+
 ### .stop
 
 Similar to `.prevent`, `.stop` is the equivalent of calling `.stopPropagation()` inside a listener on the browser event object.
@@ -209,6 +216,7 @@ In the above example, clicking the button WON'T log the message. This is because
 上記の例では、ボタンをクリックしてもメッセージはログに記録されません。これは、イベントの伝播をすぐに停止<div>し、@clickリスナーが乗っている状態でイベントが「バブル」することを許可していないためです。
 
 <a name="outside"></a>
+
 ### .outside
 
 `.outside` is a convenience helper for listening for a click outside of the element it is attached to. Here's a simple dropdown component example to demonstrate:
@@ -238,6 +246,7 @@ This is because `.outside` is listening for clicks that DON'T originate from the
 .outside式は、登録されている要素がページに表示されている場合にのみ評価されることに注意してください。そうしないと、「トグル」ボタンをクリックしても@click.outsideハンドラーが表示されていないときにハンドラーが起動するという厄介な競合状態が発生します。
 
 <a name="window"></a>
+
 ### .window
 
 When the `.window` modifier is present, Alpine will register the event listener on the root `window` object on the page instead of the element itself.
@@ -257,6 +266,7 @@ Adding `.window` to listeners is extremely useful for these sorts of cases where
 リスナーへの追加.windowは、マークアップのごく一部がページ全体で発生するイベントに関係しているこのような場合に非常に役立ちます。
 
 <a name="document"></a>
+
 ### .document
 
 `.document` works similarly to `.window` only it registers listeners on the `document` global, instead of the `window` global.
@@ -264,6 +274,7 @@ Adding `.window` to listeners is extremely useful for these sorts of cases where
 .documentグローバルではなく.window、グローバルにリスナーを登録するだけの場合と同様に機能します。documentwindow
 
 <a name="once"></a>
+
 ### .once
 
 By adding `.once` to a listener, you are ensuring that the handler is only called ONCE.
@@ -275,6 +286,7 @@ By adding `.once` to a listener, you are ensuring that the handler is only calle
 ```
 
 <a name="debounce"></a>
+
 ### .debounce
 
 Sometimes it is useful to "debounce" an event handler so that it only is called after a certain period of inactivity (250 milliseconds by default).
@@ -307,6 +319,7 @@ Now, `fetchResults` will only be called after 500 milliseconds of inactivity.
 これで、fetchResults500ミリ秒の非アクティブの後にのみ呼び出されます。
 
 <a name="throttle"></a>
+
 ### .throttle
 
 `.throttle` is similar to `.debounce` except it will release a handler call every 250 milliseconds instead of deferring it indefinitely.
@@ -345,6 +358,7 @@ Now, `handleScroll` will only be called every 750 milliseconds.
 現在、handleScroll750ミリ秒ごとにのみ呼び出されます。
 
 <a name="self"></a>
+
 ### .self
 
 By adding `.self` to an event listener, you are ensuring that the event originated on the element it is declared on, and not from a child element.
@@ -368,6 +382,7 @@ However, in this case, because we've added a `.self`, only clicking the button i
 ただし、この場合、を追加したため.self、ボタン自体をクリックするだけで。が呼び出されますhandleClick。要素で発生したクリックのみが<img>処理されません。
 
 <a name="camel"></a>
+
 ### .camel
 
 ```alpine
@@ -385,6 +400,7 @@ By adding `.camel` in the above example, Alpine is now listening for `customEven
 上記の例を追加する.camelと、AlpineはのcustomEvent代わりにリッスンしcustom-eventます。
 
 <a name="dot"></a>
+
 ### .dot
 
 ```alpine
@@ -402,6 +418,7 @@ In the code example above `custom-event.dot` will correspond to the event name `
 上記のコード例custom-event.dotでは、イベント名に対応しcustom.eventます。
 
 <a name="passive"></a>
+
 ### .passive
 
 Browsers optimize scrolling on pages to be fast and smooth even when JavaScript is being executed on the page. However, improperly implemented touch and wheel listeners can block this optimization and cause poor site performance.
