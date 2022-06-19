@@ -35,7 +35,7 @@ Alpine のすべては、`x-data` ディレクティブから始まります。
 
 ## スコープ
 
-Properties defined in an `x-data` directive are available to all element children. Even ones inside other, nested `x-data` components.
+<!-- Properties defined in an `x-data` directive are available to all element children. Even ones inside other, nested `x-data` components. -->
 
 `x-data` ディレクティブで定義されたプロパティは、すべての要素の子で使用できます。他のネストされた `x-data` コンポーネントも同様です。
 
@@ -101,20 +101,19 @@ Properties defined in an `x-data` directive are available to all element childre
 
 <a name="getters"></a>
 
-## Getters
+## ゲッター
 
-JavaScript [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) are handy when the sole purpose of a method is to return data based on other state.
+<!-- JavaScript [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) are handy when the sole purpose of a method is to return data based on other state. -->
 
-Think of them like "computed properties" (although, they are not cached like Vue's computed properties).
+<!-- Think of them like "computed properties" (although, they are not cached like Vue's computed properties). -->
 
-Let's refactor our component to use a getter called `isOpen` instead of accessing `open` directly.
+<!-- Let's refactor our component to use a getter called `isOpen` instead of accessing `open` directly. -->
 
-ゲッター
-JavaScriptゲッターは、メソッドの唯一の目的が他の状態に基づいてデータを返すことである場合に便利です。
+JavaScript の [ゲッター](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) は、メソッドの唯一の目的が他の状態に基づいてデータを返すことである場合に便利です。
 
-それらを「計算されたプロパティ」のように考えてください（ただし、Vueの計算されたプロパティのようにキャッシュされません）。
+それらを「計算されたプロパティ」のように考えてください（ただし、Vue の計算されたプロパティのようにキャッシュされません）。
 
-コンポーネントをリファクタリングして、直接isOpenアクセスする代わりに呼び出されるゲッターを使用してみましょう。open
+コンポーネントをリファクタリングして、`open` に直接アクセスする代わりに `isOpen` と呼び出されるゲッターを使用してみましょう。
 
 ```alpine
 <div x-data="{
@@ -130,13 +129,14 @@ JavaScriptゲッターは、メソッドの唯一の目的が他の状態に基�
 </div>
 ```
 
-Notice the "Content" now depends on the `isOpen` getter instead of the `open` property directly.
+<!-- Notice the "Content" now depends on the `isOpen` getter instead of the `open` property directly. -->
 
-In this case there is no tangible benefit. But in some cases, getters are helpful for providing a more expressive syntax in your components.
+<!-- In this case there is no tangible benefit. But in some cases, getters are helpful for providing a more expressive syntax in your components. -->
 
-「コンテンツ」は、プロパティisOpenではなくゲッターに直接依存するようになっていることに注意してください。open
+「`Content`」が `open` プロパティではなく `isOpen` ゲッターに直接依存するようになったことに注意してください。
 
 この場合、具体的なメリットはありません。ただし、場合によっては、ゲッターがコンポーネントでより表現力豊かな構文を提供するのに役立つことがあります。
+
 
 <a name="data-less-components"></a>
 
@@ -146,8 +146,7 @@ Occasionally, you want to create an Alpine component, but you don't need any dat
 
 In these cases, you can always pass in an empty object.
 
-データレスコンポーネント
-Alpineコンポーネントを作成したい場合がありますが、データは必要ありません。
+Alpine コンポーネントを作成したい場合がありますが、データは必要ありません。
 
 このような場合、いつでも空のオブジェクトを渡すことができます。
 
@@ -155,7 +154,7 @@ Alpineコンポーネントを作成したい場合がありますが、デー�
 <div x-data="{}">
 ```
 
-However, if you wish, you can also eliminate the attribute value entirely if it looks better to you.
+<!-- However, if you wish, you can also eliminate the attribute value entirely if it looks better to you. -->
 
 ただし、必要に応じて、見栄えがよい場合は属性値を完全に削除することもできます。
 
@@ -167,9 +166,9 @@ However, if you wish, you can also eliminate the attribute value entirely if it 
 
 ## 単一要素コンポーネント
 
-Sometimes you may only have a single element inside your Alpine component, like the following:
+<!-- Sometimes you may only have a single element inside your Alpine component, like the following: -->
 
-次のように、Alpineコンポーネント内に要素が1つしかない場合があります。
+次のように、Alpine コンポーネント内に要素が1つしかない場合があります。
 
 ```alpine
 <div x-data="{ open: true }">
@@ -177,9 +176,9 @@ Sometimes you may only have a single element inside your Alpine component, like 
 </div>
 ```
 
-In these cases, you can declare `x-data` directly on that single element:
+<!-- In these cases, you can declare `x-data` directly on that single element: -->
 
-このような場合、x-dataその単一の要素で直接宣言できます。
+このような場合、その単一の要素で `x-data` を直接宣言できます。
 
 ```alpine
 <button x-data="{ open: true }" @click="open = false" x-show="open">
@@ -189,14 +188,13 @@ In these cases, you can declare `x-data` directly on that single element:
 
 <a name="re-usable-data"></a>
 
-## Re-usable Data
+## 再利用可能なデータ
 
-If you find yourself duplicating the contents of `x-data`, or you find the inline syntax verbose, you can extract the `x-data` object out to a dedicated component using `Alpine.data`.
+<!-- If you find yourself duplicating the contents of `x-data`, or you find the inline syntax verbose, you can extract the `x-data` object out to a dedicated component using `Alpine.data`. -->
 
-再利用可能なデータ
-の内容を複製している場合x-data、またはインライン構文が冗長である場合は、をx-data使用してオブジェクトを専用コンポーネントに抽出できますAlpine.data。
+`x-data` の内容を複製している場合、またはインライン構文が冗長である場合は、`Alpine.data` を使用して `x-data` オブジェクトを専用コンポーネントに抽出できます
 
-Here's a quick example:
+<!-- Here's a quick example: -->
 
 簡単な例を次に示します。
 
@@ -222,7 +220,4 @@ Here's a quick example:
 </script>
 ```
 
-[→ Read more about `Alpine.data(...)`](/globals/alpine-data)
-
-
-→詳細を読むAlpine.data(...)
+[→ `Alpine.data(...)`の詳細を読む](/globals/alpine-data)
