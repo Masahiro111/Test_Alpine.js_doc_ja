@@ -61,13 +61,13 @@ Properties defined in an `x-data` directive are available to all element childre
 
 ## メソッド
 
-Because `x-data` is evaluated as a normal JavaScript object, in addition to state, you can store methods and even getters.
+<!-- Because `x-data` is evaluated as a normal JavaScript object, in addition to state, you can store methods and even getters. -->
 
-For example, let's extract the "Toggle Content" behavior into a method on  `x-data`.
+<!-- For example, let's extract the "Toggle Content" behavior into a method on  `x-data`. -->
 
-`x-data` は通常の JavaScript オブジェクトとして評価されるため、状態に加えて、メソッドやゲッターを保存することもできます。
+`x-data`は通常の JavaScript オブジェクトとして評価されるため、状態に加えて、メソッドやゲッターを保存することもできます。
 
-たとえば、「コンテンツの切り替え」動作をのメソッドに抽出してみましょう x-data。
+たとえば、「Toggle Content」の動作を`x-data`のメソッドに抽出してみましょう。
 
 ```alpine
 <div x-data="{ open: false, toggle() { this.open = ! this.open } }">
@@ -79,17 +79,17 @@ For example, let's extract the "Toggle Content" behavior into a method on  `x-da
 </div>
 ```
 
-Notice the added `toggle() { this.open = ! this.open }` method on `x-data`. This method can now be called from anywhere inside the component.
+<!-- Notice the added `toggle() { this.open = ! this.open }` method on `x-data`. This method can now be called from anywhere inside the component. -->
 
-You'll also notice the usage of `this.` to access state on the object itself. This is because Alpine evaluates this data object like any standard JavaScript object with a `this` context.
+<!-- You'll also notice the usage of `this.` to access state on the object itself. This is because Alpine evaluates this data object like any standard JavaScript object with a `this` context. -->
 
-If you prefer, you can leave the calling parenthesis off of the `toggle` method completely. For example:
+<!-- If you prefer, you can leave the calling parenthesis off of the `toggle` method completely. For example: -->
 
-に追加されたtoggle() { this.open = ! this.open }メソッドに注意してくださいx-data。このメソッドは、コンポーネント内のどこからでも呼び出すことができるようになりました。
+`x-data`に追加された `toggle() { this.open = ! this.open }` メソッドに注目してください。このメソッドは、コンポーネント内のどこからでも呼び出すことができるようになりました。
 
-this.また、オブジェクト自体の状態にアクセスするためのの使用法にも気付くでしょう。これは、Alpineがこのデータオブジェクトを、thisコンテキストを持つ標準のJavaScriptオブジェクトと同じように評価するためです。
+また、オブジェクト自体の状態にアクセスするための`this.` の使用法にも気付くでしょう。これは、Alpine が `this` コンテキストを持つ標準の JavaScript オブジェクトと同様にこのデータオブジェクトを評価するためです。
 
-必要に応じて、呼び出し元の括弧をtoggleメソッドから完全に省略できます。例えば：
+必要に応じて、呼び出し括弧を`toggle`メソッドから完全に省略できます。例えば：
 
 ```alpine
 <!-- Before -->
