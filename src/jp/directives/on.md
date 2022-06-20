@@ -347,15 +347,15 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 Now, `handleScroll` will only be called every 750 milliseconds.
 
-現在、handleScroll750ミリ秒ごとにのみ呼び出されます。
+ここでは、`handleScroll` は 750ミリ秒ごとに呼び出されます。
 
 <a name="self"></a>
 
 ### .self
 
-By adding `.self` to an event listener, you are ensuring that the event originated on the element it is declared on, and not from a child element.
+<!-- By adding `.self` to an event listener, you are ensuring that the event originated on the element it is declared on, and not from a child element. -->
 
-イベントリスナーに追加.selfすることで、イベントが子要素からではなく、宣言された要素から発生したことを確認できます。
+イベントリスナーに `.self` を追加することで、イベントが子要素からではなく、宣言された要素から発生したことを確認できます。
 
 ```alpine
 <button @click.self="handleClick">
@@ -365,13 +365,13 @@ By adding `.self` to an event listener, you are ensuring that the event originat
 </button>
 ```
 
-In the above example, we have an `<img>` tag inside the `<button>` tag. Normally, any click originating within the `<button>` element (like on `<img>` for example), would be picked up by a `@click` listener on the button.
+<!-- In the above example, we have an `<img>` tag inside the `<button>` tag. Normally, any click originating within the `<button>` element (like on `<img>` for example), would be picked up by a `@click` listener on the button. -->
 
-However, in this case, because we've added a `.self`, only clicking the button itself will call `handleClick`. Only clicks originating on the `<img>` element will not be handled.
+<!-- However, in this case, because we've added a `.self`, only clicking the button itself will call `handleClick`. Only clicks originating on the `<img>` element will not be handled. -->
 
-上記の例では、<img>タグ内に<button>タグがあります。通常、<button>要素内で発生したクリック（たとえばのように）は、ボタンのリスナー<img>によってピックアップされます。@click
+上記の例では、`<button>` タグ内に `<img>` タグがあります。通常、`<button>` 要素内で発生したクリック（たとえば `<img>` など）は、ボタンの `@click` リスナーによって検出されます。
 
-ただし、この場合、を追加したため.self、ボタン自体をクリックするだけで。が呼び出されますhandleClick。要素で発生したクリックのみが<img>処理されません。
+ただし、この場合 `.self` を追加したため、ボタン自体をクリックするだけで `handleClick` が呼び出されます。`<img>` 要素で発生したクリックのみが処理されません。
 
 <a name="camel"></a>
 
@@ -383,13 +383,13 @@ However, in this case, because we've added a `.self`, only clicking the button i
 </div>
 ```
 
-Sometimes you may want to listen for camelCased events such as `customEvent` in our example. Because camelCasing inside HTML attributes is not supported, adding the `.camel` modifier is necessary for Alpine to camelCase the event name internally.
+<!-- Sometimes you may want to listen for camelCased events such as `customEvent` in our example. Because camelCasing inside HTML attributes is not supported, adding the `.camel` modifier is necessary for Alpine to camelCase the event name internally. -->
 
-By adding `.camel` in the above example, Alpine is now listening for `customEvent` instead of `custom-event`.
+<!-- By adding `.camel` in the above example, Alpine is now listening for `customEvent` instead of `custom-event`. -->
 
-この例のように、キャメルケースのイベントを聞きたい場合がありますcustomEvent。HTML属性内のcamelCasingはサポートされていない.camelため、Alpineがイベント名を内部でcamelCaseにするには、修飾子を追加する必要があります。
+この例では、`customEvent` などのキャメルケースイベントをリッスンしたい場合があります。 HTML属性内のcamelCasingはサポートされていないため、Alpineがイベント名を内部でcamelCaseにするには、`.camel` 修飾子を追加する必要があります。
 
-上記の例を追加する.camelと、AlpineはのcustomEvent代わりにリッスンしcustom-eventます。
+上記の例で `.camel` を追加することにより、Alpine は `custom-event` ではなく `customEvent` をリッスンするようになりました。
 
 <a name="dot"></a>
 
@@ -401,30 +401,28 @@ By adding `.camel` in the above example, Alpine is now listening for `customEven
 </div>
 ```
 
-Similar to the `.camelCase` modifier there may be situations where you want to listen for events that have dots in their name (like `custom.event`). Since dots within the event name are reserved by Alpine you need to write them with dashes and add the `.dot` modifier.
+<!-- Similar to the `.camelCase` modifier there may be situations where you want to listen for events that have dots in their name (like `custom.event`). Since dots within the event name are reserved by Alpine you need to write them with dashes and add the `.dot` modifier. -->
 
-In the code example above `custom-event.dot` will correspond to the event name `custom.event`.
+<!-- In the code example above `custom-event.dot` will correspond to the event name `custom.event`. -->
 
-修飾子と同様に.camelCase、名前にドットが含まれているイベント（など）をリッスンしたい場合がありますcustom.event。イベント名内のドットはAlpineによって予約されているため、ダッシュを使用してドットを記述し、.dot修飾子を追加する必要があります。
+`.camelCase` 修飾子と同様に、名前にドットが含まれるイベント（ `custom.event` など）をリッスンしたい場合があります。イベント名内のドットはAlpineによって予約されているため、ダッシュを使用してドットを記述し、`.dot` 修飾子を追加する必要があります。
 
-上記のコード例custom-event.dotでは、イベント名に対応しcustom.eventます。
+上記のコード例では、`custom-event.dot` はイベント名 `custom.event` に対応しています。
 
 <a name="passive"></a>
 
 ### .passive
 
-Browsers optimize scrolling on pages to be fast and smooth even when JavaScript is being executed on the page. However, improperly implemented touch and wheel listeners can block this optimization and cause poor site performance.
+<!-- Browsers optimize scrolling on pages to be fast and smooth even when JavaScript is being executed on the page. However, improperly implemented touch and wheel listeners can block this optimization and cause poor site performance. -->
 
-If you are listening for touch events, it's important to add `.passive` to your listeners to not block scroll performance.
+<!-- If you are listening for touch events, it's important to add `.passive` to your listeners to not block scroll performance. -->
 
-ブラウザは、JavaScriptがページで実行されている場合でも、ページのスクロールを高速かつスムーズに最適化します。ただし、不適切に実装されたタッチおよびホイールリスナーは、この最適化をブロックし、サイトのパフォーマンスを低下させる可能性があります。
+ブラウザは、JavaScript がページで実行されている場合でも、ページのスクロールを高速かつスムーズに最適化します。ただし、不適切に実装されたタッチおよびホイールリスナーは、この最適化をブロックし、サイトのパフォーマンスを低下させる可能性があります。
 
-タッチイベントをリッスンしている場合は、.passiveスクロールのパフォーマンスを妨げないようにリスナーに追加することが重要です。
+タッチイベントをリッスンしている場合は、スクロールのパフォーマンスを妨げないように、リスナーに `.passive` を追加することが重要です。
 
 ```alpine
 <div @touchstart.passive="...">...</div>
 ```
 
-[→ Read more about passive listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners)
-
-パッシブリスナーについてもっと読む
+[→ パッシブリスナーについてもっと読む](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners)
