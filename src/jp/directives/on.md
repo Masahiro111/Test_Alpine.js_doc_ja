@@ -9,7 +9,7 @@ title: on
 
 <!-- Here's an example of simple button that shows an alert when clicked. -->
 
-`x-on` はディスパッチされた (割り当てられた) DOMイベントでコードを簡単に実行できます。
+`x-on` は、ディスパッチ（割当）されている DOM イベント上で、自分で書いたコードを簡単に実行できます。
 
 クリックするとアラートを表示するシンプルなボタンの例を次に示します。
 
@@ -149,13 +149,13 @@ Alpine のイベントリスナーは、ネイティブDOMイベントリスナ�
 
 <!-- Because the `.dispatchEvent` API is verbose, Alpine offers a `$dispatch` helper to simplify things. -->
 
-Here's the same component re-written with the `$dispatch` magic property.
+<!-- Here's the same component re-written with the `$dispatch` magic property. -->
 
 ボタンがクリックされると、`@foo` リスナーが呼び出されます。
 
 `.dispatchEventAPI` は冗長であるため、Alpine は `$dispatch`ヘルパーで単純化して提供しています。
 
-$dispatchこれは、 magicプロパティで書き直された同じコンポーネントです。
+これは、`$dispatch` マジックプロパティで書き直された同じコンポーネントです。
 
 ```alpine
 <div x-data @foo="alert('Button Was Clicked!')">
@@ -163,18 +163,15 @@ $dispatchこれは、 magicプロパティで書き直された同じコンポ�
 </div>
 ```
 
-[→ Read more about `$dispatch`](/magics/dispatch)
-
-詳細を読む$dispatch
+[→ 「$dispatch」の詳細を読む](/magics/dispatch)
 
 <a name="modifiers"></a>
 
-## Modifiers
+## 修飾子
 
-Alpine offers a number of directive modifiers to customize the behavior of your event listeners.
+<!-- Alpine offers a number of directive modifiers to customize the behavior of your event listeners. -->
 
-修飾子
-Alpineには、イベントリスナーの動作をカスタマイズするためのディレクティブ修飾子がいくつか用意されています。
+Alpine には、イベントリスナーの動作をカスタマイズするためのディレクティブ修飾子が複数用意されています。
 
 <a name="prevent"></a>
 
@@ -182,7 +179,7 @@ Alpineには、イベントリスナーの動作をカスタマイズするた�
 
 `.prevent` is the equivalent of calling `.preventDefault()` inside a listener on the browser event object.
 
-.prevent.preventDefault()ブラウザのイベントオブジェクトのリスナー内で呼び出すのと同じです。
+`.prevent` は、ブラウザのイベントオブジェクトのリスナー内で呼び出す `.preventDefault()` と同等です。
 
 ```alpine
 <form @submit.prevent="console.log('submitted')" action="/foo">
@@ -190,9 +187,9 @@ Alpineには、イベントリスナーの動作をカスタマイズするた�
 </form>
 ```
 
-In the above example, with the `.prevent`, clicking the button will NOT submit the form to the `/foo` endpoint. Instead, Alpine's listener will handle it and "prevent" the event from being handled any further.
+<!-- In the above example, with the `.prevent`, clicking the button will NOT submit the form to the `/foo` endpoint. Instead, Alpine's listener will handle it and "prevent" the event from being handled any further. -->
 
-上記の例では、ボタンをクリックしてもフォームはエンドポイント.preventに送信されません。/foo代わりに、Alpineのリスナーがそれを処理し、イベントがそれ以上処理されないようにします。
+上記の例では、`.prevent` が付与されたボタンをクリックしてもフォームは `/foo` のエンドポイントに送信されません。代わりに、Alpine のリスナーがそれを処理し、イベントがそれ以上処理されないようにします。
 
 <a name="stop"></a>
 
