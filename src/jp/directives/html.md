@@ -10,7 +10,7 @@ title: html
 <!-- > ⚠️ Only use on trusted content and never on user-provided content. ⚠️ -->
 <!-- > Dynamically rendering HTML from third parties can easily lead to XSS vulnerabilities. -->
 
-Here's a basic example of using `x-html` to display a user's username.
+<!-- Here's a basic example of using `x-html` to display a user's username. -->
 
 `x-html` は、要素の「 innerHTML 」プロパティを指定された式の結果に設定します。
 
