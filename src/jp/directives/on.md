@@ -86,29 +86,29 @@ Alpine を使用すると、特定のキーの `keydown` および `keyup` イ�
 <input type="text" @keyup.enter="alert('Submitted!')">
 ```
 
-You can also chain these key modifiers to achieve more complex listeners.
+<!-- You can also chain these key modifiers to achieve more complex listeners. -->
 
-Here's a listener that runs when the `Shift` key is held and `Enter` is pressed, but not when `Enter` is pressed alone.
+<!-- Here's a listener that runs when the `Shift` key is held and `Enter` is pressed, but not when `Enter` is pressed alone. -->
 
 これらのキー修飾子をチェーンして、より複雑なリスナーを実現することもできます。
 
-Shiftこれは、キーを押したまま押したときに実行されるリスナーですが、単独で押されEnterたときは実行されません。Enter
+これは、`Shift` キーを押したまま、`Enter` キーを押したときに実行されるリスナーですが、単独で `Enter` キーを押したときは実行されません。
 
 ```alpine
 <input type="text" @keyup.shift.enter="alert('Submitted!')">
 ```
 
-You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case.
+<!-- You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case. -->
 
-KeyboardEvent.keyを介して公開された有効なキー名は、kebab-caseに変換することで、修飾子として直接使用できます。
+[`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) を介して公開された有効なキー名は、kebab-case に変換することで、修飾子として直接使用できます。
 
 ```alpine
 <input type="text" @keyup.page-down="alert('Submitted!')">
 ```
 
-For easy reference, here is a list of common keys you may want to listen for.
+<!-- For easy reference, here is a list of common keys you may want to listen for. -->
 
-簡単に参照できるように、ここにリッスンしたい一般的なキーのリストがあります。
+一般的にリッスンできるキーのリストです。
 
 | Modifier                   | Keyboard Key                |
 | -------------------------- | --------------------------- |
@@ -129,14 +129,13 @@ For easy reference, here is a list of common keys you may want to listen for.
 
 <a name="custom-events"></a>
 
-## Custom events
+## カスタムイベント
 
-Alpine event listeners are a wrapper for native DOM event listeners. Therefore, they can listen for ANY DOM event, including custom events.
+<!-- Alpine event listeners are a wrapper for native DOM event listeners. Therefore, they can listen for ANY DOM event, including custom events. -->
 
-Here's an example of a component that dispatches a custom DOM event and listens for it as well.
+<!-- Here's an example of a component that dispatches a custom DOM event and listens for it as well. -->
 
-カスタムイベント
-アルパインイベントリスナーは、ネイティブDOMイベントリスナーのラッパーです。したがって、カスタムイベントを含むすべてのDOMイベントをリッスンできます。
+Alpine のイベントリスナーは、ネイティブDOMイベントリスナーのラッパーです。したがって、カスタムイベントを含むすべてのDOMイベントをリッスンできます。
 
 これは、カスタムDOMイベントをディスパッチし、それもリッスンするコンポーネントの例です。
 
@@ -146,15 +145,15 @@ Here's an example of a component that dispatches a custom DOM event and listens 
 </div>
 ```
 
-When the button is clicked, the `@foo` listener will be called.
+<!-- When the button is clicked, the `@foo` listener will be called. -->
 
-Because the `.dispatchEvent` API is verbose, Alpine offers a `$dispatch` helper to simplify things.
+<!-- Because the `.dispatchEvent` API is verbose, Alpine offers a `$dispatch` helper to simplify things. -->
 
 Here's the same component re-written with the `$dispatch` magic property.
 
-ボタンがクリックされると、@fooリスナーが呼び出されます。
+ボタンがクリックされると、`@foo` リスナーが呼び出されます。
 
-.dispatchEventAPIは冗長であるため、Alpineは$dispatch物事を単純化するためのヘルパーを提供します。
+`.dispatchEventAPI` は冗長であるため、Alpine は `$dispatch`ヘルパーで単純化して提供しています。
 
 $dispatchこれは、 magicプロパティで書き直された同じコンポーネントです。
 
