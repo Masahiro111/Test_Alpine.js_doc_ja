@@ -20,12 +20,13 @@ title: html
 
 `x-html` を使用してユーザーのユーザー名を表示する基本的な例を次に示します。
 
-```alpine
+```html
 <div x-data="{ username: '<strong>calebporzio</strong>' }">
     Username: <span x-html="username"></span>
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ username: '<strong>calebporzio</strong>' }">
@@ -33,6 +34,7 @@ title: html
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <!-- Now the `<span>` tag's inner HTML will be set to "<strong>calebporzio</strong>". -->
 
