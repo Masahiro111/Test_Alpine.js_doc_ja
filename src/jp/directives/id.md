@@ -5,19 +5,19 @@ title: id
 
 # x-id
 
-`x-id` allows you to declare a new "scope" for any new IDs generated using `$id()`. It accepts an array of strings (ID names) and adds a suffix to each `$id('...')` generated within it that is unique to other IDs on the page.
+<!-- `x-id` allows you to declare a new "scope" for any new IDs generated using `$id()`. It accepts an array of strings (ID names) and adds a suffix to each `$id('...')` generated within it that is unique to other IDs on the page. -->
 
-`x-id` is meant to be used in conjunction with the `$id(...)` magic.
+<!-- `x-id` is meant to be used in conjunction with the `$id(...)` magic. -->
 
-[Visit the $id documentation](/magics/id) for a better understanding of this feature.
+<!-- [Visit the $id documentation](/magics/id) for a better understanding of this feature. -->
 
-Here's a brief example of this directive in use:
+<!-- Here's a brief example of this directive in use: -->
 
-`x-id`を使用すると、` $ id（）`を使用して生成された新しいIDの新しい「スコープ」を宣言できます。 文字列（ID名）の配列を受け入れ、その中で生成された各 `$ id（'...'）`に、ページ上の他のIDに固有の接尾辞を追加します。
+`x-id` を使用すると、`$id()` を使用して生成された新しい ID の新しい「スコープ」を宣言できます。 文字列（ID名）の配列を受け入れ、その中で生成された各 `$ id('...')`に、ページ上の他の ID に固有の接尾辞を追加します。
 
-`x-id`は、` $ id（...）`マジックと組み合わせて使用することを目的としています。
+`x-id` は、`$id(...)`マジックと組み合わせて使用することを目的としています。
 
-この機能の理解を深めるには、[$ idのドキュメントにアクセスしてください]（/ magics / id）。
+この機能の理解を深めるには、[$id のドキュメントにアクセスしてください](/magics/id)。
 
 使用中のこのディレクティブの簡単な例を次に示します。
 
