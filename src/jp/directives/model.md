@@ -9,6 +9,10 @@ title: model
 
 Here's a simple example of using `x-model` to bind the value of a text field to a piece of data in Alpine.
 
+`x-model`を使用すると、入力要素の値をAlpineデータにバインドできます。
+
+これは、`x-model`を使用してテキストフィールドの値をAlpineのデータにバインドする簡単な例です。
+
 ```alpine
 <div x-data="{ message: '' }">
     <input type="text" x-model="message">
@@ -34,6 +38,13 @@ Now as the user types into the text field, the `message` will be reflected in th
 
 
 We can use the same example as above but this time, we'll add a button to change the value of the `message` property.
+
+これで、ユーザーがテキストフィールドに入力すると、`message`が`<span>`タグに反映されます。
+
+`x-model`は双方向にバインドされており、「セット」と「取得」の両方を意味します。 データの変更に加えて、データ自体が変更された場合、要素は変更を反映します。
+
+
+上記と同じ例を使用できますが、今回は、`message`プロパティの値を変更するためのボタンを追加します。
 
 ```alpine
 <div x-data="{ message: '' }">
@@ -63,7 +74,12 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 * `<input type="radio">`
 * `<select>`
 
+これで、 `<button>`をクリックすると、入力要素の値が即座に「変更」に更新されます。
+
+`x-model`は、次の入力要素で機能します。
+
 <a name="text-inputs"></a>
+
 ## Text inputs
 
 ```alpine
@@ -83,6 +99,7 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 <!-- END_VERBATIM -->
 
 <a name="textarea-inputs"></a>
+
 ## Textarea inputs
 
 ```alpine
@@ -102,9 +119,11 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 <!-- END_VERBATIM -->
 
 <a name="checkbox-inputs"></a>
+
 ## Checkbox inputs
 
 <a name="single-checkbox-with-boolean"></a>
+
 ### Single checkbox with boolean
 
 ```alpine
@@ -124,6 +143,7 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 <!-- END_VERBATIM -->
 
 <a name="multiple-checkboxes-bound-to-array"></a>
+
 ### Multiple checkboxes bound to array
 
 ```alpine
@@ -147,6 +167,7 @@ Colors: <span x-text="colors"></span>
 <!-- END_VERBATIM -->
 
 <a name="radio-inputs"></a>
+
 ## Radio inputs
 
 ```alpine
@@ -168,10 +189,12 @@ Answer: <span x-text="answer"></span>
 <!-- END_VERBATIM -->
 
 <a name="select-inputs"></a>
+
 ## Select inputs
 
 
 <a name="single-select"></a>
+
 ### Single select
 
 ```alpine
@@ -199,6 +222,7 @@ Color: <span x-text="color"></span>
 <!-- END_VERBATIM -->
 
 <a name="single-select-with-placeholder"></a>
+
 ### Single select with placeholder
 
 ```alpine
@@ -229,6 +253,7 @@ Color: <span x-text="color"></span>
 <!-- END_VERBATIM -->
 
 <a name="multiple-select"></a>
+
 ### Multiple select
 
 ```alpine
@@ -256,6 +281,7 @@ Colors: <span x-text="color"></span>
 <!-- END_VERBATIM -->
 
 <a name="dynamically-populated-select-options"></a>
+
 ### Dynamically populated Select Options
 
 ```alpine
@@ -283,14 +309,20 @@ Color: <span x-text="color"></span>
 <!-- END_VERBATIM -->
 
 <a name="modifiers"></a>
+
 ## Modifiers
 
 <a name="lazy"></a>
+
 ### `.lazy`
 
 On text inputs, by default, `x-model` updates the property on every keystroke. By adding the `.lazy` modifier, you can force an `x-model` input to only update the property when user focuses away from the input element.
 
 This is handy for things like real-time form-validation where you might not want to show an input validation error until the user "tabs" away from a field.
+
+テキスト入力では、デフォルトで、`x-model`はキーストロークごとにプロパティを更新します。 `.lazy`修飾子を追加することにより、ユーザーが入力要素から離れてフォーカスした場合にのみ、`x-model`入力がプロパティを更新するように強制できます。
+
+これは、ユーザーがフィールドから「タブ」で移動するまで入力検証エラーを表示したくないリアルタイムのフォーム検証などに便利です。
 
 ```alpine
 <input type="text" x-model.lazy="username">
@@ -298,9 +330,12 @@ This is handy for things like real-time form-validation where you might not want
 ```
 
 <a name="number"></a>
+
 ### `.number`
 
 By default, any data stored in a property via `x-model` is stored as a string. To force Alpine to store the value as a JavaScript number, add the `.number` modifier.
+
+デフォルトでは、`x-model`を介してプロパティに保存されているデータはすべて文字列として保存されます。 Alpineに値をJavaScript番号として保存させるには、`.number`修飾子を追加します。
 
 ```alpine
 <input type="text" x-model.number="age">
@@ -308,11 +343,16 @@ By default, any data stored in a property via `x-model` is stored as a string. T
 ```
 
 <a name="debounce"></a>
+
 ### `.debounce`
 
 By adding `.debounce` to `x-model`, you can easily debounce the updating of bound input.
 
 This is useful for things like real-time search inputs that fetch new data from the server every time the search property changes.
+
+`.debounce`を`x-model`に追加することで、バインドされた入力の更新を簡単にデバウンスできます。
+
+これは、検索プロパティが変更されるたびにサーバーから新しいデータをフェッチするリアルタイム検索入力などに役立ちます。
 
 ```alpine
 <input type="text" x-model.debounce="search">
@@ -320,25 +360,33 @@ This is useful for things like real-time search inputs that fetch new data from 
 
 The default debounce time is 250 milliseconds, you can easily customize this by adding a time modifier like so.
 
+デフォルトのデバウンス時間は250ミリ秒です。このように時間修飾子を追加することで、これを簡単にカスタマイズできます。
+
 ```alpine
 <input type="text" x-model.debounce.500ms="search">
 ```
 
 <a name="throttle"></a>
+
 ### `.throttle`
 
 Similar to `.debounce` you can limit the property update triggered by `x-model` to only updating on a specified interval.
 
+`.debounce`と同様に、`x-model`によってトリガーされるプロパティの更新を指定された間隔でのみ更新するように制限できます。
+
 <input type="text" x-model.throttle="search">
 
 The default throttle interval is 250 milliseconds, you can easily customize this by adding a time modifier like so.
+
+デフォルトのスロットル間隔は250ミリ秒です。このように時間修飾子を追加することで、これを簡単にカスタマイズできます。
 
 ```alpine
 <input type="text" x-model.throttle.500ms="search">
 ```
 
 <a name="programmatic access"></a>
-## Programmatic access
+
+## プログラムによるアクセス
 
 Alpine exposes under-the-hood utilities for getting and setting properties bound with `x-model`. This is useful for complex Alpine utilities that may want to override the default x-model behavior, or instances where you want to allow `x-model` on a non-input element.
 
@@ -346,6 +394,13 @@ You can access these utilities through a property called `_x_model` on the `x-mo
 
 * `el._x_model.get()` (returns the value of the bound property)
 * `el._x_model.set()` (sets the value of the bound property)
+
+Alpineは、`x-model`でバインドされたプロパティを取得および設定するための内部ユーティリティを公開しています。 これは、デフォルトのx-modelの動作をオーバーライドしたい複雑なAlpineユーティリティや、非入力要素で`x-model`を許可したい場合に便利です。
+
+これらのユーティリティには、`x-model`ed要素の`_x_model`というプロパティを介してアクセスできます。 `_x_model`には、バインドされたプロパティを取得および設定するための2つのメソッドがあります。
+
+* `el._x_model.get（）`（バインドされたプロパティの値を返します）
+* `el._x_model.set（）`（バインドされたプロパティの値を設定します）
 
 ```alpine
 <div x-data="{ username: 'calebporzio' }">

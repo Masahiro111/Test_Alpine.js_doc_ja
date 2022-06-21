@@ -104,6 +104,6 @@ Alpine の `x-for` ディレクティブを使用すると、リストを反復�
 </ul>
 ```
 
-`i` in this case can be named anything you like.
+<!-- `i` in this case can be named anything you like. -->
 
 この場合の `i` には、好きな名前をつけることができます。
