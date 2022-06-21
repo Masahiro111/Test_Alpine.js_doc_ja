@@ -37,10 +37,10 @@ title: modelable
 <!-- END_VERBATIM -->
 ```
 
-As you can see the outer scope property "number" is now bound to the inner scope property "count".
+<!-- As you can see the outer scope property "number" is now bound to the inner scope property "count". -->
 
-Typically this feature would be used in conjunction with a backend templating framework like Laravel Blade. It's useful for abstracting away Alpine components into backend templates and exposing state to the outside through `x-model` as if it were a native input.
+<!-- Typically this feature would be used in conjunction with a backend templating framework like Laravel Blade. It's useful for abstracting away Alpine components into backend templates and exposing state to the outside through `x-model` as if it were a native input. -->
 
 ご覧のとおり、外部スコープのプロパティ「number」は内部スコープのプロパティ「count」にバインドされています。
 
-通常、この機能はLaravelBladeのようなバックエンドテンプレートフレームワークと組み合わせて使用されます。 これは、Alpineコンポーネントをバックエンドテンプレートに抽象化し、ネイティブ入力であるかのように`x-model`を介して状態を外部に公開するのに役立ちます。
+通常、この機能はLaravelBladeのようなバックエンドテンプレートフレームワークと組み合わせて使用されます。 これは、Alpine コンポーネントをバックエンドテンプレートに抽象化し、ネイティブ入力であるかのように `x-model` を介して状態を外部に公開するのに役立ちます。
