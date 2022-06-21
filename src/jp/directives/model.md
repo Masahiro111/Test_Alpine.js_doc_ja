@@ -5,13 +5,13 @@ title: model
 
 # x-model
 
-`x-model` allows you to bind the value of an input element to Alpine data.
+<!-- `x-model` allows you to bind the value of an input element to Alpine data. -->
 
-Here's a simple example of using `x-model` to bind the value of a text field to a piece of data in Alpine.
+<!-- Here's a simple example of using `x-model` to bind the value of a text field to a piece of data in Alpine. -->
 
-`x-model`を使用すると、入力要素の値をAlpineデータにバインドできます。
+`x-model`を使用すると、入力要素の値を Alpineの データにバインドできます。
 
-これは、`x-model`を使用してテキストフィールドの値をAlpineのデータにバインドする簡単な例です。
+これは、`x-model` を使用してテキストフィールドの値をAlpine のデータにバインドする簡単な例です。
 
 ```alpine
 <div x-data="{ message: '' }">
@@ -32,19 +32,17 @@ Here's a simple example of using `x-model` to bind the value of a text field to 
 <!-- END_VERBATIM -->
 
 
-Now as the user types into the text field, the `message` will be reflected in the `<span>` tag.
+<!-- Now as the user types into the text field, the `message` will be reflected in the `<span>` tag. -->
 
-`x-model` is two-way bound, meaning it both "sets" and "gets". In addition to changing data, if the data itself changes, the element will reflect the change.
+<!-- `x-model` is two-way bound, meaning it both "sets" and "gets". In addition to changing data, if the data itself changes, the element will reflect the change. -->
 
+<!-- We can use the same example as above but this time, we'll add a button to change the value of the `message` property. -->
 
-We can use the same example as above but this time, we'll add a button to change the value of the `message` property.
+これで、ユーザーがテキストフィールドに入力すると、`message` プロパティの値が `<span>` タグに反映されます。
 
-これで、ユーザーがテキストフィールドに入力すると、`message`が`<span>`タグに反映されます。
+`x-model` は双方向にバインドされており、「sets (入力)」と「gets (取得)」の両方を意味します。 データの変更に加えて、データ自体が変更された場合、要素は変更を反映します。
 
-`x-model`は双方向にバインドされており、「セット」と「取得」の両方を意味します。 データの変更に加えて、データ自体が変更された場合、要素は変更を反映します。
-
-
-上記と同じ例を使用できますが、今回は、`message`プロパティの値を変更するためのボタンを追加します。
+上記と同じ例を使用できますが、今回は、`message` プロパティの値を変更するためのボタンを追加します。
 
 ```alpine
 <div x-data="{ message: '' }">
@@ -64,9 +62,13 @@ We can use the same example as above but this time, we'll add a button to change
 </div>
 <!-- END_VERBATIM -->
 
-Now when the `<button>` is clicked, the input element's value will instantly be updated to "changed".
+<!-- Now when the `<button>` is clicked, the input element's value will instantly be updated to "changed". -->
 
-`x-model` works with the following input elements:
+<!-- `x-model` works with the following input elements: -->
+
+これで、 `<button>` をクリックすると、入力要素の値がすぐに「changed」に更新されます。
+
+`x-model` は、次の入力要素で機能します。
 
 * `<input type="text">`
 * `<textarea>`
@@ -74,13 +76,9 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 * `<input type="radio">`
 * `<select>`
 
-これで、 `<button>`をクリックすると、入力要素の値が即座に「変更」に更新されます。
-
-`x-model`は、次の入力要素で機能します。
-
 <a name="text-inputs"></a>
 
-## Text inputs
+## テキストの入力
 
 ```alpine
 <input type="text" x-model="message">
@@ -100,7 +98,7 @@ Now when the `<button>` is clicked, the input element's value will instantly be 
 
 <a name="textarea-inputs"></a>
 
-## Textarea inputs
+## テキストエリアの入力
 
 ```alpine
 <textarea x-model="message"></textarea>
