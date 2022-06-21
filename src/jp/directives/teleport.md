@@ -13,7 +13,14 @@ This is useful for things like modals (especially nesting them), where it's help
 
 > Warning: if you are a [Livewire](https://laravel-livewire.com) user, this functionality does not currently work inside Livewire components. Support for this is on the roadmap.
 
+`x-teleport`ディレクティブを使用すると、Alpineテンプレートの一部をページ上のDOMの別の部分に完全に転送できます。
+
+これは、モーダル（特にそれらをネストする）のようなものに役立ちます。ここでは、現在のアルパインコンポーネントのz-indexから抜け出すのに役立ちます。
+
+>警告：[Livewire]（https://laravel-livewire.com）ユーザーの場合、この機能は現在Livewireコンポーネント内では機能しません。 これに対するサポートはロードマップにあります。
+
 <a name="x-teleport"></a>
+
 ## x-teleport
 
 By attaching `x-teleport` to a `<template>` element, you are telling Alpine to "append" that element to the provided selector.
@@ -23,6 +30,14 @@ By attaching `x-teleport` to a `<template>` element, you are telling Alpine to "
 [→ Read more about `document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
 
 Here's a contrived modal example:
+
+`x-teleport`を`<template>`要素にアタッチすることにより、Alpineにその要素を提供されたセレクターに「追加」するように指示します。
+
+> `x-teleport`セレクターは、通常`document.querySelector`のようなものに渡す任意の文字列にすることができます。 タグ名（ `body`）、クラス名（` .my-class`）、ID（ `＃my-id`）、その他の有効なCSSセレクターなど、一致する最初の要素が検索されます。
+
+[→`document.querySelector`についてもっと読む]（https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector）
+
+考案されたモーダルの例を次に示します。
 
 ```alpine
 <body>
@@ -62,7 +77,10 @@ Here's a contrived modal example:
 
 Notice how when toggling the modal, the actual modal contents show up AFTER the "Some other content..." element? This is because when Alpine is initializing, it sees `x-teleport="body"` and appends and initializes that element to the provided element selector.
 
+モーダルを切り替えると、実際のモーダルコンテンツが「その他のコンテンツ...」要素の後にどのように表示されるかに注意してください。 これは、Alpineが初期化するときに、 `x-teleport =" body "`を認識し、その要素を提供された要素セレクターに追加して初期化するためです。
+
 <a name="forwarding-events"></a>
+
 ## Forwarding events
 
 Alpine tries its best to make the experience of teleporting seamless. Anything you would normally do in a template, you should be able to do inside an `x-teleport` template. Teleported content can access the normal Alpine scope of the component as well as other features like `$refs`, `$root`, etc...
@@ -70,6 +88,14 @@ Alpine tries its best to make the experience of teleporting seamless. Anything y
 However, native DOM events have no concept of teleportation, so if, for example, you trigger a "click" event from inside a teleported element, that event will bubble up the DOM tree as it normally would.
 
 To make this experience more seamless, you can "forward" events by simply registering event listeners on the `<template x-teleport...>` element itself like so:
+
+イベントの転送
+
+アルパインはテレポートの体験をシームレスにするために最善を尽くしています。 テンプレートで通常行うことはすべて、`x-teleport`テンプレート内で実行できるはずです。 テレポートされたコンテンツは、コンポーネントの通常のAlpineスコープだけでなく、 `$ refs`、`$root`などの他の機能にもアクセスできます。
+
+ただし、ネイティブDOMイベントにはテレポートの概念がないため、たとえば、テレポートされた要素の内部から「クリック」イベントをトリガーすると、そのイベントは通常どおりDOMツリーをバブルアップします。
+
+このエクスペリエンスをよりシームレスにするために、次のように `<templatex-teleport...>`要素自体にイベントリスナーを登録するだけでイベントを「転送」できます。
 
 ```alpine
 <div x-data="{ open: false }">
@@ -103,10 +129,17 @@ Notice how we are now able to listen for events dispatched from within the telep
 
 Alpine does this by looking for event listeners registered on `<template x-teleport...>` and stops those events from propagating past the live, teleported, DOM element. Then, it creates a copy of that event and re-dispatches it from `<template x-teleport...>`.
 
+テレポートされた要素の内部から`<template>`要素自体の外部からディスパッチされたイベントをどのようにリッスンできるかに注目してください。
+
+Alpineは、 `<template x-teleport ...>`に登録されているイベントリスナーを探すことでこれを行い、それらのイベントがライブのテレポートされたDOM要素を超えて伝播するのを防ぎます。 次に、そのイベントのコピーを作成し、 `<templatex-teleport...>`から再ディスパッチします。
+
 <a name="nesting"></a>
+
 ## Nesting
 
 Teleporting is especially helpful if you are trying to nest one modal within another. Alpine makes it simple to do so:
+
+テレポートは、あるモーダルを別のモーダル内にネストしようとしている場合に特に役立ちます。 アルパインはそうすることを簡単にします：
 
 ```alpine
 <div x-data="{ open: false }">
@@ -157,3 +190,5 @@ Teleporting is especially helpful if you are trying to nest one modal within ano
 <!-- END_VERBATIM -->
 
 After toggling "on" both modals, they are authored as children, but will be rendered as sibling elements on the page, not within one another.
+
+両方のモーダルを「オン」に切り替えた後、それらは子として作成されますが、ページ上で兄弟要素としてレンダリングされ、相互にレンダリングされません。

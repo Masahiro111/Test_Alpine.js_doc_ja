@@ -118,11 +118,11 @@ title: model
 
 <a name="checkbox-inputs"></a>
 
-## Checkbox inputs
+## チェックボックスの入力
 
 <a name="single-checkbox-with-boolean"></a>
 
-### Single checkbox with boolean
+### ブール値を含む単一のチェックボックス
 
 ```alpine
 <input type="checkbox" id="checkbox" x-model="show">
@@ -142,7 +142,7 @@ title: model
 
 <a name="multiple-checkboxes-bound-to-array"></a>
 
-### Multiple checkboxes bound to array
+### 配列にバインドされた複数のチェックボックス
 
 ```alpine
 <input type="checkbox" value="red" x-model="colors">
@@ -166,7 +166,7 @@ Colors: <span x-text="colors"></span>
 
 <a name="radio-inputs"></a>
 
-## Radio inputs
+## ラジオボタンの入力
 
 ```alpine
 <input type="radio" value="yes" x-model="answer">
@@ -188,12 +188,12 @@ Answer: <span x-text="answer"></span>
 
 <a name="select-inputs"></a>
 
-## Select inputs
+## 単一のインプット
 
 
 <a name="single-select"></a>
 
-### Single select
+### 単一のセレクトボックス
 
 ```alpine
 <select x-model="color">
@@ -221,7 +221,7 @@ Color: <span x-text="color"></span>
 
 <a name="single-select-with-placeholder"></a>
 
-### Single select with placeholder
+### プレースホルダー付きの単一選択
 
 ```alpine
 <select x-model="color">
@@ -252,7 +252,7 @@ Color: <span x-text="color"></span>
 
 <a name="multiple-select"></a>
 
-### Multiple select
+### 複数選択のセレクトボックス
 
 ```alpine
 <select x-model="color" multiple>
@@ -280,7 +280,7 @@ Colors: <span x-text="color"></span>
 
 <a name="dynamically-populated-select-options"></a>
 
-### Dynamically populated Select Options
+### 動的に入力される選択オプション
 
 ```alpine
 <select x-model="color">
@@ -308,7 +308,7 @@ Color: <span x-text="color"></span>
 
 <a name="modifiers"></a>
 
-## Modifiers
+## 修飾子
 
 <a name="lazy"></a>
 
