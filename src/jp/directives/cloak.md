@@ -21,7 +21,7 @@ title: cloak
 [x-cloak] { display: none !important; }
 ```
 
-Now, the following example will hide the `<span>` tag until Alpine has set its text content to the `message` property.
+<!-- Now, the following example will hide the `<span>` tag until Alpine has set its text content to the `message` property. -->
 
 以下の例では、Alpine が `message` プロパティへのテキストがセット完了するまで、`s-cloak` を指定した `<span>` タグが表示されません。
 
