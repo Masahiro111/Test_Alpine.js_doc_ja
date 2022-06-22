@@ -246,13 +246,11 @@ getItem 関数と setItem 関数を公開するカスタムストレージオブ
 
 <a name="using-persist-with-alpine-data"></a>
 
-## Using $persist with Alpine.data
+## Alpine.data で $persist を使用する
 
-If you want to use `$persist` with `Alpine.data`, you need to use a standard function instead of an arrow function so Alpine can bind a custom `this` context when it initially evaluates the component scope.
+<!-- If you want to use `$persist` with `Alpine.data`, you need to use a standard function instead of an arrow function so Alpine can bind a custom `this` context when it initially evaluates the component scope. -->
 
-Alpine.dataで$persistを使用する
-
-`$persist`を`Alpine.data`と一緒に使用する場合は、矢印関数の代わりに標準関数を使用する必要があります。これにより、Alpineは、コンポーネントスコープを最初に評価するときにカスタムの`this`コンテキストをバインドできます。
+`$persist` を `Alpine.data` と一緒に使用する場合は、アロー関数の代わりに標準関数を使用する必要があります。これにより、Alpine は、コンポーネントスコープを最初に評価するときにカスタムの `this` コンテキストをバインドできます。
 
 ```js
 Alpine.data('dropdown', function () {
@@ -264,14 +262,11 @@ Alpine.data('dropdown', function () {
 
 <a name="using-alpine-persist-global"></a>
 
-## Using the Alpine.$persist global
+## グローバルな Alpine.$persist の使用
 
 `Alpine.$persist` is exposed globally so it can be used outside of `x-data` contexts. This is useful to persist data from other sources such as `Alpine.store`.
 
-Alpineを使用します。$persistglobal
-
-`Alpine。$persist`はグローバルに公開されるため、`x-data`コンテキストの外部で使用できます。 これは、`Alpine.store`などの他のソースからのデータを永続化するのに役立ちます。
-
+`Alpine.$persist` はグローバルに公開されるため、`x-data` コンテキストの外部で使用できます。 これは、`Alpine.store` などの他のソースからのデータを永続化するのに役立ちます。
 
 ```js
 Alpine.store('darkMode', {
