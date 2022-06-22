@@ -155,28 +155,27 @@ However, it is worth noting that localStorage must be cleared when the type of t
 
 <a name="custom-key"></a>
 
-## Setting a custom key
+## カスタムキーの設定
 
-By default, Alpine uses the property key that `$persist(...)` is being assigned to ("count" in the above examples).
+<!-- By default, Alpine uses the property key that `$persist(...)` is being assigned to ("count" in the above examples). -->
 
-Consider the scenario where you have multiple Alpine components across pages or even on the same page that all use "count" as the property key.
+<!-- Consider the scenario where you have multiple Alpine components across pages or even on the same page that all use "count" as the property key. -->
 
-Alpine will have no way of differentiating between these components.
+<!-- Alpine will have no way of differentiating between these components. -->
 
-In these cases, you can set your own custom key for any persisted value using the `.as` modifier like so:
-
-カスタムキーの設定
-
-デフォルトでは、Alpineは `$ persist（...）`が割り当てられているプロパティキー（上記の例では "count"）を使用します。
-
-ページ間または同じページに複数のAlpineコンポーネントがあり、すべてがプロパティキーとして「count」を使用しているシナリオを考えてみます。
-
-アルパインには、これらのコンポーネントを区別する方法がありません。
-
-このような場合、次のように `.as`修飾子を使用して、永続化された値に独自のカスタムキーを設定できます。
+<!-- In these cases, you can set your own custom key for any persisted value using the `.as` modifier like so: -->
 
 
-```alpine
+デフォルトでは、Alpine は `$persist(...)` が割り当てられているプロパティキー（上記の例では "count"）を使用します。
+
+ページ間または同じページに複数の Alpine コンポーネントがあり、すべてがプロパティキーとして「 count 」を使用しているシナリオを考えてみます。
+
+Alpine には、これらのコンポーネントを区別する方法がありません。
+
+このような場合、次のように `.as` 修飾子を使用して、永続化された値に独自のカスタムキーを設定できます。
+
+
+```html
 <div x-data="{ count: $persist(0).as('other-count') }">
     <button x-on:click="count++">Increment</button>
 
@@ -188,28 +187,26 @@ Now Alpine will store and retrieve the above "count" value using the key "other-
 
 Here's a view of Chrome Devtools to see for yourself:
 
-これで、Alpineは、キー「other-count」を使用して上記の「count」値を保存および取得します。
+これで、Alpineは、キー「 `other-count` 」を使用して上記の「 count 」値を保存および取得します。
 
-自分で確認できるChromeDevtoolsのビューは次のとおりです。
+自分で確認できる ChromeDevtools のビューは次のとおりです。
 
 <img src="/img/persist_custom_key_devtools.png" alt="Chrome devtools showing the localStorage view with count set to 0">
 
 <a name="custom-storage"></a>
 
-## Using a custom storage
+## カスタムストレージの使用
 
-By default, data is saved to localStorage, it does not have an expiration time and it's kept even when the page is closed.
+<!-- By default, data is saved to localStorage, it does not have an expiration time and it's kept even when the page is closed. -->
 
-Consider the scenario where you want to clear the data once the user close the tab. In this case you can persist data to sessionStorage using the `.using` modifier like so:
+<!-- Consider the scenario where you want to clear the data once the user close the tab. In this case you can persist data to sessionStorage using the `.using` modifier like so: -->
 
-カスタムストレージの使用
+デフォルトでは、データは localStorage に保存され、有効期限はなく、ページが閉じられても保持されます。
 
-デフォルトでは、データはlocalStorageに保存され、有効期限はなく、ページが閉じられても保持されます。
-
-ユーザーがタブを閉じたらデータをクリアするシナリオを考えてみましょう。 この場合、次のように`.using`修飾子を使用してデータをsessionStorageに永続化できます。
+ユーザーがタブを閉じたらデータをクリアするシナリオを考えてみましょう。 この場合、次のように `.using` 修飾子を使用してデータを sessionStorage に永続化できます。
 
 
-```alpine
+```html
 <div x-data="{ count: $persist(0).using(sessionStorage) }">
     <button x-on:click="count++">Increment</button>
 
@@ -217,12 +214,11 @@ Consider the scenario where you want to clear the data once the user close the t
 </div>
 ```
 
-You can also define your custom storage object exposing a getItem function and a setItem function. For example, you can decide to use a session cookie as storage doing so:
+<!-- You can also define your custom storage object exposing a getItem function and a setItem function. For example, you can decide to use a session cookie as storage doing so: -->
 
-getItem関数とsetItem関数を公開するカスタムストレージオブジェクトを定義することもできます。 たとえば、セッションCookieをストレージとして使用することを決定できます。
+getItem 関数と setItem 関数を公開するカスタムストレージオブジェクトを定義することもできます。 たとえば、セッション Cookie をストレージとして使用することを決定できます。
 
-
-```alpine
+```html
 <script>
     window.cookieStorage = {
         getItem(key) {
