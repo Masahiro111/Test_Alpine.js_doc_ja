@@ -13,6 +13,7 @@ This utility is extremely helpful when building re-usable components (presumably
 Things like input components, modals, listboxes, etc. will all benefit from this utility.
 
 <a name="basic-usage"></a>
+
 ## Basic usage
 
 Suppose you have two input elements on a page, and you want them to have a unique ID from each other, you can do the following:
@@ -28,6 +29,7 @@ Suppose you have two input elements on a page, and you want them to have a uniqu
 As you can see, `$id` takes in a string and spits out an appended suffix that is unique on the page.
 
 <a name="groups-with-x-id"></a>
+
 ## Grouping with x-id
 
 Now let's say you want to have those same two input elements, but this time you want `<label>` elements for each of them.
@@ -67,6 +69,7 @@ To accomplish this same task in a more flexible way, you can use Alpine's `x-id`
 As you can see, `x-id` accepts an array of ID names. Now any usages of `$id()` within that scope, will all use the same ID. Think of them as "id groups".
 
 <a name="nesting"></a>
+
 ## Nesting
 
 As you might have intuited, you can freely nest these `x-id` groups, like so:
@@ -84,6 +87,7 @@ As you might have intuited, you can freely nest these `x-id` groups, like so:
 ```
 
 <a name="keyed-ids"></a>
+
 ## Keyed IDs (For Looping)
 
 Sometimes, it is helpful to specify an additional suffix on the end of an ID for the purpose of identifying it within a loop.

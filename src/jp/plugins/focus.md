@@ -14,6 +14,7 @@ Alpine's Focus plugin allows you to manage focus on a page.
 > This plugin internally makes heavy use of the open source tool: [Tabbable](https://github.com/focus-trap/tabbable). Big thanks to that team for providing a much needed solution to this problem.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -50,6 +51,7 @@ Alpine.plugin(focus)
 ```
 
 <a name="x-trap"></a>
+
 ## x-trap
 
 Focus offers a dedicated API for trapping focus within an element: the `x-trap` directive.
@@ -101,6 +103,7 @@ For example:
 <!-- END_VERBATIM -->
 
 <a name="nesting"></a>
+
 ### Nesting dialogs
 
 Sometimes you may want to nest one dialog inside another. `x-trap` makes this trivial and handles it automatically.
@@ -182,9 +185,11 @@ Here is nesting in action:
 <!-- END_VERBATIM -->
 
 <a name="modifiers"></a>
+
 ### Modifiers
 
 <a name="inert"></a>
+
 #### .inert
 
 When building things like dialogs/modals, it's recommended to hide all the other elements on the page from screen readers when trapping focus.
@@ -216,6 +221,7 @@ By adding `.inert` to `x-trap`, when focus is trapped, all other elements on the
 ```
 
 <a name="noscroll"></a>
+
 #### .noscroll
 
 When building dialogs/modals with Alpine, it's recommended that you disable scrolling for the surrounding content when the dialog is open.
@@ -255,6 +261,7 @@ For example:
 <!-- END_VERBATIM -->
 
 <a name="noreturn"></a>
+
 #### .noreturn
 
 Sometimes you may not want focus to be returned to where it was previously. Consider a dropdown that's triggered upon focusing an input, returning focus to the input on close will just trigger the dropdown to open again.
@@ -302,6 +309,7 @@ For example:
 <!-- END_VERBATIM -->
 
 <a name="focus-magic"></a>
+
 ## $focus
 
 This plugin offers many smaller utilities for managing focus within a page. These utilities are exposed via the `$focus` magic.

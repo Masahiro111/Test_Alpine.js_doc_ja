@@ -12,6 +12,7 @@ Alpine's Collapse plugin allows you to expand and collapse elements using smooth
 Because this behavior and implementation differs from Alpine's standard transition system, this functionality was made into a dedicated plugin.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -48,6 +49,7 @@ Alpine.plugin(collapse)
 ```
 
 <a name="x-collapse"></a>
+
 ## x-collapse
 
 The primary API for using this plugin is the `x-collapse` directive.
@@ -79,9 +81,11 @@ For example:
 <!-- END_VERBATIM -->
 
 <a name="modifiers"></a>
+
 ## Modifiers
 
 <a name="dot-duration"></a>
+
 ### .duration
 
 You can customize the duration of the collapse/expand transition by appending the `.duration` modifier like so:
@@ -109,6 +113,7 @@ You can customize the duration of the collapse/expand transition by appending th
 <!-- END_VERBATIM -->
 
 <a name="dot-min"></a>
+
 ### .min
 
 By default, `x-collapse`'s "collapsed" state sets the height of the element to `0px` and also sets `display: none;`.

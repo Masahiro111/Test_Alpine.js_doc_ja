@@ -28,7 +28,7 @@ In the above example, rather than logging "Hello" to the console, "Hello World!"
 
 `$nextTick` returns a promise, allowing the use of `$nextTick` to pause an async function until after pending dom updates. When used like this, `$nextTick` also does not require an argument to be passed.
 
-```alpine
+```html
 <div x-data="{ title: 'Hello' }">
     <button
         @click="

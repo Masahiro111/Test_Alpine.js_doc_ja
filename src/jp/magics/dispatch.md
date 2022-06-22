@@ -69,6 +69,7 @@ Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bub
 > The first example won't work because when `custom-event` is dispatched, it'll propagate to its common ancestor, the `div`, not its sibling, the `<span>`. The second example will work because the sibling is listening for `notify` at the `window` level, which the custom event will eventually bubble up to.
 
 <a name="dispatching-to-components"></a>
+
 ## Dispatching to other components
 
 You can also take advantage of the previous technique to make your components talk to each other:
@@ -90,6 +91,7 @@ You can also take advantage of the previous technique to make your components ta
 ```
 
 <a name="dispatching-to-x-model"></a>
+
 ## Dispatching to x-model
 
 You can also use `$dispatch()` to trigger data updates for `x-model` data bindings. For example:

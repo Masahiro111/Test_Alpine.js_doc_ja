@@ -34,6 +34,7 @@ You can use `$store` to conveniently access global Alpine stores registered usin
 Given that we've registered the `darkMode` store and set `on` to "false", when the `<button>` is pressed, `on` will be "true" and the background color of the page will change to black.
 
 <a name="single-value-stores"></a>
+
 ## Single-value stores
 
 If you don't need an entire object for a store, you can set and use any kind of data as a store.

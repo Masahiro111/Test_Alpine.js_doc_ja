@@ -26,6 +26,7 @@ You can watch deeply nested properties using "dot" notation
 When the `<button>` is pressed, `foo.bar` will be set to "bob", and "bob" will be logged to the console.
 
 <a name="getting-the-old-value"></a>
+
 ### Getting the "old" value
 
 `$watch` keeps track of the previous value of the property being watched, You can access it using the optional second argument to the callback like so:
@@ -37,6 +38,7 @@ When the `<button>` is pressed, `foo.bar` will be set to "bob", and "bob" will b
 ```
 
 <a name="deep-watching"></a>
+
 ### Deep watching
 
 `$watch` will automatically watches from changes at any level but you should keep in mind that, when a change is detected, the watcher will return the value of the observed property, not the value of the subproperty that has changed.
