@@ -236,7 +236,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 <!-- Let's now build a more complex component and introduce a handful of other directives and patterns. -->
 
-Insert the following code into the `<body>` tag:
+<!-- Insert the following code into the `<body>` tag: -->
 
 次に、より複雑なコンポーネントを作成し、他のいくつかのディレクティブとパターンを紹介しましょう。
 
@@ -266,6 +266,7 @@ Insert the following code into the `<body>` tag:
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div
@@ -291,6 +292,7 @@ Insert the following code into the `<body>` tag:
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <!-- By default, all of the "items" (foo, bar, and baz) will be shown on the page, but you can filter them by typing into the text input. As you type, the list of items will change to reflect what you're searching for. -->
 
@@ -399,9 +401,9 @@ Because Alpine is a "reactive" framework. Any time the value of `this.search` ch
 
 このコールバックを `filter` に渡すことで、JavaScriptに文字列 `this.search` で始まるアイテムのみを返すように指示しています。これは、`x-model` で見たように、常に入力の値を反映します。
 
-これまで、this.プロパティを参照するために使用する必要がなかったことにお気づきかもしれません。ただし、オブジェクト内で直接作業しているため、単に。ではなくをx-data使用してプロパティを参照する必要があります。this.[property][property]
+これまで、プロパティを参照するために`this。`を使用する必要がなかったことにお気づきかもしれません。 ただし、 `x-data`オブジェクト内で直接作業しているため、単に`[property]`ではなく`this。[property]`を使用してプロパティを参照する必要があります。
 
-アルパインは「リアクティブ」フレームワークだからです。値がthis.search変更されるたびに、使用するテンプレートの一部filteredItemsが自動的に更新されます。
+アルパインは「リアクティブ」フレームワークだからです。 `this.search`の値が変更されるたびに、`filteredItems`を使用するテンプレートの部分が自動的に更新されます。
 
 <a name="looping-elements"></a>
 
@@ -409,7 +411,7 @@ Because Alpine is a "reactive" framework. Any time the value of `this.search` ch
 
 Now that we understand the data part of our component, let's understand what's happening in the template that allows us to loop through `filteredItems` on the page.
 
-コンポーネントのデータ部分を理解したのでfilteredItems、ページ上をループできるようにするテンプレートで何が起こっているのかを理解しましょう。
+コンポーネントのデータ部分を理解したので、ページ上の`filteredItems`をループできるようにするテンプレートで何が起こっているのかを理解しましょう。
 
 ```alpine
 <ul>
@@ -427,13 +429,13 @@ Now any element inside the `<template>` tag will be repeated for every item insi
 
 [→ Read more about `x-for`](/directives/for)
 
-ここで最初に気付くのはx-forディレクティブです。x-for式の形式は次のとおりです。[item] in [items]ここで、[items]はデータの任意の配列であり、[item]はループ内の反復に割り当てられる変数の名前です。
+ここで最初に気付くのは、`x-for`ディレクティブです。 `x-for`式は次の形式を取ります。`[items]in[items] `ここで、[items]はデータの任意の配列であり、[item]はループ内の反復に割り当てられる変数の名前です。 。
 
-また、が直接ではなく要素でx-for宣言されていることに注意してください。これは、を使用するための要件です。これにより、Alpineは、ブラウザー内のタグの既存の動作を活用できるようになります。<template><li>x-for<template>
+また、`x-for`は`<li>`ではなく、`<template>`要素で宣言されていることに注意してください。 これは`x-for`を使用するための要件です。 これにより、Alpineはブラウザの`<template>`タグの既存の動作を活用できます。
 
-これで、タグ内のすべての要素が内部の<template>すべてのアイテムに対して繰り返され、ループ内で評価されたすべての式が反復変数（この場合）にfilteredItems直接アクセスできるようになります。item
+これで、 `<template>`タグ内の要素は、 `filteredItems`内のすべてのアイテムに対して繰り返され、ループ内で評価されたすべての式は、反復変数（この場合は` item`）に直接アクセスできます。
 
-[→ 詳細を読む `x-for`](/directives/for)
+[→`x-for`についてもっと読む]（/directives/for）
 
 <a name="recap"></a>
 
