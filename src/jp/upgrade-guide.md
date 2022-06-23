@@ -32,7 +32,7 @@ Alpine V2 から V3 へのアップグレードは、かなり簡単です。 �
 
 <a name="breaking-changes"></a>
 
-## 重大な変更
+## 大きな変更箇所
 
 * [`$el` は常にカレントエレメントになりました](#el-no-longer-root)
 * [データオブジェクトで定義された `init()` 関数を自動的に評価します](#auto-init)
@@ -80,17 +80,16 @@ Alpine V2 から V3 へのアップグレードは、かなり簡単です。 �
 
 <a name="auto-init"></a>
 
-### Automatically evaluate `init()` functions defined on data object
+### データオブジェクトで定義された `init()` 関数を自動的に評価
 
-A common pattern in V2 was to manually call an `init()` (or similarly named method) on an `x-data` object.
+<!-- A common pattern in V2 was to manually call an `init()` (or similarly named method) on an `x-data` object. -->
 
-In V3, Alpine will automatically call `init()` methods on data objects.
+<!-- In V3, Alpine will automatically call `init()` methods on data objects. -->
 
-データオブジェクトで定義された`init（）`関数を自動的に評価します
 
-V2の一般的なパターンは、 `x-data`オブジェクトで`init（） `（または同様の名前のメソッド）を手動で呼び出すことでした。
+V2 の一般的なパターンは、`x-data`オブジェクトで `init()`（または同様の名前のメソッド）を手動で呼び出すことでした。
 
-V3では、Alpineはデータオブジェクトに対して自動的に `init（）`メソッドを呼び出します。
+V3 では、Alpine はデータオブジェクトに対して自動的に `init()` メソッドを呼び出します。
 
 ```alpine
 <!-- 🚫 Before -->
@@ -110,21 +109,17 @@ V3では、Alpineはデータオブジェクトに対して自動的に `init（
 </script>
 ```
 
-[→ Read more about auto-evaluating init functions](/globals/alpine-data#init-functions)
+[→ 初期化関数の自動評価についてもっと読む](/globals/alpine-data#init-functions)
 
 <a name="need-to-call-alpine-start"></a>
 
-### Need to call Alpine.start() after import
+### インポート後に Alpine.start() を呼び出す必要
 
-If you were importing Alpine V2 from NPM, you will now need to manually call `Alpine.start()` for V3. This doesn't affect you if you use Alpine's build file or CDN from a `<template>` tag.
+<!-- If you were importing Alpine V2 from NPM, you will now need to manually call `Alpine.start()` for V3. This doesn't affect you if you use Alpine's build file or CDN from a `<template>` tag. -->
 
-[→初期化関数の自動評価についてもっと読む]（/ globals / alpine-data＃init-functions）
+NPM から Alpine V2 をインポートしていた場合は、V3 に対して手動で `Alpine.start()` を呼び出す必要があります。 Alpine のビルドファイルまたは `<template>` タグからの CDN を使用する場合、これは影響しません。
 
 <a name="need-to-call-alpine-start"> </a>
-
-###インポート後にAlpine.start（）を呼び出す必要があります
-
-NPMからAlpineV2をインポートしていた場合は、V3に対して手動で `Alpine.start（）`を呼び出す必要があります。 Alpineのビルドファイルまたは`<template>`タグからのCDNを使用する場合、これは影響しません。
 
 ```js
 // 🚫 Before
@@ -144,13 +139,11 @@ Alpine.start()
 
 <a name="removed-show-dot-transition"></a>
 
-### `x-show.transition` is now `x-transition`
+### `x-show.transition` は `x-transition` になりました
 
-All of the conveniences provided by `x-show.transition...` helpers are still available, but now from a more unified API: `x-transition`:
+<!-- All of the conveniences provided by `x-show.transition...` helpers are still available, but now from a more unified API: `x-transition`: -->
 
-###`x-show.transition`は`x-transition`になりました
-
-`x-show.transition ...`ヘルパーによって提供されるすべての便利な機能は引き続き利用できますが、より統合されたAPIから提供されるようになりました： `x-transition`：
+`x-show.transition ...` ヘルパーによって提供されるすべての便利な機能は引き続き利用できますが、より統合された API から提供されるようになりました:  `x-transition`:
 
 ```alpine
 <!-- 🚫 Before -->
@@ -173,11 +166,11 @@ All of the conveniences provided by `x-show.transition...` helpers are still ava
 ></div>
 ```
 
-[→ Read more about x-transition](/directives/transition)
+[→ x-transitionについてもっと読む](/directives/transition)
 
 <a name="x-if-no-transitions"></a>
 
-### `x-if` no longer supports `x-transition`
+### `x-if` は `x-transition` をサポートしなくなりました
 
 The ability to transition elements in and add before/after being removed from the DOM is no longer available in Alpine.
 
@@ -185,17 +178,14 @@ This was a feature very few people even knew existed let alone used.
 
 Because the transition system is complex, it makes more sense from a maintenance perspective to only support transitioning elements with `x-show`.
 
-[→x-transitionについてもっと読む]（/directives/transition）
-
-<a name="x-if-no-transitions"> </a>
-
-###`x-if`は`x-transition`をサポートしなくなりました
-
 DOMに要素を移行したり、DOMから削除する前/後に追加したりする機能は、Alpineでは使用できなくなりました。
 
 これは、使用されるどころか、存在することさえ知っている人はほとんどいない機能でした。
 
 遷移システムは複雑であるため、メンテナンスの観点からは、`x-show`で遷移要素のみをサポートする方が理にかなっています。
+
+
+<a name="x-if-no-transitions"> </a>
 
 ```alpine
 <!-- 🚫 Before -->
