@@ -49,7 +49,7 @@ Alpine V2 から V3 へのアップグレードは、かなり簡単です。 �
 
 <a name="el-no-longer-root"></a>
 
-### `$el` は常に現在の要素になりました
+### `$el` は常に現在の要素 (カレントエレメント) になりました
 
 <!-- `$el` now always represents the element that an expression was executed on, not the root element of the component. This will replace most usages of `x-ref` and in the cases where you still want to access the root of a component, you can do so using `$root`. For example: -->
 
@@ -75,8 +75,8 @@ Alpine V2 から V3 へのアップグレードは、かなり簡単です。 �
 
 よりスムーズなアップグレード体験のために、`$el` のすべてのインスタンスを `$root` と呼ばれるカスタムマジックに置き換えることができます。
 
-[→V3の `$el` についてもっと読む](/magics/el)
-[→V3の `$root` についてもっと読む](/magics/root)
+[→V3の \$el についてもっと読む](/magics/el)
+[→V3の \$root についてもっと読む](/magics/root)
 
 <a name="auto-init"></a>
 
@@ -91,7 +91,7 @@ V2 の一般的なパターンは、`x-data`オブジェクトで `init()`（ま
 
 V3 では、Alpine はデータオブジェクトに対して自動的に `init()` メソッドを呼び出します。
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data="foo()" x-init="init()"></div>
 
@@ -133,9 +133,7 @@ window.Alpine = Alpine
 Alpine.start()
 ```
 
-[→ Read more about initializing Alpine V3](/essentials/installation#as-a-module)
-
-[→AlpineV3の初期化についてもっと読む]（/ Essentials / installation＃as-a-module）
+[→ AlpineV3の初期化についてもっと読む](/essentials/installation#as-a-module)
 
 <a name="removed-show-dot-transition"></a>
 
@@ -145,7 +143,7 @@ Alpine.start()
 
 `x-show.transition ...` ヘルパーによって提供されるすべての便利な機能は引き続き利用できますが、より統合された API から提供されるようになりました:  `x-transition`:
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-show.transition="open"></div>
 <!-- ✅ After -->
@@ -166,28 +164,27 @@ Alpine.start()
 ></div>
 ```
 
-[→ x-transitionについてもっと読む](/directives/transition)
+[→ x-transition についてもっと読む](/directives/transition)
 
 <a name="x-if-no-transitions"></a>
 
 ### `x-if` は `x-transition` をサポートしなくなりました
 
-The ability to transition elements in and add before/after being removed from the DOM is no longer available in Alpine.
+<!-- The ability to transition elements in and add before/after being removed from the DOM is no longer available in Alpine. -->
 
-This was a feature very few people even knew existed let alone used.
+<!-- This was a feature very few people even knew existed let alone used. -->
 
-Because the transition system is complex, it makes more sense from a maintenance perspective to only support transitioning elements with `x-show`.
+<!-- Because the transition system is complex, it makes more sense from a maintenance perspective to only support transitioning elements with `x-show`. -->
 
-DOMに要素を移行したり、DOMから削除する前/後に追加したりする機能は、Alpineでは使用できなくなりました。
+DOM に要素を移行したり、DOM から削除する前/後に追加したりする機能は、Alpine では使用できなくなりました。
 
 これは、使用されるどころか、存在することさえ知っている人はほとんどいない機能でした。
 
-遷移システムは複雑であるため、メンテナンスの観点からは、`x-show`で遷移要素のみをサポートする方が理にかなっています。
-
+遷移システムは複雑であるため、メンテナンスの観点からは、`x-show` でトランジションの要素のみをサポートする方が理にかなっています。
 
 <a name="x-if-no-transitions"> </a>
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <template x-if.transition="open">
     <div>...</div>
@@ -197,23 +194,19 @@ DOMに要素を移行したり、DOMから削除する前/後に追加したり�
 <div x-show="open" x-transition>...</div>
 ```
 
-[→ Read more about x-if](/directives/if)
+[→ x-if についてもっと読む](/directives/if)
 
 <a name="x-data-scope"></a>
 
-### `x-data` cascading scope
+### `x-data`のカスケードスコープ
 
-Scope defined in `x-data` is now available to all children unless overwritten by a nested `x-data` expression.
+<!-- Scope defined in `x-data` is now available to all children unless overwritten by a nested `x-data` expression. -->
 
-[→x-ifについてもっと読む]（/directives/if）
+`x-data` で定義されたスコープは、ネストされた `x-data` 式で上書きされない限り、すべての子で使用できるようになりました。
 
 <a name="x-data-scope"> </a>
 
-###`x-data`カスケードスコープ
-
-`x-data`で定義されたスコープは、ネストされた` x-data`式で上書きされない限り、すべての子で使用できるようになりました。
-
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data="{ foo: 'bar' }">
     <div x-data="{}">
@@ -229,21 +222,19 @@ Scope defined in `x-data` is now available to all children unless overwritten by
 </div>
 ```
 
-[→ Read more about x-data scoping](/directives/data#scope)
+[→ `x-data` のスコープについて](/directives/data#scope)
 
 <a name="x-init-no-callback"></a>
 
-### `x-init` no longer accepts a callback return
+### `x-init`はコールバックリターンを受け入れなくなりました
 
-Before V3, if `x-init` received a return value that is `typeof` "function", it would execute the callback after Alpine finished initializing all other directives in the tree. Now, you must manually call `$nextTick()` to achieve that behavior. `x-init` is no longer "return value aware".
+<!-- Before V3, if `x-init` received a return value that is `typeof` "function", it would execute the callback after Alpine finished initializing all other directives in the tree. Now, you must manually call `$nextTick()` to achieve that behavior. `x-init` is no longer "return value aware". -->
+
+V3より前では、`x-init` が` typeof` "関数" である戻り値を受け取った場合、Alpine がツリー内の他のすべてのディレクティブの初期化を完了した後にコールバックを実行していました。 ここで、その動作を実現するには、手動で `$nextTick()` を呼び出す必要があります。 `x-init` は「戻り値を認識」しなくなりました。
 
 <a name="x-init-no-callback"> </a>
 
-###`x-init`はコールバックリターンを受け入れなくなりました
-
-V3より前では、`x-init`が`typeof` "function"である戻り値を受け取った場合、Alpineがツリー内の他のすべてのディレクティブの初期化を完了した後にコールバックを実行していました。 ここで、その動作を実現するには、手動で `$ nextTick（）`を呼び出す必要があります。 `x-init`は「戻り値を認識」しなくなりました。
-
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data x-init="() => { ... }">...</div>
 
@@ -267,7 +258,7 @@ Alpine V2 observes a return value of `false` as a desire to run `preventDefault`
 
 Alpine V2は、イベントで`preventDefault`を実行したいという要望として`false`の戻り値を観察します。 これは、ネイティブのインラインリスナーの標準動作 `<... oninput =" someFunctionThatReturnsFalse（）">`に準拠しています。 AlpineV3はこのAPIをサポートしなくなりました。 ほとんどの人はそれが存在することを知らないので、驚くべき行動です。
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data="{ blockInput() { return false } }">
     <input type="text" @input="blockInput()">
@@ -295,7 +286,7 @@ One of Alpine's stories for re-using functionality is abstracting Alpine directi
 
 機能を再利用するためのAlpineのストーリーの1つは、Alpineディレクティブをオブジェクトに抽象化し、それらを`x-spread`を使用して要素に適用することです。 この動作は同じですが、 `x-bind`（属性が指定されていない）が`x-spread`ではなくAPIになっている点が異なります。
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data="dropdown()">
     <button x-spread="trigger">Toggle</button>
@@ -341,7 +332,7 @@ One of Alpine's stories for re-using functionality is abstracting Alpine directi
 
 ### `Alpine.deferLoadingAlpine（）`の代わりにグローバルライフサイクルイベントを使用する
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <script>
     window.deferLoadingAlpine = startAlpine => {
@@ -373,7 +364,7 @@ One of Alpine's stories for re-using functionality is abstracting Alpine directi
 
 In Alpine V2 for below code
 
-```alpine
+```html
 <div x-data="{options: [{value: 1}, {value: 2}, {value: 3}] }">
     <div x-ref="0">0</div>
     <template x-for="option in options">
@@ -416,7 +407,7 @@ AlpineはInternetExplorer11を正式にサポートしなくなります。IE11�
 
 ###イベントリスナー修飾子`.away`は`.outside`に置き換える必要があります
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-show="open" @click.away="open = false">
     ...
@@ -434,7 +425,7 @@ AlpineはInternetExplorer11を正式にサポートしなくなります。IE11�
 
 ###グローバルAlpine関数データプロバイダーよりも`Alpine.data（）`を優先する
 
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data="dropdown()">
     ...
