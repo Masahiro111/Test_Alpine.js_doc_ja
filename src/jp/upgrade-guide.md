@@ -5,9 +5,9 @@ title: Upgrade From V2
 
 # Upgrade from V2
 
-Below is an exhaustive guide on the breaking changes in Alpine V3, but if you'd prefer something more lively, you can review all the changes as well as new features in V3 by watching the Alpine Day 2021 "Future of Alpine" keynote:
+<!-- Below is an exhaustive guide on the breaking changes in Alpine V3, but if you'd prefer something more lively, you can review all the changes as well as new features in V3 by watching the Alpine Day 2021 "Future of Alpine" keynote: -->
 
-以下は、Alpine V3の重大な変更に関する徹底的なガイドですが、より活気のあるものが必要な場合は、Alpine Day2021「FutureofAlpine」基調講演を見て、V3のすべての変更と新機能を確認できます。
+以下は、Alpine V3 の重大な変更に関する徹底的なガイドですが、より活気のあるものが必要な場合は、Alpine Day 2021「Future of Alpine」基調講演を見て、V3 のすべての変更と新機能を確認できます。
 
 ```html
 <!-- START_VERBATIM -->
@@ -22,57 +22,40 @@ Below is an exhaustive guide on the breaking changes in Alpine V3, but if you'd 
 <!-- END_VERBATIM -->
 ```
 
-Upgrading from Alpine V2 to V3 should be fairly painless. In many cases, NOTHING has to be done to your codebase to use V3. Below is an exhaustive list of breaking changes and deprecations in descending order of how likely users are to be affected by them:
+<!-- Upgrading from Alpine V2 to V3 should be fairly painless. In many cases, NOTHING has to be done to your codebase to use V3. Below is an exhaustive list of breaking changes and deprecations in descending order of how likely users are to be affected by them: -->
 
-> Note if you use Laravel Livewire and Alpine together, to use V3 of Alpine, you will need to upgrade to Livewire v2.5.1 or greater.
+<!-- > Note if you use Laravel Livewire and Alpine together, to use V3 of Alpine, you will need to upgrade to Livewire v2.5.1 or greater. -->
 
-Alpine V2からV3へのアップグレードは、かなり簡単です。 多くの場合、V3を使用するためにコードベースに対して何もする必要はありません。 以下は、ユーザーが影響を受ける可能性の高い順に、重大な変更と非推奨の完全なリストです。
+Alpine V2 から V3 へのアップグレードは、かなり簡単です。 多くの場合、V3 を使用するためにコードベースに対して何もする必要はありません。 以下は、ユーザーが影響を受ける可能性の高い順に、重大な変更と非推奨の完全なリストです。
 
-> Laravel LivewireとAlpineを一緒に使用する場合、AlpineのV3を使用するには、Livewirev2.5.1以降にアップグレードする必要があることに注意してください。
+> Laravel Livewire と Alpine を一緒に使用する場合、Alpine の V3 を使用するには、Livewire v2.5.1以降にアップグレードする必要があることに注意してください。
 
 <a name="breaking-changes"></a>
 
-## Breaking Changes
+## 重大な変更
 
-* [`$el` is now always the current element](#el-no-longer-root)
-* [Automatically evaluate `init()` functions defined on data object](#auto-init)
-* [Need to call `Alpine.start()` after import](#need-to-call-alpine-start)
-* [`x-show.transition` is now `x-transition`](#removed-show-dot-transition)
-* [`x-if` no longer supports `x-transition`](#x-if-no-transitions)
-* [`x-data` cascading scope](#x-data-scope)
-* [`x-init` no longer accepts a callback return](#x-init-no-callback)
-* [Returning `false` from event handlers no longer implicitly "preventDefault"s](#no-false-return-from-event-handlers)
-* [`x-spread` is now `x-bind`](#x-spread-now-x-bind)
-* [`x-ref` no longer supports binding](#x-ref-no-more-dynamic)
-* [Use global lifecycle events instead of `Alpine.deferLoadingAlpine()`](#use-global-events-now)
-* [IE11 no longer supported](#no-ie-11)
-
-重大な変更
-
-* [` $ el`は常に現在の要素になりました]（＃el-no-longer-root）
-* [データオブジェクトで定義された`init（）`関数を自動的に評価します]（＃auto-init）
-* [インポート後に`Alpine.start（）`を呼び出す必要があります]（＃need-to-call-alpine-start）
-*[`x-show.transition`は`x-transition`になりました]（＃removed-show-dot-transition）
-*[`x-if`は`x-transition`をサポートしなくなりました]（＃x-if-no-transitions）
-* [`x-data`カスケードスコープ]（＃x-data-scope）
-* [`x-init`はコールバックリターンを受け入れなくなりました]（＃x-init-no-callback）
-*[イベントハンドラーから`false`を返すことは、暗黙的に" preventDefault "sではなくなりました]（＃no-false-return-from-event-handlers）
-*[`x-spread`は`x-bind`になりました]（＃x-spread-now-x-bind）
-* [`x-ref`はバインディングをサポートしなくなりました]（＃x-ref-no-more-dynamic）
-* [`Alpine.deferLoadingAlpine（）`の代わりにグローバルライフサイクルイベントを使用する]（＃use-global-events-now）
-* [IE11はサポートされなくなりました]（＃no-ie-11）
+* [`$el` は常にカレントエレメントになりました](#el-no-longer-root)
+* [データオブジェクトで定義された `init()` 関数を自動的に評価します](#auto-init)
+* [インポート後に `Alpine.start()` を呼び出す必要があります](#need-to-call-alpine-start)
+* [`x-show.transition` は `x-transition` になりました](#removed-show-dot-transition)
+* [`x-if` は `x-transition` をサポートしなくなりました](#x-if-no-transitions)
+* [`x-data` カスケードスコープ](#x-data-scope)
+* [`x-init`はコールバックリターンを受け入れなくなりました](#x-init-no-callback)
+* [イベントハンドラーから `false` を返すことは、暗黙的に "preventDefault"s ではなくなりました](#no-false-return-from-event-handlers)
+* [`x-spread` は `x-bind` になりました](#x-spread-now-x-bind)
+* [`x-ref` はバインディングをサポートしなくなりました](#x-ref-no-more-dynamic)
+* [`Alpine.deferLoadingAlpine()` の代わりにグローバルライフサイクルイベントを使用します](#use-global-events-now)
+* [IE11はサポートされなくなりました](#no-ie-11)
 
 <a name="el-no-longer-root"></a>
 
-### `$el` is now always the current element
+### `$el` は常に現在の要素になりました
 
-`$el` now always represents the element that an expression was executed on, not the root element of the component. This will replace most usages of `x-ref` and in the cases where you still want to access the root of a component, you can do so using `$root`. For example:
+<!-- `$el` now always represents the element that an expression was executed on, not the root element of the component. This will replace most usages of `x-ref` and in the cases where you still want to access the root of a component, you can do so using `$root`. For example: -->
 
-`$el`は常に現在の要素になりました
+`$el` は、コンポーネントのルート要素ではなく、常に式が実行された要素を表すようになりました。 これにより、`x-ref` のほとんどの使用法が置き換えられます。それでもコンポーネントのルートにアクセスする場合は、`$root` を使用してアクセスできます。 例えば：
 
-`$ el`は、コンポーネントのルート要素ではなく、常に式が実行された要素を表すようになりました。 これにより、 `x-ref`のほとんどの使用法が置き換えられます。それでもコンポーネントのルートにアクセスする場合は、`$root`を使用してアクセスできます。 例えば：
-
-```alpine
+```html
 <!-- 🚫 Before -->
 <div x-data>
     <button @click="console.log($el)"></button>
@@ -85,15 +68,15 @@ Alpine V2からV3へのアップグレードは、かなり簡単です。 多�
 </div>
 ```
 
-For a smoother upgrade experience, you can replace all instances of `$el` with a custom magic called `$root`.
+<!-- For a smoother upgrade experience, you can replace all instances of `$el` with a custom magic called `$root`. -->
 
-[→ Read more about $el in V3](/magics/el)  
-[→ Read more about $root in V3](/magics/root)
+<!-- [→ Read more about $el in V3](/magics/el)  
+[→ Read more about $root in V3](/magics/root) -->
 
-よりスムーズなアップグレード体験のために、`$el`のすべてのインスタンスを`$root`と呼ばれるカスタムマジックに置き換えることができます。
+よりスムーズなアップグレード体験のために、`$el` のすべてのインスタンスを `$root` と呼ばれるカスタムマジックに置き換えることができます。
 
-[→V3の$elについてもっと読む]（/ magics / el）
-[→V3の$rootについてもっと読む]（/ magics / root）
+[→V3の `$el` についてもっと読む](/magics/el)
+[→V3の `$root` についてもっと読む](/magics/root)
 
 <a name="auto-init"></a>
 
