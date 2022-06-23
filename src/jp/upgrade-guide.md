@@ -242,21 +242,17 @@ V3より前では、`x-init` が` typeof` "関数" である戻り値を受け�
 <div x-data x-init="$nextTick(() => { ... })">...</div>
 ```
 
-[→ Read more about $nextTick](/magics/next-tick)
+[→ $nextTickについてもっと読む](/magics/next-tick)
 
 <a name="no-false-return-from-event-handlers"></a>
 
-### Returning `false` from event handlers no longer implicitly "preventDefault"s
+### イベントハンドラーから `false` を返すことは、暗黙的に "preventDefault" ではなくなりました
 
-Alpine V2 observes a return value of `false` as a desire to run `preventDefault` on the event. This conforms to the standard behavior of native, inline listeners: `<... oninput="someFunctionThatReturnsFalse()">`. Alpine V3 no longer supports this API. Most people don't know it exists and therefore is surprising behavior.
+<!-- Alpine V2 observes a return value of `false` as a desire to run `preventDefault` on the event. This conforms to the standard behavior of native, inline listeners: `<... oninput="someFunctionThatReturnsFalse()">`. Alpine V3 no longer supports this API. Most people don't know it exists and therefore is surprising behavior. -->
 
-[→$nextTickについてもっと読む]（/ magics / next-tick）
+Alpine V2は、イベントで `preventDefault` を実行したいという要望として `false` の戻り値を観察します。 これは、ネイティブのインラインリスナーの標準動作 `<... oninput ="someFunctionThatReturnsFalse()">` に準拠しています。 Alpine V3 はこの API をサポートしなくなりました。 ほとんどの人はそれが存在することを知らないので、驚くべき行動です。
 
 <a name="no-false-return-from-event-handlers"> </a>
-
-###イベントハンドラーから`false`を返すことは、暗黙的に"preventDefault"ではなくなりました
-
-Alpine V2は、イベントで`preventDefault`を実行したいという要望として`false`の戻り値を観察します。 これは、ネイティブのインラインリスナーの標準動作 `<... oninput =" someFunctionThatReturnsFalse（）">`に準拠しています。 AlpineV3はこのAPIをサポートしなくなりました。 ほとんどの人はそれが存在することを知らないので、驚くべき行動です。
 
 ```html
 <!-- 🚫 Before -->
@@ -270,21 +266,17 @@ Alpine V2は、イベントで`preventDefault`を実行したいという要望�
 </div>
 ```
 
-[→ Read more about x-on](/directives/on)
+[→ x-on についてもっと読む](/directives/on)
 
 <a name="x-spread-now-x-bind"></a>
 
-### `x-spread` is now `x-bind`
+### `x-spread` は `x-bind` になりました
 
 One of Alpine's stories for re-using functionality is abstracting Alpine directives into objects and applying them to elements with `x-spread`. This behavior is still the same, except now `x-bind` (with no specified attribute) is the API instead of `x-spread`.
 
-[→x-onについてもっと読む]（/ directives / on）
+機能を再利用するためのAlpineのストーリーの1つは、Alpineディレクティブをオブジェクトに抽象化し、それらを`x-spread`を使用して要素に適用することです。 この動作は同じですが、 `x-bind`（属性が指定されていない）が`x-spread`ではなくAPIになっている点が異なります。
 
 <a name="x-spread-now-x-bind"> </a>
-
-###`x-spread`は`x-bind`になりました
-
-機能を再利用するためのAlpineのストーリーの1つは、Alpineディレクティブをオブジェクトに抽象化し、それらを`x-spread`を使用して要素に適用することです。 この動作は同じですが、 `x-bind`（属性が指定されていない）が`x-spread`ではなくAPIになっている点が異なります。
 
 ```html
 <!-- 🚫 Before -->
