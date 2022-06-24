@@ -393,17 +393,17 @@ return this.items.filter(
 
 <!-- By passing in this callback to `filter`, we are telling JavaScript to only return the items that start with the string: `this.search`, which like we saw with `x-model` will always reflect the value of the input. -->
 
-You may notice that up until now, we haven't had to use `this.` to reference properties. However, because we are working directly inside the `x-data` object, we must reference any properties using `this.[property]` instead of simply `[property]`.
+<!-- You may notice that up until now, we haven't had to use `this.` to reference properties. However, because we are working directly inside the `x-data` object, we must reference any properties using `this.[property]` instead of simply `[property]`. -->
 
-Because Alpine is a "reactive" framework. Any time the value of `this.search` changes, parts of the template that use `filteredItems` will automatically be updated.
+<!-- Because Alpine is a "reactive" framework. Any time the value of `this.search` changes, parts of the template that use `filteredItems` will automatically be updated. -->
 
 これはすべてプレーンな JavaScript です。まず、アイテムの配列（foo、bar、baz）を取得し、提供されたコールバックを使用してそれらをフィルタリングします。「`i => i.startsWith(this.search)`」
 
 このコールバックを `filter` に渡すことで、JavaScriptに文字列 `this.search` で始まるアイテムのみを返すように指示しています。これは、`x-model` で見たように、常に入力の値を反映します。
 
-これまで、プロパティを参照するために`this。`を使用する必要がなかったことにお気づきかもしれません。 ただし、 `x-data`オブジェクト内で直接作業しているため、単に`[property]`ではなく`this。[property]`を使用してプロパティを参照する必要があります。
+これまで、プロパティを参照するために`this.` を使用する必要がなかったことにお気づきかもしれません。 ただし、`x-data` オブジェクト内で直接作業しているため、単に `[property]` ではなく `this.[property]` を使用してプロパティを参照する必要があります。
 
-アルパインは「リアクティブ」フレームワークだからです。 `this.search`の値が変更されるたびに、`filteredItems`を使用するテンプレートの部分が自動的に更新されます。
+Alpine は「リアクティブ」フレームワークだからです。 `this.search` の値が変更されるたびに、`filteredItems` を使用するテンプレートの部分が自動的に更新されます。
 
 <a name="looping-elements"></a>
 
