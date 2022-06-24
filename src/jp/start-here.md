@@ -13,7 +13,7 @@ title: Alpine.js をはじめよう！
 
 テキストエディターを使用して、以下のようにファイル内を埋めてください。
 
-```alpine
+```html
 <html>
 <head>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -58,7 +58,7 @@ title: Alpine.js をはじめよう！
 
 `<body>` タグに以下を挿入します。
 
-```alpine
+```html
 <div x-data="{ count: 0 }">
     <button x-on:click="count++">Increment</button>
 
@@ -87,7 +87,7 @@ title: Alpine.js をはじめよう！
 
 ### データの宣言
 
-```alpine
+```html
 <div x-data="{ count: 0 }">
 ```
 
@@ -111,7 +111,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ### イベントリスナー
 
-```alpine
+```html
 <button x-on:click="count++">Increment</button>
 ```
 
@@ -137,7 +137,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ### 変化への対応
 
-```alpine
+```html
 <h1 x-text="count"></h1>
 ```
 
@@ -167,7 +167,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 次のコードを `body` タグに挿入してください。
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Toggle</button>
 
@@ -196,7 +196,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ### 要素の切り替え
 
-```alpine
+```html
 <div x-show="open" ...>Contents...</div>
 ```
 
@@ -210,7 +210,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ### クリックの外側でのリスナー
 
-```alpine
+```html
 <div ... @click.outside="open = false">Contents...</div>
 ```
 
@@ -242,7 +242,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 次のコードを `<body>` タグに挿入します。
 
-```alpine
+```html
 <div
     x-data="{
         search: '',
@@ -314,7 +314,7 @@ Let's look at `x-on` and see how it can access and modify the `count` property f
 
 ### 入力値へのバインド
 
-```alpine
+```html
 <input x-model="search" placeholder="Search...">
 ```
 
@@ -409,11 +409,11 @@ Alpine は「リアクティブ」フレームワークだからです。 `this.
 
 ### ループ要素
 
-Now that we understand the data part of our component, let's understand what's happening in the template that allows us to loop through `filteredItems` on the page.
+<!-- Now that we understand the data part of our component, let's understand what's happening in the template that allows us to loop through `filteredItems` on the page. -->
 
-コンポーネントのデータ部分を理解したので、ページ上の`filteredItems`をループできるようにするテンプレートで何が起こっているのかを理解しましょう。
+コンポーネントのデータ部分を理解したので、ページ上の `filteredItems` をループできるようにするテンプレートで何が起こっているのかを理解しましょう。
 
-```alpine
+```html
 <ul>
     <template x-for="item in filteredItems">
         <li x-text="item"></li>
@@ -421,21 +421,19 @@ Now that we understand the data part of our component, let's understand what's h
 </ul>
 ```
 
-The first thing to notice here is the `x-for` directive. `x-for` expressions take the following form: `[item] in [items]` where [items] is any array of data, and [item] is the name of the variable that will be assigned to an iteration inside the loop.
+<!-- The first thing to notice here is the `x-for` directive. `x-for` expressions take the following form: `[item] in [items]` where [items] is any array of data, and [item] is the name of the variable that will be assigned to an iteration inside the loop. -->
 
-Also notice that `x-for` is declared on a `<template>` element and not directly on the `<li>`. This is a requirement of using `x-for`. It allows Alpine to leverage the existing behavior of `<template>` tags in the browser to its advantage.
+<!-- Also notice that `x-for` is declared on a `<template>` element and not directly on the `<li>`. This is a requirement of using `x-for`. It allows Alpine to leverage the existing behavior of `<template>` tags in the browser to its advantage. -->
 
-Now any element inside the `<template>` tag will be repeated for every item inside `filteredItems` and all expressions evaluated inside the loop will have direct access to the iteration variable (`item` in this case).
+<!-- Now any element inside the `<template>` tag will be repeated for every item inside `filteredItems` and all expressions evaluated inside the loop will have direct access to the iteration variable (`item` in this case). -->
 
-[→ Read more about `x-for`](/directives/for)
+ここで最初に気付くのは、`x-for` ディレクティブです。`x-for` 式は `[items] in [items] ` というような形式を取ります。ここで、[items] はデータの任意の配列であり、[item] はループ内の反復に割り当てられる変数の名前です。 
 
-ここで最初に気付くのは、`x-for`ディレクティブです。 `x-for`式は次の形式を取ります。`[items]in[items] `ここで、[items]はデータの任意の配列であり、[item]はループ内の反復に割り当てられる変数の名前です。 。
+また、`x-for` は `<li>` ではなく、`<template>` 要素で宣言されていることに注意してください。 これは `x-for` を使用するための要件です。 これにより、Alpine はブラウザの`<template>`タグの既存の動作を活用できます。
 
-また、`x-for`は`<li>`ではなく、`<template>`要素で宣言されていることに注意してください。 これは`x-for`を使用するための要件です。 これにより、Alpineはブラウザの`<template>`タグの既存の動作を活用できます。
+これで、 `<template>`タグ内の要素は、 `filteredItems` 内のすべてのアイテムに対して繰り返され、ループ内で評価されたすべての式は、反復変数（この場合は `item`）に直接アクセスできます。
 
-これで、 `<template>`タグ内の要素は、 `filteredItems`内のすべてのアイテムに対して繰り返され、ループ内で評価されたすべての式は、反復変数（この場合は` item`）に直接アクセスできます。
-
-[→`x-for`についてもっと読む]（/directives/for）
+[→`x-for`についてもっと読む](/directives/for)
 
 <a name="recap"></a>
 
