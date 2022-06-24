@@ -3,7 +3,7 @@ order: 2
 title: Upgrade From V2
 ---
 
-# Upgrade from V2
+# V2 からのアップグレード
 
 <!-- Below is an exhaustive guide on the breaking changes in Alpine V3, but if you'd prefer something more lively, you can review all the changes as well as new features in V3 by watching the Alpine Day 2021 "Future of Alpine" keynote: -->
 
@@ -272,9 +272,9 @@ Alpine V2は、イベントで `preventDefault` を実行したいという要�
 
 ### `x-spread` は `x-bind` になりました
 
-One of Alpine's stories for re-using functionality is abstracting Alpine directives into objects and applying them to elements with `x-spread`. This behavior is still the same, except now `x-bind` (with no specified attribute) is the API instead of `x-spread`.
+<!-- One of Alpine's stories for re-using functionality is abstracting Alpine directives into objects and applying them to elements with `x-spread`. This behavior is still the same, except now `x-bind` (with no specified attribute) is the API instead of `x-spread`. -->
 
-機能を再利用するためのAlpineのストーリーの1つは、Alpineディレクティブをオブジェクトに抽象化し、それらを`x-spread`を使用して要素に適用することです。 この動作は同じですが、 `x-bind`（属性が指定されていない）が`x-spread`ではなくAPIになっている点が異なります。
+機能を再利用するための Alpine のストーリーの1つは、Alpine ディレクティブをオブジェクトに抽象化し、それらを `x-spread` を使用して要素に適用することです。 この動作は同じですが、 `x-bind`（属性が指定されていない）が `x-spread` ではなく API になっている点が異なります。
 
 <a name="x-spread-now-x-bind"> </a>
 
@@ -312,17 +312,13 @@ One of Alpine's stories for re-using functionality is abstracting Alpine directi
 </script>
 ```
 
-[→ Read more about binding directives using x-bind](/directives/bind#bind-directives)
+[→ x-bind を使用したディレクティブのバインドについてもっと読む](/directives/bind#bind-directives)
 
 <a name="use-global-events-now"></a>
 
-### Use global lifecycle events instead of `Alpine.deferLoadingAlpine()`
-
-[→x-bindを使用したディレクティブのバインドについてもっと読む]（/directives/bind#bind-directives）
+### `Alpine.deferLoadingAlpine()` の代わりにグローバルライフサイクルイベントを使用する
 
 <a name="use-global-events-now"> </a>
-
-### `Alpine.deferLoadingAlpine（）`の代わりにグローバルライフサイクルイベントを使用する
 
 ```html
 <!-- 🚫 Before -->
@@ -348,13 +344,13 @@ One of Alpine's stories for re-using functionality is abstracting Alpine directi
 </script>
 ```
 
-[→ Read more about Alpine lifecycle events](/essentials/lifecycle#alpine-initialization)
+[→ Alpine ライフサイクルイベントについてもっと読む](/essentials/lifecycle#alpine-initialization)
 
 <a name="x-ref-no-more-dynamic"></a>
 
-### `x-ref` no longer supports binding
+### `x-ref` はバインディングをサポートしなくなりました
 
-In Alpine V2 for below code
+Alpine V2 では以下のコードのようにしていました。
 
 ```html
 <div x-data="{options: [{value: 1}, {value: 2}, {value: 3}] }">
@@ -367,37 +363,29 @@ In Alpine V2 for below code
 </div>
 ```
 
-after clicking button all `$refs` were displayed. However, in Alpine V3 it's possible to access only `$refs` for elements created statically, so only first ref will be returned as expected.
+<!-- after clicking button all `$refs` were displayed. However, in Alpine V3 it's possible to access only `$refs` for elements created statically, so only first ref will be returned as expected. -->
+
+ボタンをクリックすると、すべての `$refs` が表示されました。 ただし、Alpine V3では、静的に作成された要素の `$refs` にのみアクセスできるため、期待どおりに最初の ref のみが返されます。
 
 <a name="no-ie-11"></a>
 
-### IE11 no longer supported
+### IE11はサポートされなくなりました
 
-Alpine will no longer officially support Internet Explorer 11. If you need support for IE11, we recommend still using Alpine V2.
+<!-- Alpine will no longer officially support Internet Explorer 11. If you need support for IE11, we recommend still using Alpine V2. -->
 
-## Deprecated APIs
+Alpine は InternetExplorer11 を正式にサポートしなくなります。IE11 のサポートが必要な場合は、Alpine V2 を引き続き使用することをお勧めします。
 
-The following 2 APIs will still work in V3, but are considered deprecated and are likely to be removed at some point in the future.
+## 非推奨のAPI
+
+<!-- The following 2 APIs will still work in V3, but are considered deprecated and are likely to be removed at some point in the future. -->
+
+次の2つの API は V3 でも引き続き機能しますが、非推奨と見なされ、将来のある時点で削除される可能性があります。
 
 <a name="away-replace-with-outside"></a>
 
-### Event listener modifier `.away` should be replaced with `.outside`
+### イベントリスナー修飾子`.away`は`.outside`に置き換える必要があります
 
 ボタンをクリックすると、すべての`$refs`が表示されました。 ただし、Alpine V3では、静的に作成された要素の `$ refs`にのみアクセスできるため、期待どおりに最初のrefのみが返されます。
-
-<a name="no-ie-11"> </a>
-
-###IE11はサポートされなくなりました
-
-AlpineはInternetExplorer11を正式にサポートしなくなります。IE11のサポートが必要な場合は、AlpineV2を引き続き使用することをお勧めします。
-
-##非推奨のAPI
-
-次の2つのAPIはV3でも引き続き機能しますが、非推奨と見なされ、将来のある時点で削除される可能性があります。
-
-<a name="away-replace-with-outside"> </a>
-
-###イベントリスナー修飾子`.away`は`.outside`に置き換える必要があります
 
 ```html
 <!-- 🚫 Before -->
@@ -413,9 +401,9 @@ AlpineはInternetExplorer11を正式にサポートしなくなります。IE11�
 
 <a name="alpine-data-instead-of-global-functions"></a>
 
-### Prefer `Alpine.data()` to global Alpine function data providers
+<!-- ### Prefer `Alpine.data()` to global Alpine function data providers -->
 
-###グローバルAlpine関数データプロバイダーよりも`Alpine.data（）`を優先する
+### グローバル Alpine 関数データプロバイダーよりも `Alpine.data()` を優先する
 
 ```html
 <!-- 🚫 Before -->
@@ -445,6 +433,6 @@ AlpineはInternetExplorer11を正式にサポートしなくなります。IE11�
 </script>
 ```
 
-> Note that you need to define `Alpine.data()` extensions BEFORE you call `Alpine.start()`. For more information, refer to the [Lifecycle Concerns](https://alpinejs.dev/advanced/extending#lifecycle-concerns) and [Installation as a Module](https://alpinejs.dev/essentials/installation#as-a-module) documentation pages.
+<!-- > Note that you need to define `Alpine.data()` extensions BEFORE you call `Alpine.start()`. For more information, refer to the [Lifecycle Concerns](https://alpinejs.dev/advanced/extending#lifecycle-concerns) and [Installation as a Module](https://alpinejs.dev/essentials/installation#as-a-module) documentation pages. -->
 
-> `Alpine.start（）`を呼び出す前に、 `Alpine.data（）`拡張子を定義する必要があることに注意してください。 詳細については、[ライフサイクルの懸念事項]（https://alpinejs.dev/advanced/extending#lifecycle-concerns）および[モジュールとしてのインストール]（https://alpinejs.dev/essentials/installation#as-）を参照してください。 a-module）ドキュメントページ。
+> `Alpine.start()` を呼び出す前に、`Alpine.data()` 拡張子を定義する必要があることに注意してください。 詳細については、[ライフサイクルの懸念事項](https://alpinejs.dev/advanced/extending#lifecycle-concerns) および [モジュールとしてのインストール](https://alpinejs.dev/essentials/installation#as-a-module) を参照してください。
