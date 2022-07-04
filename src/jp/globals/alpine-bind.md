@@ -9,11 +9,18 @@ title: bind()
 
 Here's a simple example. Rather than binding attributes manually with Alpine:
 
+`Alpine.bind（...）`は、アプリケーション内で[` x-bind`]（/ directives / bind＃bind-directives）オブジェクトを再利用する方法を提供します。
+
+これが簡単な例です。 Alpineで属性を手動でバインドするのではなく：
+
 ```alpine
 <button type="button" @click="doSomething()" :disabled="shouldDisable"></button>
 ```
 
 You can bundle these attributes up into a reusable object and use `x-bind` to bind to that:
+
+
+これらの属性を再利用可能なオブジェクトにバンドルし、`x-bind`を使用してそれにバインドできます。
 
 ```alpine
 <button x-bind="SomeButton"></button>
