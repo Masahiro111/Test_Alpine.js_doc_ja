@@ -21,7 +21,7 @@ Alpine が HTML 属性から JavaScript 式としてプレーン文字列（ た
 
 <a name="installation"></a>
 
-## Installation
+## インストール
 
 <!-- Like all Alpine extensions, you can include this either via `<script>` tag or module import: -->
 
