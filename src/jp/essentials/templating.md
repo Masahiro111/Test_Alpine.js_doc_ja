@@ -87,6 +87,7 @@ Alpine は、ページ上の要素を切り替えるための `x-show` および
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open" :aria-pressed="open">Expand</button>
@@ -96,6 +97,7 @@ Alpine は、ページ上の要素を切り替えるための `x-show` および
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <!-- Now the entire `<div>` containing the contents will be shown and hidden based on the value of `open`. -->
 
@@ -131,6 +133,7 @@ Alpine は、ページ上の要素を切り替えるための `x-show` および
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open" :aria-pressed="open">Expand</button>
@@ -142,14 +145,15 @@ Alpine は、ページ上の要素を切り替えるための `x-show` および
     </template>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Notice that `x-if` must be declared on a `<template>` tag. This is so that Alpine can leverage the existing browser behavior of the `<template>` element and use it as the source of the target `<div>` to be added and removed from the page.
+<!-- Notice that `x-if` must be declared on a `<template>` tag. This is so that Alpine can leverage the existing browser behavior of the `<template>` element and use it as the source of the target `<div>` to be added and removed from the page. -->
 
-When `open` is true, Alpine will append the `<div>` to the `<template>` tag, and remove it when `open` is false.
+<!-- When `open` is true, Alpine will append the `<div>` to the `<template>` tag, and remove it when `open` is false. -->
 
-`x-if`は`<template>`タグで宣言する必要があることに注意してください。これは、Alpineが `<template>`要素の既存のブラウザの動作を活用し、ページに追加および削除するターゲット`<div>`のソースとして使用できるようにするためです。
+`x-if` は `<template>` タグで宣言する必要があることに注意してください。これは、Alpine が  `<template>` 要素の既存のブラウザの動作を活用し、ページに追加および削除するターゲット `<div>` のソースとして使用できるようにするためです。
 
-`open`がtrueの場合、Alpineは`<div>`を`<template>`タグに追加し、`open`がfalseの場合は削除します。
+`open` が true の場合、Alpine は `<div>` を `<template>` タグに追加し、`open` が false の場合は削除します。
 
 [→ x-if についてもっと読む](/directives/if)
 
@@ -157,17 +161,17 @@ When `open` is true, Alpine will append the `<div>` to the `<template>` tag, and
 
 ## トランジションの切り替え
 
-Alpineを使用すると、 `x-transition`ディレクティブを使用して、「表示」状態と「非表示」状態の間をスムーズに移行できます。
+Alpine を使用すると、 `x-transition` ディレクティブを使用して、「表示」状態と「非表示」状態の間をスムーズに移行できます。
 
->`x-transition`は`x-show`でのみ機能し、`x-if`では機能しません。
+> `x-transition` は `x-show` でのみ機能し、`x-if` では機能しません。
 
 これも簡単なトグルの例ですが、今回はトランジションが適用されています。
 
-Alpine makes it simple to smoothly transition between "shown" and "hidden" states using the `x-transition` directive.
+<!-- Alpine makes it simple to smoothly transition between "shown" and "hidden" states using the `x-transition` directive. -->
 
-> `x-transition` only works with `x-show`, not with `x-if`.
+<!-- > `x-transition` only works with `x-show`, not with `x-if`. -->
 
-Here is, again, the simple toggle example, but this time with transitions applied:
+<!-- Here is, again, the simple toggle example, but this time with transitions applied: -->
 
 ```html
 <div x-data="{ open: false }">
@@ -179,6 +183,7 @@ Here is, again, the simple toggle example, but this time with transitions applie
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open">Expands</button>
@@ -190,8 +195,9 @@ Here is, again, the simple toggle example, but this time with transitions applie
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Let's zoom in on the portion of the template dealing with transitions:
+<!-- Let's zoom in on the portion of the template dealing with transitions: -->
 
 トランジションを処理するテンプレートの部分を拡大してみましょう。
 
@@ -199,55 +205,60 @@ Let's zoom in on the portion of the template dealing with transitions:
 <div x-show="open" x-transition>
 ```
 
-`x-transition` by itself will apply sensible default transitions (fade and scale) to the toggle.
+<!-- `x-transition` by itself will apply sensible default transitions (fade and scale) to the toggle. -->
 
-There are two ways to customize these transitions:
+<!-- There are two ways to customize these transitions: -->
 
-* Transition helpers
-* Transition CSS classes.
+<!-- * Transition helpers -->
+<!-- * Transition CSS classes. -->
 
-Let's take a look at each of these approaches:
+<!-- Let's take a look at each of these approaches: -->
 
-`x-transition`自体は、適切なデフォルトの遷移（フェードとスケール）をトグルに適用します。
+`x-transition` 自体は、適切なデフォルトの遷移（フェードとスケール）をトグルに適用します。
 
 これらの遷移をカスタマイズするには、次の2つの方法があります。
 
-*移行ヘルパー
-*CSSクラスを移行します。
+* トランジション ヘルパー
+* トランジション CSS クラス
 
 これらの各アプローチを見てみましょう。
 
 <a name="transition-helpers"></a>
 
-### Transition ヘルパー
+### トランジション ヘルパー
 
-遷移の期間を長くしたいとします。次のように`.duration`修飾子を使用して手動で指定できます。
+トランジションの期間を長くしたいとします。次のように `.duration` 修飾子を使用して手動で指定できます。
 
-Let's say you wanted to make the duration of the transition longer, you can manually specify that using the `.duration` modifier like so:
+<!-- Let's say you wanted to make the duration of the transition longer, you can manually specify that using the `.duration` modifier like so: -->
 
 ```html
 <div x-show="open" x-transition.duration.500ms>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open">Expands</button>
 
     <div class="flex">
-        <div x-show="open" x-transition.duration.500ms style="will-change: transform;">
+        <div 
+            x-show="open" 
+            x-transition.duration.500ms 
+            style="will-change: transform;">
             Content...
         </div>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Now the transition will last 500 milliseconds.
+<!-- Now the transition will last 500 milliseconds. -->
 
-If you want to specify different values for in and out transitions, you can use `x-transition:enter` and `x-transition:leave`:
+<!-- If you want to specify different values for in and out transitions, you can use `x-transition:enter` and `x-transition:leave`: -->
 
-これで、遷移は500ミリ秒続きます。
+これで、トランジションは500ミリ秒として設定されます。
 
-イントランジションとアウトトランジションに異なる値を指定する場合は、 `x-transition：enter`と` x-transition：leave`を使用できます。
+イントランジションとアウトトランジションに異なる値を指定する場合は、`x-transition:enter` と `x-transition:leave` を使用できます。
 
 ```html
 <div
@@ -257,6 +268,7 @@ If you want to specify different values for in and out transitions, you can use 
 >
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open">Expands</button>
@@ -268,15 +280,17 @@ If you want to specify different values for in and out transitions, you can use 
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Additionally, you can add either `.opacity` or `.scale` to only transition that property. For example:
+<!-- Additionally, you can add either `.opacity` or `.scale` to only transition that property. For example: -->
 
-さらに、 `.opacity`または`.scale`のいずれかを追加して、そのプロパティのみを遷移させることができます。例えば：
+さらに、`.opacity` または `.scale` のいずれかを追加して、そのプロパティのみを遷移させることができます。例えば：
 
 ```html
 <div x-show="open" x-transition.opacity>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open">Expands</button>
@@ -288,16 +302,17 @@ Additionally, you can add either `.opacity` or `.scale` to only transition that 
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 [→ トランジションヘルパーについてもっと読む](/directives/transition#the-transition-helper)
 
 <a name="transition-classes"></a>
 
-### Transition クラス
+### トランジション クラス
 
-アプリケーションの遷移をよりきめ細かく制御する必要がある場合は、次の構文を使用して、遷移の特定のフェーズで特定のCSSクラスを適用できます（この例では[Tailwind CSS]（https://tailwindcss.com/）を使用します） 
+アプリケーションの遷移をよりきめ細かく制御する必要がある場合は、次の構文を使用して、遷移の特定のフェーズで特定の CSS クラスを適用できます。この例では [Tailwind CSS](https://tailwindcss.com/) を使用します。
 
-If you need more fine-grained control over the transitions in your application, you can apply specific CSS classes at specific phases of the transition using the following syntax (this example uses [Tailwind CSS](https://tailwindcss.com/)):
+<!-- If you need more fine-grained control over the transitions in your application, you can apply specific CSS classes at specific phases of the transition using the following syntax (this example uses [Tailwind CSS](https://tailwindcss.com/)): -->
 
 ```html
 <div
@@ -311,6 +326,7 @@ If you need more fine-grained control over the transitions in your application, 
 >...</div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <button @click="open = ! open">Expands</button>
@@ -331,6 +347,7 @@ If you need more fine-grained control over the transitions in your application, 
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 [→ transition クラスについてもっと読む](/directives/transition#applying-css-classes)
 
@@ -338,13 +355,13 @@ If you need more fine-grained control over the transitions in your application, 
 
 ## バインディング属性
 
-`x-bind`ディレクティブを使用して、`class`、 `style`、`disabled`などのHTML属性をAlpineの要素に追加できます。
+`x-bind` ディレクティブを使用して、`class`、`style`、`disabled` などの HTML 属性を Alpine の要素に追加できます。
 
-動的にバインドされた`class`属性の例を次に示します。
+動的にバインドされた `class` 属性の例を次に示します。
 
-You can add HTML attributes like `class`, `style`, `disabled`, etc... to elements in Alpine using the `x-bind` directive.
+<!-- You can add HTML attributes like `class`, `style`, `disabled`, etc... to elements in Alpine using the `x-bind` directive. -->
 
-Here is an example of a dynamically bound `class` attribute:
+<!-- Here is an example of a dynamically bound `class` attribute: -->
 
 ```html
 <button
@@ -356,6 +373,7 @@ Here is an example of a dynamically bound `class` attribute:
 </button>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <button
@@ -367,18 +385,19 @@ Here is an example of a dynamically bound `class` attribute:
     </button>
 </div>
 <!-- END_VERBATIM -->
+```
 
-As a shortcut, you can leave out the `x-bind` and use the shorthand `:` syntax directly:
+<!-- As a shortcut, you can leave out the `x-bind` and use the shorthand `:` syntax directly: -->
 
-ショートカットとして、 `x-bind`を省略し、省略形の`：`構文を直接使用できます。
+ショートカットとして、 `x-bind` を省略し、省略形の `:` 構文を直接使用できます。
 
 ```html
 <button ... :class="red ? 'bg-red' : ''">
 ```
 
-Toggling classes on and off based on data inside Alpine is a common need. Here's an example of toggling a class using Alpine's `class` binding object syntax: (Note: this syntax is only available for `class` attributes)
+<!-- Toggling classes on and off based on data inside Alpine is a common need. Here's an example of toggling a class using Alpine's `class` binding object syntax: (Note: this syntax is only available for `class` attributes) -->
 
-アルパイン内のデータに基づいてクラスのオンとオフを切り替えることは、一般的なニーズです。これは、Alpineの `class`バインディングオブジェクト構文を使用してクラスを切り替える例です:(注：この構文は、` class`属性でのみ使用できます）
+Alpine 内のデータに基づいてクラスのオンとオフを切り替えることは、一般的なニーズです。これは、Alpine の `class` バインディングオブジェクト構文を使用してクラスを切り替える例です。(注: この構文は、`class` 属性でのみ使用できます）
 
 ```html
 <div x-data="{ open: true }">
@@ -386,17 +405,17 @@ Toggling classes on and off based on data inside Alpine is a common need. Here's
 </div>
 ```
 
-Now the `hidden` class will be added to the element if `open` is false, and removed if `open` is true.
+<!-- Now the `hidden` class will be added to the element if `open` is false, and removed if `open` is true. -->
 
-これで、 `open`がfalseの場合は`hidden`クラスが要素に追加され、`open`がtrueの場合は削除されます。
+これで、`open` が false の場合は `hidden` クラスが要素に追加され、`open` が true の場合は削除されます。
 
 <a name="looping-elements"></a>
 
 ## ループ要素
 
-Alpineでは、 `x-for`ディレクティブを使用して、JavaScriptデータに基づいてテンプレートの一部を反復処理できます。簡単な例を次に示します。
+Alpine では、`x-for` ディレクティブを使用して、JavaScript データに基づいてテンプレートの一部を反復処理できます。簡単な例を次に示します。
 
-Alpine allows for iterating parts of your template based on JavaScript data using the `x-for` directive. Here is a simple example:
+<!-- Alpine allows for iterating parts of your template based on JavaScript data using the `x-for` directive. Here is a simple example: -->
 
 ```html
 <div x-data="{ statuses: ['open', 'closed', 'archived'] }">
@@ -406,6 +425,7 @@ Alpine allows for iterating parts of your template based on JavaScript data usin
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ statuses: ['open', 'closed', 'archived'] }" class="demo">
     <template x-for="status in statuses">
@@ -413,15 +433,15 @@ Alpine allows for iterating parts of your template based on JavaScript data usin
     </template>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Similar to `x-if`, `x-for` must be applied to a `<template>` tag. Internally, Alpine will append the contents of `<template>` tag for every iteration in the loop.
+<!-- Similar to `x-if`, `x-for` must be applied to a `<template>` tag. Internally, Alpine will append the contents of `<template>` tag for every iteration in the loop. -->
 
-As you can see the new `status` variable is available in the scope of the iterated templates.
+<!-- As you can see the new `status` variable is available in the scope of the iterated templates. -->
 
-`x-if`と同様に、`x-for`は`<template>`タグに適用する必要があります。内部的には、Alpineは、ループ内のすべての反復に対して`<template>`タグの内容を追加します。
+`x-if` と同様に、`x-for` は `<template>` タグに適用する必要があります。内部的には、Alpine は、ループ内のすべての反復に対して `<template>` タグの内容を追加します。
 
-ご覧のとおり、新しい`status`変数は反復テンプレートのスコープで使用できます。
-
+ご覧のとおり、新しい `status` 変数は反復テンプレートのスコープで使用できます。
 
 [→ x-for についてもっと読む](/directives/for)
 
@@ -429,9 +449,9 @@ As you can see the new `status` variable is available in the scope of the iterat
 
 ## Inner HTML
 
-Alpine makes it easy to control the HTML content of an element with the `x-html` directive.
+<!-- Alpine makes it easy to control the HTML content of an element with the `x-html` directive. -->
 
-Alpineを使用すると、`x-html`ディレクティブを使用して要素のHTMLコンテンツを簡単に制御できます。
+Alpine を使用すると、`x-html` ディレクティブを使用して要素の HTML コンテンツを簡単に制御できます。
 
 ```html
 <div x-data="{ title: '<h1>Start Here</h1>' }">
@@ -439,20 +459,22 @@ Alpineを使用すると、`x-html`ディレクティブを使用して要素の
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ title: '<h1>Start Here</h1>' }" class="demo">
     <div x-html="title"></div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Now, Alpine will set the text content of the `<div>` with the element `<h1>Start Here</h1>`. When `title` changes, so will the contents of `<h1>`.
+<!-- Now, Alpine will set the text content of the `<div>` with the element `<h1>Start Here</h1>`. When `title` changes, so will the contents of `<h1>`. -->
 
-> ⚠️ Only use on trusted content and never on user-provided content. ⚠️
-> Dynamically rendering HTML from third parties can easily lead to XSS vulnerabilities.
+<!-- > ⚠️ Only use on trusted content and never on user-provided content. ⚠️ -->
+<!-- > Dynamically rendering HTML from third parties can easily lead to XSS vulnerabilities. -->
 
-これで、Alpineは`<div>`のテキストコンテンツを要素`<h1> Start Here</h1>`で設定します。 `title`が変わると、`<h1>`の内容も変わります。
+これで、Alpine は `<div>` のテキストコンテンツを要素 `<h1> Start Here</h1>` で設定します。 `title` が変わると、`<h1>` の内容も変わります。
 
->⚠️信頼できるコンテンツにのみ使用し、ユーザー提供のコンテンツには使用しないでください。 ⚠️
->サードパーティからHTMLを動的にレンダリングすると、XSSの脆弱性が簡単に発生する可能性があります。
+> ⚠️信頼できるコンテンツにのみ使用し、ユーザー提供のコンテンツには使用しないでください。 ⚠️
+> サードパーティから HTML を動的にレンダリングすると、XSSの脆弱性が簡単に発生する可能性があります。
 
 [→ x-html についてもっと読む](/directives/html)
