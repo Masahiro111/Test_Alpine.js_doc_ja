@@ -3,16 +3,24 @@ order: 2
 title: State
 ---
 
-# State
+# 状態
 
-State (JavaScript data that Alpine watches for changes) is at the core of everything you do in Alpine. You can provide local data to a chunk of HTML, or make it globally available for use anywhere on a page using `x-data` or `Alpine.store()` respectively.
+
+状態（Alpine が変更を監視する JavaScript データ）は、Alpine で行うすべてのコアです。ローカルデータを HTML のチャンクに提供することも、それぞれ `x-data` または `Alpine.store()` を使用してページ上のどこでも使用できるようにグローバルに利用できるようにすることもできます。
+
+<!-- State (JavaScript data that Alpine watches for changes) is at the core of everything you do in Alpine. You can provide local data to a chunk of HTML, or make it globally available for use anywhere on a page using `x-data` or `Alpine.store()` respectively. -->
 
 <a name="local-state-x-data"></a>
-## Local state
 
-Alpine allows you to declare an HTML block's state in a single `x-data` attribute without ever leaving your markup.
+## ローカル状態
 
-Here's a basic example:
+Alpine を使用すると、マークアップを離れることなく、単一の `x-data` 属性でHTMLブロックの状態を宣言できます。
+
+基本的な例は次のとおりです。
+
+<!-- Alpine allows you to declare an HTML block's state in a single `x-data` attribute without ever leaving your markup. -->
+
+<!-- Here's a basic example: -->
 
 ```alpine
 <div x-data="{ open: false }">
@@ -20,14 +28,19 @@ Here's a basic example:
 </div>
 ```
 
-Now any other Alpine syntax on or within this element will be able to access `open`. And like you'd guess, when `open` changes for any reason, everything that depends on it will react automatically.
+<!-- Now any other Alpine syntax on or within this element will be able to access `open`. And like you'd guess, when `open` changes for any reason, everything that depends on it will react automatically. -->
 
-[→ Read more about `x-data`](/directives/data)
+これで、この要素上またはこの要素内の他のAlpine 構文は、`open` にアクセスできるようになります。そして、ご想像のとおり、何らかの理由で「open」が変更されると、それに依存するすべてのものが自動的に反応します。
+
+[→ x-data についてもっと読む](/directives/data)
 
 <a name="nesting-data"></a>
-### Nesting data
 
-Data is nestable in Alpine. For example, if you have two elements with Alpine data attached (one inside the other), you can access the parent's data from inside the child element.
+### データのネスト
+
+データはアルパインでネスト可能です。たとえば、Alpine データがアタッチされた2つの要素（一方が他方の内部）がある場合、子要素の内部から親のデータにアクセスできます。
+
+<!-- Data is nestable in Alpine. For example, if you have two elements with Alpine data attached (one inside the other), you can access the parent's data from inside the child element. -->
 
 ```alpine
 <div x-data="{ open: false }">
@@ -38,36 +51,53 @@ Data is nestable in Alpine. For example, if you have two elements with Alpine da
 </div>
 ```
 
-This is similar to scoping in JavaScript itself (code within a function can access variables declared outside that function.)
+<!-- This is similar to scoping in JavaScript itself (code within a function can access variables declared outside that function.) -->
 
-Like you may have guessed, if the child has a data property matching the name of a parent's property, the child property will take precedence.
+<!-- Like you may have guessed, if the child has a data property matching the name of a parent's property, the child property will take precedence. -->
+
+これは、JavaScript 自体のスコープに似ています（関数内のコードは、その関数の外部で宣言された変数にアクセスできます）。
+
+ご想像のとおり、子に親のプロパティの名前と一致するデータプロパティがある場合は、子プロパティが優先されます。
 
 <a name="single-element-data"></a>
-### Single-element data
 
-Although this may seem obvious to some, it's worth mentioning that Alpine data can be used within the same element. For example:
+### 単一要素のデータ
+
+これは一部の人には明白に思えるかもしれませんが、Alpine データを同じ要素内で使用できることは言及する価値があります。例えば：
+
+<!-- Although this may seem obvious to some, it's worth mentioning that Alpine data can be used within the same element. For example: -->
 
 ```alpine
 <button x-data="{ label: 'Click Here' }" x-text="label"></button>
 ```
 
 <a name="data-less-alpine"></a>
-### Data-less Alpine
 
-Sometimes you may want to use Alpine functionality, but don't need any reactive data. In these cases, you can opt out of passing an expression to `x-data` entirely. For example:
+### データの記述がない場合
+
+<!-- Sometimes you may want to use Alpine functionality, but don't need any reactive data. In these cases, you can opt out of passing an expression to `x-data` entirely. For example: -->
+
+Alpine 機能を使用したいが、リアクティブデータは必要ない場合があります。このような場合、式を `x-data` に完全に渡すことをオプトアウトできます。例えば：
 
 ```alpine
 <button x-data @click="alert('I\'ve been clicked!')">Click Me</button>
 ```
 
 <a name="re-usable-data"></a>
-### Re-usable data
 
-When using Alpine, you may find the need to re-use a chunk of data and/or its corresponding template.
+### 再利用可能なデータ
 
-If you are using a backend framework like Rails or Laravel, Alpine first recommends that you extract the entire block of HTML into a template partial or include.
+Alpine を使用する場合、データのチャンクやそれに対応するテンプレートを再利用する必要がある場合があります。
 
-If for some reason that isn't ideal for you or you're not in a back-end templating environment, Alpine allows you to globally register and re-use the data portion of a component using `Alpine.data(...)`.
+Rails や Laravel などのバックエンドフレームワークを使用している場合、Alpine はまず、HTML のブロック全体をテンプレートの一部またはインクルードに抽出することをお勧めします。
+
+何らかの理由で理想的でない場合、またはバックエンドのテンプレート環境にいない場合、Alpine では、`Alpine.data(...)` を使用して、コンポーネントのデータ部分をグローバルに登録して再利用できます。
+
+<!-- When using Alpine, you may find the need to re-use a chunk of data and/or its corresponding template. -->
+
+<!-- If you are using a backend framework like Rails or Laravel, Alpine first recommends that you extract the entire block of HTML into a template partial or include. -->
+
+<!-- If for some reason that isn't ideal for you or you're not in a back-end templating environment, Alpine allows you to globally register and re-use the data portion of a component using `Alpine.data(...)`. -->
 
 ```js
 Alpine.data('dropdown', () => ({
@@ -79,7 +109,9 @@ Alpine.data('dropdown', () => ({
 }))
 ```
 
-Now that you've registered the "dropdown" data, you can use it inside your markup in as many places as you like:
+<!-- Now that you've registered the "dropdown" data, you can use it inside your markup in as many places as you like: -->
+
+「ドロップダウン」データを登録したので、マークアップ内の好きなだけ多くの場所でそれを使用できます。
 
 ```alpine
 <div x-data="dropdown">
@@ -95,16 +127,23 @@ Now that you've registered the "dropdown" data, you can use it inside your marku
 </div>
 ```
 
-[→ Read more about using `Alpine.data()`](/globals/alpine-data)
+[→ Alpine.data() の使用についてもっと読む](/globals/alpine-data)
 
 <a name="global-state"></a>
-## Global state
 
-If you wish to make some data available to every component on the page, you can do so using Alpine's "global store" feature.
+## グローバルの状態
 
-You can register a store using `Alpine.store(...)`, and reference one with the magic `$store()` method.
+ページ上のすべてのコンポーネントでデータを利用できるようにする場合は、Alpine の「グローバルストア」機能を使用して行うことができます。
 
-Let's look at a simple example. First we'll register the store globally:
+`Alpine.store(...)` を使用してストアを登録し、魔法の `$store()` メソッドを使用してストアを参照できます。
+
+簡単な例を見てみましょう。まず、ストアをグローバルに登録します。
+
+<!-- If you wish to make some data available to every component on the page, you can do so using Alpine's "global store" feature. -->
+
+<!-- You can register a store using `Alpine.store(...)`, and reference one with the magic `$store()` method. -->
+
+<!-- Let's look at a simple example. First we'll register the store globally: -->
 
 ```js
 Alpine.store('tabs', {
@@ -114,7 +153,9 @@ Alpine.store('tabs', {
 })
 ```
 
-Now we can access or modify its data from anywhere on our page:
+<!-- Now we can access or modify its data from anywhere on our page: -->
+
+これで、ページのどこからでもそのデータにアクセスまたは変更できます。
 
 ```alpine
 <div x-data>
@@ -130,4 +171,4 @@ Now we can access or modify its data from anywhere on our page:
 </div>
 ```
 
-[→ Read more about `Alpine.store()`](/globals/alpine-store)
+[→ Alpine.store() についてもっと読む](/globals/alpine-store)
