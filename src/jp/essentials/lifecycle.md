@@ -79,16 +79,16 @@ Here's the same bit of code from the `$watch` example rewritten using `x-effect`
 <div x-data="{ open: false }" x-effect="console.log(open)">
 ```
 
-Now, this expression will be called right away, and re-called every time `open` is updated.
+<!-- Now, this expression will be called right away, and re-called every time `open` is updated. -->
 
-The two main behavioral differences with this approach are:
+<!-- The two main behavioral differences with this approach are: -->
 
-1. The provided code will be run right away AND when data changes (`$watch` is "lazy" -- won't run until the first data change)
-2. No knowledge of the previous value. (The callback provided to `$watch` receives both the new value AND the old one)
+<!-- 1. The provided code will be run right away AND when data changes (`$watch` is "lazy" -- won't run until the first data change) -->
+<!-- 2. No knowledge of the previous value. (The callback provided to `$watch` receives both the new value AND the old one) -->
 
-これで、この式はすぐに呼び出され、`open`が更新されるたびに再呼び出されます。
+これで、この式はすぐに呼び出され、`open` が更新されるたびに再呼び出されます。
 
-このアプローチとの2つの主な動作の違いは次のとおりです。
+このアプローチとの 2つの主な動作の違いは次のとおりです。
 
 1. 提供されたコードはすぐに実行され、データが変更されたときに実行されます（ `$watch` は"lazy" であり、最初のデータ変更まで実行されません）
 2. 以前の値についての知識がありません。 （`$watch` に提供されたコールバックは、新しい値と古い値の両方を受け取ります）
