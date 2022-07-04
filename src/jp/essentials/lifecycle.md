@@ -97,7 +97,7 @@ Here's the same bit of code from the `$watch` example rewritten using `x-effect`
 
 <a name="alpine-initialization"></a>
 
-## Alpine initialization
+## 初期化について
 
 <a name="alpine-initializing"></a>
 
