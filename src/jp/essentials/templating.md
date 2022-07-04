@@ -3,18 +3,25 @@ order: 3
 title: Templating
 ---
 
-# Templating
+# テンプレート
 
-Alpine offers a handful of useful directives for manipulating the DOM on a web page.
+<!-- Alpine offers a handful of useful directives for manipulating the DOM on a web page. -->
 
-Let's cover a few of the basic templating directives here, but be sure to look through the available directives in the sidebar for an exhaustive list.
+<!-- Let's cover a few of the basic templating directives here, but be sure to look through the available directives in the sidebar for an exhaustive list. -->
+
+Alpine は、Web ページ上の DOM を操作するための便利なディレクティブをいくつか提供しています。
+
+ここでは、いくつかの基本的なテンプレートディレクティブについて説明しますが、完全なリストについては、サイドバーで使用可能なディレクティブを確認してください。
 
 <a name="text-content"></a>
-## Text content
 
-Alpine makes it easy to control the text content of an element with the `x-text` directive.
+## テキストコンテンツ
 
-```alpine
+Alpine を使用すると、`x-text` ディレクティブを使用して要素のテキストコンテンツを簡単に制御できます。
+
+<!-- Alpine makes it easy to control the text content of an element with the `x-text` directive. -->
+
+```html
 <div x-data="{ title: 'Start Here' }">
     <h1 x-text="title"></h1>
 </div>
@@ -26,11 +33,15 @@ Alpine makes it easy to control the text content of an element with the `x-text`
 </div>
 <!-- END_VERBATIM -->
 
-Now, Alpine will set the text content of the `<h1>` with the value of `title` ("Start Here"). When `title` changes, so will the contents of `<h1>`.
+<!-- Now, Alpine will set the text content of the `<h1>` with the value of `title` ("Start Here"). When `title` changes, so will the contents of `<h1>`. -->
 
-Like all directives in Alpine, you can use any JavaScript expression you like. For example:
+<!-- Like all directives in Alpine, you can use any JavaScript expression you like. For example: -->
 
-```alpine
+これで、Alpine は `<h1>` のテキストコンテンツを `title` ( "Start Here") の値で設定します。 `title` が変わると、`<h1>` の内容も変わります。
+
+Alpine のすべてのディレクティブと同様に、任意の JavaScript 式を使用できます。例えば：
+
+```html
 <span x-text="1 + 2"></span>
 ```
 
@@ -40,23 +51,33 @@ Like all directives in Alpine, you can use any JavaScript expression you like. F
 </div>
 <!-- END_VERBATIM -->
 
-The `<span>` will now contain the sum of "1" and "2".
+<!-- The `<span>` will now contain the sum of "1" and "2". -->
 
-[→ Read more about `x-text`](/directives/text)
+`<span>` には、「1」と「2」の合計が含まれます。
+
+[→ x-text についてもっと読む](/directives/text)
 
 <a name="toggling-elements"></a>
-## Toggling elements
 
-Toggling elements is a common need in web pages and applications. Dropdowns, modals, dialogues, "show-more"s, etc... are all good examples.
+## 要素の切り替え
 
-Alpine offers the `x-show` and `x-if` directives for toggling elements on a page.
+要素の切り替えは、Web ページやアプリケーションでよくあるニーズです。ドロップダウン、モーダル、ダイアログ、「もっと見る」などはすべて良い例です。
+
+Alpine は、ページ上の要素を切り替えるための `x-show` および `x-if` ディレクティブを提供します。
+
+<!-- Toggling elements is a common need in web pages and applications. Dropdowns, modals, dialogues, "show-more"s, etc... are all good examples. -->
+
+<!-- Alpine offers the `x-show` and `x-if` directives for toggling elements on a page. -->
 
 <a name="x-show"></a>
+
 ### `x-show`
 
-Here's a simple toggle component using `x-show`.
+<!-- Here's a simple toggle component using `x-show`. -->
 
-```alpine
+これは、`x-show` を使用した単純なトグルコンポーネントです。
+
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Expand</button>
 
@@ -76,20 +97,29 @@ Here's a simple toggle component using `x-show`.
 </div>
 <!-- END_VERBATIM -->
 
-Now the entire `<div>` containing the contents will be shown and hidden based on the value of `open`.
+<!-- Now the entire `<div>` containing the contents will be shown and hidden based on the value of `open`. -->
 
-Under the hood, Alpine adds the CSS property `display: none;` to the element when it should be hidden.
+<!-- Under the hood, Alpine adds the CSS property `display: none;` to the element when it should be hidden. -->
 
-[→ Read more about `x-show`](/directives/show)
+これで、コンテンツを含む  `<div>` 全体が、​​`open` の値に基づいて表示および非表示になります。
 
-This works well for most cases, but sometimes you may want to completely add and remove the element from the DOM entirely. This is what `x-if` is for.
+内部的には、Alpine は CSS プロパティ `display: none;` を非表示にする必要があるときに要素に追加します。
+
+[→ x-show についてもっと読む](/directives/show)
+
+<!-- This works well for most cases, but sometimes you may want to completely add and remove the element from the DOM entirely. This is what `x-if` is for. -->
+
+これはほとんどの場合にうまく機能しますが、DOMから要素を完全に追加および削除したい場合もあります。これが `x-if` の目的です。
 
 <a name="x-if"></a>
+
 ### `x-if`
 
-Here is the same toggle from before, but this time using `x-if` instead of `x-show`.
+これは以前と同じトグルですが、今回は `x-show` の代わりに `x-if` を使用しています。
 
-```alpine
+<!-- Here is the same toggle from before, but this time using `x-if` instead of `x-show`. -->
+
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Expand</button>
 
@@ -117,10 +147,21 @@ Notice that `x-if` must be declared on a `<template>` tag. This is so that Alpin
 
 When `open` is true, Alpine will append the `<div>` to the `<template>` tag, and remove it when `open` is false.
 
-[→ Read more about `x-if`](/directives/if)
+`x-if`は`<template>`タグで宣言する必要があることに注意してください。これは、Alpineが `<template>`要素の既存のブラウザの動作を活用し、ページに追加および削除するターゲット`<div>`のソースとして使用できるようにするためです。
+
+`open`がtrueの場合、Alpineは`<div>`を`<template>`タグに追加し、`open`がfalseの場合は削除します。
+
+[→ x-if についてもっと読む](/directives/if)
 
 <a name="toggling-with-transitions"></a>
-## Toggling with transitions
+
+## トランジションの切り替え
+
+Alpineを使用すると、 `x-transition`ディレクティブを使用して、「表示」状態と「非表示」状態の間をスムーズに移行できます。
+
+>`x-transition`は`x-show`でのみ機能し、`x-if`では機能しません。
+
+これも簡単なトグルの例ですが、今回はトランジションが適用されています。
 
 Alpine makes it simple to smoothly transition between "shown" and "hidden" states using the `x-transition` directive.
 
@@ -128,7 +169,7 @@ Alpine makes it simple to smoothly transition between "shown" and "hidden" state
 
 Here is, again, the simple toggle example, but this time with transitions applied:
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Expands</button>
 
@@ -152,7 +193,9 @@ Here is, again, the simple toggle example, but this time with transitions applie
 
 Let's zoom in on the portion of the template dealing with transitions:
 
-```alpine
+トランジションを処理するテンプレートの部分を拡大してみましょう。
+
+```html
 <div x-show="open" x-transition>
 ```
 
@@ -165,12 +208,24 @@ There are two ways to customize these transitions:
 
 Let's take a look at each of these approaches:
 
+`x-transition`自体は、適切なデフォルトの遷移（フェードとスケール）をトグルに適用します。
+
+これらの遷移をカスタマイズするには、次の2つの方法があります。
+
+*移行ヘルパー
+*CSSクラスを移行します。
+
+これらの各アプローチを見てみましょう。
+
 <a name="transition-helpers"></a>
-### Transition helpers
+
+### Transition ヘルパー
+
+遷移の期間を長くしたいとします。次のように`.duration`修飾子を使用して手動で指定できます。
 
 Let's say you wanted to make the duration of the transition longer, you can manually specify that using the `.duration` modifier like so:
 
-```alpine
+```html
 <div x-show="open" x-transition.duration.500ms>
 ```
 
@@ -190,7 +245,11 @@ Now the transition will last 500 milliseconds.
 
 If you want to specify different values for in and out transitions, you can use `x-transition:enter` and `x-transition:leave`:
 
-```alpine
+これで、遷移は500ミリ秒続きます。
+
+イントランジションとアウトトランジションに異なる値を指定する場合は、 `x-transition：enter`と` x-transition：leave`を使用できます。
+
+```html
 <div
     x-show="open"
     x-transition:enter.duration.500ms
@@ -212,7 +271,9 @@ If you want to specify different values for in and out transitions, you can use 
 
 Additionally, you can add either `.opacity` or `.scale` to only transition that property. For example:
 
-```alpine
+さらに、 `.opacity`または`.scale`のいずれかを追加して、そのプロパティのみを遷移させることができます。例えば：
+
+```html
 <div x-show="open" x-transition.opacity>
 ```
 
@@ -228,14 +289,17 @@ Additionally, you can add either `.opacity` or `.scale` to only transition that 
 </div>
 <!-- END_VERBATIM -->
 
-[→ Read more about transition helpers](/directives/transition#the-transition-helper)
+[→ トランジションヘルパーについてもっと読む](/directives/transition#the-transition-helper)
 
 <a name="transition-classes"></a>
-### Transition classes
+
+### Transition クラス
+
+アプリケーションの遷移をよりきめ細かく制御する必要がある場合は、次の構文を使用して、遷移の特定のフェーズで特定のCSSクラスを適用できます（この例では[Tailwind CSS]（https://tailwindcss.com/）を使用します） 
 
 If you need more fine-grained control over the transitions in your application, you can apply specific CSS classes at specific phases of the transition using the following syntax (this example uses [Tailwind CSS](https://tailwindcss.com/)):
 
-```alpine
+```html
 <div
     x-show="open"
     x-transition:enter="transition ease-out duration-300"
@@ -268,16 +332,21 @@ If you need more fine-grained control over the transitions in your application, 
 </div>
 <!-- END_VERBATIM -->
 
-[→ Read more about transition classes](/directives/transition#applying-css-classes)
+[→ transition クラスについてもっと読む](/directives/transition#applying-css-classes)
 
 <a name="binding-attributes"></a>
-## Binding attributes
+
+## バインディング属性
+
+`x-bind`ディレクティブを使用して、`class`、 `style`、`disabled`などのHTML属性をAlpineの要素に追加できます。
+
+動的にバインドされた`class`属性の例を次に示します。
 
 You can add HTML attributes like `class`, `style`, `disabled`, etc... to elements in Alpine using the `x-bind` directive.
 
 Here is an example of a dynamically bound `class` attribute:
 
-```alpine
+```html
 <button
     x-data="{ red: false }"
     x-bind:class="red ? 'bg-red' : ''"
@@ -299,16 +368,19 @@ Here is an example of a dynamically bound `class` attribute:
 </div>
 <!-- END_VERBATIM -->
 
-
 As a shortcut, you can leave out the `x-bind` and use the shorthand `:` syntax directly:
 
-```alpine
+ショートカットとして、 `x-bind`を省略し、省略形の`：`構文を直接使用できます。
+
+```html
 <button ... :class="red ? 'bg-red' : ''">
 ```
 
 Toggling classes on and off based on data inside Alpine is a common need. Here's an example of toggling a class using Alpine's `class` binding object syntax: (Note: this syntax is only available for `class` attributes)
 
-```alpine
+アルパイン内のデータに基づいてクラスのオンとオフを切り替えることは、一般的なニーズです。これは、Alpineの `class`バインディングオブジェクト構文を使用してクラスを切り替える例です:(注：この構文は、` class`属性でのみ使用できます）
+
+```html
 <div x-data="{ open: true }">
     <span :class="{ 'hidden': ! open }">...</span>
 </div>
@@ -316,12 +388,17 @@ Toggling classes on and off based on data inside Alpine is a common need. Here's
 
 Now the `hidden` class will be added to the element if `open` is false, and removed if `open` is true.
 
+これで、 `open`がfalseの場合は`hidden`クラスが要素に追加され、`open`がtrueの場合は削除されます。
+
 <a name="looping-elements"></a>
-## Looping elements
+
+## ループ要素
+
+Alpineでは、 `x-for`ディレクティブを使用して、JavaScriptデータに基づいてテンプレートの一部を反復処理できます。簡単な例を次に示します。
 
 Alpine allows for iterating parts of your template based on JavaScript data using the `x-for` directive. Here is a simple example:
 
-```alpine
+```html
 <div x-data="{ statuses: ['open', 'closed', 'archived'] }">
     <template x-for="status in statuses">
         <div x-text="status"></div>
@@ -341,14 +418,22 @@ Similar to `x-if`, `x-for` must be applied to a `<template>` tag. Internally, Al
 
 As you can see the new `status` variable is available in the scope of the iterated templates.
 
-[→ Read more about `x-for`](/directives/for)
+`x-if`と同様に、`x-for`は`<template>`タグに適用する必要があります。内部的には、Alpineは、ループ内のすべての反復に対して`<template>`タグの内容を追加します。
+
+ご覧のとおり、新しい`status`変数は反復テンプレートのスコープで使用できます。
+
+
+[→ x-for についてもっと読む](/directives/for)
 
 <a name="inner-html"></a>
+
 ## Inner HTML
 
 Alpine makes it easy to control the HTML content of an element with the `x-html` directive.
 
-```alpine
+Alpineを使用すると、`x-html`ディレクティブを使用して要素のHTMLコンテンツを簡単に制御できます。
+
+```html
 <div x-data="{ title: '<h1>Start Here</h1>' }">
     <div x-html="title"></div>
 </div>
@@ -365,4 +450,9 @@ Now, Alpine will set the text content of the `<div>` with the element `<h1>Start
 > ⚠️ Only use on trusted content and never on user-provided content. ⚠️
 > Dynamically rendering HTML from third parties can easily lead to XSS vulnerabilities.
 
-[→ Read more about `x-html`](/directives/html)
+これで、Alpineは`<div>`のテキストコンテンツを要素`<h1> Start Here</h1>`で設定します。 `title`が変わると、`<h1>`の内容も変わります。
+
+>⚠️信頼できるコンテンツにのみ使用し、ユーザー提供のコンテンツには使用しないでください。 ⚠️
+>サードパーティからHTMLを動的にレンダリングすると、XSSの脆弱性が簡単に発生する可能性があります。
+
+[→ x-html についてもっと読む](/directives/html)
