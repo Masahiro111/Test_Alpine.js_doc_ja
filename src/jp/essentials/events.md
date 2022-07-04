@@ -73,7 +73,7 @@ In addition to `click`, you can listen for any browser event by name. For exampl
 <form @submit.prevent="...">...</form>
 ```
 
-You can also apply `.stop` to achieve the equivalent of `event.stopPropagation()`.
+<!-- You can also apply `.stop` to achieve the equivalent of `event.stopPropagation()`. -->
 
 `.stop` を適用して、`event.stopPropagation()` と同等のものを実現することもできます。
 
@@ -81,7 +81,7 @@ You can also apply `.stop` to achieve the equivalent of `event.stopPropagation()
 
 ## イベントオブジェクトへのアクセス
 
-独自のコード内でネイティブブラウザイベントオブジェクトにアクセスしたい場合があります。これを簡単にするために、Alpine は自動的に`$event` マジック変数を挿入します。
+独自のコード内でネイティブブラウザイベントオブジェクトにアクセスしたい場合があります。これを簡単にするために、Alpine は自動的に `$event` マジック変数を挿入します。
 
 <!-- Sometimes you may want to access the native browser event object inside your own code. To make this easy, Alpine automatically injects an `$event` magic variable: -->
 
@@ -107,7 +107,9 @@ Alpine は、このために `$dispatch` と呼ばれる魔法のヘルパーを
 </div>
 ```
 
-As you can see, when the button is clicked, Alpine will dispatch a browser event called "foo", and our `@foo` listener on the `<div>` will pick it up and react to it.
+<!-- As you can see, when the button is clicked, Alpine will dispatch a browser event called "foo", and our `@foo` listener on the `<div>` will pick it up and react to it. -->
+
+ご覧のとおり、ボタンがクリックされると、Alpine は「foo」というブラウザイベントをディスパッチし、`<div>` の `@foo` リスナーがそれを取得して反応します。
 
 <a name="listening-for-events-on-window"></a>
 

@@ -82,12 +82,11 @@ window.Alpine = Alpine
 Alpine.start()
 ```
 
-> The `window.Alpine = Alpine` bit is optional, but is nice to have for freedom and flexibility. Like when tinkering with Alpine from the devtools for example.
+<!-- > The `window.Alpine = Alpine` bit is optional, but is nice to have for freedom and flexibility. Like when tinkering with Alpine from the devtools for example. -->
 
+<!-- > If you imported Alpine into a bundle, you have to make sure you are registering any extension code IN BETWEEN when you import the `Alpine` global object, and when you initialize Alpine by calling `Alpine.start()`. -->
 
-> If you imported Alpine into a bundle, you have to make sure you are registering any extension code IN BETWEEN when you import the `Alpine` global object, and when you initialize Alpine by calling `Alpine.start()`.
-
-> `window.Alpine = Alpine` ビットはオプションですが、自由と柔軟性のために持っていると便利です。たとえば、devtools からAlpineをいじくり回すときのように。
+> `window.Alpine = Alpine` ビットはオプションですが、自由と柔軟性のために持っていると便利です。たとえば、devtools から Alpine をいじくり回すときのように。
 
 > Alpine をバンドルにインポートした場合は、`Alpine` グローバルオブジェクトをインポートするときと、`Alpine.start()` を呼び出して Alpine を初期化するときに、間に拡張コードを登録していることを確認する必要があります。
 
