@@ -1,9 +1,9 @@
 ---
 order: 1
-title: インストール
+title: Installation
 ---
 
-# Installation
+# インストール
 
 <!-- There are 2 ways to include Alpine into your project: -->
 
