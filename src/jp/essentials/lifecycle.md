@@ -63,11 +63,11 @@ Alpine を使用すると、データ（状態）が変更されたときにコ�
 
 ### `x-effect`
 
-`x-effect` uses the same mechanism under the hood as `$watch` but has very different usage.
+<!-- `x-effect` uses the same mechanism under the hood as `$watch` but has very different usage. -->
 
-Instead of specifying which data key you wish to watch, `x-effect` will call the provided code and intelligently look for any Alpine data used within it. Now when one of those pieces of data changes, the `x-effect` expression will be re-run.
+<!-- Instead of specifying which data key you wish to watch, `x-effect` will call the provided code and intelligently look for any Alpine data used within it. Now when one of those pieces of data changes, the `x-effect` expression will be re-run. -->
 
-Here's the same bit of code from the `$watch` example rewritten using `x-effect`:
+<!-- Here's the same bit of code from the `$watch` example rewritten using `x-effect`: -->
 
 `x-effect` は、内部で `$watch` と同じメカニズムを使用しますが、使用方法が大きく異なります。
 
