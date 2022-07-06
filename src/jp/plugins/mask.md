@@ -35,7 +35,7 @@ Alpine の Mask プラグインを使用すると、ユーザーの入力に応�
 
 このプラグインは、`<script>` タグから含めるか、NPM 経由でインストールすることで使用できます。
 
-### CDN経由
+### CDN 経由
 
 このプラグインの CDN ビルドを `<script>` タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。
 
@@ -49,7 +49,7 @@ Alpine の Mask プラグインを使用すると、ユーザーの入力に応�
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
-### NPM経由
+### NPM 経由
 
 次のように、バンドル内で使用するために NPM から Mask をインストールできます。
 
@@ -72,12 +72,14 @@ Alpine.plugin(mask)
 ...
 ```
 
-</div>
-</div>
-<button :aria-expanded="expanded" @click="expanded = ! expanded" class="text-cyan-600 font-medium underline">
+<!-- ```html
+        </div>
+    </div>
+    <button :aria-expanded="expanded" @click="expanded = ! expanded" class="text-cyan-600 font-medium underline">
     <span x-text="expanded ? 'Hide' : 'Show more'">Show</span> <span x-text="expanded ? '↑' : '↓'">↓</span>
-</button>
- </div>
+    </button>
+</div>
+ ``` -->
 
 <a name="x-mask"></a>
 
@@ -132,8 +134,7 @@ Alpine.plugin(mask)
 ```html
 <input x-mask:dynamic="
     $input.startsWith('34') || $input.startsWith('37')
-        ? '9999 999999 99999' : '9999 9999 9999 9999'
-">
+        ? '9999 999999 99999' : '9999 9999 9999 9999'">
 ```
 
 <!-- As you can see in the above example, every time a user types in the input, that value is passed to the expression as `$input`. Based on the `$input`, a different mask is utilized in the field. -->
@@ -203,8 +204,10 @@ function creditCardMask(input) {
 <input x-mask:dynamic="$money($input, ',')">
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo" x-data>
     <input type="text" x-mask:dynamic="$money($input, ',')"  placeholder="0,00">
 </div>
 <!-- END_VERBATIM -->
+```
