@@ -5,21 +5,19 @@ description: Morph an element into the provided HTML
 graph_image: https://alpinejs.dev/social_morph.jpg
 ---
 
-# Morph Plugin
+# モーフ (変形) プラグイン
 
-Alpine's Morph plugin allows you to "morph" an element on the page into the provided HTML template, all while preserving any browser or Alpine state within the "morphed" element.
+<!-- Alpine's Morph plugin allows you to "morph" an element on the page into the provided HTML template, all while preserving any browser or Alpine state within the "morphed" element. -->
 
-This is useful for updating HTML from a server request without loosing Alpine's on-page state. A utility like this is at the core of full-stack frameworks like [Laravel Livewire](https://laravel-livewire.com/) and [Phoenix LiveView](https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript).
+<!-- This is useful for updating HTML from a server request without loosing Alpine's on-page state. A utility like this is at the core of full-stack frameworks like [Laravel Livewire](https://laravel-livewire.com/) and [Phoenix LiveView](https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript). -->
 
-The best way to understand its purpose is with the following interactive visualization. Give it a try!
+<!-- The best way to understand its purpose is with the following interactive visualization. Give it a try! -->
 
-モーフプラグイン
+Alpine の モーフプラグインを使用すると、ページ上の要素を提供された HTML テンプレートに「モーフィング」すると同時に、「モーフィング」要素内のブラウザまたは Alpine の状態を保持できます。
 
-AlpineのMorphプラグインを使用すると、ページ上の要素を提供されたHTMLテンプレートに「モーフィング」すると同時に、「モーフィング」要素内のブラウザまたはAlpineの状態を保持できます。
+これは、Alpine のページ上の状態を失うことなく、サーバー要求からHTMLを更新する場合に役立ちます。 このようなユーティリティは、[Laravel Livewire](https://laravel-livewire.com/) や [Phoenix LiveView](https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript) などのフルスタックフレームワークの中核にあります。
 
-これは、Alpineのページ上の状態を失うことなく、サーバー要求からHTMLを更新する場合に役立ちます。 このようなユーティリティは、[Laravel Livewire]（https://laravel-livewire.com/）や[Phoenix LiveView]（https://dockyard.com/blog/2018/12/）などのフルスタックフレームワークの中核にあります。 12 / phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript）。
-
-その目的を理解する最良の方法は、次のインタラクティブな視覚化を使用することです。 試してみる！
+その目的を理解する最良の方法は、次のインタラクティブな視覚化を使用することです。 まずは試してみましょう。
 
 ```html
 <!-- START_VERBATIM -->
@@ -42,21 +40,17 @@ AlpineのMorphプラグインを使用すると、ページ上の要素を提供
 
 <a name="installation"></a>
 
-## Installation
+## インストール
 
-You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
+<!-- You can use this plugin by either including it from a `<script>` tag or installing it via NPM: -->
 
-##インストール
+このプラグインは、`<script>` タグから含めるか、NPM 経由でインストールすることで使用できます。
 
-このプラグインは、 `<script>`タグから含めるか、NPM経由でインストールすることで使用できます。
+### CDN 経由
 
-### Via CDN
+<!-- You can include the CDN build of this plugin as a `<script>` tag, just make sure to include it BEFORE Alpine's core JS file. -->
 
-You can include the CDN build of this plugin as a `<script>` tag, just make sure to include it BEFORE Alpine's core JS file.
-
-###CDN経由
-
-このプラグインのCDNビルドを`<script>`タグとして含めることができますが、AlpineのコアJSファイルの前に必ず含めてください。
+このプラグインの CDN ビルドを `<script>` タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。
 
 ```html
 <!-- Alpine Plugins -->
@@ -66,19 +60,19 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
-### Via NPM
+### NPM 経由
 
-You can install Morph from NPM for use inside your bundle like so:
+<!-- You can install Morph from NPM for use inside your bundle like so: -->
 
-###NPM経由
-
-次のように、バンドル内で使用するためにNPMからMorphをインストールできます。
+次のように、バンドル内で使用するために NPM から Morph をインストールできます。
 
 ```shell
 npm install @alpinejs/morph
 ```
 
-Then initialize it from your bundle:
+<!-- Then initialize it from your bundle: -->
+
+そのあと、バンドルから初期化をします。
 
 ```js
 import Alpine from 'alpinejs'
@@ -94,25 +88,25 @@ Alpine.plugin(morph)
 
 ## Alpine.morph()
 
-The `Alpine.morph(el, newHtml)` allows you to imperatively morph a dom node based on passed in HTML. It accepts the following parameters:
+<!-- The `Alpine.morph(el, newHtml)` allows you to imperatively morph a dom node based on passed in HTML. It accepts the following parameters: -->
 
-| Parameter | Description |
+<!-- | Parameter | Description |
 | ---       | --- |
 | `el`      | A DOM element on the page. |
 | `newHtml` | A string of HTML to use as the template to morph the dom element into. |
-| `options` (optional) | An options object used mainly for [injecting lifecycle hooks](#lifecycle-hooks). |
+| `options` (optional) | An options object used mainly for [injecting lifecycle hooks](#lifecycle-hooks). | -->
 
-Here's an example of using `Alpine.morph()` to update an Alpine component with new HTML: (In real apps, this new HTML would likely be coming from the server)
+<!-- Here's an example of using `Alpine.morph()` to update an Alpine component with new HTML: (In real apps, this new HTML would likely be coming from the server) -->
 
-`Alpine.morph（el、newHtml）`を使用すると、渡されたHTMLに基づいてdomノードを強制的にモーフィングできます。 次のパラメータを受け入れます。
+`Alpine.morph(el, newHtml)` を使用すると、渡されたHTML に基づいて DOM ノードを強制的にモーフィングできます。 次のパラメータを受け入れます。
 
 | パラメータ| 説明|
 | --- | --- |
 | `el` | ページ上のDOM要素。 |
-| `newHtml` | dom要素をモーフィングするためのテンプレートとして使用するHTMLの文字列。 |
-| `オプション`（オプション）| 主に[ライフサイクルフックの挿入]（＃lifecycle-hooks）に使用されるオプションオブジェクト。 |
+| `newHtml` | DOM 要素をモーフィングするためのテンプレートとして使用する HTML の文字列。 |
+| `options`<br>(オプション) | 主に[ライフサイクルフックの挿入](#lifecycle-hooks) に使用されるオプションオブジェクト。 |
 
-`Alpine.morph（）`を使用してAlpineコンポーネントを新しいHTMLで更新する例を次に示します:(実際のアプリでは、この新しいHTMLはサーバーから取得される可能性があります）
+`Alpine.morph()` を使用して Alpine コンポーネントを新しい HTML で更新する例を次に示します。(実際のアプリでは、この新しい HTML はサーバーから取得される可能性があります）
 
 ```html
 <div x-data="{ message: 'Change me, then press the button!' }">
@@ -140,6 +134,7 @@ Here's an example of using `Alpine.morph()` to update an Alpine component with n
 </script>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ message: 'Change me, then press the button!' }" id="morph-demo-1" class="space-y-2">
@@ -165,46 +160,47 @@ Here's an example of using `Alpine.morph()` to update an Alpine component with n
     })
 </script>
 <!-- END_VERBATIM -->
+```
 
 <a name="lifecycle-hooks"></a>
 
-### Lifecycle Hooks
+### ライフサイクルフック
 
-The "Morph" plugin works by comparing two DOM trees, the live element, and the passed in HTML.
+<!-- The "Morph" plugin works by comparing two DOM trees, the live element, and the passed in HTML. -->
 
-Morph walks both trees simultaneously and compares each node and its children. If it finds differences, it "patches" (changes) the current DOM tree to match the passed in HTML's tree.
+<!-- Morph walks both trees simultaneously and compares each node and its children. If it finds differences, it "patches" (changes) the current DOM tree to match the passed in HTML's tree. -->
 
-While the default algorithm is very capable, there are cases where you may want to hook into its lifecycle and observe or change its behavior as it's happening.
+<!-- While the default algorithm is very capable, there are cases where you may want to hook into its lifecycle and observe or change its behavior as it's happening. -->
 
-Before we jump into the available Lifecycle hooks themselves, let's first list out all the potential parameters they receive and explain what each one is:
+<!-- Before we jump into the available Lifecycle hooks themselves, let's first list out all the potential parameters they receive and explain what each one is: -->
 
-「Morph」プラグインは、2つのDOMツリー、ライブ要素、および渡されたHTMLを比較することによって機能します。
+「Morph」プラグインは、2つの DOM ツリー、ライブ要素、および渡された HTML を比較することによって機能します。
 
-モーフは両方の木を同時に歩き、各ノードとその子を比較します。違いが見つかった場合は、現在のDOMツリーを「パッチ」（変更）して、渡されたHTMLのツリーと一致させます。
+モーフは両方のツリーを同時に解析して、各ノードとその子を比較します。違いが見つかった場合は、現在の DOM ツリーを「パッチ」（変更）して、渡された HTML のツリーと一致させます。
 
 デフォルトのアルゴリズムは非常に機能的ですが、ライフサイクルに接続して、発生中の動作を観察または変更したい場合があります。
 
 利用可能なライフサイクルフック自体に飛び込む前に、まず、それらが受け取る可能性のあるすべてのパラメーターをリストアップし、それぞれが何であるかを説明しましょう。
 
-| Parameter | Description |
+<!-- | Parameter | Description |
 | ---       | --- |
 | `el` | This is always the actual, current, DOM element on the page that will be "patched" (changed by Morph). |
 | `toEl` | This is a "template element". It's a temporary element representing what the live `el` will be patched to. It will never actually live on the page and should only be used for reference purposes. |
 | `childrenOnly()` | This is a function that can be called inside the hook to tell Morph to skip the current element and only "patch" its children. |
 | `skip()` | A function that when called within the hook will "skip" comparing/patching itself and the children of the current element. |
 
-Here are the available lifecycle hooks (passed in as the third parameter to `Alpine.morph(..., options)`):
+Here are the available lifecycle hooks (passed in as the third parameter to `Alpine.morph(..., options)`): -->
 
 |パラメータ|説明|
 | --- | --- |
-| `el` |これは常に、「パッチが適用される」（モーフによって変更される）ページ上の実際の現在のDOM要素です。 |
-| `toEl` |これは「テンプレート要素」です。これは、ライブの`el`にパッチが適用される対象を表す一時的な要素です。実際にページに表示されることはなく、参照目的でのみ使用する必要があります。 |
-| `childrenOnly（）` |これは、フック内で呼び出して、現在の要素をスキップし、その子のみを「パッチ」するようにMorphに指示できる関数です。 |
-| `skip（）` |フック内で呼び出されたときに、それ自体と現在の要素の子を比較/パッチする関数を「スキップ」します。 |
+| `el` |これは常に、「パッチが適用される」（モーフによって変更される）ページ上の実際の現在の DOM 要素です。 |
+| `toEl` |これは「テンプレート要素」です。これは、ライブの `el` にパッチが適用される対象を表す一時的な要素です。実際にページに表示されることはなく、参照目的でのみ使用する必要があります。 |
+| `childrenOnly()` |これは、フック内で呼び出して、現在の要素をスキップし、その子のみを「パッチ」するように Morph に指示できる関数です。 |
+| `skip()` |フック内で呼び出されたときに、それ自体と現在の要素の子を比較/パッチする関数を「スキップ」します。 |
 
-使用可能なライフサイクルフックは次のとおりです（ `Alpine.morph（...、options）`に3番目のパラメーターとして渡されます）。
+使用可能なライフサイクルフックは次のとおりです（  `Alpine.morph(..., options)` に3番目のパラメーターとして渡されます）。
 
-| Option | Description |
+<!-- | Option | Description |
 | ---       | --- |
 | `updating(el, toEl, childrenOnly, skip)` | Called before patching the `el` with the comparison `toEl`.  |
 | `updated(el, toEl)` | Called after Morph has patched `el`. |
@@ -215,7 +211,7 @@ Here are the available lifecycle hooks (passed in as the third parameter to `Alp
 | `key(el)` | A re-usable function to determine how Morph "keys" elements in the tree before comparing/patching. [More on that here](#keys) |
 | `lookahead` | A boolean value telling Morph to enable an extra feature in its algorithm that "looks ahead" to make sure a DOM element that's about to be removed should instead just be "moved" to a later sibling. |
 
-Here is code of all these lifecycle hooks for a more concrete reference:
+Here is code of all these lifecycle hooks for a more concrete reference: -->
 
 |オプション|説明|
 | --- | --- |
@@ -267,17 +263,17 @@ Alpine.morph(el, newHtml, {
 
 <a name="keys"></a>
 
-### Keys
+### キー (Keys)
 
-Dom-diffing utilities like Morph try their best to accurately "morph" the original DOM into the new HTML. However, there are cases where it's impossible to determine if an element should be just changed, or replaced completely.
+<!-- Dom-diffing utilities like Morph try their best to accurately "morph" the original DOM into the new HTML. However, there are cases where it's impossible to determine if an element should be just changed, or replaced completely. -->
 
-Because of this limitation, Morph has a "key" system that allows developers to "force" preserving certain elements rather than replacing them.
+<!-- Because of this limitation, Morph has a "key" system that allows developers to "force" preserving certain elements rather than replacing them. -->
 
-The most common use-case for them is a list of siblings within a loop. Below is an example of why keys are necessary sometimes:
+<!-- The most common use-case for them is a list of siblings within a loop. Below is an example of why keys are necessary sometimes: -->
 
-MorphのようなDom差分ユーティリティは、元のDOMを新しいHTMLに正確に「モーフィング」するために最善を尽くします。 ただし、要素を変更するだけなのか、完全に置き換えるのかを判断できない場合があります。
+Morph のような DOM 差分ユーティリティは、元の DOM を新しい HTML に正確に「モーフィング」するために最善を尽くします。 ただし、要素を変更するだけなのか、完全に置き換えるのかを判断できない場合があります。
 
-この制限のため、Morphには、開発者が特定の要素を置き換えるのではなく、保存することを「強制」できる「キー」システムがあります。
+この制限のため、Morph には、開発者が特定の要素を置き換えるのではなく、保存することを「強制」できる「キー」システムがあります。
 
 それらの最も一般的なユースケースは、ループ内の兄弟のリストです。 以下は、キーが時々必要になる理由の例です。
 
@@ -297,15 +293,15 @@ MorphのようなDom差分ユーティリティは、元のDOMを新しいHTML�
 </ul>
 ```
 
-Given the above situation, Morph has no way to know that the "Travis" node has been moved in the DOM tree. It just thinks that "Mark" has been changed to "Travis" and "Travis" changed to "Tom".
+<!-- Given the above situation, Morph has no way to know that the "Travis" node has been moved in the DOM tree. It just thinks that "Mark" has been changed to "Travis" and "Travis" changed to "Tom". -->
 
-This is not what we actually want, we want Morph to preserve the original elements and instead of changing them, MOVE them within the `<ul>`.
+<!-- This is not what we actually want, we want Morph to preserve the original elements and instead of changing them, MOVE them within the `<ul>`. -->
 
-By adding keys to each node, we can accomplish this like so:
+<!-- By adding keys to each node, we can accomplish this like so: -->
 
-上記の状況を考えると、Morphは、「Travis」ノードがDOMツリーで移動されたことを知る方法がありません。 「マーク」が「トラビス」に、「トラビス」が「トム」に変わったと思っているだけです。
+上記の状況を考えると、Morph は「Travis」ノードが DOM ツリーで移動されたことを知る方法がありません。 「Mark」が「Travis」に、「Travis」が「Tom」に変わったと思っているだけです。
 
-これは私たちが実際に望んでいることではありません。Morphに元の要素を保持させ、それらを変更する代わりに、`<ul>`内で移動させます。
+これは私たちが実際に望んでいることではありません。Morphに元の要素を保持させ、それらを変更する代わりに、`<ul>` 内で移動させます。
 
 各ノードにキーを追加することで、次のように実現できます。
 
@@ -325,10 +321,10 @@ By adding keys to each node, we can accomplish this like so:
 </ul>
 ```
 
-Now that there are "keys" on the `<li>`s, Morph will match them in both trees and move them accordingly.
+<!-- Now that there are "keys" on the `<li>`s, Morph will match them in both trees and move them accordingly. -->
 
-You can configure what Morph considers a "key" with the `key:` configuration option. [More on that here](#lifecycle-hooks)
+<!-- You can configure what Morph considers a "key" with the `key:` configuration option. [More on that here](#lifecycle-hooks) -->
 
-`<li>`に「キー」があるので、モーフは両方のツリーでそれらを一致させ、それに応じて移動します。
+`<li>` に「key」があるので、モーフは両方のツリーでそれらを一致させ、それに応じて移動します。
 
-`key：`構成オプションを使用して、Morphが「キー」と見なすものを構成できます。 [詳細はこちら]（＃lifecycle-hooks）
+`key:` 構成オプションを使用して、Morph が「キー」と見なすものを構成できます。 [詳細はこちら](#lifecycle-hooks)
