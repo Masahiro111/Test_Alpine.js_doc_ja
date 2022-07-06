@@ -5,11 +5,11 @@ title: dispatch
 
 # $dispatch
 
-`$dispatch` is a helpful shortcut for dispatching browser events.
+<!-- `$dispatch` is a helpful shortcut for dispatching browser events. -->
 
-`$ dispatch`は、ブラウザイベントをディスパッチするための便利なショートカットです。
+`$dispatch` は、ブラウザイベントをディスパッチするための便利なショートカットです。
 
-```alpine
+```html
 <div @notify="alert('Hello World!')">
     <button @click="$dispatch('notify')">
         Notify
@@ -17,6 +17,7 @@ title: dispatch
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data @notify="alert('Hello World!')">
@@ -26,12 +27,13 @@ title: dispatch
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-You can also pass data along with the dispatched event if you wish. This data will be accessible as the `.detail` property of the event:
+<!-- You can also pass data along with the dispatched event if you wish. This data will be accessible as the `.detail` property of the event: -->
 
-必要に応じて、ディスパッチされたイベントと一緒にデータを渡すこともできます。 このデータには、イベントの`.detail`プロパティとしてアクセスできます。
+必要に応じて、ディスパッチされたイベントと一緒にデータを渡すこともできます。 このデータには、イベントの `.detail` プロパティとしてアクセスできます。
 
-```alpine
+```html
 <div @notify="alert($event.detail.message)">
     <button @click="$dispatch('notify', { message: 'Hello World!' })">
         Notify
@@ -39,6 +41,7 @@ You can also pass data along with the dispatched event if you wish. This data wi
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data @notify="alert($event.detail.message)">
@@ -46,12 +49,13 @@ You can also pass data along with the dispatched event if you wish. This data wi
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 Under the hood, `$dispatch` is a wrapper for the more verbose API: `element.dispatchEvent(new CustomEvent(...))`
 
-内部的には、 `$ dispatch`はより詳細なAPIのラッパーです：` element.dispatchEvent（new CustomEvent（...）） `
+内部的には、 `$dispatch` はより詳細な API のラッパーです：`element.dispatchEvent(new CustomEvent(...))`
 
-**Note on event propagation**
+<!-- **Note on event propagation** -->
 
 **イベントの伝播に関する注意**
 
@@ -59,7 +63,7 @@ Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bub
 
 **Example:**
 
-```alpine
+```html
 <!-- 🚫 Won't work -->
 <div x-data>
     <span @notify="..."></span>
@@ -89,7 +93,7 @@ You can also take advantage of the previous technique to make your components ta
 
 **Example:**
 
-```alpine
+```html
 <div
     x-data="{ title: 'Hello' }"
     @set-title.window="title = $event.detail"
@@ -105,13 +109,11 @@ You can also take advantage of the previous technique to make your components ta
 
 <a name="dispatching-to-x-model"></a>
 
-## Dispatching to x-model
+## x-model へのディスパッチ
 
 You can also use `$dispatch()` to trigger data updates for `x-model` data bindings. For example:
 
-xモデルへのディスパッチ
-
-`$ dispatch（）`を使用して、`x-model`データバインディングのデータ更新をトリガーすることもできます。 例えば：
+`$dispatch()`を使用して、`x-model` データバインディングのデータ更新をトリガーすることもできます。例えば：
 
 ```html
 <div x-data="{ title: 'Hello' }">
@@ -122,6 +124,6 @@ xモデルへのディスパッチ
 </div>
 ```
 
-This opens up the door for making custom input components whose value can be set via `x-model`.
+<!-- This opens up the door for making custom input components whose value can be set via `x-model`. -->
 
-これにより、`x-model`を介して値を設定できるカスタム入力コンポーネントを作成するための扉が開かれます。
+これにより、`x-model` を介して値を設定できるカスタム入力コンポーネントを作成することができます。
