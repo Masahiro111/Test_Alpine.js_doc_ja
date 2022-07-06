@@ -6,11 +6,11 @@ title: el
 
 # $el
 
-`$el` is a magic property that can be used to retrieve the current DOM node.
+<!-- `$el` is a magic property that can be used to retrieve the current DOM node. -->
 
-`$ el`は、現在のDOMノードを取得するために使用できる魔法のプロパティです。
+`$el` は、現在の DOM ノードを取得するために使用できる魔法のプロパティです。
 
-```alpine
+```html
 <button @click="$el.innerHTML = 'Hello World!'">Replace me with "Hello World!"</button>
 ```
 
