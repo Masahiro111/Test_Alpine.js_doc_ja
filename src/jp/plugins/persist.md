@@ -21,15 +21,15 @@ Alpine の Persist プラグインを使用すると、ページの読み込み�
 
 <!-- You can use this plugin by either including it from a `<script>` tag or installing it via NPM: -->
 
-このプラグインは、`<script>`タグから取り込むか、NPM経由でインストールすることで使用できます。
+このプラグインは、`<script>` タグから取り込むか、NPM 経由でインストールすることで使用できます。
 
-### CDN経由
+### CDN 経由
 
 <!-- You can include the CDN build of this plugin as a `<script>` tag, just make sure to include it BEFORE Alpine's core JS file. -->
 
-このプラグインのCDNビルドを `<script>` タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。
+このプラグインの CDN ビルドを  `<script>` タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。
 
-```alpine
+```html
 <!-- Alpine Plugins -->
 <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 
@@ -47,7 +47,9 @@ Alpine の Persist プラグインを使用すると、ページの読み込み�
 npm install @alpinejs/persist
 ```
 
-Then initialize it from your bundle:
+<!-- Then initialize it from your bundle: -->
+
+それから、バンドルから初期化をします。
 
 ```js
 import Alpine from 'alpinejs'
@@ -70,7 +72,7 @@ Alpine.plugin(persist)
 
 以下のように `x-data` 内の任意の値を `$persist` でラップして、ページの読み込み間でその値を永続化できます。
 
-```alpine
+```html
 <div x-data="{ count: $persist(0) }">
     <button x-on:click="count++">Increment</button>
 
@@ -125,7 +127,7 @@ Alpine.plugin(persist)
 
 次に、次の例の「count」を変更し、Alpine によってlocalStorage に加えられた変更を確認します。
 
-```alpine
+```html
 <div x-data="{ count: $persist(0) }">
     <button x-on:click="count++">Increment</button>
 
@@ -145,13 +147,13 @@ Alpine.plugin(persist)
 ```
 
 > `$persist` works with primitive values as well as with arrays and objects.
-However, it is worth noting that localStorage must be cleared when the type of the variable changes.<br>
-> Given the previous example, if we change count to a value of `$persist({ value: 0 })`, then localStorage must be cleared or the variable 'count' renamed.
+<!-- However, it is worth noting that localStorage must be cleared when the type of the variable changes.<br> -->
+<!-- > Given the previous example, if we change count to a value of `$persist({ value: 0 })`, then localStorage must be cleared or the variable 'count' renamed. -->
 
 > `$persist` は、配列やオブジェクトだけでなく、プリミティブ値でも機能します。
 ただし、変数のタイプが変更された場合は、localStorage をクリアする必要があることに注意してください。
 
-> 前の例で、count を `$persist({value：0})` の値に変更する場合は、localStorage をクリアするか、変数'count' の名前を変更する必要があります。
+> 前の例で、count を `$persist({value: 0})` の値に変更する場合は、localStorage をクリアするか、変数'count' の名前を変更する必要があります。
 
 <a name="custom-key"></a>
 
@@ -183,11 +185,11 @@ Alpine には、これらのコンポーネントを区別する方法があり�
 </div>
 ```
 
-Now Alpine will store and retrieve the above "count" value using the key "other-count".
+<!-- Now Alpine will store and retrieve the above "count" value using the key "other-count". -->
 
-Here's a view of Chrome Devtools to see for yourself:
+<!-- Here's a view of Chrome Devtools to see for yourself: -->
 
-これで、Alpineは、キー「 `other-count` 」を使用して上記の「 count 」値を保存および取得します。
+これで、Alpine は、キー「 `other-count` 」を使用して上記の「 count 」値を保存および取得します。
 
 自分で確認できる ChromeDevtools のビューは次のとおりです。
 
@@ -264,7 +266,7 @@ Alpine.data('dropdown', function () {
 
 ## グローバルな Alpine.$persist の使用
 
-`Alpine.$persist` is exposed globally so it can be used outside of `x-data` contexts. This is useful to persist data from other sources such as `Alpine.store`.
+<!-- `Alpine.$persist` is exposed globally so it can be used outside of `x-data` contexts. This is useful to persist data from other sources such as `Alpine.store`. -->
 
 `Alpine.$persist` はグローバルに公開されるため、`x-data` コンテキストの外部で使用できます。 これは、`Alpine.store` などの他のソースからのデータを永続化するのに役立ちます。
 
