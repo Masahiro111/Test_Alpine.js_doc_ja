@@ -6,9 +6,11 @@ title: store
 
 # $store
 
-You can use `$store` to conveniently access global Alpine stores registered using [`Alpine.store(...)`](/globals/alpine-store). For example:
+`$store` を使用すると、[`Alpine.store(...)`](/globals/alpine-store) を使用して登録されたグローバル Alpine ストアに簡単にアクセスできます。例えば
 
-```alpine
+<!-- You can use `$store` to conveniently access global Alpine stores registered using [`Alpine.store(...)`](/globals/alpine-store). For example: -->
+
+```html
 <button x-data @click="$store.darkMode.toggle()">Toggle Dark Mode</button>
 
 ...
@@ -31,17 +33,24 @@ You can use `$store` to conveniently access global Alpine stores registered usin
 </script>
 ```
 
-Given that we've registered the `darkMode` store and set `on` to "false", when the `<button>` is pressed, `on` will be "true" and the background color of the page will change to black.
+<!-- Given that we've registered the `darkMode` store and set `on` to "false", when the `<button>` is pressed, `on` will be "true" and the background color of the page will change to black. -->
+
+「darkMode」ストアを登録し、「on」を「false」に設定した場合、`<button>` を押すと、「on」が「true」になり、ページの背景色が黒に変わります。 。
+
 
 <a name="single-value-stores"></a>
 
-## Single-value stores
+## 単一値ストア
 
-If you don't need an entire object for a store, you can set and use any kind of data as a store.
+ストアにオブジェクト全体が必要ない場合は、あらゆる種類のデータをストアとして設定して使用できます。
 
-Here's the example from above but using it more simply as a boolean value:
+上記の例を次に示しますが、ブール値としてより単純に使用しています。
 
-```alpine
+<!-- If you don't need an entire object for a store, you can set and use any kind of data as a store. -->
+
+<!-- Here's the example from above but using it more simply as a boolean value: -->
+
+```html
 <button x-data @click="$store.darkMode = ! $store.darkMode">Toggle Dark Mode</button>
 
 ...
@@ -58,4 +67,4 @@ Here's the example from above but using it more simply as a boolean value:
 </script>
 ```
 
-[→ Read more about Alpine stores](/globals/alpine-store)
+[→ Alpine ストアについてもっと読む](/globals/alpine-store)
