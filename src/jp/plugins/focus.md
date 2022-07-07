@@ -5,34 +5,33 @@ description: Easily manage focus within the page
 graph_image: https://alpinejs.dev/social_focus.jpg
 ---
 
-> Notice: This Plugin was previously called "Trap". Trap's functionality has been absorbed into this plugin along with additional functionality. You can swap Trap for Focus without any breaking changes.
+<!-- > Notice: This Plugin was previously called "Trap". Trap's functionality has been absorbed into this plugin along with additional functionality. You can swap Trap for Focus without any breaking changes. -->
 
->注意：このプラグインは以前は「トラップ」と呼ばれていました。 Trapの機能は、追加機能とともにこのプラグインに吸収されています。重大な変更を加えることなく、TrapをFocusに交換できます。
+>注意：このプラグインは以前は「Trap (トラップ)」と呼ばれていました。 Trap の機能は、追加機能とともにこのプラグインに吸収されています。重大な変更を加えることなく、Trap を Focus に交換できます。
 
-# Focus Plugin
-フォーカスプラグイン
+# Focus プラグイン
 
-AlpineのFocusプラグインを使用すると、ページのフォーカスを管理できます。
+Alpine の Focus プラグインを使用すると、ページのフォーカスを管理できます。
 
->このプラグインは、内部的にオープンソースツール[Tabbable]（https://github.com/focus-trap/tabbable）を多用しています。この問題に非常に必要な解決策を提供してくれたそのチームに大いに感謝します。
+> このプラグインは、内部的にオープンソースツール[Tabbable](https://github.com/focus-trap/tabbable) を多用しています。この問題に非常に必要な解決策を提供してくれたそのチームに大いに感謝します。
 
-Alpine's Focus plugin allows you to manage focus on a page.
+<!-- Alpine's Focus plugin allows you to manage focus on a page. -->
 
-> This plugin internally makes heavy use of the open source tool: [Tabbable](https://github.com/focus-trap/tabbable). Big thanks to that team for providing a much needed solution to this problem.
+<!-- > This plugin internally makes heavy use of the open source tool: [Tabbable](https://github.com/focus-trap/tabbable). Big thanks to that team for providing a much needed solution to this problem. -->
 
 <a name="installation"></a>
 
 ## インストール
 
-このプラグインは、 `<script>`タグから含めるか、NPM経由でインストールすることで使用できます。
+このプラグインは、 `<script>` タグから含めるか、NPM 経由でインストールすることで使用できます。
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
 
-### CDN経由
+### CDN 経由
 
-このプラグインのCDNビルドを`<script>`タグとして含めることができますが、AlpineのコアJSファイルの前に必ず含めてください。
+このプラグインの CDN ビルドを `<script>` タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。
 
-You can include the CDN build of this plugin as a `<script>` tag, just make sure to include it BEFORE Alpine's core JS file.
+<!-- You can include the CDN build of this plugin as a `<script>` tag, just make sure to include it BEFORE Alpine's core JS file. -->
 
 ```html
 <!-- Alpine Plugins -->
@@ -42,17 +41,17 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
-### NPM経由
+### NPM 経由
 
-次のように、バンドル内で使用するためにNPMからFocusをインストールできます。
+次のように、バンドル内で使用するために NPM から Focus をインストールできます。
 
-You can install Focus from NPM for use inside your bundle like so:
+<!-- You can install Focus from NPM for use inside your bundle like so: -->
 
 ```shell
 npm install @alpinejs/focus
 ```
 
-Then initialize it from your bundle:
+<!-- Then initialize it from your bundle: -->
 
 次に、バンドルから初期化します。
 
@@ -69,15 +68,15 @@ Alpine.plugin(focus)
 
 ## x-trap
 
-Focus offers a dedicated API for trapping focus within an element: the `x-trap` directive.
+<!-- Focus offers a dedicated API for trapping focus within an element: the `x-trap` directive. -->
 
-`x-trap` accepts a JS expression. If the result of that expression is true, then the focus will be trapped inside that element until the expression becomes false, then at that point, focus will be returned to where it was previously.
+<!-- `x-trap` accepts a JS expression. If the result of that expression is true, then the focus will be trapped inside that element until the expression becomes false, then at that point, focus will be returned to where it was previously. -->
 
-Focusは、要素内にフォーカスをトラップするための専用API、`x-trap`ディレクティブを提供します。
+Focus は、要素内にフォーカスをトラップするための専用API、`x-trap` ディレクティブを提供します。
 
-`x-trap`はJS式を受け入れます。その式の結果がtrueの場合、式がfalseになるまでフォーカスはその要素内にトラップされ、その時点でフォーカスは以前の場所に戻ります。
+`x-trap` は JS 式を受け入れます。その式の結果がtrueの場合、式が false になるまでフォーカスはその要素内にトラップされ、その時点でフォーカスは以前の場所に戻ります。
 
-For example:
+<!-- For example: -->
 
 ```html
 <div x-data="{ open: false }">
@@ -125,23 +124,21 @@ For example:
 
 <a name="nesting"></a>
 
-### Nesting dialogs
+### ネストダイアログ
 
-ネストダイアログ
+あるダイアログを別のダイアログの中にネストしたい場合があります。 `x-trap` はこれを簡単にし、自動的に処理します。
 
-あるダイアログを別のダイアログの中にネストしたい場合があります。 `x-trap`はこれを簡単にし、自動的に処理します。
-
-`x-trap`は、新しく「トラップされた」要素を追跡し、最後にアクティブにフォーカスされた要素を格納します。要素が「アントラップ」されると、フォーカスは元の場所に戻ります。
+`x-trap` は、新しく「trapped (トラップされた)」要素を追跡し、最後にアクティブにフォーカスされた要素を格納します。要素が「untrapped (アントラップ)」されると、フォーカスは元の場所に戻ります。
 
 このメカニズムは再帰的であるため、すでにトラップされている要素内にフォーカスを無限にトラップしてから、各要素を連続して「アントラップ」することができます。
 
-Sometimes you may want to nest one dialog inside another. `x-trap` makes this trivial and handles it automatically.
+<!-- Sometimes you may want to nest one dialog inside another. `x-trap` makes this trivial and handles it automatically. -->
 
-`x-trap` keeps track of newly "trapped" elements and stores the last actively focused element. Once the element is "untrapped" then the focus will be returned to where it was originally.
+<!-- `x-trap` keeps track of newly "trapped" elements and stores the last actively focused element. Once the element is "untrapped" then the focus will be returned to where it was originally. -->
 
-This mechanism is recursive, so you can trap focus within an already trapped element infinite times, then "untrap" each element successively.
+<!-- This mechanism is recursive, so you can trap focus within an already trapped element infinite times, then "untrap" each element successively. -->
 
-Here is nesting in action:
+<!-- Here is nesting in action: -->
 
 ```html
 <div x-data="{ open: false }">
@@ -167,6 +164,7 @@ Here is nesting in action:
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div x-data="{ open: false }" class="demo">
     <div :class="open && 'opacity-50'">
@@ -212,18 +210,23 @@ Here is nesting in action:
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="modifiers"></a>
 
-### Modifiers
+### 修飾子
 
 <a name="inert"></a>
 
 #### .inert
 
-When building things like dialogs/modals, it's recommended to hide all the other elements on the page from screen readers when trapping focus.
+ダイアログ / モーダルなどを作成するときは、フォーカスをトラップするときに、ページ上の他のすべての要素をスクリーンリーダーから非表示にすることをお勧めします。
 
-By adding `.inert` to `x-trap`, when focus is trapped, all other elements on the page will receive `aria-hidden="true"` attributes, and when focus trapping is disabled, those attributes will also be removed.
+`.inert` を `x-trap` に追加することにより、フォーカスがトラップされると、ページ上の他のすべての要素が `aria-hidden ="true"` 属性を受け取り、フォーカストラップが無効になると、それらの属性も削除されます。
+
+<!-- When building things like dialogs/modals, it's recommended to hide all the other elements on the page from screen readers when trapping focus. -->
+
+<!-- By adding `.inert` to `x-trap`, when focus is trapped, all other elements on the page will receive `aria-hidden="true"` attributes, and when focus trapping is disabled, those attributes will also be removed. -->
 
 ```html
 <!-- When `open` is `false`: -->
@@ -253,13 +256,19 @@ By adding `.inert` to `x-trap`, when focus is trapped, all other elements on the
 
 #### .noscroll
 
-When building dialogs/modals with Alpine, it's recommended that you disable scrolling for the surrounding content when the dialog is open.
+Alpine を使用して ダイアログ / モーダルを作成する場合、ダイアログが開いているときに周囲のコンテンツのスクロールを無効にすることをお勧めします。
 
-`x-trap` allows you to do this automatically with the `.noscroll` modifiers.
+`x-trap` を使用すると、`.noscroll` 修飾子を使用してこれを自動的に行うことができます。
 
-By adding `.noscroll`, Alpine will remove the scrollbar from the page and block users from scrolling down the page while a dialog is open.
+`.noscroll` を追加することにより、Alpine はページからスクロールバーを削除し、ダイアログが開いている間、ユーザーがページを下にスクロールするのをブロックします。
 
-For example:
+<!-- When building dialogs/modals with Alpine, it's recommended that you disable scrolling for the surrounding content when the dialog is open. -->
+
+<!-- `x-trap` allows you to do this automatically with the `.noscroll` modifiers. -->
+
+<!-- By adding `.noscroll`, Alpine will remove the scrollbar from the page and block users from scrolling down the page while a dialog is open. -->
+
+<!-- For example: -->
 
 ```html
 <div x-data="{ open: false }">
@@ -273,6 +282,7 @@ For example:
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ open: false }">
@@ -288,18 +298,25 @@ For example:
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="noreturn"></a>
 
 #### .noreturn
 
-Sometimes you may not want focus to be returned to where it was previously. Consider a dropdown that's triggered upon focusing an input, returning focus to the input on close will just trigger the dropdown to open again.
+以前の場所にフォーカスを戻したくない場合があります。入力のフォーカス時にトリガーされるドロップダウンについて考えてみます。閉じるときにフォーカスを入力に戻すと、ドロップダウンが再び開きます。
 
-`x-trap` allows you to disable this behavior with the `.noreturn` modifier.
+`x-trap` を使用すると、`.noreturn` 修飾子を使用してこの動作を無効にできます。
 
-By adding `.noreturn`, Alpine will not return focus upon x-trap evaluating to false.
+`.noreturn` を追加することにより、Alpine は x-trap 評価のフォーカスを false に戻しません。
 
-For example:
+<!-- Sometimes you may not want focus to be returned to where it was previously. Consider a dropdown that's triggered upon focusing an input, returning focus to the input on close will just trigger the dropdown to open again. -->
+
+<!-- `x-trap` allows you to disable this behavior with the `.noreturn` modifier. -->
+
+<!-- By adding `.noreturn`, Alpine will not return focus upon x-trap evaluating to false. -->
+
+<!-- For example: -->
 
 ```html
 <div x-data="{ open: false }" x-trap.noreturn="open">
@@ -313,6 +330,7 @@ For example:
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div
@@ -336,14 +354,36 @@ For example:
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="focus-magic"></a>
 
 ## $focus
 
-This plugin offers many smaller utilities for managing focus within a page. These utilities are exposed via the `$focus` magic.
+このプラグインは、ページ内のフォーカスを管理するための多くの小さなユーティリティを提供します。これらのユーティリティは、`$focus` マジックを介して公開されます。
 
-| Property | Description |
+<!-- This plugin offers many smaller utilities for managing focus within a page. These utilities are exposed via the `$focus` magic. -->
+
+|プロパティ|説明|
+| --- | --- |
+| `focus(el)` |渡された要素に焦点を合わせます(内部で煩わしさを処理する：nextTickを使用するなど)|
+| `focusable(el)` |天気を検出するか、要素がフォーカス可能かどうかを検出します|
+| `focusables()` |現在の要素内のすべての「フォーカス可能な」要素を取得する|
+| `focused()` |ページ上で現在フォーカスされている要素を取得する|
+| `lastFocused()` |ページの最後にフォーカスされた要素を取得する|
+| `within(el)` | `$ focus`マジックをスコープする要素を指定します(デフォルトでは現在の要素)|
+| `first()` |最初のフォーカス可能な要素にフォーカスする|
+| `last()` |最後のフォーカス可能な要素にフォーカスする|
+| `next()` |次のフォーカス可能な要素にフォーカスする|
+| `previous()` |前のフォーカス可能な要素にフォーカスする|
+| `noscroll()` |フォーカスされようとしている要素へのスクロールを防止します|
+| `wrap()` | 「次の」または「前の」を取得するときは、「ラップアラウンド」を使用します(たとえば、最後の要素の「次の」要素を取得する場合は最初の要素を返します)|
+| `getFirst()` |最初のフォーカス可能な要素を取得する|
+| `getLast()` |最後のフォーカス可能な要素を取得する|
+| `getNext()` |次のフォーカス可能な要素を取得する|
+| `getPrevious()` |前のフォーカス可能な要素を取得する|
+
+<!-- | Property | Description |
 | ---       | --- |
 | `focus(el)`   | Focus the passed element (handling annoyances internally: using nextTick, etc.) |
 | `focusable(el)`   | Detect weather or not an element is focusable |
@@ -360,9 +400,11 @@ This plugin offers many smaller utilities for managing focus within a page. Thes
 | `getFirst()`   | Retrieve the first focusable element |
 | `getLast()`   | Retrieve the last focusable element |
 | `getNext()`   | Retrieve the next focusable element |
-| `getPrevious()`   | Retrieve the previous focusable element |
+| `getPrevious()`   | Retrieve the previous focusable element | -->
 
-Let's walk through a few examples of these utilities in use. The example below allows the user to control focus within the group of buttons using the arrow keys. You can test this by clicking on a button, then using the arrow keys to move focus around:
+<!-- Let's walk through a few examples of these utilities in use. The example below allows the user to control focus within the group of buttons using the arrow keys. You can test this by clicking on a button, then using the arrow keys to move focus around: -->
+
+使用中のこれらのユーティリティのいくつかの例を見ていきましょう。以下の例では、ユーザーは矢印キーを使用してボタンのグループ内でフォーカスを制御できます。これをテストするには、ボタンをクリックしてから、矢印キーを使用してフォーカスを移動します。
 
 ```html
 <div
@@ -390,7 +432,9 @@ Let's walk through a few examples of these utilities in use. The example below a
 </div>
 <!-- END_VERBATIM -->
 
-Notice how if the last button is focused, pressing "right arrow" won't do anything. Let's add the `.wrap()` method so that focus "wraps around":
+<!-- Notice how if the last button is focused, pressing "right arrow" won't do anything. Let's add the `.wrap()` method so that focus "wraps around": -->
+
+最後のボタンがフォーカスされている場合、「right arrow (右矢印)」を押しても何も起こらないことに注意してください。フォーカスが「wraps around (ラップアラウンド)」するように、 `.wrap()` メソッドを追加しましょう。
 
 ```html
 <div
@@ -403,6 +447,7 @@ Notice how if the last button is focused, pressing "right arrow" won't do anythi
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
 <div
@@ -417,8 +462,11 @@ Notice how if the last button is focused, pressing "right arrow" won't do anythi
 (Click a button, then use the arrow keys to move left and right)
 </div>
 <!-- END_VERBATIM -->
+```
 
-Now, let's add two buttons, one to focus the first element in the button group, and another focus the last element:
+<!-- Now, let's add two buttons, one to focus the first element in the button group, and another focus the last element: -->
+
+次に、2つのボタンを追加しましょう。1つはボタングループの最初の要素にフォーカスし、もう1つは最後の要素にフォーカスします。
 
 ```html
 <button @click="$focus.within($refs.buttons).first()">Focus "First"</button>
@@ -435,6 +483,7 @@ Now, let's add two buttons, one to focus the first element in the button group, 
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo" x-data>
 <button @click="$focus.within($refs.buttons).first()">Focus "First"</button>
@@ -453,5 +502,8 @@ Now, let's add two buttons, one to focus the first element in the button group, 
 </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
-Notice that we needed to add a `.within()` method for each button so that `$focus` knows to scope itself to a different element (the `div` wrapping the buttons).
+<!-- Notice that we needed to add a `.within()` method for each button so that `$focus` knows to scope itself to a different element (the `div` wrapping the buttons). -->
+
+各ボタンに `.within()` メソッドを追加して、`$focus` がそれ自体を別の要素（ボタンをラップする `div`）にスコープすることを認識できるようにする必要があることに注意してください。
