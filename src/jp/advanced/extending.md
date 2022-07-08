@@ -3,29 +3,39 @@ order: 2
 title: Extending
 ---
 
-# Extending
+# 拡張
 
-Alpine has a very open codebase that allows for extension in a number of ways. In fact, every available directive and magic in Alpine itself uses these exact APIs. In theory you could rebuild all of Alpine's functionality using them yourself.
+Alpine には、さまざまな方法で拡張できる非常にオープンなコードベースがあります。 実際、Alpine 自体で利用可能なすべてのディレクティブと魔法は、これらの正確な API を使用しています。 理論的には、Alpine のすべての機能を自分で再構築できます。
+
+<!-- Alpine has a very open codebase that allows for extension in a number of ways. In fact, every available directive and magic in Alpine itself uses these exact APIs. In theory you could rebuild all of Alpine's functionality using them yourself. -->
 
 <a name="lifecycle-concerns"></a>
 
-## Lifecycle concerns
+## ライフサイクルの懸念
 
-Before we dive into each individual API, let's first talk about where in your codebase you should consume these APIs.
+個々の API について詳しく説明する前に、まず、コードベースのどこでこれらの API を使用する必要があるかについて説明しましょう。
 
-Because these APIs have an impact on how Alpine initializes the page, they must be registered AFTER Alpine is downloaded and available on the page, but BEFORE it has initialized the page itself.
+これらの API は、Alpine がページを初期化する方法に影響を与えるため、Alpine がダウンロードされてページで利用可能になった後、ただしページ自体を初期化する前に登録する必要があります。
 
-There are two different techniques depending on if you are importing Alpine into a bundle, or including it directly via a `<script>` tag. Let's look at them both:
+Alpine をバンドルにインポートするか、`<script>` タグを介して直接含めるかによって、2つの異なる手法があります。 それらの両方を見てみましょう
+
+<!-- Before we dive into each individual API, let's first talk about where in your codebase you should consume these APIs. -->
+
+<!-- Because these APIs have an impact on how Alpine initializes the page, they must be registered AFTER Alpine is downloaded and available on the page, but BEFORE it has initialized the page itself. -->
+
+<!-- There are two different techniques depending on if you are importing Alpine into a bundle, or including it directly via a `<script>` tag. Let's look at them both: -->
 
 <a name="via-script-tag"></a>
 
-### Via a script tag
+### script タグ経由
 
-If you are including Alpine via a script tag, you will need to register any custom extension code inside an `alpine:init` event listener.
+スクリプトタグを介して Alpine を含める場合は、`alpine:init` イベントリスナー内にカスタム拡張コードを登録する必要があります。
 
-Here's an example:
+<!-- If you are including Alpine via a script tag, you will need to register any custom extension code inside an `alpine:init` event listener. -->
 
-```alpine
+<!-- Here's an example: -->
+
+```html
 <html>
     <script src="/js/alpine.js" defer></script>
 
@@ -39,9 +49,11 @@ Here's an example:
 </html>
 ```
 
-If you want to extract your extension code into an external file, you will need to make sure that file's `<script>` tag is located BEFORE Alpine's like so:
+<!-- If you want to extract your extension code into an external file, you will need to make sure that file's `<script>` tag is located BEFORE Alpine's like so: -->
 
-```alpine
+拡張コードを外部ファイルに抽出する場合は、ファイルの `<script>` タグが Alpine のようになる前に配置されていることを確認する必要があります。
+
+```html
 <html>
     <script src="/js/foo.js" defer></script>
     <script src="/js/alpine.js" defer></script>
@@ -52,13 +64,11 @@ If you want to extract your extension code into an external file, you will need 
 
 <a name="via-npm"></a>
 
-### Via an NPM module
+### NPM モジュール経由
 
-If you imported Alpine into a bundle, you have to make sure you are registering any extension code IN BETWEEN when you import the `Alpine` global object, and when you initialize Alpine by calling `Alpine.start()`. For example:
+Alpineをバンドルにインポートした場合は、`Alpine` グローバルオブジェクトをインポートするとき、および `Alpine.start()` を呼び出して Alpine を初期化するときに、拡張コードを BETWEEN に登録していることを確認する必要があります。
 
-NPMモジュール経由
-
-Alpineをバンドルにインポートした場合は、 `Alpine`グローバルオブジェクトをインポートするとき、および` Alpine.start（） `を呼び出してAlpineを初期化するときに、拡張コードをBETWEENに登録していることを確認する必要があります。 例えば：
+<!-- If you imported Alpine into a bundle, you have to make sure you are registering any extension code IN BETWEEN when you import the `Alpine` global object, and when you initialize Alpine by calling `Alpine.start()`. For example: -->
 
 ```js
 import Alpine from 'alpinejs'
@@ -69,57 +79,52 @@ window.Alpine = Alpine
 window.Alpine.start()
 ```
 
-Now that we know where to use these extension APIs, let's look more closely at how to use each one:
+<!-- Now that we know where to use these extension APIs, let's look more closely at how to use each one: -->
 
-これらの拡張APIの使用場所がわかったので、それぞれの使用方法を詳しく見ていきましょう。
+これらの拡張 API の使用場所がわかったので、それぞれの使用方法を詳しく見ていきましょう。
 
 <a name="custom-directives"></a>
 
-## Custom directives
+## カスタムディレクティブ
 
-Alpine allows you to register your own custom directives using the `Alpine.directive()` API.
+<!-- Alpine allows you to register your own custom directives using the `Alpine.directive()` API. -->
 
-カスタムディレクティブ
-
-Alpineでは、 `Alpine.directive（）`APIを使用して独自のカスタムディレクティブを登録できます。
+Alpine では、`Alpine.directive()` APIを使用して独自のカスタムディレクティブを登録できます。
 
 <a name="method-signature"></a>
 
-### Method Signature
+### メソッドシグネチャ
 
 ```js
-Alpine.directive('[name]', (el, { value, modifiers, expression }, { Alpine, effect, cleanup }) => {})
+Alpine.directive(
+    '[name]',
+    (
+        el,
+        { value, modifiers, expression },
+        { Alpine, effect, cleanup }
+    ) => {})
 ```
 
 &nbsp; | &nbsp;
----|---
-name | The name of the directive. The name "foo" for example would be consumed as `x-foo`
-el | The DOM element the directive is added to
-value | If provided, the part of the directive after a colon. Ex: `'bar'` in `x-foo:bar`
-modifiers | An array of dot-separated trailing additions to the directive. Ex: `['baz', 'lob']` from `x-foo.baz.lob`
-expression | The attribute value portion of the directive. Ex: `law` from `x-foo="law"`
-Alpine | The Alpine global object
-effect | A function to create reactive effects that will auto-cleanup after this directive is removed from the DOM
-cleanup | A function you can pass bespoke callbacks to that will run when this directive is removed from the DOM
-
-＆nbsp; | ＆nbsp;
 --- | ---
-名前| ディレクティブの名前。 たとえば、「foo」という名前は「x-foo」として使用されます。
-エル| ディレクティブが追加されるDOM要素
-値| 提供されている場合、コロンの後のディレクティブの部分。 例： `x-foo：bar`の`'bar' `
-修飾子| ディレクティブへのドットで区切られた末尾の追加の配列。 例： `['baz'、'lob']` from `x-foo.baz.lob`
-式| ディレクティブの属性値部分。 例： `x-foo="law"`の`law`
-アルパイン| アルパイングローバルオブジェクト
-効果| このディレクティブがDOMから削除された後に自動クリーンアップするリアクティブエフェクトを作成する関数
-クリーンアップ| このディレクティブがDOMから削除されたときに実行される、特注のコールバックを渡すことができる関数
+name | ディレクティブの名前。 たとえば、「foo」という名前は「x-foo」として使用されます。
+el | ディレクティブが追加されるDOM要素
+value | 提供されている場合、コロンの後のディレクティブの部分。 例： `x-foo：bar`の`'bar' `
+modifiers | ディレクティブへのドットで区切られた末尾の追加の配列。 例： `['baz'、'lob']` from `x-foo.baz.lob`
+expression | ディレクティブの属性値部分。 例： `x-foo="law"`の`law`
+Alpine | Alpine グローバルオブジェクト
+effect | このディレクティブがDOMから削除された後に自動クリーンアップするリアクティブエフェクトを作成する関数
+cleanup | このディレクティブがDOMから削除されたときに実行される、特注のコールバックを渡すことができる関数
 
 <a name="simple-example"></a>
 
-### Simple Example
+### シンプルな例
 
-Here's an example of a simple directive we're going to create called: `x-uppercase`:
+<!-- Here's an example of a simple directive we're going to create called: `x-uppercase`: -->
 
-これから作成する単純なディレクティブの例を次に示します。`x-uppercase`：
+これから作成する単純なディレクティブの例を次に示します。
+
+`x-uppercase`
 
 ```js
 Alpine.directive('uppercase', el => {
@@ -134,17 +139,15 @@ Alpine.directive('uppercase', el => {
 
 <a name="evaluating-expressions"></a>
 
-### Evaluating expressions
+### 式の評価
 
-When registering a custom directive, you may want to evaluate a user-supplied JavaScript expression:
+<!-- When registering a custom directive, you may want to evaluate a user-supplied JavaScript expression: -->
 
-For example, let's say you wanted to create a custom directive as a shortcut to `console.log()`. Something like:
+<!-- For example, let's say you wanted to create a custom directive as a shortcut to `console.log()`. Something like: -->
 
-式の評価
+カスタムディレクティブを登録するときに、ユーザーが指定したJavaScript 式を評価することをお勧めします。
 
-カスタムディレクティブを登録するときに、ユーザーが指定したJavaScript式を評価することをお勧めします。
-
-たとえば、 `console.log（）`へのショートカットとしてカスタムディレクティブを作成したいとします。 何かのようなもの：
+たとえば、`console.log()` へのショートカットとしてカスタムディレクティブを作成したいとします。 
 
 ```html
 <div x-data="{ message: 'Hello World!' }">
@@ -152,13 +155,13 @@ For example, let's say you wanted to create a custom directive as a shortcut to 
 </div>
 ```
 
-You need to retrieve the actual value of `message` by evaluating it as a JavaScript expression with the `x-data` scope.
+<!-- You need to retrieve the actual value of `message` by evaluating it as a JavaScript expression with the `x-data` scope. -->
 
-Fortunately, Alpine exposes its system for evaluating JavaScript expressions with an `evaluate()` API. Here's an example:
+<!-- Fortunately, Alpine exposes its system for evaluating JavaScript expressions with an `evaluate()` API. Here's an example: -->
 
-`x-data`スコープでJavaScript式として評価することにより、`message`の実際の値を取得する必要があります。
+`x-data` スコープで JavaScript 式として評価することにより、`message` の実際の値を取得する必要があります。
 
-幸い、Alpineは、 `evaluate（）`APIを使用してJavaScript式を評価するためのシステムを公開しています。 次に例を示します。
+幸い、Alpine は、`evaluate()` API を使用して JavaScript 式を評価するためのシステムを公開しています。 次に例を示します。
 
 ```js
 Alpine.directive('log', (el, { expression }, { evaluate }) => {
@@ -170,23 +173,23 @@ Alpine.directive('log', (el, { expression }, { evaluate }) => {
 })
 ```
 
-Now, when Alpine initializes the `<div x-log...>`, it will retrieve the expression passed into the directive ("message" in this case), and evaluate it in the context of the current element's Alpine component scope.
+<!-- Now, when Alpine initializes the `<div x-log...>`, it will retrieve the expression passed into the directive ("message" in this case), and evaluate it in the context of the current element's Alpine component scope. -->
 
-これで、Alpineが `<div x-log ...>`を初期化すると、ディレクティブに渡された式（この場合は "message"）が取得され、現在の要素のAlpineコンポーネントスコープのコンテキストで評価されます。
+これで、Alpine が `<div x-log ...>` を初期化すると、ディレクティブに渡された式（この場合は "message"）が取得され、現在の要素の Alpine コンポーネントスコープのコンテキストで評価されます。
 
 <a name="introducing-reactivity"></a>
 
-### Introducing reactivity
+### 反応性の紹介
 
-Building on the `x-log` example from before, let's say we wanted `x-log` to log the value of `message` and also log it if the value changes.
+<!-- Building on the `x-log` example from before, let's say we wanted `x-log` to log the value of `message` and also log it if the value changes. -->
 
-Given the following template:
+<!-- Given the following template: -->
 
-以前の`x-log`の例に基づいて、`x-log`で`message`の値をログに記録し、値が変更された場合にもログに記録したいとします。
+以前の `x-log` の例に基づいて、`x-log` で `message` の値をログに記録し、値が変更された場合にもログに記録したいとします。
 
 次のテンプレートがあるとします。
 
-```alpine
+```html
 <div x-data="{ message: 'Hello World!' }">
     <div x-log="message"></div>
 
@@ -194,13 +197,15 @@ Given the following template:
 </div>
 ```
 
-We want "Hello World!" to be logged initially, then we want "yolo" to be logged after pressing the `<button>`.
+<!-- We want "Hello World!" to be logged initially, then we want "yolo" to be logged after pressing the `<button>`. -->
 
-We can adjust the implementation of `x-log` and introduce two new APIs to achieve this: `evaluateLater()` and `effect()`:
+<!-- We can adjust the implementation of `x-log` and introduce two new APIs to achieve this: `evaluateLater()` and `effect()`: -->
 
-「HelloWorld！」が欲しいです。 最初にログに記録する場合は、`<button>`を押した後に「yolo」をログに記録する必要があります。
+「HelloWorld！」が欲しいです。 最初にログに記録する場合は、`<button>` を押した後に「yolo」をログに記録する必要があります。
 
-`x-log`の実装を調整し、これを実現するために2つの新しいAPIを導入できます。`evaluateLater（）`と `effect（）`：
+`x-log` の実装を調整し、これを実現するために2つの新しいAPIを導入できます。
+
+例：`evaluateLater()` と `effect()`
 
 ```js
 Alpine.directive('log', (el, { expression }, { evaluateLater, effect }) => {
@@ -214,17 +219,17 @@ Alpine.directive('log', (el, { expression }, { evaluateLater, effect }) => {
 })
 ```
 
-Let's walk through the above code, line by line.
+<!-- Let's walk through the above code, line by line. -->
 
-上記のコードを1行ずつ見ていきましょう。
+上記のコードを 1行ずつ見ていきましょう。
 
 ```js
 let getThingToLog = evaluateLater(expression)
 ```
 
-Here, instead of immediately evaluating `message` and retrieving the result, we will convert the string expression ("message") into an actual JavaScript function that we can run at any time. If you're going to evaluate a JavaScript expression more than once, it is highly recommended to first generate a JavaScript function and use that rather than calling `evaluate()` directly. The reason being that the process to interpret a plain string as a JavaScript function is expensive and should be avoided when unnecessary.
+<!-- Here, instead of immediately evaluating `message` and retrieving the result, we will convert the string expression ("message") into an actual JavaScript function that we can run at any time. If you're going to evaluate a JavaScript expression more than once, it is highly recommended to first generate a JavaScript function and use that rather than calling `evaluate()` directly. The reason being that the process to interpret a plain string as a JavaScript function is expensive and should be avoided when unnecessary. -->
 
-ここでは、すぐに `message`を評価して結果を取得する代わりに、文字列式（" message "）をいつでも実行できる実際のJavaScript関数に変換します。 JavaScript式を複数回評価する場合は、 `evaluate（）`を直接呼び出すのではなく、最初にJavaScript関数を生成して使用することを強くお勧めします。 その理由は、プレーンな文字列をJavaScript関数として解釈するプロセスはコストがかかるため、不要な場合は避ける必要があるためです。
+ここでは、すぐに `message` を評価して結果を取得する代わりに、文字列式（"message"）をいつでも実行できる実際の JavaScript 関数に変換します。 JavaScript 式を複数回評価する場合は、`evaluate()` を直接呼び出すのではなく、最初に JavaScript 関数を生成して使用することを強くお勧めします。 その理由は、プレーンな文字列を JavaScript 関数として解釈するプロセスはコストがかかるため、不要な場合は避ける必要があるためです。
 
 ```js
 effect(() => {
@@ -232,25 +237,25 @@ effect(() => {
 })
 ```
 
-By passing in a callback to `effect()`, we are telling Alpine to run the callback immediately, then track any dependencies it uses (`x-data` properties like `message` in our case). Now as soon as one of the dependencies changes, this callback will be re-run. This gives us our "reactivity".
+<!-- By passing in a callback to `effect()`, we are telling Alpine to run the callback immediately, then track any dependencies it uses (`x-data` properties like `message` in our case). Now as soon as one of the dependencies changes, this callback will be re-run. This gives us our "reactivity". -->
 
-You may recognize this functionality from `x-effect`. It is the same mechanism under the hood.
+<!-- You may recognize this functionality from `x-effect`. It is the same mechanism under the hood. -->
 
-You may also notice that `Alpine.effect()` exists and wonder why we're not using it here. The reason is that the `effect` function provided via the method parameter has special functionality that cleans itself up when the directive is removed from the page for any reason.
+<!-- You may also notice that `Alpine.effect()` exists and wonder why we're not using it here. The reason is that the `effect` function provided via the method parameter has special functionality that cleans itself up when the directive is removed from the page for any reason. -->
 
-For example, if for some reason the element with `x-log` on it got removed from the page, by using `effect()` instead of `Alpine.effect()` when the `message` property is changed, the value will no longer be logged to the console.
+<!-- For example, if for some reason the element with `x-log` on it got removed from the page, by using `effect()` instead of `Alpine.effect()` when the `message` property is changed, the value will no longer be logged to the console. -->
 
-[→ Read more about reactivity in Alpine](/advanced/reactivity)
+<!-- [→ Read more about reactivity in Alpine](/advanced/reactivity) -->
 
-コールバックを`effect（）`に渡すことで、コールバックをすぐに実行し、使用する依存関係（この場合は`message`などの`x-data`プロパティ）を追跡するようにAlpineに指示しています。 依存関係の1つが変更されるとすぐに、このコールバックが再実行されます。 これは私たちに「反応性」を与えます。
+コールバックを `effect()` に渡すことで、コールバックをすぐに実行し、使用する依存関係（この場合は `message` などの `x-data` プロパティ）を追跡するように Alpine に指示しています。 依存関係の1つが変更されるとすぐに、このコールバックが再実行されます。 これは私たちに「反応性」を与えます。
 
-この機能は`x-effect`からわかるかもしれません。 これは、内部で同じメカニズムです。
+この機能は `x-effect` からわかるかもしれません。 これは、内部で同じメカニズムです。
 
-また、 `Alpine.effect（）`が存在することに気づき、なぜここでそれを使用しないのか不思議に思うかもしれません。 その理由は、メソッドパラメータを介して提供される `effect`関数には、何らかの理由でディレクティブがページから削除されたときにそれ自体をクリーンアップする特別な機能があるためです。
+また、`Alpine.effect()` が存在することに気づき、なぜここでそれを使用しないのか不思議に思うかもしれません。 その理由は、メソッドパラメータを介して提供される `effect` 関数には、何らかの理由でディレクティブがページから削除されたときにそれ自体をクリーンアップする特別な機能があるためです。
 
-たとえば、何らかの理由で「x-log」が含まれている要素がページから削除された場合、「message」プロパティが変更されたときに「Alpine.effect（）」の代わりに「effect（）」を使用すると、値は コンソールに記録されなくなります。
+たとえば、何らかの理由で「x-log」が含まれている要素がページから削除された場合、「message」プロパティが変更されたときに「Alpine.effect()」の代わりに「effect()」を使用すると、値は コンソールに記録されなくなります。
 
-[→アルパインの反応性についてもっと読む]（/ Advanced / Reactivity）
+[→アルパインの反応性についてもっと読む](/advanced/reactivity)
 
 ```js
 getThingToLog(thingToLog => {
@@ -258,21 +263,21 @@ getThingToLog(thingToLog => {
 })
 ```
 
-Now we will call `getThingToLog`, which if you recall is the actual JavaScript function version of the string expression: "message".
+<!-- Now we will call `getThingToLog`, which if you recall is the actual JavaScript function version of the string expression: "message". -->
 
-You might expect `getThingToCall()` to return the result right away, but instead Alpine requires you to pass in a callback to receive the result.
+<!-- You might expect `getThingToCall()` to return the result right away, but instead Alpine requires you to pass in a callback to receive the result. -->
 
-The reason for this is to support async expressions like `await getMessage()`. By passing in a "receiver" callback instead of getting the result immediately, you are allowing your directive to work with async expressions as well.
+<!-- The reason for this is to support async expressions like `await getMessage()`. By passing in a "receiver" callback instead of getting the result immediately, you are allowing your directive to work with async expressions as well. -->
 
-[→ Read more about async in Alpine](/advanced/async)
+<!-- [→ Read more about async in Alpine](/advanced/async) -->
 
-ここで、 `getThingToLog`を呼び出します。これは、文字列式の実際のJavaScript関数バージョンである"message"です。
+ここで、`getThingToLog` を呼び出します。これは、文字列式の実際の JavaScript 関数バージョンである "message" です。
 
-`getThingToCall（）`がすぐに結果を返すことを期待するかもしれませんが、代わりにAlpineは結果を受け取るためにコールバックを渡すことを要求します。
+`getThingToCall()` がすぐに結果を返すことを期待するかもしれませんが、代わりに Alpine は結果を受け取るためにコールバックを渡すことを要求します。
 
-これは、 `await getMessage（）`のような非同期式をサポートするためです。 結果をすぐに取得する代わりに「レシーバー」コールバックを渡すことで、ディレクティブが非同期式でも機能できるようになります。
+これは、`await getMessage()` のような非同期式をサポートするためです。 結果をすぐに取得する代わりに「レシーバー」コールバックを渡すことで、ディレクティブが非同期式でも機能できるようになります。
 
-[→アルパインの非同期についてもっと読む]（/ Advanced / async）
+[→アルパインの非同期についてもっと読む](/advanced/async)
 
 <a name="cleaning-up"></a>
 
@@ -334,6 +339,7 @@ el | The DOM element the magic was triggered from
 Alpine | The Alpine global object
 
 <a name="magic-properties"></a>
+
 ### Magic Properties
 
 Here's a basic example of a "$now" magic helper to easily get the current time from anywhere in Alpine:
@@ -343,7 +349,7 @@ Alpine.magic('now', () => {
     return (new Date).toLocaleTimeString()
 })
 ```
-```alpine
+```html
 <span x-text="$now"></span>
 ```
 
@@ -354,6 +360,7 @@ As you can see `$now` behaves like a static property, but under the hood is actu
 Because of this, you can implement magic "functions" by returning a function from the getter.
 
 <a name="magic-functions"></a>
+
 ### Magic Functions
 
 For example, if we wanted to create a `$clipboard()` magic function that accepts a string to copy to clipboard, we could implement it like so:
@@ -363,7 +370,7 @@ Alpine.magic('clipboard', () => {
     return subject => navigator.clipboard.writeText(subject)
 })
 ```
-```alpine
+```html
 <button @click="$clipboard('hello world')">Copy "Hello World"</button>
 ```
 
@@ -378,6 +385,7 @@ Alpine.magic('clipboard', () => subject => {
 ```
 
 <a name="writing-and-sharing-plugins"></a>
+
 ## Writing and sharing plugins
 
 By now you should see how friendly and simple it is to register your own custom directives and magics in your application, but what about sharing that functionality with others via an NPM package or something?
@@ -389,11 +397,12 @@ For demonstration purposes, let's create a pretend Alpine plugin from scratch ca
 We'll start producing this plugin for consumption as a simple `<script>` tag alongside Alpine, then we'll level it up to a module for importing into a bundle:
 
 <a name="script-include"></a>
+
 ### Script include
 
 Let's start in reverse by looking at how our plugin will be included into a project:
 
-```alpine
+```html
 <html>
     <script src="/js/foo.js" defer></script>
     <script src="/js/alpine.js" defer></script>
@@ -419,6 +428,7 @@ document.addEventListener('alpine:init', () => {
 That's it! Authoring a plugin for inclusion via a script tag is extremely simple with Alpine.
 
 <a name="bundle-module"></a>
+
 ### Bundle module
 
 Now let's say you wanted to author a plugin that someone could install via NPM and include into their bundle.

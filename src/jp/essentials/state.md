@@ -22,7 +22,7 @@ Alpine を使用すると、マークアップを離れることなく、単一�
 
 <!-- Here's a basic example: -->
 
-```alpine
+```html
 <div x-data="{ open: false }">
     ...
 </div>
@@ -42,7 +42,7 @@ Alpine を使用すると、マークアップを離れることなく、単一�
 
 <!-- Data is nestable in Alpine. For example, if you have two elements with Alpine data attached (one inside the other), you can access the parent's data from inside the child element. -->
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <div x-data="{ label: 'Content:' }">
         <span x-text="label"></span>
@@ -67,7 +67,7 @@ Alpine を使用すると、マークアップを離れることなく、単一�
 
 <!-- Although this may seem obvious to some, it's worth mentioning that Alpine data can be used within the same element. For example: -->
 
-```alpine
+```html
 <button x-data="{ label: 'Click Here' }" x-text="label"></button>
 ```
 
@@ -79,7 +79,7 @@ Alpine を使用すると、マークアップを離れることなく、単一�
 
 Alpine 機能を使用したいが、リアクティブデータは必要ない場合があります。このような場合、式を `x-data` に完全に渡すことをオプトアウトできます。例えば：
 
-```alpine
+```html
 <button x-data @click="alert('I\'ve been clicked!')">Click Me</button>
 ```
 
@@ -113,7 +113,7 @@ Alpine.data('dropdown', () => ({
 
 「ドロップダウン」データを登録したので、マークアップ内の好きなだけ多くの場所でそれを使用できます。
 
-```alpine
+```html
 <div x-data="dropdown">
     <button @click="toggle">Expand</button>
 
@@ -157,7 +157,7 @@ Alpine.store('tabs', {
 
 これで、ページのどこからでもそのデータにアクセスまたは変更できます。
 
-```alpine
+```html
 <div x-data>
     <template x-for="tab in $store.tabs.items">
         ...
