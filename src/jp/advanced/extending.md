@@ -277,21 +277,21 @@ getThingToLog(thingToLog => {
 
 これは、`await getMessage()` のような非同期式をサポートするためです。 結果をすぐに取得する代わりに「レシーバー」コールバックを渡すことで、ディレクティブが非同期式でも機能できるようになります。
 
-[→アルパインの非同期についてもっと読む](/advanced/async)
+[ → アルパインの非同期についてもっと読む ](/advanced/async)
 
 <a name="cleaning-up"></a>
 
-### Cleaning Up
+### クリーンアップ
 
-Let's say you needed to register an event listener from a custom directive. After that directive is removed from the page for any reason, you would want to remove the event listener as well.
+<!-- Let's say you needed to register an event listener from a custom directive. After that directive is removed from the page for any reason, you would want to remove the event listener as well. -->
 
-Alpine makes this simple by providing you with a `cleanup` function when registering custom directives.
+<!-- Alpine makes this simple by providing you with a `cleanup` function when registering custom directives. -->
 
-Here's an example:
+<!-- Here's an example: -->
 
 カスタムディレクティブからイベントリスナーを登録する必要があるとしましょう。 何らかの理由でそのディレクティブがページから削除された後は、イベントリスナーも削除する必要があります。
 
-Alpineは、カスタムディレクティブを登録するときに `cleanup`関数を提供することにより、これを簡単にします。
+Alpine は、カスタムディレクティブを登録するときに `cleanup` 関数を提供することにより、これを簡単にします。
 
 次に例を示します。
 
@@ -308,41 +308,49 @@ Alpine.directive('...', (el, {}, { cleanup }) => {
 })
 ```
 
-Now if the directive is removed from this element or the element is removed itself, the event listener will be removed as well.
-
-<a name="custom-magics"></a>
-
-## Custom magics
-
-Alpine allows you to register custom "magics" (properties or methods) using `Alpine.magic()`. Any magic you register will be available to all your application's Alpine code with the `$` prefix.
+<!-- Now if the directive is removed from this element or the element is removed itself, the event listener will be removed as well. -->
 
 これで、ディレクティブがこの要素から削除されるか、要素自体が削除されると、イベントリスナーも削除されます。
 
-<a name="custom-magics"> </a>
+<a name="custom-magics"></a>
 
-##カスタムマジック
+## カスタムマジック
 
-Alpineでは、 `Alpine.magic（）`を使用してカスタムの「マジック」（プロパティまたはメソッド）を登録できます。 登録したすべてのマジックは、「$」プレフィックスが付いたすべてのアプリケーションのアルパインコードで使用できます。
+<!-- Alpine allows you to register custom "magics" (properties or methods) using `Alpine.magic()`. Any magic you register will be available to all your application's Alpine code with the `$` prefix. -->
+
+<!-- <a name="custom-magics"> </a> -->
+
+<!-- ##カスタムマジック -->
+
+Alpine では、`Alpine.magic()` を使用してカスタムの `magics`（プロパティまたはメソッド）を登録できます。 登録したすべてのマジックは、`$` プレフィックスが付いたすべてのアプリケーションのアルパインコードで使用できます。
 
 <a name="method-signature"></a>
 
-### Method Signature
+### メソッドシグネチャ
 
 ```js
 Alpine.magic('[name]', (el, { Alpine }) => {})
 ```
-
+<!-- 
 &nbsp; | &nbsp;
 ---|---
 name | The name of the magic. The name "foo" for example would be consumed as `$foo`
 el | The DOM element the magic was triggered from
-Alpine | The Alpine global object
+Alpine | The Alpine global object -->
+
+＆nbsp; | ＆nbsp;
+--- | ---
+name | マジックの名前。たとえば、「foo」という名前は「$foo」として使用されます。
+el |マジックが引き起こされた DOM 要素
+Alpine | Alpine グローバルオブジェクト
 
 <a name="magic-properties"></a>
 
-### Magic Properties
+### マジックプロパティ
 
-Here's a basic example of a "$now" magic helper to easily get the current time from anywhere in Alpine:
+<!-- Here's a basic example of a "$now" magic helper to easily get the current time from anywhere in Alpine: -->
+
+これは、Alpine のどこからでも現在の時刻を簡単に取得できる「$now」マジックヘルパーの基本的な例です。
 
 ```js
 Alpine.magic('now', () => {
