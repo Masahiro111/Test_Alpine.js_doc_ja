@@ -361,17 +361,25 @@ Alpine.magic('now', () => {
 <span x-text="$now"></span>
 ```
 
-Now the `<span>` tag will contain the current time, resembling something like "12:00:00 PM".
+<!-- Now the `<span>` tag will contain the current time, resembling something like "12:00:00 PM". -->
 
-As you can see `$now` behaves like a static property, but under the hood is actually a getter that evaluates every time the property is accessed.
+<!-- As you can see `$now` behaves like a static property, but under the hood is actually a getter that evaluates every time the property is accessed. -->
 
-Because of this, you can implement magic "functions" by returning a function from the getter.
+<!-- Because of this, you can implement magic "functions" by returning a function from the getter. -->
+
+これで、`<span>` タグに現在の時刻が含まれ、「12:00:00PM」のようになります。
+
+ご覧のとおり、`$now` は静的プロパティのように動作しますが、実際には、プロパティにアクセスするたびに評価するゲッターが内部にあります。
+
+このため、ゲッターから関数を返すことで、魔法の「関数」を実装できます。
 
 <a name="magic-functions"></a>
 
 ### Magic Functions
 
-For example, if we wanted to create a `$clipboard()` magic function that accepts a string to copy to clipboard, we could implement it like so:
+<!-- For example, if we wanted to create a `$clipboard()` magic function that accepts a string to copy to clipboard, we could implement it like so: -->
+
+たとえば、クリップボードにコピーする文字列を受け入れる `$clipboard()` マジック関数を作成したい場合は、次のように実装できます。
 
 ```js
 Alpine.magic('clipboard', () => {
@@ -382,9 +390,13 @@ Alpine.magic('clipboard', () => {
 <button @click="$clipboard('hello world')">Copy "Hello World"</button>
 ```
 
-Now that accessing `$clipboard` returns a function itself, we can immediately call it and pass it an argument like we see in the template with `$clipboard('hello world')`.
+<!-- Now that accessing `$clipboard` returns a function itself, we can immediately call it and pass it an argument like we see in the template with `$clipboard('hello world')`. -->
 
-You can use the more brief syntax (a double arrow function) for returning a function from a function if you'd prefer:
+<!-- You can use the more brief syntax (a double arrow function) for returning a function from a function if you'd prefer: -->
+
+`$clipboard` にアクセスすると関数自体が返されるので、すぐにそれを呼び出して、`$clipboard('hello world')` のテンプレートにあるような引数を渡すことができます。
+
+必要に応じて、関数から関数を返すためのより簡単な構文（二重矢印関数）を使用できます。
 
 ```js
 Alpine.magic('clipboard', () => subject => {
@@ -394,21 +406,31 @@ Alpine.magic('clipboard', () => subject => {
 
 <a name="writing-and-sharing-plugins"></a>
 
-## Writing and sharing plugins
+## プラグインの作成と共有
 
-By now you should see how friendly and simple it is to register your own custom directives and magics in your application, but what about sharing that functionality with others via an NPM package or something?
+これで、独自のカスタムディレクティブとマジックをアプリケーションに登録することがいかにフレンドリーでシンプルであるかがわかるはずですが、NPM パッケージなどを介してその機能を他のユーザーと共有するのはどうでしょうか。
 
-You can get started quickly with Alpine's official "plugin-blueprint" package. It's as simple as cloning the repository and running `npm install && npm run build` to get a plugin authored.
+Alpine の公式「プラグインブループリント」パッケージをすぐに使い始めることができます。リポジトリのクローンを作成し、`npm install && npm run build` を実行して、プラグインを作成するのと同じくらい簡単です。
 
-For demonstration purposes, let's create a pretend Alpine plugin from scratch called `Foo` that includes both a directive (`x-foo`) and a magic (`$foo`).
+デモンストレーションの目的で、ディレクティブ（`x-foo`）とマジック（`$foo`）の両方を含む `Foo` と呼ばれる 見せかけの Alpine プラグインを最初から作成しましょう。
 
-We'll start producing this plugin for consumption as a simple `<script>` tag alongside Alpine, then we'll level it up to a module for importing into a bundle:
+Alpine と一緒に単純な `<script>` タグとして使用するためにこのプラグインの作成を開始し、次にバンドルにインポートするためのモジュールにレベルアップします。
+
+<!-- By now you should see how friendly and simple it is to register your own custom directives and magics in your application, but what about sharing that functionality with others via an NPM package or something? -->
+
+<!-- You can get started quickly with Alpine's official "plugin-blueprint" package. It's as simple as cloning the repository and running `npm install && npm run build` to get a plugin authored. -->
+
+<!-- For demonstration purposes, let's create a pretend Alpine plugin from scratch called `Foo` that includes both a directive (`x-foo`) and a magic (`$foo`). -->
+
+<!-- We'll start producing this plugin for consumption as a simple `<script>` tag alongside Alpine, then we'll level it up to a module for importing into a bundle: -->
 
 <a name="script-include"></a>
 
-### Script include
+### スクリプトインクルード
 
-Let's start in reverse by looking at how our plugin will be included into a project:
+<!-- Let's start in reverse by looking at how our plugin will be included into a project: -->
+
+プラグインがプロジェクトにどのように含まれるかを見て、逆に始めましょう。
 
 ```html
 <html>
@@ -421,9 +443,13 @@ Let's start in reverse by looking at how our plugin will be included into a proj
 </html>
 ```
 
-Notice how our script is included BEFORE Alpine itself. This is important, otherwise, Alpine would have already been initialized by the time our plugin got loaded.
+<!-- Notice how our script is included BEFORE Alpine itself. This is important, otherwise, Alpine would have already been initialized by the time our plugin got loaded. -->
 
-Now let's look inside of `/js/foo.js`'s contents:
+<!-- Now let's look inside of `/js/foo.js`'s contents: -->
+
+Alpine 自体の前にスクリプトがどのように含まれているかに注意してください。これは重要です。そうでない場合、プラグインがロードされるまでに Alpine はすでに初期化されているはずです。
+
+それでは、`/js/foo.js` の内容の内部を見てみましょう。
 
 ```js
 document.addEventListener('alpine:init', () => {
@@ -433,15 +459,21 @@ document.addEventListener('alpine:init', () => {
 })
 ```
 
-That's it! Authoring a plugin for inclusion via a script tag is extremely simple with Alpine.
+<!-- That's it! Authoring a plugin for inclusion via a script tag is extremely simple with Alpine. -->
+
+それでおしまい！スクリプトタグを介してプラグインを含めるためのオーサリングは、Alpine を使用すると非常に簡単です。
 
 <a name="bundle-module"></a>
 
-### Bundle module
+### バンドルモジュール
 
-Now let's say you wanted to author a plugin that someone could install via NPM and include into their bundle.
+ここで、誰かが NPM を介してインストールし、バンドルに含めることができるプラグインを作成したいとします。
 
-Like the last example, we'll walk through this in reverse, starting with what it will look like to consume this plugin:
+最後の例のように、このプラグインを使用するとどのように見えるかから始めて、これを逆に説明します。
+
+<!-- Now let's say you wanted to author a plugin that someone could install via NPM and include into their bundle. -->
+
+<!-- Like the last example, we'll walk through this in reverse, starting with what it will look like to consume this plugin: -->
 
 ```js
 import Alpine from 'alpinejs'
@@ -453,9 +485,13 @@ window.Alpine = Alpine
 window.Alpine.start()
 ```
 
-You'll notice a new API here: `Alpine.plugin()`. This is a convenience method Alpine exposes to prevent consumers of your plugin from having to register multiple different directives and magics themselves.
+<!-- You'll notice a new API here: `Alpine.plugin()`. This is a convenience method Alpine exposes to prevent consumers of your plugin from having to register multiple different directives and magics themselves. -->
 
-Now let's look at the source of the plugin and what gets exported from `foo`:
+<!-- Now let's look at the source of the plugin and what gets exported from `foo`: -->
+
+ここに新しい API があります `Alpine.plugin()` これは、プラグインのコンシューマーが複数の異なるディレクティブやマジックを自分で登録する必要がないようにするために Alpine が公開する便利な方法です。
+
+次に、プラグインのソースと、`foo` からエクスポートされるものを見てみましょう。
 
 ```js
 export default function (Alpine) {
@@ -464,6 +500,10 @@ export default function (Alpine) {
 }
 ```
 
-You'll see that `Alpine.plugin` is incredibly simple. It accepts a callback and immediately invokes it while providing the `Alpine` global as a parameter for use inside of it.
+<!-- You'll see that `Alpine.plugin` is incredibly simple. It accepts a callback and immediately invokes it while providing the `Alpine` global as a parameter for use inside of it. -->
 
-Then you can go about extending Alpine as you please.
+<!-- Then you can go about extending Alpine as you please. -->
+
+`Alpine.plugin` は非常にシンプルであることがわかります。コールバックを受け入れ、すぐに呼び出します。その間、内部で使用するパラメータとして `Alpine` グローバルを提供します。
+
+その後、好きなようにアルパインを拡張することができます。
