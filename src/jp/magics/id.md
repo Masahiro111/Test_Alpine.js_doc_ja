@@ -124,7 +124,9 @@ As you can see, `x-id` accepts an array of ID names. Now any usages of `$id()` w
 
 <!-- For this, `$id()` accepts an optional second parameter that will be added as a suffix on the end of the generated ID. -->
 
-<!-- A common example of this need is something like a listbox component that uses the `aria-activedescendant` attribute to tell assistive technologies which element is "active" in the list: -->
+<!-- A common example of this need is something like a listbox component that uses t
+he `aria-activedescendant` attribute to tell 
+assistive technologies which element is "active" in the list: -->
 
 ```html
 <ul

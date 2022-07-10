@@ -13,7 +13,7 @@ title: on
 
 クリックするとアラートを表示するシンプルなボタンの例を次に示します。
 
-```alpine
+```html
 <button x-on:click="alert('Hello World!')">Say Hi</button>
 ```
 
@@ -40,7 +40,7 @@ title: on
 
 上記と同じコンポーネントですが、代わりに省略構文を使用しています。
 
-```alpine
+```html
 <button @click="alert('Hello World!')">Say Hi</button>
 ```
 
@@ -52,7 +52,7 @@ title: on
 
 式からネイティブ JavaScript イベントオブジェクトにアクセスする場合は、Alpineの魔法の `$event` プロパティを使用できます。
 
-```alpine
+```html
 <button @click="alert($event.target.getAttribute('message'))" message="Hello World">Say Hi</button>
 ```
 
@@ -60,7 +60,7 @@ title: on
 
 さらに、Alpineは、末尾の括弧なしで参照されるメソッドにイベントオブジェクトを渡します。例えば
 
-```alpine
+```html
 <button @click="handleClick">...</button>
 
 <script>
@@ -82,7 +82,7 @@ Alpine を使用すると、特定のキーの `keydown` および `keyup` イ�
 
 これは、入力要素内で「Enter」キーをリッスンする例です。
 
-```alpine
+```html
 <input type="text" @keyup.enter="alert('Submitted!')">
 ```
 
@@ -94,7 +94,7 @@ Alpine を使用すると、特定のキーの `keydown` および `keyup` イ�
 
 これは、`Shift` キーを押したまま、`Enter` キーを押したときに実行されるリスナーですが、単独で `Enter` キーを押したときは実行されません。
 
-```alpine
+```html
 <input type="text" @keyup.shift.enter="alert('Submitted!')">
 ```
 
@@ -102,7 +102,7 @@ Alpine を使用すると、特定のキーの `keydown` および `keyup` イ�
 
 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) を介して公開された有効なキー名は、kebab-case に変換することで、修飾子として直接使用できます。
 
-```alpine
+```html
 <input type="text" @keyup.page-down="alert('Submitted!')">
 ```
 
@@ -139,7 +139,7 @@ Alpine のイベントリスナーは、ネイティブDOMイベントリスナ�
 
 これは、カスタムDOMイベントをディスパッチし、それもリッスンするコンポーネントの例です。
 
-```alpine
+```html
 <div x-data @foo="alert('Button Was Clicked!')">
 	<button @click="$event.target.dispatchEvent(new CustomEvent('foo', { bubbles: true }))">...</button>
 </div>
@@ -157,7 +157,7 @@ Alpine のイベントリスナーは、ネイティブDOMイベントリスナ�
 
 これは、`$dispatch` マジックプロパティで書き直された同じコンポーネントです。
 
-```alpine
+```html
 <div x-data @foo="alert('Button Was Clicked!')">
   <button @click="$dispatch('foo')">...</button>
 </div>
@@ -181,7 +181,7 @@ Alpine には、イベントリスナーの動作をカスタマイズするた�
 
 `.prevent` は、ブラウザのイベントオブジェクトのリスナー内で呼び出す `.preventDefault()` と同等です。
 
-```alpine
+```html
 <form @submit.prevent="console.log('submitted')" action="/foo">
     <button>Submit</button>
 </form>
@@ -199,7 +199,7 @@ Alpine には、イベントリスナーの動作をカスタマイズするた�
 
 `.prevent` と同様に、`.stop` は、ブラウザイベントオブジェクトのリスナー内で `.stopPropagation()`を呼び出すのと同じです。
 
-```alpine
+```html
 <div @click="console.log('I will not get logged')">
     <button @click.stop>Click Me</button>
 </div>
@@ -219,7 +219,7 @@ Alpine には、イベントリスナーの動作をカスタマイズするた�
 
 `.outside` は、アタッチされている要素の外側のクリックをリッスンするための便利なヘルパーです。次に、簡単なドロップダウンコンポーネントの例を示します。
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Toggle</button>
 
@@ -229,7 +229,7 @@ Alpine には、イベントリスナーの動作をカスタマイズするた�
 </div>
 ```
 
-In the above example, after showing the dropdown contents by clicking the "Toggle" button, you can close the dropdown by clicking anywhere on the page outside the content.
+<!-- In the above example, after showing the dropdown contents by clicking the "Toggle" button, you can close the dropdown by clicking anywhere on the page outside the content. -->
 
 上記の例では、「Toggle」ボタンをクリックしてドロップダウンのコンテンツを表示した後、コンテンツの外側のページの任意の場所をクリックしてドロップダウンを閉じることができます。
 
@@ -247,7 +247,7 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 `.window` 修飾子が存在する場合、Alpine は、要素自体ではなく、ページ上のルート`window` オブジェクトにイベントリスナーを登録します。
 
-```alpine
+```html
 <div @keyup.escape.window="...">...</div>
 ```
 
@@ -275,7 +275,7 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 リスナーに `.once` を追加することで、ハンドラーが1回だけ呼び出されるようになります。
 
-```alpine
+```html
 <button @click.once="console.log('I will only log once')">...</button>
 ```
 
@@ -291,7 +291,7 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 たとえば、ユーザーが入力したときにネットワークリクエストを発生させる検索フィールドがある場合、デバウンスを追加すると、キーストロークごとにネットワークリクエストが発生するのを防ぐことができます。
 
-```alpine
+```html
 <input @input.debounce="fetchResults">
 ```
 
@@ -299,17 +299,17 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 <!-- If you wish to lengthen or shorten the debounce time, you can do so by trailing a duration after the `.debounce` modifier like so: -->
 
-これで、すべてのキーストロークの後に `fetchResults` を呼び出す代わりに、 `fetchResults` はキーストロークがない250ミリ秒後にのみ呼び出されます。
+これで、すべてのキーストロークの後に `fetchResults` を呼び出す代わりに、`fetchResults` はキーストロークがない250ミリ秒後にのみ呼び出されます。
 
 デバウンス時間を長くしたり短くしたりする場合は、次のように `.debounce` 修飾子の後に継続時間を追跡することでこれを行うことができます。
 
-```alpine
+```html
 <input @input.debounce.500ms="fetchResults">
 ```
 
 <!-- Now, `fetchResults` will only be called after 500 milliseconds of inactivity. -->
 
-現在、`fetchResults`は、500ミリ秒の非アクティブの後にのみ呼び出されます。
+現在、`fetchResults` は、500ミリ秒の非アクティブの後にのみ呼び出されます。
 
 <a name="throttle"></a>
 
@@ -325,7 +325,7 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 例えば、
 
-```alpine
+```html
 <div @scroll.window.throttle="handleScroll">...</div>
 ```
 
@@ -341,7 +341,7 @@ In the above example, after showing the dropdown contents by clicking the "Toggl
 
 `.debounce` と同様に、スロットルされたイベントにカスタム期間を追加できます。
 
-```alpine
+```html
 <div @scroll.window.throttle.750ms="handleScroll">...</div>
 ```
 
@@ -357,7 +357,7 @@ Now, `handleScroll` will only be called every 750 milliseconds.
 
 イベントリスナーに `.self` を追加することで、イベントが子要素からではなく、宣言された要素から発生したことを確認できます。
 
-```alpine
+```html
 <button @click.self="handleClick">
     Click Me
 
@@ -377,7 +377,7 @@ Now, `handleScroll` will only be called every 750 milliseconds.
 
 ### .camel
 
-```alpine
+```html
 <div @custom-event.camel="handleCustomEvent">
     ...
 </div>
@@ -395,7 +395,7 @@ Now, `handleScroll` will only be called every 750 milliseconds.
 
 ### .dot
 
-```alpine
+```html
 <div @custom-event.dot="handleCustomEvent">
     ...
 </div>
@@ -421,7 +421,7 @@ Now, `handleScroll` will only be called every 750 milliseconds.
 
 タッチイベントをリッスンしている場合は、スクロールのパフォーマンスを妨げないように、リスナーに `.passive` を追加することが重要です。
 
-```alpine
+```html
 <div @touchstart.passive="...">...</div>
 ```
 

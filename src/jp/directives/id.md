@@ -21,7 +21,7 @@ title: id
 
 使用中のこのディレクティブの簡単な例を次に示します。
 
-```alpine
+```html
 <div x-id="['text-input']">
     <label :for="$id('text-input')">Username</label>
     <!-- for="text-input-1" -->

@@ -17,7 +17,7 @@ Alpine のすべては、`x-data` ディレクティブから始まります。
 
 <!-- Here's an example of a contrived dropdown component: -->
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button @click="open = ! open">Toggle Content</button>
 
@@ -43,7 +43,7 @@ Alpine のすべては、`x-data` ディレクティブから始まります。
 
 例えば：
 
-```alpine
+```html
 <div x-data="{ foo: 'bar' }">
     <span x-text="foo"><!-- Will output: "bar" --></span>
 
@@ -69,7 +69,7 @@ Alpine のすべては、`x-data` ディレクティブから始まります。
 
 たとえば、「Toggle Content」の動作を`x-data`のメソッドに抽出してみましょう。
 
-```alpine
+```html
 <div x-data="{ open: false, toggle() { this.open = ! this.open } }">
     <button @click="toggle()">Toggle Content</button>
 
@@ -91,7 +91,7 @@ Alpine のすべては、`x-data` ディレクティブから始まります。
 
 必要に応じて、呼び出し括弧を`toggle`メソッドから完全に省略できます。例えば：
 
-```alpine
+```html
 <!-- Before -->
 <button @click="toggle()">...</button>
 
@@ -115,7 +115,7 @@ JavaScript の [ゲッター](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 コンポーネントをリファクタリングして、`open` に直接アクセスする代わりに `isOpen` と呼び出されるゲッターを使用してみましょう。
 
-```alpine
+```html
 <div x-data="{
   open: false,
   get isOpen() { return this.open },
@@ -150,7 +150,7 @@ Alpine コンポーネントを作成したい場合がありますが、デー�
 
 このような場合、いつでも空のオブジェクトを渡すことができます。
 
-```alpine
+```html
 <div x-data="{}">
 ```
 
@@ -158,7 +158,7 @@ Alpine コンポーネントを作成したい場合がありますが、デー�
 
 ただし、必要に応じて、見栄えがよい場合は属性値を完全に削除することもできます。
 
-```alpine
+```html
 <div x-data>
 ```
 
@@ -170,7 +170,7 @@ Alpine コンポーネントを作成したい場合がありますが、デー�
 
 次のように、Alpine コンポーネント内に要素が1つしかない場合があります。
 
-```alpine
+```html
 <div x-data="{ open: true }">
     <button @click="open = false" x-show="open">Hide Me</button>
 </div>
@@ -180,7 +180,7 @@ Alpine コンポーネントを作成したい場合がありますが、デー�
 
 このような場合、その単一の要素で `x-data` を直接宣言できます。
 
-```alpine
+```html
 <button x-data="{ open: true }" @click="open = false" x-show="open">
     Hide Me
 </button>
@@ -198,7 +198,7 @@ Alpine コンポーネントを作成したい場合がありますが、デー�
 
 簡単な例を次に示します。
 
-```alpine
+```html
 <div x-data="dropdown">
     <button @click="toggle">Toggle Content</button>
 

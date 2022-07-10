@@ -13,7 +13,7 @@ title: data()
 
 たとえば、考案された「ドロップダウン」コンポーネントを次に示します。
 
-```alpine
+```html
 <div x-data="dropdown">
     <button @click="toggle">...</button>
 
@@ -76,7 +76,7 @@ export default () => ({
 
 <!-- In addition to referencing `Alpine.data` providers by their name plainly (like `x-data="dropdown"`), you can also reference them as functions (`x-data="dropdown()"`). By calling them as functions directly, you can pass in additional parameters to be used when creating the initial data object like so: -->
 
-```alpine
+```html
 <div x-data="dropdown(true)">
 ```
 ```js
@@ -136,7 +136,7 @@ Alpine.data('dropdown', () => ({
 
 <!-- The following is an example of extracting the templating details of our previous dropdown component using `x-bind`: -->
 
-```alpine
+```html
 <div x-data="dropdown">
     <button x-bind="trigger"></button>
 

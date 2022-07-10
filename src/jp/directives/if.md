@@ -13,7 +13,7 @@ title: if
 
 この動作の違いのため、`x-if` は要素に直接適用するのではなく、要素を囲む `<template>` タグに適用する必要があります。 このようにして、Alpine は、ページから削除された要素の記録を保持できます。
 
-```alpine
+```html
 <template x-if="open">
     <div>Contents...</div>
 </template>

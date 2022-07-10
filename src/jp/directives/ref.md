@@ -5,9 +5,9 @@ title: ref
 
 # x-ref
 
-`x-ref` in combination with `$refs` is a useful utility for easily accessing DOM elements directly. It's most useful as a replacement for APIs like `getElementById` and `querySelector`.
+<!-- `x-ref` in combination with `$refs` is a useful utility for easily accessing DOM elements directly. It's most useful as a replacement for APIs like `getElementById` and `querySelector`. -->
 
-`$refs`と組み合わせた`x-ref`は、DOM要素に直接簡単にアクセスするための便利なユーティリティです。 これは、`getElementById`や`querySelector`などのAPIの代わりとして最も役立ちます。
+`$refs` と組み合わせた `x-ref` は、DOM 要素に直接簡単にアクセスするための便利なユーティリティです。 これは、`getElementById` や `querySelector` などの API の代わりとして最も役立ちます。
 
 ```html
 <button @click="$refs.text.remove()">Remove Text</button>

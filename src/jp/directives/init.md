@@ -9,7 +9,7 @@ title: init
 
 この `x-init` ディレクティブを使用すると、Alpine の任意の要素の初期化フェーズにフックできます。
 
-```alpine
+```html
 <div x-init="console.log('I\'m being initialized!')"></div>
 ```
 
@@ -21,7 +21,7 @@ title: init
 
 コンポーネントが処理される前に、`x-init` を使用してJSON をフェッチし、それを `x-data` に保存する別の例を考えてみましょう。
 
-```alpine
+```html
 <div
     x-data="{ posts: [] }"
     x-init="posts = await (await fetch('/posts')).json()"
@@ -44,7 +44,7 @@ title: init
 
 Alpine の内部 $nextTick の魔法を使用することで、これを実現できます。
 
-```alpine
+```html
 <div x-init="$nextTick(() => { ... })"></div>
 ```
 
@@ -56,7 +56,7 @@ Alpine の内部 $nextTick の魔法を使用することで、これを実現�
 
 `x-data` のあるHTMLブロックの内側、または外側の任意の要素に `x-init` を追加できます。例えば
 
-```alpine
+```html
 <div x-data>
     <span x-init="console.log('I can initialize')"></span>
 </div>
@@ -72,7 +72,7 @@ Alpine の内部 $nextTick の魔法を使用することで、これを実現�
 
 コンポーネントの `x-data` オブジェクトに `init()` メソッドが含まれている場合、そのオブジェクトは自動的に呼び出されます。 例えば
 
-```alpine
+```html
 <div x-data="{
     init() {
         console.log('I am called automatically')

@@ -25,7 +25,7 @@ title: cloak
 
 以下の例では、Alpine が `message` プロパティへのテキストがセット完了するまで、`s-cloak` を指定した `<span>` タグが表示されません。
 
-```alpine
+```html
 <span x-cloak x-text="message"></span>
 ```
 
@@ -37,7 +37,7 @@ Alpineがページに読み込まれると、要素からすべての `x-cloak`�
 
 これと同じ動作を実現したいが、グローバルスタイルを含める必要がない場合は、次のクールな、しかし確かに奇妙なトリックを使用できます。
 
-```alpine
+```html
 <template x-if="true">
     <span x-text="message"></span>
 </template>

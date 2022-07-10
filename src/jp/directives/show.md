@@ -13,7 +13,7 @@ title: show
 
 `x-show` を使用した単純なドロップダウンコンポーネントの例を次に示します。
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button x-on:click="open = ! open">Toggle Dropdown</button>
 
@@ -39,7 +39,7 @@ title: show
 
 `x-show` の動作にスムーズな遷移を適用する場合は、`x-transition` と組み合わせて使用​​できます。このディレクティブの詳細については、[ここ](/directives/transition)　を参照してください。ただし、トランジションを適用した、上記と同じコンポーネントの簡単な例を次に示します。
 
-```alpine
+```html
 <div x-data="{ open: false }">
     <button x-on:click="open = ! open">Toggle Dropdown</button>
 

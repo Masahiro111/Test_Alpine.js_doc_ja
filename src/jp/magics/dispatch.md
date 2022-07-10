@@ -59,7 +59,7 @@ title: dispatch
 
 **イベントの伝播に関する注意**
 
-Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bubbling), when you need to capture events dispatched from nodes that are under the same nesting hierarchy, you'll need to use the [`.window`](https://github.com/alpinejs/alpine#x-on) modifier:
+<!-- Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bubbling), when you need to capture events dispatched from nodes that are under the same nesting hierarchy, you'll need to use the [`.window`](https://github.com/alpinejs/alpine#x-on) modifier: -->
 
 [イベントバブリング](https://en.wikipedia.org/wiki/Event_bubbling) のため、同じネスト階層の下にあるノードからディスパッチされたイベントをキャプチャする必要がある場合は、[`.window`](https://github.com/alpinejs/alpine#x-on) 修飾子：
 

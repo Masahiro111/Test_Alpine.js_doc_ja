@@ -13,7 +13,7 @@ title: ignore
 
 何らかの理由で、Alpine が HTML の特定のセクションに触れないようにする場合は、`x-ignore` を使用してそれを防ぐことができます。
 
-```alpine
+```html
 <div x-data="{ label: 'From Alpine' }">
     <div x-ignore>
         <span x-text="label"></span>

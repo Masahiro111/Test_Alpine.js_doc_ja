@@ -13,12 +13,13 @@ title: text
 
 `x-text`を使用してユーザーのユーザー名を表示する基本的な例を次に示します。
 
-```alpine
+```html
 <div x-data="{ username: 'calebporzio' }">
     Username: <strong x-text="username"></strong>
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ username: 'calebporzio' }">
@@ -26,6 +27,7 @@ title: text
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <!-- Now the `<strong>` tag's inner text content will be set to "calebporzio". -->
 

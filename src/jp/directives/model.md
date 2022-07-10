@@ -13,7 +13,7 @@ title: model
 
 これは、`x-model` を使用してテキストフィールドの値をAlpine のデータにバインドする簡単な例です。
 
-```alpine
+```html
 <div x-data="{ message: '' }">
     <input type="text" x-model="message">
 
@@ -21,6 +21,7 @@ title: model
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ message: '' }">
@@ -30,7 +31,7 @@ title: model
     </div>
 </div>
 <!-- END_VERBATIM -->
-
+```
 
 <!-- Now as the user types into the text field, the `message` will be reflected in the `<span>` tag. -->
 
@@ -44,7 +45,7 @@ title: model
 
 上記と同じ例を使用できますが、今回は、`message` プロパティの値を変更するためのボタンを追加します。
 
-```alpine
+```html
 <div x-data="{ message: '' }">
     <input type="text" x-model="message">
 
@@ -52,6 +53,7 @@ title: model
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ message: '' }">
@@ -61,6 +63,7 @@ title: model
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <!-- Now when the `<button>` is clicked, the input element's value will instantly be updated to "changed". -->
 
@@ -80,12 +83,13 @@ title: model
 
 ## テキストの入力
 
-```alpine
+```html
 <input type="text" x-model="message">
 
 <span x-text="message"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ message: '' }">
@@ -95,17 +99,19 @@ title: model
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="textarea-inputs"></a>
 
 ## テキストエリアの入力
 
-```alpine
+```html
 <textarea x-model="message"></textarea>
 
 <span x-text="message"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ message: '' }">
@@ -115,6 +121,7 @@ title: model
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="checkbox-inputs"></a>
 
@@ -124,12 +131,13 @@ title: model
 
 ### ブール値を含む単一のチェックボックス
 
-```alpine
+```html
 <input type="checkbox" id="checkbox" x-model="show">
 
 <label for="checkbox" x-text="show"></label>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ open: '' }">
@@ -139,12 +147,13 @@ title: model
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="multiple-checkboxes-bound-to-array"></a>
 
 ### 配列にバインドされた複数のチェックボックス
 
-```alpine
+```html
 <input type="checkbox" value="red" x-model="colors">
 <input type="checkbox" value="orange" x-model="colors">
 <input type="checkbox" value="yellow" x-model="colors">
@@ -152,6 +161,7 @@ title: model
 Colors: <span x-text="colors"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ colors: [] }">
@@ -163,18 +173,20 @@ Colors: <span x-text="colors"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="radio-inputs"></a>
 
 ## ラジオボタンの入力
 
-```alpine
+```html
 <input type="radio" value="yes" x-model="answer">
 <input type="radio" value="no" x-model="answer">
 
 Answer: <span x-text="answer"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ answer: '' }">
@@ -185,6 +197,7 @@ Answer: <span x-text="answer"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="select-inputs"></a>
 
@@ -195,7 +208,7 @@ Answer: <span x-text="answer"></span>
 
 ### 単一のセレクトボックス
 
-```alpine
+```html
 <select x-model="color">
     <option>Red</option>
     <option>Orange</option>
@@ -205,6 +218,7 @@ Answer: <span x-text="answer"></span>
 Color: <span x-text="color"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ color: '' }">
@@ -218,12 +232,13 @@ Color: <span x-text="color"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="single-select-with-placeholder"></a>
 
 ### プレースホルダー付きの単一選択
 
-```alpine
+```html
 <select x-model="color">
     <option value="" disabled>Select A Color</option>
     <option>Red</option>
@@ -234,7 +249,7 @@ Color: <span x-text="color"></span>
 Color: <span x-text="color"></span>
 ```
 
-
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ color: '' }">
@@ -249,12 +264,13 @@ Color: <span x-text="color"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="multiple-select"></a>
 
 ### 複数選択のセレクトボックス
 
-```alpine
+```html
 <select x-model="color" multiple>
     <option>Red</option>
     <option>Orange</option>
@@ -264,6 +280,7 @@ Color: <span x-text="color"></span>
 Colors: <span x-text="color"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ color: '' }">
@@ -277,12 +294,13 @@ Colors: <span x-text="color"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="dynamically-populated-select-options"></a>
 
 ### 動的に入力される選択オプション
 
-```alpine
+```html
 <select x-model="color">
     <template x-for="color in ['Red', 'Orange', 'Yellow']">
         <option x-text="color"></option>
@@ -292,6 +310,7 @@ Colors: <span x-text="color"></span>
 Color: <span x-text="color"></span>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ color: '' }">
@@ -305,6 +324,7 @@ Color: <span x-text="color"></span>
     </div>
 </div>
 <!-- END_VERBATIM -->
+```
 
 <a name="modifiers"></a>
 
@@ -322,7 +342,7 @@ Color: <span x-text="color"></span>
 
 これは、ユーザーがフィールドから「tabs」で移動するまで入力検証エラーを表示したくないリアルタイムのフォーム検証などに便利です。
 
-```alpine
+```html
 <input type="text" x-model.lazy="username">
 <span x-show="username.length > 20">The username is too long.</span>
 ```
@@ -335,7 +355,7 @@ Color: <span x-text="color"></span>
 
 デフォルトでは、`x-model` を介してプロパティに保存されているデータはすべて文字列として保存されます。 Alpine に値を JavaScript 番号として保存させるには、`.number` 修飾子を追加します。
 
-```alpine
+```html
 <input type="text" x-model.number="age">
 <span x-text="typeof age"></span>
 ```
@@ -352,7 +372,7 @@ Color: <span x-text="color"></span>
 
 これは、検索プロパティが変更されるたびにサーバーから新しいデータをフェッチするリアルタイム検索入力などに役立ちます。
 
-```alpine
+```html
 <input type="text" x-model.debounce="search">
 ```
 
@@ -360,7 +380,7 @@ Color: <span x-text="color"></span>
 
 デフォルトのデバウンス時間は250ミリ秒です。このように時間修飾子を追加することで、これを簡単にカスタマイズできます。
 
-```alpine
+```html
 <input type="text" x-model.debounce.500ms="search">
 ```
 
@@ -372,13 +392,15 @@ Color: <span x-text="color"></span>
 
 `.debounce` と同様に、`x-model` によってトリガーされるプロパティの更新を指定された間隔でのみ更新するように制限できます。
 
+```html
 <input type="text" x-model.throttle="search">
+```
 
 <!-- The default throttle interval is 250 milliseconds, you can easily customize this by adding a time modifier like so. -->
 
 デフォルトのスロットル間隔は250ミリ秒です。次の例では、時間を付与した修飾子を追加することでカスタマイズもできます。
 
-```alpine
+```html
 <input type="text" x-model.throttle.500ms="search">
 ```
 
@@ -400,7 +422,7 @@ Alpineは、`x-model` でバインドされたプロパティを取得および�
 * `el._x_model.get()`（バインドされたプロパティの値を返します）
 * `el._x_model.set()`（バインドされたプロパティの値を設定します）
 
-```alpine
+```html
 <div x-data="{ username: 'calebporzio' }">
     <div x-ref="div" x-model="username"></div>
 
@@ -412,6 +434,7 @@ Alpineは、`x-model` でバインドされたプロパティを取得および�
 </div>
 ```
 
+```html
 <!-- START_VERBATIM -->
 <div class="demo">
     <div x-data="{ username: 'calebporzio' }">
@@ -425,3 +448,4 @@ Alpineは、`x-model` でバインドされたプロパティを取得および�
     </div>
 </div>
 <!-- END_VERBATIM -->
+```

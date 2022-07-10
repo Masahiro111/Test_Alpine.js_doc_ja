@@ -47,7 +47,7 @@ Alpine の `x-for` ディレクティブを使用すると、リストを反復�
 
 アイテムを並べ替える場合は、`x-for` の反復ごとに一意のキーを指定することが重要です。動的キーがないと、Alpine は何が並べ替えられるかを追跡するのに苦労し、奇妙な副作用を引き起こす可能性があります。
 
-```alpine
+```html
 <ul x-data="{ colors: [
     { id: 1, label: 'Red' },
     { id: 2, label: 'Orange' },
@@ -86,7 +86,7 @@ Alpine の `x-for` ディレクティブを使用すると、リストを反復�
 
 動的な `:key` 式内のインデックスにアクセスすることもできます。
 
-```alpine
+```html
 <template x-for="(color, index) in colors" :key="index">
 ```
 
