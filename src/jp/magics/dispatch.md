@@ -51,9 +51,9 @@ title: dispatch
 <!-- END_VERBATIM -->
 ```
 
-Under the hood, `$dispatch` is a wrapper for the more verbose API: `element.dispatchEvent(new CustomEvent(...))`
+<!-- Under the hood, `$dispatch` is a wrapper for the more verbose API: `element.dispatchEvent(new CustomEvent(...))` -->
 
-内部的には、 `$dispatch` はより詳細な API のラッパーです：`element.dispatchEvent(new CustomEvent(...))`
+内部的には、`$dispatch` はより詳細な API のラッパーです：`element.dispatchEvent(new CustomEvent(...))`
 
 <!-- **Note on event propagation** -->
 
@@ -61,7 +61,9 @@ Under the hood, `$dispatch` is a wrapper for the more verbose API: `element.disp
 
 Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bubbling), when you need to capture events dispatched from nodes that are under the same nesting hierarchy, you'll need to use the [`.window`](https://github.com/alpinejs/alpine#x-on) modifier:
 
-**Example:**
+[イベントバブリング](https://en.wikipedia.org/wiki/Event_bubbling) のため、同じネスト階層の下にあるノードからディスパッチされたイベントをキャプチャする必要がある場合は、[`.window`](https://github.com/alpinejs/alpine#x-on) 修飾子：
+
+**例 :**
 
 ```html
 <!-- 🚫 Won't work -->
@@ -77,21 +79,19 @@ Notice that, because of [event bubbling](https://en.wikipedia.org/wiki/Event_bub
 </div>
 ```
 
-> The first example won't work because when `custom-event` is dispatched, it'll propagate to its common ancestor, the `div`, not its sibling, the `<span>`. The second example will work because the sibling is listening for `notify` at the `window` level, which the custom event will eventually bubble up to.
+<!-- > The first example won't work because when `custom-event` is dispatched, it'll propagate to its common ancestor, the `div`, not its sibling, the `<span>`. The second example will work because the sibling is listening for `notify` at the `window` level, which the custom event will eventually bubble up to. -->
 
->最初の例は機能しません。これは、 `custom-event`がディスパッチされると、その兄弟である`<span>`ではなく共通の祖先である`div`に伝播するためです。 2番目の例は、兄弟が`window`レベルで`notify`をリッスンしているために機能します。これは、カスタムイベントが最終的にバブルアップします。
+> 最初の例は機能しません。これは、 `custom-event` がディスパッチされると、その兄弟である `<span>` ではなく共通の祖先である `div` に伝播するためです。 2番目の例は、兄弟が `window` レベルで `notify` をリッスンしているために機能します。これは、カスタムイベントが最終的にバブルアップします。
 
 <a name="dispatching-to-components"></a>
 
-## Dispatching to other components
+## 他のコンポーネントへのディスパッチ
 
-You can also take advantage of the previous technique to make your components talk to each other:
-
-他のコンポーネントへのディスパッチ
+<!-- You can also take advantage of the previous technique to make your components talk to each other: -->
 
 前の手法を利用して、コンポーネントを相互に通信させることもできます。
 
-**Example:**
+**例 :**
 
 ```html
 <div
@@ -111,9 +111,9 @@ You can also take advantage of the previous technique to make your components ta
 
 ## x-model へのディスパッチ
 
-You can also use `$dispatch()` to trigger data updates for `x-model` data bindings. For example:
+<!-- You can also use `$dispatch()` to trigger data updates for `x-model` data bindings. For example: -->
 
-`$dispatch()`を使用して、`x-model` データバインディングのデータ更新をトリガーすることもできます。例えば：
+`$dispatch()` を使用して、`x-model` データバインディングのデータ更新をトリガーすることもできます。例えば：
 
 ```html
 <div x-data="{ title: 'Hello' }">
