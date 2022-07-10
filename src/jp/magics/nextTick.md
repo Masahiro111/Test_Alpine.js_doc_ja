@@ -22,17 +22,17 @@ title: nextTick
 </div>
 ```
 
-In the above example, rather than logging "Hello" to the console, "Hello World!" will be logged because `$nextTick` was used to wait until Alpine was finished updating the DOM.
+<!-- In the above example, rather than logging "Hello" to the console, "Hello World!" will be logged because `$nextTick` was used to wait until Alpine was finished updating the DOM. -->
 
-上記の例では 「Hello」をコンソールに記録するのではなく 「HelloWorld！」 Alpine がDOMの更新を完了するまで待機するために`$nextTick` が使用されたため、ログに記録されます。
+上記の例では 「Hello」をコンソールに記録するのではなく 「HelloWorld！」 Alpine がDOM の更新を完了するまで待機するために`$nextTick` が使用されたため、ログに記録されます。
 
 <a name="promises"></a>
 
 ## Promises
 
-`$ nextTick`はpromiseを返し、`$nextTick`を使用してdomの更新が保留されるまで非同期関数を一時停止できるようにします。このように使用する場合、`$nextTick`も引数を渡す必要はありません。
+`$nextTick` はpromiseを返し、`$nextTick` を使用して DOM の更新が保留されるまで非同期関数を一時停止できるようにします。このように使用する場合、`$nextTick` も引数を渡す必要はありません。
 
-`$nextTick` returns a promise, allowing the use of `$nextTick` to pause an async function until after pending dom updates. When used like this, `$nextTick` also does not require an argument to be passed.
+<!-- `$nextTick` returns a promise, allowing the use of `$nextTick` to pause an async function until after pending dom updates. When used like this, `$nextTick` also does not require an argument to be passed. -->
 
 ```html
 <div x-data="{ title: 'Hello' }">
