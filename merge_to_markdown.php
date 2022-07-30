@@ -16,15 +16,6 @@ $file_dir = "src/ja/";
 $filelist = array(
     // Getting started
     'introduction.md',
-    'installation.md',
-    'installation/react.md',
-    'installation/nextjs.md',
-    'installation/vue3.md',
-    'installation/vue2.md',
-    'installation/nuxt.md',
-    'installation/svelte.md',
-    'installation/alpine.md',
-    'installation/php.md',
 );
 
 
