@@ -123,9 +123,9 @@ $src = '
         }
 
         .markdown-body .highlight pre, .markdown-body pre {
-            padding: 8px;
+            padding: 6px;
             overflow: auto;
-            font-size: 95%;
+            font-size: 98%;
         }
         </style>
         <title>Publish html</title>

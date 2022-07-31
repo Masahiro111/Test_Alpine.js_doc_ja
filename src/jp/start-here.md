@@ -103,7 +103,7 @@ Alpine.js のすべては `x-data` ディレクティブで始まります。プ
 [→「x-data」の詳細を読む](/directives/data)
 
 
-Let's look at `x-on` and see how it can access and modify the `count` property from above:
+<!-- Let's look at `x-on` and see how it can access and modify the `count` property from above: -->
 
 上記コードを参考に、`count` プロパティを変更する方法を `x-on`を利用して学んでいきましょう。
 

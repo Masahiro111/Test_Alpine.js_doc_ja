@@ -331,14 +331,16 @@ Alpine では、`Alpine.magic()` を使用してカスタムの `magics`（プ�
 ```js
 Alpine.magic('[name]', (el, { Alpine }) => {})
 ```
-<!-- 
-&nbsp; | &nbsp;
+
+
+<!-- &nbsp; | &nbsp;
 ---|---
 name | The name of the magic. The name "foo" for example would be consumed as `$foo`
 el | The DOM element the magic was triggered from
 Alpine | The Alpine global object -->
 
-＆nbsp; | ＆nbsp;
+
+&nbsp; | &nbsp;
 --- | ---
 name | マジックの名前。たとえば、「foo」という名前は「$foo」として使用されます。
 el |マジックが引き起こされた DOM 要素
