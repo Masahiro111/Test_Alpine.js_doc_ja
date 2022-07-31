@@ -1,0 +1,5080 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <style>
+        .markdown-body h1 {
+            margin-top:3rem;
+            padding: 1rem;
+            background-color: #efefef;
+        }
+
+        .markdown-body h1:first {
+            margin-top:0rem;
+        }
+
+        .markdown-body menu,
+        .markdown-body ol,
+        .markdown-body ul 
+        {
+            list-style: disc;
+        }
+        </style>
+        <title>Publish html</title>
+    </head>
+    <body>
+        <div class="markdown-body">
+            <h1>Alpine.js をはじめよう</h1>
+
+<p>まず、空の HTML ファイルを好きな場所に作成して、<code>i-love-alpine.html</code> と名前を付けましょう。</p>
+
+<p>テキストエディターを使用して、以下のようにファイル内を埋めてください。</p>
+<pre><code class="language-html:i-love-alpine.html">&lt;html&gt;
+&lt;head&gt;
+    &lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 x-data=&quot;{ message: 'I ❤️ Alpine' }&quot; x-text=&quot;message&quot;&gt;&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>ブラウザを開いたて、<code>I ❤️ Alpine</code> と表示されたら準備完了です！</p>
+
+
+
+
+<p>準備が整ったので、Alpine の基本を学ぶために、3つの実用的な例を見てみましょう。この演習が終了するまでに、自分で作成を開始する準備が整っているはずです。</p>
+
+<p></p>
+<h2>カウンターの構築</h2>
+
+<p>単純な「カウンター」コンポーネントから始めて、2つのコア機能である Alpine での基本の状態とイベントリスニングを示しましょう。</p>
+
+<p><code>&lt;body&gt;</code> タグに以下を挿入します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: 0 }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+
+<p>これで、このHTMLに 3つのAlpine が散りばめられていることがわかります。これで、インタラクティブな「カウンター」コンポーネントが作成されました。</p>
+<p>何が起こっているのかを簡単に見ていきましょう。</p>
+<p></p>
+<h3>データの宣言</h3>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: 0 }&quot;&gt;
+</code></pre>
+
+
+<p>Alpine.js のすべては <code>x-data</code> ディレクティブで始まります。プレーンな JavaScript を含んでいる <code>x-data</code> の内部で、Alpine.js が追跡するデータのオブジェクトを宣言します。</p>
+<p>このオブジェクト内のすべてのプロパティは、この HTML 要素内の他のディレクティブで使用できるようになります。さらに、これらのプロパティの1つが変更されると、それに依存するすべてのものも変更されます。</p>
+<p><a href="/directives/data">→「x-data」の詳細を読む</a></p>
+<p>Let's look at <code>x-on</code> and see how it can access and modify the <code>count</code> property from above:</p>
+<p>上記コードを参考に、<code>count</code> プロパティを変更する方法を <code>x-on</code>を利用して学んでいきましょう。</p>
+<p></p>
+<h3>イベントリスナー</h3>
+<pre><code class="language-html">&lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+</code></pre>
+
+
+
+<p><code>x-on</code> は、要素のイベントをリッスンするために使用できるディレクティブです。この場合、<code>click</code> イベントをリッスンしているので、<code>x-on:click</code> のようになります。</p>
+<p>あなたが想像するように、あなたは他のイベントをリッスンすることができます。たとえば、<code>mouseenter</code> イベントをリッスンすると、<code>x-on:mouseenter</code> のようになります。</p>
+<p><code>click</code> イベントが発生すると、Alpine は関連する JavaScript 式を呼び出します（今回の例では、<code>count++</code>）。ご覧のとおり、 <code>x-data</code> 式で宣言されたデータに直接アクセスできます。</p>
+
+<blockquote>
+<p><code>x-on:</code> の代わりに <code>@</code> を使用することもできます。これは、多くの人が好む、短くて親しみやすい構文です。今後、このドキュメントでは<code>x-on</code> の代わりに <code>@</code> を使用することもあります。</p>
+</blockquote>
+<p><a href="/directives/on">→ 「x-on」の詳細を読む</a></p>
+<p></p>
+<h3>変化への対応</h3>
+<pre><code class="language-html">&lt;h1 x-text=&quot;count&quot;&gt;&lt;/h1&gt;
+</code></pre>
+
+
+
+<p><code>x-text</code> は、要素のテキストコンテンツを JavaScript 式の結果に設定するために使用できる Alpine のディレクティブです。</p>
+<p>この場合、この <code>h1</code> タグの内容が <code>count</code> プロパティの値を反映していることを常に確認するように Alpine に指示しています。</p>
+<p><code>x-text</code> は、引数に JavaScript 式を受け入れることができます。たとえば、内容を <code>x-text=&quot;count * 2&quot;</code> に設定すると、<code>h1</code> のテキストの内容は常に <code>count</code> の値の2倍になります。</p>
+<p><a href="/directives/text">→ 「x-text」の詳細を読む</a></p>
+<p></p>
+<h2>ドロップダウンの作成</h2>
+
+
+<p>いくつかの基本的な機能を確認したので、続けて、Alpine の重要な <code>x-show</code> ディレクティブを見てみましょう。今回は「ドロップダウン」コンポーネントを作成してみます。</p>
+<p>次のコードを <code>body</code> タグに挿入してください。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot; @click.outside=&quot;open = false&quot;&gt;Contents...&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+
+<p>このコンポーネントをロードすると、「Contents...」がデフォルトで非表示になっていることがわかります。「Toggle」ボタンをクリックすると、ページの表示を切り替えることができます。</p>
+<p><code>x-data</code> と <code>x-on</code> ディレクティブは前の例でおなじみのはずなので、これらの説明はスキップします。</p>
+<p></p>
+<h3>要素の切り替え</h3>
+<pre><code class="language-html">&lt;div x-show=&quot;open&quot; ...&gt;Contents...&lt;/div&gt;
+</code></pre>
+
+<p><code>x-show</code> は Alpine の非常に強力なディレクティブであり、JavaScript 式の結果に基づいてページ上の HTML のブロックを表示および非表示にするために使用できます。この場合は次のようになります。</p>
+<p><a href="/directives/show">→ 「x-show」の詳細を読む</a></p>
+<p></p>
+<h3>クリックの外側でのリスナー</h3>
+<pre><code class="language-html">&lt;div ... @click.outside=&quot;open = false&quot;&gt;Contents...&lt;/div&gt;
+</code></pre>
+
+
+
+
+<p>この例では、何か新しいことに気付くでしょう（<code>.outside</code>）。Alpineの多くのディレクティブは、ディレクティブの最後にチェーンされ、ピリオドで区切られた <strong>「修飾子」</strong> を付け加えることができます。</p>
+<p>この場合、<code>.outside</code> は、Alpineに対して <code>&lt;div&gt;</code> の内側でクリックをリッスンする代わりに、<code>&lt;div&gt;</code> の外側でクリックが発生した場合にのみクリックをリッスンするように指示します。</p>
+<p>これは Alpine に組み込まれている便利なヘルパーです。これは一般的なニーズであり、手動で実装するのは面倒で複雑だからです。</p>
+<p><a href="/directives/on#modifiers">→ 「x-on」の修飾子の詳細を読む</a></p>
+<p></p>
+<h2>検索入力の作成</h2>
+
+
+<p>次に、より複雑なコンポーネントを作成し、他のいくつかのディレクティブとパターンを紹介しましょう。</p>
+<p>次のコードを <code>&lt;body&gt;</code> タグに挿入します。</p>
+<pre><code class="language-html">&lt;div
+    x-data=&quot;{
+        search: '',
+
+        items: ['foo', 'bar', 'baz'],
+
+        get filteredItems() {
+            return this.items.filter(
+                i =&gt; i.startsWith(this.search)
+            )
+        }
+    }&quot;
+&gt;
+    &lt;input x-model=&quot;search&quot; placeholder=&quot;Search...&quot;&gt;
+
+    &lt;ul&gt;
+        &lt;template x-for=&quot;item in filteredItems&quot; :key=&quot;item&quot;&gt;
+            &lt;li x-text=&quot;item&quot;&gt;&lt;/li&gt;
+        &lt;/template&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div
+        x-data=&quot;{
+            search: '',
+
+            items: ['foo', 'bar', 'baz'],
+
+            get filteredItems() {
+                return this.items.filter(
+                    i =&gt; i.startsWith(this.search)
+                )
+            }
+        }&quot;
+    &gt;
+        &lt;input x-model=&quot;search&quot; placeholder=&quot;Search...&quot;&gt;
+
+        &lt;ul class=&quot;pl-6 pt-2&quot;&gt;
+            &lt;template x-for=&quot;item in filteredItems&quot; :key=&quot;item&quot;&gt;
+                &lt;li x-text=&quot;item&quot;&gt;&lt;/li&gt;
+            &lt;/template&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>デフォルトでは、すべての「アイテム」（foo、bar、および baz）がページに表示されますが、テキスト入力に入力することでそれらをフィルタリングできます。入力すると、アイテムのリストが変更され、検索内容が反映されます。</p>
+<p>ここではかなりのことが起こっているので、このスニペットを少しずつ見ていきましょう。</p>
+<p></p>
+<h3>複数行のフォーマット</h3>
+
+<p>私が最初に指摘したいのは、今回の <code>x-data</code> は、以前よりも多くのことが起こっているということです。書き込みと読み取りを簡単にするために、HTML では複数の行に分割しています。これは完全にオプションであり、この問題を完全に回避する方法についてもう少し詳しく説明しますが、今のところ、この JavaScript をすべて HTML 内に直接保持します。</p>
+<p></p>
+<h3>入力値へのバインド</h3>
+<pre><code class="language-html">&lt;input x-model=&quot;search&quot; placeholder=&quot;Search...&quot;&gt;
+</code></pre>
+
+
+
+
+
+<p>まだ見たことがない <code>x-model</code> という新しいディレクティブに気付くでしょう。</p>
+<p><code>x-model</code> は、input 要素の値をデータプロパティに「バインド」するために使用されます。今回の x-model の <code>search</code> は <code>x-data=&quot;{ search: '', ... }&quot;</code> から来ています。</p>
+<p>これは、入力の値が変更されるたびに、「search」の値がそれを反映して変更されることを意味します。</p>
+<p><code>x-model</code> は、この単純な例よりもはるかに多くのことができます。</p>
+<p><a href="/directives/model">→ 「x-model」の詳細を読む</a></p>
+<p></p>
+<h3>ゲッターを使用して計算されたプロパティ</h3>
+
+<p>次に注目したいのは、<code>x-data</code> ディレクティブの<code>items</code> と <code>filteredItems</code> プロパティです。</p>
+<pre><code class="language-js">{
+    ...
+    items: ['foo', 'bar', 'baz'],
+
+    get filteredItems() {
+        return this.items.filter(
+            i =&gt; i.startsWith(this.search)
+        )
+    }
+}
+</code></pre>
+
+
+
+
+
+
+<p><code>items</code> プロパティは自明である必要があります。ここでは、<code>items</code>の値を3つの異なるアイテム（foo、bar、baz）の JavaScript 配列として設定しています。</p>
+<p>このスニペットの興味深い部分は <code>filteredItems</code> プロパティです。</p>
+<p>このプロパティの <code>get</code> プレフィックスで示される <code>filteredItems</code> は、このオブジェクトの「getter」プロパティです。これは、データオブジェクトの通常のプロパティであるかのように <code>filteredItems</code> にアクセスできることを意味しますが、アクセスすると、JavaScript は内部で提供された関数を評価し、結果を返します。</p>
+<p><code>get</code> を省略して、これをテンプレートから呼び出すことができるメソッドにすることは完全に許容されますが、ゲッターのより優れた構文を好む人もいます。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">→ JavaScriptゲッターについてもっと読む</a></p>
+<p>それでは、<code>filteredItems</code> ゲッターの内部を見て、そこで何が起こっているのかを理解していることを確認しましょう。</p>
+<pre><code class="language-js">return this.items.filter(
+    i =&gt; i.startsWith(this.search)
+)
+</code></pre>
+
+
+
+
+<p>これはすべてプレーンな JavaScript です。まず、アイテムの配列（foo、bar、baz）を取得し、提供されたコールバックを使用してそれらをフィルタリングします。「<code>i =&gt; i.startsWith(this.search)</code>」</p>
+<p>このコールバックを <code>filter</code> に渡すことで、JavaScriptに文字列 <code>this.search</code> で始まるアイテムのみを返すように指示しています。これは、<code>x-model</code> で見たように、常に入力の値を反映します。</p>
+<p>これまで、プロパティを参照するために<code>this.</code> を使用する必要がなかったことにお気づきかもしれません。 ただし、<code>x-data</code> オブジェクト内で直接作業しているため、単に <code>[property]</code> ではなく <code>this.[property]</code> を使用してプロパティを参照する必要があります。</p>
+<p>Alpine は「リアクティブ」フレームワークだからです。 <code>this.search</code> の値が変更されるたびに、<code>filteredItems</code> を使用するテンプレートの部分が自動的に更新されます。</p>
+<p></p>
+<h3>ループ要素</h3>
+
+<p>コンポーネントのデータ部分を理解したので、ページ上の <code>filteredItems</code> をループできるようにするテンプレートで何が起こっているのかを理解しましょう。</p>
+<pre><code class="language-html">&lt;ul&gt;
+    &lt;template x-for=&quot;item in filteredItems&quot;&gt;
+        &lt;li x-text=&quot;item&quot;&gt;&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+
+
+
+<p>ここで最初に気付くのは、<code>x-for</code> ディレクティブです。<code>x-for</code> 式は <code>[items] in [items] </code> というような形式を取ります。ここで、[items] はデータの任意の配列であり、[item] はループ内の反復に割り当てられる変数の名前です。</p>
+<p>また、<code>x-for</code> は <code>&lt;li&gt;</code> ではなく、<code>&lt;template&gt;</code> 要素で宣言されていることに注意してください。 これは <code>x-for</code> を使用するための要件です。 これにより、Alpine はブラウザの<code>&lt;template&gt;</code>タグの既存の動作を活用できます。</p>
+<p>これで、 <code>&lt;template&gt;</code>タグ内の要素は、 <code>filteredItems</code> 内のすべてのアイテムに対して繰り返され、ループ内で評価されたすべての式は、反復変数（この場合は <code>item</code>）に直接アクセスできます。</p>
+<p><a href="/directives/for">→<code>x-for</code>についてもっと読む</a></p>
+<p></p>
+<h2>要約</h2>
+
+
+<p>これまでに達成した場合は、Alpine で次のディレクティブにさらされています。</p>
+<ul>
+<li>x-data</li>
+<li>x-on</li>
+<li>x-text</li>
+<li>x-show</li>
+<li>x-model</li>
+<li>x-for</li>
+</ul>
+
+<p>それは素晴らしいスタートです、しかし、あなたの歯を沈めるためのより多くの指示があります。アルパインを吸収する最良の方法は、このドキュメントを読むことです。すべての単語をくしでとかす必要はありませんが、少なくともすべてのページを一瞥すれば、Alpine を使用するときにはるかに効果的です。</p>
+<p>ハッピーコーディング！</p>
+<h1>V2 からのアップグレード</h1>
+
+<p>以下は、Alpine V3 の重大な変更に関する徹底的なガイドですが、より活気のあるものが必要な場合は、Alpine Day 2021「Future of Alpine」基調講演を見て、V3 のすべての変更と新機能を確認できます。</p>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;relative w-full&quot; style=&quot;padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&quot;&gt;
+    &lt;iframe
+            class=&quot;absolute top-0 left-0 right-0 bottom-0 w-full h-full&quot;
+            src=&quot;https://www.youtube.com/embed/WixS4JXMwIQ?modestbranding=1&amp;autoplay=1&quot;
+            allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+            allowfullscreen
+    &gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>Alpine V2 から V3 へのアップグレードは、かなり簡単です。 多くの場合、V3 を使用するためにコードベースに対して何もする必要はありません。 以下は、ユーザーが影響を受ける可能性の高い順に、重大な変更と非推奨の完全なリストです。</p>
+<blockquote>
+<p>Laravel Livewire と Alpine を一緒に使用する場合、Alpine の V3 を使用するには、Livewire v2.5.1以降にアップグレードする必要があることに注意してください。</p>
+</blockquote>
+<p></p>
+<h2>大きな変更箇所</h2>
+<ul>
+<li>
+<a href="#el-no-longer-root"><code>$el</code> は常にカレントエレメントになりました</a>
+</li>
+<li>
+<a href="#auto-init">データオブジェクトで定義された <code>init()</code> 関数を自動的に評価します</a>
+</li>
+<li>
+<a href="#need-to-call-alpine-start">インポート後に <code>Alpine.start()</code> を呼び出す必要があります</a>
+</li>
+<li>
+<a href="#removed-show-dot-transition"><code>x-show.transition</code> は <code>x-transition</code> になりました</a>
+</li>
+<li>
+<a href="#x-if-no-transitions"><code>x-if</code> は <code>x-transition</code> をサポートしなくなりました</a>
+</li>
+<li>
+<a href="#x-data-scope"><code>x-data</code> カスケードスコープ</a>
+</li>
+<li>
+<a href="#x-init-no-callback"><code>x-init</code>はコールバックリターンを受け入れなくなりました</a>
+</li>
+<li>
+<a href="#no-false-return-from-event-handlers">イベントハンドラーから <code>false</code> を返すことは、暗黙的に &quot;preventDefault&quot;s ではなくなりました</a>
+</li>
+<li>
+<a href="#x-spread-now-x-bind"><code>x-spread</code> は <code>x-bind</code> になりました</a>
+</li>
+<li>
+<a href="#x-ref-no-more-dynamic"><code>x-ref</code> はバインディングをサポートしなくなりました</a>
+</li>
+<li>
+<a href="#use-global-events-now"><code>Alpine.deferLoadingAlpine()</code> の代わりにグローバルライフサイクルイベントを使用します</a>
+</li>
+<li>
+<a href="#no-ie-11">IE11はサポートされなくなりました</a>
+</li>
+</ul>
+<p></p>
+<h3><code>$el</code> は常に現在の要素 (カレントエレメント) になりました</h3>
+
+<p><code>$el</code> は、コンポーネントのルート要素ではなく、常に式が実行された要素を表すようになりました。 これにより、<code>x-ref</code> のほとんどの使用法が置き換えられます。それでもコンポーネントのルートにアクセスする場合は、<code>$root</code> を使用してアクセスできます。 例えば：</p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data&gt;
+    &lt;button @click=&quot;console.log($el)&quot;&gt;&lt;/button&gt;
+    &lt;!-- In V2, $el would have been the &lt;div&gt;, now it's the &lt;button&gt; --&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data&gt;
+    &lt;button @click=&quot;console.log($root)&quot;&gt;&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>よりスムーズなアップグレード体験のために、<code>$el</code> のすべてのインスタンスを <code>$root</code> と呼ばれるカスタムマジックに置き換えることができます。</p>
+<p><a href="/magics/el">→V3の $el についてもっと読む</a>
+<a href="/magics/root">→V3の $root についてもっと読む</a></p>
+<p></p>
+<h3>データオブジェクトで定義された <code>init()</code> 関数を自動的に評価</h3>
+
+
+<p>V2 の一般的なパターンは、<code>x-data</code>オブジェクトで <code>init()</code>（または同様の名前のメソッド）を手動で呼び出すことでした。</p>
+<p>V3 では、Alpine はデータオブジェクトに対して自動的に <code>init()</code> メソッドを呼び出します。</p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data=&quot;foo()&quot; x-init=&quot;init()&quot;&gt;&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data=&quot;foo()&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    function foo() {
+        return {
+            init() {
+                //
+            }
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+<p><a href="/globals/alpine-data#init-functions">→ 初期化関数の自動評価についてもっと読む</a></p>
+<p></p>
+<h3>インポート後に Alpine.start() を呼び出す必要</h3>
+
+<p>NPM から Alpine V2 をインポートしていた場合は、V3 に対して手動で <code>Alpine.start()</code> を呼び出す必要があります。 Alpine のビルドファイルまたは <code>&lt;template&gt;</code> タグからの CDN を使用する場合、これは影響しません。</p>
+<p> </p>
+<pre><code class="language-js">// 🚫 Before
+import 'alpinejs'
+
+// ✅ After
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+Alpine.start()
+</code></pre>
+<p><a href="/essentials/installation#as-a-module">→ AlpineV3の初期化についてもっと読む</a></p>
+<p></p>
+<h3><code>x-show.transition</code> は <code>x-transition</code> になりました</h3>
+
+<p><code>x-show.transition ...</code> ヘルパーによって提供されるすべての便利な機能は引き続き利用できますが、より統合された API から提供されるようになりました:  <code>x-transition</code>:</p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-show.transition=&quot;open&quot;&gt;&lt;/div&gt;
+&lt;!-- ✅ After --&gt;
+&lt;div x-show=&quot;open&quot; x-transition&gt;&lt;/div&gt;
+
+&lt;!-- 🚫 Before --&gt;
+&lt;div x-show.transition.duration.500ms=&quot;open&quot;&gt;&lt;/div&gt;
+&lt;!-- ✅ After --&gt;
+&lt;div x-show=&quot;open&quot; x-transition.duration.500ms&gt;&lt;/div&gt;
+
+&lt;!-- 🚫 Before --&gt;
+&lt;div x-show.transition.in.duration.500ms.out.duration.750ms=&quot;open&quot;&gt;&lt;/div&gt;
+&lt;!-- ✅ After --&gt;
+&lt;div
+    x-show=&quot;open&quot;
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.750ms
+&gt;&lt;/div&gt;
+</code></pre>
+<p><a href="/directives/transition">→ x-transition についてもっと読む</a></p>
+<p></p>
+<h3><code>x-if</code> は <code>x-transition</code> をサポートしなくなりました</h3>
+
+
+
+<p>DOM に要素を移行したり、DOM から削除する前/後に追加したりする機能は、Alpine では使用できなくなりました。</p>
+<p>これは、使用されるどころか、存在することさえ知っている人はほとんどいない機能でした。</p>
+<p>遷移システムは複雑であるため、メンテナンスの観点からは、<code>x-show</code> でトランジションの要素のみをサポートする方が理にかなっています。</p>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;template x-if.transition=&quot;open&quot;&gt;
+    &lt;div&gt;...&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-show=&quot;open&quot; x-transition&gt;...&lt;/div&gt;
+</code></pre>
+<p><a href="/directives/if">→ x-if についてもっと読む</a></p>
+<p></p>
+<h3><code>x-data</code>のカスケードスコープ</h3>
+
+<p><code>x-data</code> で定義されたスコープは、ネストされた <code>x-data</code> 式で上書きされない限り、すべての子で使用できるようになりました。</p>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data=&quot;{ foo: 'bar' }&quot;&gt;
+    &lt;div x-data=&quot;{}&quot;&gt;
+        &lt;!-- foo is undefined --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data=&quot;{ foo: 'bar' }&quot;&gt;
+    &lt;div x-data=&quot;{}&quot;&gt;
+        &lt;!-- foo is 'bar' --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p><a href="/directives/data#scope">→ <code>x-data</code> のスコープについて</a></p>
+<p></p>
+<h3><code>x-init</code>はコールバックリターンを受け入れなくなりました</h3>
+
+<p>V3より前では、<code>x-init</code> が<code> typeof</code> &quot;関数&quot; である戻り値を受け取った場合、Alpine がツリー内の他のすべてのディレクティブの初期化を完了した後にコールバックを実行していました。 ここで、その動作を実現するには、手動で <code>$nextTick()</code> を呼び出す必要があります。 <code>x-init</code> は「戻り値を認識」しなくなりました。</p>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data x-init=&quot;() =&gt; { ... }&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data x-init=&quot;$nextTick(() =&gt; { ... })&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<p><a href="/magics/next-tick">→ $nextTickについてもっと読む</a></p>
+<p></p>
+<h3>イベントハンドラーから <code>false</code> を返すことは、暗黙的に &quot;preventDefault&quot; ではなくなりました</h3>
+
+<p>Alpine V2は、イベントで <code>preventDefault</code> を実行したいという要望として <code>false</code> の戻り値を観察します。 これは、ネイティブのインラインリスナーの標準動作 <code>&lt;... oninput =&quot;someFunctionThatReturnsFalse()&quot;&gt;</code> に準拠しています。 Alpine V3 はこの API をサポートしなくなりました。 ほとんどの人はそれが存在することを知らないので、驚くべき行動です。</p>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data=&quot;{ blockInput() { return false } }&quot;&gt;
+    &lt;input type=&quot;text&quot; @input=&quot;blockInput()&quot;&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data=&quot;{ blockInput(e) { e.preventDefault() }&quot;&gt;
+    &lt;input type=&quot;text&quot; @input=&quot;blockInput($event)&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<p><a href="/directives/on">→ x-on についてもっと読む</a></p>
+<p></p>
+<h3><code>x-spread</code> は <code>x-bind</code> になりました</h3>
+
+<p>機能を再利用するための Alpine のストーリーの1つは、Alpine ディレクティブをオブジェクトに抽象化し、それらを <code>x-spread</code> を使用して要素に適用することです。 この動作は同じですが、 <code>x-bind</code>（属性が指定されていない）が <code>x-spread</code> ではなく API になっている点が異なります。</p>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data=&quot;dropdown()&quot;&gt;
+    &lt;button x-spread=&quot;trigger&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div x-spread=&quot;dialogue&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data=&quot;dropdown()&quot;&gt;
+    &lt;button x-bind=&quot;trigger&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div x-bind=&quot;dialogue&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+    function dropdown() {
+        return {
+            open: false,
+
+            trigger: {
+                'x-on:click'() { this.open = ! this.open },
+            },
+
+            dialogue: {
+                'x-show'() { return this.open },
+                'x-bind:class'() { return 'foo bar' },
+            },
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+<p><a href="/directives/bind#bind-directives">→ x-bind を使用したディレクティブのバインドについてもっと読む</a></p>
+<p></p>
+<h3><code>Alpine.deferLoadingAlpine()</code> の代わりにグローバルライフサイクルイベントを使用する</h3>
+<p> </p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;script&gt;
+    window.deferLoadingAlpine = startAlpine =&gt; {
+        // Will be executed before initializing Alpine.
+
+        startAlpine()
+
+        // Will be executed after initializing Alpine.
+    }
+&lt;/script&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        // Will be executed before initializing Alpine.
+    })
+
+    document.addEventListener('alpine:initialized', () =&gt; {
+        // Will be executed after initializing Alpine.
+    })
+&lt;/script&gt;
+</code></pre>
+<p><a href="/essentials/lifecycle#alpine-initialization">→ Alpine ライフサイクルイベントについてもっと読む</a></p>
+<p></p>
+<h3><code>x-ref</code> はバインディングをサポートしなくなりました</h3>
+<p>Alpine V2 では以下のコードのようにしていました。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{options: [{value: 1}, {value: 2}, {value: 3}] }&quot;&gt;
+    &lt;div x-ref=&quot;0&quot;&gt;0&lt;/div&gt;
+    &lt;template x-for=&quot;option in options&quot;&gt;
+        &lt;div :x-ref=&quot;option.value&quot; x-text=&quot;option.value&quot;&gt;&lt;/div&gt;
+    &lt;/template&gt;
+
+    &lt;button @click=&quot;console.log($refs[0], $refs[1], $refs[2], $refs[3]);&quot;&gt;Display $refs&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>ボタンをクリックすると、すべての <code>$refs</code> が表示されました。 ただし、Alpine V3では、静的に作成された要素の <code>$refs</code> にのみアクセスできるため、期待どおりに最初の ref のみが返されます。</p>
+<p></p>
+<h3>IE11はサポートされなくなりました</h3>
+
+<p>Alpine は InternetExplorer11 を正式にサポートしなくなります。IE11 のサポートが必要な場合は、Alpine V2 を引き続き使用することをお勧めします。</p>
+<h2>非推奨のAPI</h2>
+
+<p>次の2つの API は V3 でも引き続き機能しますが、非推奨と見なされ、将来のある時点で削除される可能性があります。</p>
+<p></p>
+<h3>イベントリスナー修飾子<code>.away</code>は<code>.outside</code>に置き換える必要があります</h3>
+<p>ボタンをクリックすると、すべての<code>$refs</code>が表示されました。 ただし、Alpine V3では、静的に作成された要素の <code>$ refs</code>にのみアクセスできるため、期待どおりに最初のrefのみが返されます。</p>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-show=&quot;open&quot; @click.away=&quot;open = false&quot;&gt;
+    ...
+&lt;/div&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-show=&quot;open&quot; @click.outside=&quot;open = false&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+<p></p>
+
+<h3>グローバル Alpine 関数データプロバイダーよりも <code>Alpine.data()</code> を優先する</h3>
+<pre><code class="language-html">&lt;!-- 🚫 Before --&gt;
+&lt;div x-data=&quot;dropdown()&quot;&gt;
+    ...
+&lt;/div&gt;
+
+&lt;script&gt;
+    function dropdown() {
+        return {
+            ...
+        }
+    }
+&lt;/script&gt;
+
+&lt;!-- ✅ After --&gt;
+&lt;div x-data=&quot;dropdown&quot;&gt;
+    ...
+&lt;/div&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.data('dropdown', () =&gt; ({
+            ...
+        }))
+    })
+&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p><code>Alpine.start()</code> を呼び出す前に、<code>Alpine.data()</code> 拡張子を定義する必要があることに注意してください。 詳細については、<a href="https://alpinejs.dev/advanced/extending#lifecycle-concerns">ライフサイクルの懸念事項</a> および <a href="https://alpinejs.dev/essentials/installation#as-a-module">モジュールとしてのインストール</a> を参照してください。</p>
+</blockquote>
+<h1>インストール</h1>
+
+<p>Alpine をプロジェクトに含めるには2つの方法があります。</p>
+
+
+<ul>
+<li>
+<code>&lt;script&gt;</code>タグを使用してインクルードする</li>
+<li>モジュールとしてインポートする</li>
+</ul>
+
+<p>どちらも完全に有効です。それはすべて、プロジェクトのニーズと開発者の好みに依存します。</p>
+<p></p>
+<h2>スクリプトタグから</h2>
+
+<p>これは、アルパインを始める最も簡単な方法です。 HTML ページの先頭に次の <code>&lt;script&gt;</code> タグを含めます。</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    ...
+
+    &lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  ...
+&lt;/html&gt;
+</code></pre>
+
+<blockquote>
+<p><code>&lt;script&gt;</code> タグの「defer」属性を忘れないでください。</p>
+</blockquote>
+
+<p>提供されている CDN リンクの <code>@3.x.x</code> に注意してください。これにより、Alpine バージョン 3 の最新バージョンがプルされます。本番環境での安定性のために、CDN リンクに最新バージョンをハードコーディングすることをお勧めします。</p>
+<pre><code class="language-html">&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>それでおしまい！ Alpine がページ内で使用できるようになりました。</p>
+<p></p>
+<h2>モジュールとして</h2>
+
+
+<p>より堅牢なアプローチが必要な場合は、NPM を介して Alpine をインストールし、バンドルにインポートできます。</p>
+<p>次のコマンドを実行してインストールします。</p>
+<pre><code class="language-shell">npm install alpinejs
+</code></pre>
+
+<p>次に、Alpine をバンドルにインポートし、次のように初期化します。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+Alpine.start()
+</code></pre>
+
+
+<blockquote>
+<p><code>window.Alpine = Alpine</code> ビットはオプションですが、自由と柔軟性のために持っていると便利です。たとえば、devtools から Alpine をいじくり回すときのように。</p>
+</blockquote>
+<blockquote>
+<p>Alpine をバンドルにインポートした場合は、<code>Alpine</code> グローバルオブジェクトをインポートするときと、<code>Alpine.start()</code> を呼び出して Alpine を初期化するときに、間に拡張コードを登録していることを確認する必要があります。</p>
+</blockquote>
+<p><a href="/advanced/extending">→ Alpine の拡張についてもっと読む</a>）</p>
+<h1>状態</h1>
+<p>状態（Alpine が変更を監視する JavaScript データ）は、Alpine で行うすべてのコアです。ローカルデータを HTML のチャンクに提供することも、それぞれ <code>x-data</code> または <code>Alpine.store()</code> を使用してページ上のどこでも使用できるようにグローバルに利用できるようにすることもできます。</p>
+
+<p></p>
+<h2>ローカル状態</h2>
+<p>Alpine を使用すると、マークアップを離れることなく、単一の <code>x-data</code> 属性でHTMLブロックの状態を宣言できます。</p>
+<p>基本的な例は次のとおりです。</p>
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+
+<p>これで、この要素上またはこの要素内の他のAlpine 構文は、<code>open</code> にアクセスできるようになります。そして、ご想像のとおり、何らかの理由で「open」が変更されると、それに依存するすべてのものが自動的に反応します。</p>
+<p><a href="/directives/data">→ x-data についてもっと読む</a></p>
+<p></p>
+<h3>データのネスト</h3>
+<p>データはアルパインでネスト可能です。たとえば、Alpine データがアタッチされた2つの要素（一方が他方の内部）がある場合、子要素の内部から親のデータにアクセスできます。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;div x-data=&quot;{ label: 'Content:' }&quot;&gt;
+        &lt;span x-text=&quot;label&quot;&gt;&lt;/span&gt;
+        &lt;span x-show=&quot;open&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>これは、JavaScript 自体のスコープに似ています（関数内のコードは、その関数の外部で宣言された変数にアクセスできます）。</p>
+<p>ご想像のとおり、子に親のプロパティの名前と一致するデータプロパティがある場合は、子プロパティが優先されます。</p>
+<p></p>
+<h3>単一要素のデータ</h3>
+<p>これは一部の人には明白に思えるかもしれませんが、Alpine データを同じ要素内で使用できることは言及する価値があります。例えば：</p>
+
+<pre><code class="language-html">&lt;button x-data=&quot;{ label: 'Click Here' }&quot; x-text=&quot;label&quot;&gt;&lt;/button&gt;
+</code></pre>
+<p></p>
+<h3>データの記述がない場合</h3>
+
+<p>Alpine 機能を使用したいが、リアクティブデータは必要ない場合があります。このような場合、式を <code>x-data</code> に完全に渡すことをオプトアウトできます。例えば：</p>
+<pre><code class="language-html">&lt;button x-data @click=&quot;alert('I\'ve been clicked!')&quot;&gt;Click Me&lt;/button&gt;
+</code></pre>
+<p></p>
+<h3>再利用可能なデータ</h3>
+<p>Alpine を使用する場合、データのチャンクやそれに対応するテンプレートを再利用する必要がある場合があります。</p>
+<p>Rails や Laravel などのバックエンドフレームワークを使用している場合、Alpine はまず、HTML のブロック全体をテンプレートの一部またはインクルードに抽出することをお勧めします。</p>
+<p>何らかの理由で理想的でない場合、またはバックエンドのテンプレート環境にいない場合、Alpine では、<code>Alpine.data(...)</code> を使用して、コンポーネントのデータ部分をグローバルに登録して再利用できます。</p>
+
+
+
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    open: false,
+
+    toggle() {
+        this.open = ! this.open
+    }
+}))
+</code></pre>
+
+<p>「ドロップダウン」データを登録したので、マークアップ内の好きなだけ多くの場所でそれを使用できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown&quot;&gt;
+    &lt;button @click=&quot;toggle&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;span x-show=&quot;open&quot;&gt;Content...&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div x-data=&quot;dropdown&quot;&gt;
+    &lt;button @click=&quot;toggle&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;span x-show=&quot;open&quot;&gt;Some Other Content...&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p><a href="/globals/alpine-data">→ Alpine.data() の使用についてもっと読む</a></p>
+<p></p>
+<h2>グローバルの状態</h2>
+<p>ページ上のすべてのコンポーネントでデータを利用できるようにする場合は、Alpine の「グローバルストア」機能を使用して行うことができます。</p>
+<p><code>Alpine.store(...)</code> を使用してストアを登録し、魔法の <code>$store()</code> メソッドを使用してストアを参照できます。</p>
+<p>簡単な例を見てみましょう。まず、ストアをグローバルに登録します。</p>
+
+
+
+<pre><code class="language-js">Alpine.store('tabs', {
+    current: 'first',
+
+    items: ['first', 'second', 'third'],
+})
+</code></pre>
+
+<p>これで、ページのどこからでもそのデータにアクセスまたは変更できます。</p>
+<pre><code class="language-html">&lt;div x-data&gt;
+    &lt;template x-for=&quot;tab in $store.tabs.items&quot;&gt;
+        ...
+    &lt;/template&gt;
+&lt;/div&gt;
+
+&lt;div x-data&gt;
+    &lt;button @click=&quot;$store.tabs.current = 'first'&quot;&gt;First Tab&lt;/button&gt;
+    &lt;button @click=&quot;$store.tabs.current = 'second'&quot;&gt;Second Tab&lt;/button&gt;
+    &lt;button @click=&quot;$store.tabs.current = 'third'&quot;&gt;Third Tab&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p><a href="/globals/alpine-store">→ Alpine.store() についてもっと読む</a></p>
+<h1>テンプレート</h1>
+
+
+<p>Alpine は、Web ページ上の DOM を操作するための便利なディレクティブをいくつか提供しています。</p>
+<p>ここでは、いくつかの基本的なテンプレートディレクティブについて説明しますが、完全なリストについては、サイドバーで使用可能なディレクティブを確認してください。</p>
+<p></p>
+<h2>テキストコンテンツ</h2>
+<p>Alpine を使用すると、<code>x-text</code> ディレクティブを使用して要素のテキストコンテンツを簡単に制御できます。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ title: 'Start Here' }&quot;&gt;
+    &lt;h1 x-text=&quot;title&quot;&gt;&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+
+<p>これで、Alpine は <code>&lt;h1&gt;</code> のテキストコンテンツを <code>title</code> ( &quot;Start Here&quot;) の値で設定します。 <code>title</code> が変わると、<code>&lt;h1&gt;</code> の内容も変わります。</p>
+<p>Alpine のすべてのディレクティブと同様に、任意の JavaScript 式を使用できます。例えば：</p>
+<pre><code class="language-html">&lt;span x-text=&quot;1 + 2&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+
+
+<p><code>&lt;span&gt;</code> には、「1」と「2」の合計が含まれます。</p>
+<p><a href="/directives/text">→ x-text についてもっと読む</a></p>
+<p></p>
+<h2>要素の切り替え</h2>
+<p>要素の切り替えは、Web ページやアプリケーションでよくあるニーズです。ドロップダウン、モーダル、ダイアログ、「もっと見る」などはすべて良い例です。</p>
+<p>Alpine は、ページ上の要素を切り替えるための <code>x-show</code> および <code>x-if</code> ディレクティブを提供します。</p>
+
+
+<p></p>
+<h3><code>x-show</code></h3>
+
+<p>これは、<code>x-show</code> を使用した単純なトグルコンポーネントです。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot; :aria-pressed=&quot;open&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>これで、コンテンツを含む  <code>&lt;div&gt;</code> 全体が、​​<code>open</code> の値に基づいて表示および非表示になります。</p>
+<p>内部的には、Alpine は CSS プロパティ <code>display: none;</code> を非表示にする必要があるときに要素に追加します。</p>
+<p><a href="/directives/show">→ x-show についてもっと読む</a></p>
+
+<p>これはほとんどの場合にうまく機能しますが、DOMから要素を完全に追加および削除したい場合もあります。これが <code>x-if</code> の目的です。</p>
+<p></p>
+<h3><code>x-if</code></h3>
+<p>これは以前と同じトグルですが、今回は <code>x-show</code> の代わりに <code>x-if</code> を使用しています。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;template x-if=&quot;open&quot;&gt;
+        &lt;div&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot; :aria-pressed=&quot;open&quot;&gt;Expand&lt;/button&gt;
+
+    &lt;template x-if=&quot;open&quot;&gt;
+        &lt;div&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p><code>x-if</code> は <code>&lt;template&gt;</code> タグで宣言する必要があることに注意してください。これは、Alpine が  <code>&lt;template&gt;</code> 要素の既存のブラウザの動作を活用し、ページに追加および削除するターゲット <code>&lt;div&gt;</code> のソースとして使用できるようにするためです。</p>
+<p><code>open</code> が true の場合、Alpine は <code>&lt;div&gt;</code> を <code>&lt;template&gt;</code> タグに追加し、<code>open</code> が false の場合は削除します。</p>
+<p><a href="/directives/if">→ x-if についてもっと読む</a></p>
+<p></p>
+<h2>トランジションの切り替え</h2>
+<p>Alpine を使用すると、 <code>x-transition</code> ディレクティブを使用して、「表示」状態と「非表示」状態の間をスムーズに移行できます。</p>
+<blockquote>
+<p><code>x-transition</code> は <code>x-show</code> でのみ機能し、<code>x-if</code> では機能しません。</p>
+</blockquote>
+<p>これも簡単なトグルの例ですが、今回はトランジションが適用されています。</p>
+
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot; x-transition&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div class=&quot;flex&quot;&gt;
+        &lt;div x-show=&quot;open&quot; x-transition style=&quot;will-change: transform;&quot;&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>トランジションを処理するテンプレートの部分を拡大してみましょう。</p>
+<pre><code class="language-html">&lt;div x-show=&quot;open&quot; x-transition&gt;
+</code></pre>
+
+
+
+
+
+<p><code>x-transition</code> 自体は、適切なデフォルトの遷移（フェードとスケール）をトグルに適用します。</p>
+<p>これらの遷移をカスタマイズするには、次の2つの方法があります。</p>
+<ul>
+<li>トランジション ヘルパー</li>
+<li>トランジション CSS クラス</li>
+</ul>
+<p>これらの各アプローチを見てみましょう。</p>
+<p></p>
+<h3>トランジション ヘルパー</h3>
+<p>トランジションの期間を長くしたいとします。次のように <code>.duration</code> 修飾子を使用して手動で指定できます。</p>
+
+<pre><code class="language-html">&lt;div x-show=&quot;open&quot; x-transition.duration.500ms&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div class=&quot;flex&quot;&gt;
+        &lt;div 
+            x-show=&quot;open&quot; 
+            x-transition.duration.500ms 
+            style=&quot;will-change: transform;&quot;&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>これで、トランジションは500ミリ秒として設定されます。</p>
+<p>イントランジションとアウトトランジションに異なる値を指定する場合は、<code>x-transition:enter</code> と <code>x-transition:leave</code> を使用できます。</p>
+<pre><code class="language-html">&lt;div
+    x-show=&quot;open&quot;
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.1000ms
+&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div class=&quot;flex&quot;&gt;
+        &lt;div x-show=&quot;open&quot; x-transition:enter.duration.500ms x-transition:leave.duration.1000ms style=&quot;will-change: transform;&quot;&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>さらに、<code>.opacity</code> または <code>.scale</code> のいずれかを追加して、そのプロパティのみを遷移させることができます。例えば：</p>
+<pre><code class="language-html">&lt;div x-show=&quot;open&quot; x-transition.opacity&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div class=&quot;flex&quot;&gt;
+        &lt;div x-show=&quot;open&quot; x-transition:enter.opacity.duration.500 x-transition:leave.opacity.duration.250&gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p><a href="/directives/transition#the-transition-helper">→ トランジションヘルパーについてもっと読む</a></p>
+<p></p>
+<h3>トランジション クラス</h3>
+<p>アプリケーションの遷移をよりきめ細かく制御する必要がある場合は、次の構文を使用して、遷移の特定のフェーズで特定の CSS クラスを適用できます。この例では <a href="https://tailwindcss.com/">Tailwind CSS</a> を使用します。</p>
+
+<pre><code class="language-html">&lt;div
+    x-show=&quot;open&quot;
+    x-transition:enter=&quot;transition ease-out duration-300&quot;
+    x-transition:enter-start=&quot;opacity-0 transform scale-90&quot;
+    x-transition:enter-end=&quot;opacity-100 transform scale-100&quot;
+    x-transition:leave=&quot;transition ease-in duration-300&quot;
+    x-transition:leave-start=&quot;opacity-100 transform scale-100&quot;
+    x-transition:leave-end=&quot;opacity-0 transform scale-90&quot;
+&gt;...&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Expands&lt;/button&gt;
+
+    &lt;div class=&quot;flex&quot;&gt;
+        &lt;div
+            x-show=&quot;open&quot;
+            x-transition:enter=&quot;transition ease-out duration-300&quot;
+            x-transition:enter-start=&quot;opacity-0 transform scale-90&quot;
+            x-transition:enter-end=&quot;opacity-100 transform scale-100&quot;
+            x-transition:leave=&quot;transition ease-in duration-300&quot;
+            x-transition:leave-start=&quot;opacity-100 transform scale-100&quot;
+            x-transition:leave-end=&quot;opacity-0 transform scale-90&quot;
+            style=&quot;will-change: transform&quot;
+        &gt;
+            Content...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p><a href="/directives/transition#applying-css-classes">→ transition クラスについてもっと読む</a></p>
+<p></p>
+<h2>バインディング属性</h2>
+<p><code>x-bind</code> ディレクティブを使用して、<code>class</code>、<code>style</code>、<code>disabled</code> などの HTML 属性を Alpine の要素に追加できます。</p>
+<p>動的にバインドされた <code>class</code> 属性の例を次に示します。</p>
+
+
+<pre><code class="language-html">&lt;button
+    x-data=&quot;{ red: false }&quot;
+    x-bind:class=&quot;red ? 'bg-red' : ''&quot;
+    @click=&quot;red = ! red&quot;
+&gt;
+    Toggle Red
+&lt;/button&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;button
+        x-data=&quot;{ red: false }&quot;
+        x-bind:style=&quot;red &amp;&amp; 'background: red'&quot;
+        @click=&quot;red = ! red&quot;
+    &gt;
+        Toggle Red
+    &lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>ショートカットとして、 <code>x-bind</code> を省略し、省略形の <code>:</code> 構文を直接使用できます。</p>
+<pre><code class="language-html">&lt;button ... :class=&quot;red ? 'bg-red' : ''&quot;&gt;
+</code></pre>
+
+<p>Alpine 内のデータに基づいてクラスのオンとオフを切り替えることは、一般的なニーズです。これは、Alpine の <code>class</code> バインディングオブジェクト構文を使用してクラスを切り替える例です。(注: この構文は、<code>class</code> 属性でのみ使用できます）</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: true }&quot;&gt;
+    &lt;span :class=&quot;{ 'hidden': ! open }&quot;&gt;...&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>これで、<code>open</code> が false の場合は <code>hidden</code> クラスが要素に追加され、<code>open</code> が true の場合は削除されます。</p>
+<p></p>
+<h2>ループ要素</h2>
+<p>Alpine では、<code>x-for</code> ディレクティブを使用して、JavaScript データに基づいてテンプレートの一部を反復処理できます。簡単な例を次に示します。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ statuses: ['open', 'closed', 'archived'] }&quot;&gt;
+    &lt;template x-for=&quot;status in statuses&quot;&gt;
+        &lt;div x-text=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ statuses: ['open', 'closed', 'archived'] }&quot; class=&quot;demo&quot;&gt;
+    &lt;template x-for=&quot;status in statuses&quot;&gt;
+        &lt;div x-text=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p><code>x-if</code> と同様に、<code>x-for</code> は <code>&lt;template&gt;</code> タグに適用する必要があります。内部的には、Alpine は、ループ内のすべての反復に対して <code>&lt;template&gt;</code> タグの内容を追加します。</p>
+<p>ご覧のとおり、新しい <code>status</code> 変数は反復テンプレートのスコープで使用できます。</p>
+<p><a href="/directives/for">→ x-for についてもっと読む</a></p>
+<p></p>
+<h2>Inner HTML</h2>
+
+<p>Alpine を使用すると、<code>x-html</code> ディレクティブを使用して要素の HTML コンテンツを簡単に制御できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ title: '&lt;h1&gt;Start Here&lt;/h1&gt;' }&quot;&gt;
+    &lt;div x-html=&quot;title&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ title: '&lt;h1&gt;Start Here&lt;/h1&gt;' }&quot; class=&quot;demo&quot;&gt;
+    &lt;div x-html=&quot;title&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+
+<p>これで、Alpine は <code>&lt;div&gt;</code> のテキストコンテンツを要素 <code>&lt;h1&gt; Start Here&lt;/h1&gt;</code> で設定します。 <code>title</code> が変わると、<code>&lt;h1&gt;</code> の内容も変わります。</p>
+<blockquote>
+<p>⚠️信頼できるコンテンツにのみ使用し、ユーザー提供のコンテンツには使用しないでください。 ⚠️
+サードパーティから HTML を動的にレンダリングすると、XSSの脆弱性が簡単に発生する可能性があります。</p>
+</blockquote>
+<p><a href="/directives/html">→ x-html についてもっと読む</a></p>
+<h1>イベント</h1>
+
+<p>Alpine を使用すると、ブラウザのイベントを簡単にリッスンして対応できます。</p>
+<p></p>
+<h2>簡単なイベントを聞く</h2>
+<p><code>x-on</code> を使用すると、要素上または要素内でディスパッチされるブラウザイベントをリッスンできます。</p>
+<p>ボタンのクリックをリッスンする基本的な例を次に示します。</p>
+
+
+<pre><code class="language-html">&lt;button x-on:click=&quot;console.log('clicked')&quot;&gt;...&lt;/button&gt;
+</code></pre>
+
+<p>別の方法として、必要に応じてイベントの省略構文を使用できます：<code>@</code>。これは前と同じ例ですが、省略構文（これから使用します）を使用します。</p>
+<pre><code class="language-html">&lt;button @click=&quot;...&quot;&gt;...&lt;/button&gt;
+</code></pre>
+<p>In addition to <code>click</code>, you can listen for any browser event by name. For example: <code>@mouseenter</code>, <code>@keyup</code>, etc... are all valid syntax.</p>
+<p>「クリック」に加えて、名前で任意のブラウザイベントをリッスンできます。例：<code>@mouseenter</code>、<code>@keyup</code> などはすべて有効な構文です。</p>
+<p></p>
+<h2>特定のキーをリッスンする</h2>
+
+<p><code>&lt;input&gt;</code> 要素内で押される <code>enter</code> キーをリッスンしたいとします。 Alpine は、次のように <code>.enter</code> を追加することで、これを簡単にします。</p>
+<pre><code class="language-html">&lt;input @keyup.enter=&quot;...&quot;&gt;
+</code></pre>
+
+<p>キー修飾子を組み合わせて、<code>shift</code> を押しながら <code>Enter</code> を押すなどのキーの組み合わせをリッスンすることもできます。</p>
+<pre><code class="language-html">&lt;input @keyup.shift.enter=&quot;...&quot;&gt;
+</code></pre>
+<p></p>
+<h2>デフォルトの防止</h2>
+<p>ブラウザイベントに対応する場合、多くの場合、「デフォルトを防止する」（ブラウザイベントのデフォルトの動作を防止する）必要があります。</p>
+<p>たとえば、フォームの送信をリッスンしたいが、ブラウザがフォームリクエストを送信できないようにする場合は、<code>.prevent</code> を使用できます。</p>
+
+
+<pre><code class="language-html">&lt;form @submit.prevent=&quot;...&quot;&gt;...&lt;/form&gt;
+</code></pre>
+
+<p><code>.stop</code> を適用して、<code>event.stopPropagation()</code> と同等のものを実現することもできます。</p>
+<p></p>
+<h2>イベントオブジェクトへのアクセス</h2>
+<p>独自のコード内でネイティブブラウザイベントオブジェクトにアクセスしたい場合があります。これを簡単にするために、Alpine は自動的に <code>$event</code> マジック変数を挿入します。</p>
+
+<pre><code class="language-html">&lt;button @click=&quot;$event.target.remove()&quot;&gt;Remove Me&lt;/button&gt;
+</code></pre>
+<p></p>
+<h2>カスタムイベントのディスパッチ</h2>
+<p>ブラウザイベントをリッスンするだけでなく、それらをディスパッチすることもできます。これは、他の Alpine コンポーネントと通信したり、Alpine 自体の外部のツールでイベントをトリガーしたりする場合に非常に役立ちます。</p>
+<p>Alpine は、このために <code>$dispatch</code> と呼ばれる魔法のヘルパーを公開しています。</p>
+
+
+<pre><code class="language-html">&lt;div @foo=&quot;console.log('foo was dispatched')&quot;&gt;
+    &lt;button @click=&quot;$dispatch('foo')&quot;&gt;&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>ご覧のとおり、ボタンがクリックされると、Alpine は「foo」というブラウザイベントをディスパッチし、<code>&lt;div&gt;</code> の <code>@foo</code> リスナーがそれを取得して反応します。</p>
+<p></p>
+<h2>ウィンドウでイベントをリッスンする</h2>
+<p>ブラウザのイベントの性質上、トップレベルのウィンドウオブジェクトでイベントをリッスンすると便利な場合があります。</p>
+<p>これにより、次の例のように、コンポーネント間で完全に通信できます。</p>
+
+
+<pre><code class="language-html">&lt;div x-data&gt;
+    &lt;button @click=&quot;$dispatch('foo')&quot;&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div x-data @foo.window=&quot;console.log('foo was dispatched')&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+
+<p>上記の例では、最初のコンポーネントのボタンをクリックすると、Alpine は「foo」イベントをディスパッチします。ブラウザでのイベントの動作方法により、イベントは親要素を介してトップレベルの「ウィンドウ」まで「バブル」します。</p>
+<p>ここで、2番目のコンポーネントで（ <code>.window</code>を使用して）ウィンドウで「foo」をリッスンしているため、ボタンがクリックされると、このリスナーはそれを取得し、「fooがディスパッチされました」メッセージをログに記録します。</p>
+<p><a href="/directives/on">→ x-on についてもっと読む</a></p>
+<h1>ライフサイクル</h1>
+<p>Alpine には、ライフサイクルのさまざまな部分に接続するためのさまざまな手法がいくつかあります。以下に精通するために最も役立つものを見ていきましょう。</p>
+
+<p></p>
+<h2>要素の初期化</h2>
+<p>Alpineのもう1つの非常に便利なライフサイクルフックは、<code>x-init</code> ディレクティブです。</p>
+<p><code>x-init</code> はページ上の任意の要素に追加でき、Alpineがその要素の初期化を開始すると、ページ内で呼び出す JavaScript を実行します。</p>
+
+
+<pre><code class="language-html">&lt;button x-init=&quot;console.log('Im initing')&quot;&gt;
+</code></pre>
+
+<p>ディレクティブに加えて、Alpineはデータオブジェクトに格納されているすべての <code>init()</code> メソッドを自動的に呼び出します。例えば：</p>
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    init() {
+        // I get called before the element using this data initializes.
+    }
+}))
+</code></pre>
+<p></p>
+<h2>状態変化後</h2>
+<p>Alpine を使用すると、データ（状態）が変更されたときにコードを実行できます。このようなタスクには、<code>$watch</code> と <code>x-effect</code> の2つの異なる API が用意されています。</p>
+
+<p></p>
+<h3><code>$watch</code></h3>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot; x-init=&quot;$watch('open', value =&gt; console.log(value))&quot;&gt;
+</code></pre>
+
+<p>上記のように、 <code>$watch</code> を使用すると、ドット表記キーを使用してデータの変更にフックできます。そのデータが変更されると、Alpine は渡されたコールバックを呼び出し、新しい値を渡します。変更前の古い値と一緒に。</p>
+<p><a href="/magics/watch">→ $watch についてもっと読む</a></p>
+<p></p>
+<h3><code>x-effect</code></h3>
+
+
+
+<p><code>x-effect</code> は、内部で <code>$watch</code> と同じメカニズムを使用しますが、使用方法が大きく異なります。</p>
+<p>監視するデータキーを指定する代わりに、 <code>x-effect</code> は提供されたコードを呼び出し、その中で使用されている Alpine データをインテリジェントに検索します。これらのデータの1つが変更されると、<code>x-effect</code> 式が再実行されます。</p>
+<p>これは、<code>x-effect</code> を使用して書き直された <code>$watch</code> の例と同じコードです。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot; x-effect=&quot;console.log(open)&quot;&gt;
+</code></pre>
+
+
+
+
+<p>これで、この式はすぐに呼び出され、<code>open</code> が更新されるたびに再呼び出されます。</p>
+<p>このアプローチとの 2つの主な動作の違いは次のとおりです。</p>
+<ol>
+<li>提供されたコードはすぐに実行され、データが変更されたときに実行されます（ <code>$watch</code> は&quot;lazy&quot; であり、最初のデータ変更まで実行されません）</li>
+<li>以前の値についての知識がありません。 （<code>$watch</code> に提供されたコールバックは、新しい値と古い値の両方を受け取ります）</li>
+</ol>
+<p><a href="/directives/effect">→ x-effect についてもっと読む</a></p>
+<p></p>
+<h2>初期化について</h2>
+<p></p>
+<h3><code>alpine:init</code></h3>
+
+
+
+<p>Alpine がロードされた後に少しのコードが実行されることを確認しますが、ページ上でそれ自体を初期化する前に、必要なタスクです。</p>
+<p>このフックを使用すると、Alpine がページ上で処理を実行する前に、カスタムデータ、ディレクティブ、マジックなどを登録できます。</p>
+<p>Alpine がディスパッチするイベント <code>alpine:init</code> をリッスンすることで、ライフサイクルのこのポイントにフックできます。</p>
+<pre><code class="language-js">document.addEventListener('alpine:init', () =&gt; {
+    Alpine.data(...)
+})
+</code></pre>
+<p></p>
+<h3><code>alpine:initialized</code></h3>
+
+<p>Alpine には、初期化が完了した後に実行できる <code>alpine:initialized</code> と呼ばれるフックも用意されています。</p>
+<pre><code class="language-js">document.addEventListener('alpine:initialized', () =&gt; {
+    //
+})
+</code></pre>
+<h1>x-data</h1>
+
+
+<p>Alpine のすべては、<code>x-data</code> ディレクティブから始まります。</p>
+<p><code>x-data</code> は、HTMLのチャンクを Alpine コンポーネントとして定義し、そのコンポーネントが参照するためのリアクティブデータを提供します。</p>
+<p>考案されたドロップダウンコンポーネントの例を次に示します。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>この例の「<code>@click</code> および <code>x-show</code>」などのディレクティブについては心配しないでください。これらについては後で説明します。今は <code>x-data</code> に焦点を当てましょう。</p>
+<p></p>
+<h2>スコープ</h2>
+
+<p><code>x-data</code> ディレクティブで定義されたプロパティは、すべての要素の子で使用できます。他のネストされた <code>x-data</code> コンポーネントも同様です。</p>
+
+<p>例えば：</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ foo: 'bar' }&quot;&gt;
+    &lt;span x-text=&quot;foo&quot;&gt;&lt;!-- Will output: &quot;bar&quot; --&gt;&lt;/span&gt;
+
+    &lt;div x-data=&quot;{ bar: 'baz' }&quot;&gt;
+        &lt;span x-text=&quot;foo&quot;&gt;&lt;!-- Will output: &quot;bar&quot; --&gt;&lt;/span&gt;
+
+        &lt;div x-data=&quot;{ foo: 'bob' }&quot;&gt;
+            &lt;span x-text=&quot;foo&quot;&gt;&lt;!-- Will output: &quot;bob&quot; --&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>メソッド</h2>
+
+
+<p><code>x-data</code>は通常の JavaScript オブジェクトとして評価されるため、状態に加えて、メソッドやゲッターを保存することもできます。</p>
+<p>たとえば、「Toggle Content」の動作を<code>x-data</code>のメソッドに抽出してみましょう。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false, toggle() { this.open = ! this.open } }&quot;&gt;
+    &lt;button @click=&quot;toggle()&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+<p><code>x-data</code>に追加された <code>toggle() { this.open = ! this.open }</code> メソッドに注目してください。このメソッドは、コンポーネント内のどこからでも呼び出すことができるようになりました。</p>
+<p>また、オブジェクト自体の状態にアクセスするための<code>this.</code> の使用法にも気付くでしょう。これは、Alpine が <code>this</code> コンテキストを持つ標準の JavaScript オブジェクトと同様にこのデータオブジェクトを評価するためです。</p>
+<p>必要に応じて、呼び出し括弧を<code>toggle</code>メソッドから完全に省略できます。例えば：</p>
+<pre><code class="language-html">&lt;!-- Before --&gt;
+&lt;button @click=&quot;toggle()&quot;&gt;...&lt;/button&gt;
+
+&lt;!-- After --&gt;
+&lt;button @click=&quot;toggle&quot;&gt;...&lt;/button&gt;
+</code></pre>
+<p></p>
+<h2>ゲッター</h2>
+
+
+
+<p>JavaScript の <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">ゲッター</a> は、メソッドの唯一の目的が他の状態に基づいてデータを返すことである場合に便利です。</p>
+<p>それらを「計算されたプロパティ」のように考えてください（ただし、Vue の計算されたプロパティのようにキャッシュされません）。</p>
+<p>コンポーネントをリファクタリングして、<code>open</code> に直接アクセスする代わりに <code>isOpen</code> と呼び出されるゲッターを使用してみましょう。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{
+  open: false,
+  get isOpen() { return this.open },
+  toggle() { this.open = ! this.open },
+}&quot;&gt;
+    &lt;button @click=&quot;toggle()&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;isOpen&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>「<code>Content</code>」が <code>open</code> プロパティではなく <code>isOpen</code> ゲッターに直接依存するようになったことに注意してください。</p>
+<p>この場合、具体的なメリットはありません。ただし、場合によっては、ゲッターがコンポーネントでより表現力豊かな構文を提供するのに役立つことがあります。</p>
+<p></p>
+<h2>データのないコンポーネント</h2>
+
+
+<p>Alpine コンポーネントを作成したい場合がありますが、データは必要ありません。</p>
+<p>このような場合、いつでも空のオブジェクトを渡すことができます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{}&quot;&gt;
+</code></pre>
+
+<p>ただし、必要に応じて、見栄えがよい場合は属性値を完全に削除することもできます。</p>
+<pre><code class="language-html">&lt;div x-data&gt;
+</code></pre>
+<p></p>
+<h2>単一要素コンポーネント</h2>
+
+<p>次のように、Alpine コンポーネント内に要素が1つしかない場合があります。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: true }&quot;&gt;
+    &lt;button @click=&quot;open = false&quot; x-show=&quot;open&quot;&gt;Hide Me&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>このような場合、その単一の要素で <code>x-data</code> を直接宣言できます。</p>
+<pre><code class="language-html">&lt;button x-data=&quot;{ open: true }&quot; @click=&quot;open = false&quot; x-show=&quot;open&quot;&gt;
+    Hide Me
+&lt;/button&gt;
+</code></pre>
+<p></p>
+<h2>再利用可能なデータ</h2>
+
+<p><code>x-data</code> の内容を複製している場合、またはインライン構文が冗長である場合は、<code>Alpine.data</code> を使用して <code>x-data</code> オブジェクトを専用コンポーネントに抽出できます</p>
+
+<p>簡単な例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown&quot;&gt;
+    &lt;button @click=&quot;toggle&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Content...
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.data('dropdown', () =&gt; ({
+            open: false,
+
+            toggle() {
+                this.open = ! this.open
+            },
+        }))
+    })
+&lt;/script&gt;
+</code></pre>
+<p><a href="/globals/alpine-data">→ <code>Alpine.data(...)</code>の詳細を読む</a></p>
+<h1>x-init</h1>
+
+<p>この <code>x-init</code> ディレクティブを使用すると、Alpine の任意の要素の初期化フェーズにフックできます。</p>
+<pre><code class="language-html">&lt;div x-init=&quot;console.log('I\'m being initialized!')&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+
+<p>上記の例では、「 I'm being initialized! 」は、DOMが更新される前に、コンソールに出力されます。</p>
+<p>コンポーネントが処理される前に、<code>x-init</code> を使用してJSON をフェッチし、それを <code>x-data</code> に保存する別の例を考えてみましょう。</p>
+<pre><code class="language-html">&lt;div
+    x-data=&quot;{ posts: [] }&quot;
+    x-init=&quot;posts = await (await fetch('/posts')).json()&quot;
+&gt;...&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>$nextTick</h2>
+
+
+
+<p>場合によっては、Alpineがレンダリングを完全に終了してから、コードを実行するまで待ちたいことがあります。</p>
+<p>これは、react の <code>useEffect(..., [])</code> や Vue の <code>mount</code> ようなものになります。</p>
+<p>Alpine の内部 $nextTick の魔法を使用することで、これを実現できます。</p>
+<pre><code class="language-html">&lt;div x-init=&quot;$nextTick(() =&gt; { ... })&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>x-init の設置方法</h2>
+
+<p><code>x-data</code> のあるHTMLブロックの内側、または外側の任意の要素に <code>x-init</code> を追加できます。例えば</p>
+<pre><code class="language-html">&lt;div x-data&gt;
+    &lt;span x-init=&quot;console.log('I can initialize')&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;span x-init=&quot;console.log('I can initialize too')&quot;&gt;&lt;/span&gt;
+</code></pre>
+<p></p>
+<h2>init() メソッドの自動評価</h2>
+
+<p>コンポーネントの <code>x-data</code> オブジェクトに <code>init()</code> メソッドが含まれている場合、そのオブジェクトは自動的に呼び出されます。 例えば</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{
+    init() {
+        console.log('I am called automatically')
+    }
+}&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+
+<p>これは、<code>Alpine.data()</code> 構文を使用して登録されたコンポーネントにも当てはまります。</p>
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    init() {
+        console.log('I will get evaluated when initializing each &quot;dropdown&quot; component.')
+    },
+}))
+</code></pre>
+<h1>x-show</h1>
+
+
+<p><code>x-show</code> は、Alpine で最も便利で強力なディレクティブの1つです。DOM要素を表示および非表示にする表現力豊かな方法を提供します。</p>
+<p><code>x-show</code> を使用した単純なドロップダウンコンポーネントの例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button x-on:click=&quot;open = ! open&quot;&gt;Toggle Dropdown&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Dropdown Contents...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>「<code>Toggle Dropdown</code>」ボタンをクリックすると、それに応じてドロップダウンが表示および非表示になります。</p>
+<blockquote>
+<p>ページ読み込み時の<code>x-show</code>のデフォルト状態が「<code>false</code>」の場合、「ページのちらつき」（ブラウザが Alpine が初期化と非表示を完了する前のコンテンツ）を回避するために、ページで「<code>x-cloak</code>」を使用することをお勧めします。 <code>x-cloak</code>の詳細については、ドキュメントをご覧ください</p>
+</blockquote>
+<p></p>
+<h2>トランジション</h2>
+
+<p><code>x-show</code> の動作にスムーズな遷移を適用する場合は、<code>x-transition</code> と組み合わせて使用​​できます。このディレクティブの詳細については、<a href="/directives/transition">ここ</a>　を参照してください。ただし、トランジションを適用した、上記と同じコンポーネントの簡単な例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button x-on:click=&quot;open = ! open&quot;&gt;Toggle Dropdown&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot; x-transition&gt;
+        Dropdown Contents...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h1>x-bind</h1>
+
+<p><code>x-bind</code> を使用すると、JavaScript 式の結果に基づいて要素にHTML属性を設定できます。</p>
+<p>たとえば、これは、<code>x-bind</code>を使用して入力のプレースホルダー値を設定するコンポーネントです。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ placeholder: 'Type here...' }&quot;&gt;
+  &lt;input type=&quot;text&quot; x-bind:placeholder=&quot;placeholder&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>省略構文</h2>
+
+<p><code>x-bind：</code>が冗長すぎて好みに合わない場合は、省略形 <code>：</code> を使用できます。たとえば、これは上記と同じ入力要素ですが、短縮構文を使用するようにリファクタリングされています。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; :placeholder=&quot;placeholder&quot;&gt;
+</code></pre>
+<p></p>
+<h2>バインディングクラス</h2>
+
+<p><code>x-bind</code> は、Alpineの状態に基づいて要素に特定のクラスを設定する場合に最もよく役立ちます。</p>
+<p>これは単純なドロップダウントグルの簡単な例ですが、<code>x-show</code>を使用する代わりに、「hidden」クラスを使用して要素をトグルします。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+  &lt;button x-on:click=&quot;open = ! open&quot;&gt;Toggle Dropdown&lt;/button&gt;
+
+  &lt;div :class=&quot;open ? '' : 'hidden'&quot;&gt;
+    Dropdown Contents...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>これで、<code>open</code>が <code>false</code> の場合、「非表示」クラスがドロップダウンに追加されます。</p>
+<p></p>
+<h3>省略形の条件</h3>
+
+<p>このような場合、より冗長でない構文が必要な場合は、標準の条件の代わりにJavaScriptの短絡評価を使用できます。</p>
+<pre><code class="language-html">&lt;div :class=&quot;show ? '' : 'hidden'&quot;&gt;
+&lt;!-- Is equivalent to: --&gt;
+&lt;div :class=&quot;show || 'hidden'&quot;&gt;
+</code></pre>
+
+<p>逆も利用できます。<code>open</code> の代わりに、反対の値を持つ変数 <code>closed</code> を使用するとします。</p>
+<pre><code class="language-html">&lt;div :class=&quot;closed ? 'hidden' : ''&quot;&gt;
+&lt;!-- Is equivalent to: --&gt;
+&lt;div :class=&quot;closed &amp;&amp; 'hidden'&quot;&gt;
+</code></pre>
+<p></p>
+<h3>クラスオブジェクト構文</h3>
+
+<p>Alpine は、必要に応じてクラスを切り替えるための追加の構文を提供します。クラスがキーでブール値が値である JavaScript オブジェクトを渡すことにより、Alpine は、適用するクラスと削除するクラスを認識します。以下のような例となります。</p>
+<pre><code class="language-html">&lt;div :class=&quot;{ 'hidden': ! show }&quot;&gt;
+</code></pre>
+
+
+<p>この手法は、他の方法に固有の利点を提供します。 <code>object-syntax</code> を使用する場合、Alpine は要素の<code>class</code>属性に適用された元のクラスを保持しません。</p>
+<p>たとえば、Alpine が読み込まれる前に「hidden」クラスを要素に適用し、Alpine を使用してその存在を切り替える場合、<code>object-syntax</code> を使用してのみその動作を実現できます。</p>
+<pre><code class="language-html">&lt;div class=&quot;hidden&quot; :class=&quot;{ 'hidden': ! show }&quot;&gt;
+</code></pre>
+
+<p>混乱した場合に備えて、Alpine が他の属性とは異なる方法で <code>x-bind:class</code>を処理する方法を詳しく見ていきましょう。</p>
+<p></p>
+<h3>特別な振る舞い</h3>
+
+
+<p><code>x-bind:class</code> は、内部で他の属性とは異なる動作をします。</p>
+<p>次の場合を考えてみましょう。</p>
+<pre><code class="language-html">&lt;div class=&quot;opacity-50&quot; :class=&quot;hide &amp;&amp; 'hidden'&quot;&gt;
+</code></pre>
+
+
+
+<p>「class」が他の属性である場合、<code>:class</code> バインディングは既存のクラス属性を上書きし、<code>opacity-50</code> を <code>hidden</code> または <code>''</code> で上書きします。</p>
+<p>ただし、Alpine は <code>class</code> バインディングを異なる方法で処理します。要素の既存のクラスを保持するのに役立ちます。</p>
+<p>たとえば、<code>hide</code> が true の場合、上記の例は次のDOM要素になります。</p>
+<pre><code class="language-html">&lt;div class=&quot;opacity-50 hidden&quot;&gt;
+</code></pre>
+<p>If <code>hide</code> is false, the DOM element will look like:</p>
+<p><code>hide</code> が <code>false</code> の場合、DOM要素は次のようになります。</p>
+<pre><code class="language-html">&lt;div class=&quot;opacity-50&quot;&gt;
+</code></pre>
+
+<p>この動作は、ほとんどのユーザーには見えず、直感的である必要がありますが、問い合わせを行う開発者や、発生する可能性のある特殊なケースについては、明示的に言及する価値があります。</p>
+<p></p>
+<h2>CSS スタイルを結合する</h2>
+
+
+<p>クラスを JavaScript オブジェクトにバインドするための特別な構文と同様に、Alpine は <code>style</code> 属性をバインドするためのオブジェクトベースの構文も提供します。</p>
+<p>クラスオブジェクトと同様に、この構文は完全にオプションです。それがあなたにいくらかの利点を与える場合にのみそれを使用してください。</p>
+<pre><code class="language-html">&lt;div :style=&quot;{ color: 'red', display: 'flex' }&quot;&gt;
+
+&lt;!-- Will render: --&gt;
+&lt;div style=&quot;color: red; display: flex;&quot; ...&gt;
+</code></pre>
+
+<p><code>x-bind:class</code> と同じように、式を使用して条件付きインラインスタイルを設定できます。ここでも、スタイルオブジェクトを第2引数として使用することにより、短絡演算子を使用できます。</p>
+<pre><code class="language-html">&lt;div x-bind:style=&quot;true &amp;&amp; { color: 'red' }&quot;&gt;
+
+&lt;!-- Will render: --&gt;
+&lt;div style=&quot;color: red;&quot;&gt;
+</code></pre>
+
+<p>このアプローチの利点の1つは、要素の既存のスタイルと組み合わせることができることです。</p>
+<pre><code class="language-html">&lt;div style=&quot;padding: 1rem;&quot; :style=&quot;{ color: 'red', display: 'flex' }&quot;&gt;
+
+&lt;!-- Will render: --&gt;
+&lt;div style=&quot;padding: 1rem; color: red; display: flex;&quot; ...&gt;
+</code></pre>
+
+<p>また、Alpine のほとんどの式と同様に、JavaScript 式の結果をいつでも参照として使用できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ styles: { color: 'red', display: 'flex' }}&quot;&gt;
+    &lt;div :style=&quot;styles&quot;&gt;
+&lt;/div&gt;
+
+&lt;!-- Will render: --&gt;
+&lt;div ...&gt;
+    &lt;div style=&quot;color: red; display: flex;&quot; ...&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>Alpine ディレクティブを直接結合する</h2>
+
+
+<p><code>x-bind</code> を使用すると、さまざまなディレクティブと属性のオブジェクトを要素にバインドできます。</p>
+<p>オブジェクトキーは、Alpine で属性名として通常書き込むものであれば何でもかまいません。これには、Alpine ディレクティブと修飾子だけでなく、プレーン HTML 属性も含まれます。オブジェクト値はプレーン文字列であるか、動的な Alpine ディレクティブの場合は、Alpine によって評価されるコールバックです。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown()&quot;&gt;
+    &lt;button x-bind=&quot;trigger&quot;&gt;Open Dropdown&lt;/button&gt;
+
+    &lt;span x-bind=&quot;dialogue&quot;&gt;Dropdown Contents&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.data('dropdown', () =&gt; ({
+            open: false,
+
+            trigger: {
+                ['x-ref']: 'trigger',
+                ['@click']() {
+                    this.open = true
+                },
+            },
+
+            dialogue: {
+                ['x-show']() {
+                    return this.open
+                },
+                ['@click.outside']() {
+                    this.open = false
+                },
+            },
+        }))
+    })
+&lt;/script&gt;
+</code></pre>
+
+
+<p>この <code>x-bind</code> の使用法にはいくつかの注意点があります。</p>
+<blockquote>
+<p>「バインド (bound)」または「適用 (applied)」されているディレクティブがの <code>x-for</code> 場合、コールバックから通常の式の文字列を返す必要があります。（ 例えば <code>['x-for']() { return 'item in items' }</code> ）</p>
+</blockquote>
+<h1>x-on</h1>
+
+
+<p><code>x-on</code> は、ディスパッチ（割当）されている DOM イベント上で、自分で書いたコードを簡単に実行できます。</p>
+<p>クリックするとアラートを表示するシンプルなボタンの例を次に示します。</p>
+<pre><code class="language-html">&lt;button x-on:click=&quot;alert('Hello World!')&quot;&gt;Say Hi&lt;/button&gt;
+</code></pre>
+
+
+
+<blockquote>
+<p><code>x-on</code>を使用する際は、 HTML 属性で大文字と小文字が区別されないため、小文字のイベントのみをリッスンします。<code>x-on:CLICK</code> でしたら、<code>click</code> という名前のイベントをリッスンします。</p>
+</blockquote>
+<blockquote>
+<p>キャメルケース名のカスタムイベントをリッスンする必要がある場合は、<code>.camel</code> ヘルパーを使用してこの制限を回避できます。または、JavaScript コードの要素に <code>x-on</code> ディレクティブをアタッチするために <code>x-bind</code> を使用できます （大文字と小文字は区別されます）。</p>
+</blockquote>
+<p></p>
+<h2>省略構文</h2>
+
+
+<p><code>x-on:</code> が冗長すぎて好みに合わない場合は、省略構文 <code>@</code> を使用できます。</p>
+<p>上記と同じコンポーネントですが、代わりに省略構文を使用しています。</p>
+<pre><code class="language-html">&lt;button @click=&quot;alert('Hello World!')&quot;&gt;Say Hi&lt;/button&gt;
+</code></pre>
+<p></p>
+<h2>イベントオブジェクト</h2>
+
+<p>式からネイティブ JavaScript イベントオブジェクトにアクセスする場合は、Alpineの魔法の <code>$event</code> プロパティを使用できます。</p>
+<pre><code class="language-html">&lt;button @click=&quot;alert($event.target.getAttribute('message'))&quot; message=&quot;Hello World&quot;&gt;Say Hi&lt;/button&gt;
+</code></pre>
+
+<p>さらに、Alpineは、末尾の括弧なしで参照されるメソッドにイベントオブジェクトを渡します。例えば</p>
+<pre><code class="language-html">&lt;button @click=&quot;handleClick&quot;&gt;...&lt;/button&gt;
+
+&lt;script&gt;
+    function handleClick(e) {
+        // Now you can access the event object (e) directly
+    }
+&lt;/script&gt;
+</code></pre>
+<p></p>
+<h2>キーボードイベント</h2>
+
+
+<p>Alpine を使用すると、特定のキーの <code>keydown</code> および <code>keyup</code> イベントを簡単にリッスンできます。</p>
+<p>これは、入力要素内で「Enter」キーをリッスンする例です。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; @keyup.enter=&quot;alert('Submitted!')&quot;&gt;
+</code></pre>
+
+
+<p>これらのキー修飾子をチェーンして、より複雑なリスナーを実現することもできます。</p>
+<p>これは、<code>Shift</code> キーを押したまま、<code>Enter</code> キーを押したときに実行されるリスナーですが、単独で <code>Enter</code> キーを押したときは実行されません。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; @keyup.shift.enter=&quot;alert('Submitted!')&quot;&gt;
+</code></pre>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values"><code>KeyboardEvent.key</code></a> を介して公開された有効なキー名は、kebab-case に変換することで、修飾子として直接使用できます。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; @keyup.page-down=&quot;alert('Submitted!')&quot;&gt;
+</code></pre>
+
+<p>一般的にリッスンできるキーのリストです。</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Keyboard Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.shift</code></td>
+<td>Shift</td>
+</tr>
+<tr>
+<td><code>.enter</code></td>
+<td>Enter</td>
+</tr>
+<tr>
+<td><code>.space</code></td>
+<td>Space</td>
+</tr>
+<tr>
+<td><code>.ctrl</code></td>
+<td>Ctrl</td>
+</tr>
+<tr>
+<td><code>.cmd</code></td>
+<td>Cmd</td>
+</tr>
+<tr>
+<td><code>.meta</code></td>
+<td>Cmd on Mac, Ctrl on Windows</td>
+</tr>
+<tr>
+<td><code>.alt</code></td>
+<td>Alt</td>
+</tr>
+<tr>
+<td><code>.up</code> <code>.down</code> <code>.left</code> <code>.right</code></td>
+<td>Up/Down/Left/Right arrows</td>
+</tr>
+<tr>
+<td><code>.escape</code></td>
+<td>Escape</td>
+</tr>
+<tr>
+<td><code>.tab</code></td>
+<td>Tab</td>
+</tr>
+<tr>
+<td><code>.caps-lock</code></td>
+<td>Caps Lock</td>
+</tr>
+<tr>
+<td><code>.equal</code></td>
+<td>Equal, <code>=</code></td>
+</tr>
+<tr>
+<td><code>.period</code></td>
+<td>Period, <code>.</code></td>
+</tr>
+<tr>
+<td><code>.slash</code></td>
+<td>Foward Slash, <code>/</code></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<h2>カスタムイベント</h2>
+
+
+<p>Alpine のイベントリスナーは、ネイティブDOMイベントリスナーのラッパーです。したがって、カスタムイベントを含むすべてのDOMイベントをリッスンできます。</p>
+<p>これは、カスタムDOMイベントをディスパッチし、それもリッスンするコンポーネントの例です。</p>
+<pre><code class="language-html">&lt;div x-data @foo=&quot;alert('Button Was Clicked!')&quot;&gt;
+	&lt;button @click=&quot;$event.target.dispatchEvent(new CustomEvent('foo', { bubbles: true }))&quot;&gt;...&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+<p>ボタンがクリックされると、<code>@foo</code> リスナーが呼び出されます。</p>
+<p><code>.dispatchEventAPI</code> は冗長であるため、Alpine は <code>$dispatch</code>ヘルパーで単純化して提供しています。</p>
+<p>これは、<code>$dispatch</code> マジックプロパティで書き直された同じコンポーネントです。</p>
+<pre><code class="language-html">&lt;div x-data @foo=&quot;alert('Button Was Clicked!')&quot;&gt;
+  &lt;button @click=&quot;$dispatch('foo')&quot;&gt;...&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p><a href="/magics/dispatch">→ 「$dispatch」の詳細を読む</a></p>
+<p></p>
+<h2>修飾子</h2>
+
+<p>Alpine には、イベントリスナーの動作をカスタマイズするためのディレクティブ修飾子が複数用意されています。</p>
+<p></p>
+<h3>.prevent</h3>
+
+<p><code>.prevent</code> は、ブラウザのイベントオブジェクトのリスナー内で呼び出す <code>.preventDefault()</code> と同等です。</p>
+<pre><code class="language-html">&lt;form @submit.prevent=&quot;console.log('submitted')&quot; action=&quot;/foo&quot;&gt;
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>上記の例では、<code>.prevent</code> が付与されたボタンをクリックしてもフォームは <code>/foo</code> のエンドポイントに送信されません。代わりに、Alpine のリスナーがそれを処理し、イベントがそれ以上処理されないようにします。</p>
+<p></p>
+<h3>.stop</h3>
+
+<p><code>.prevent</code> と同様に、<code>.stop</code> は、ブラウザイベントオブジェクトのリスナー内で <code>.stopPropagation()</code>を呼び出すのと同じです。</p>
+<pre><code class="language-html">&lt;div @click=&quot;console.log('I will not get logged')&quot;&gt;
+    &lt;button @click.stop&gt;Click Me&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>上記の例では、ボタンをクリックしてもメッセージはログに記録されません。これは、イベントの伝播をすぐに停止し、<code>@click</code> リスナーが設定された <code>&lt;div&gt;</code> までイベントを「bubble」させないためです。</p>
+<p></p>
+<h3>.outside</h3>
+
+<p><code>.outside</code> は、アタッチされている要素の外側のクリックをリッスンするための便利なヘルパーです。次に、簡単なドロップダウンコンポーネントの例を示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot; @click.outside=&quot;open = false&quot;&gt;
+        Contents...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>上記の例では、「Toggle」ボタンをクリックしてドロップダウンのコンテンツを表示した後、コンテンツの外側のページの任意の場所をクリックしてドロップダウンを閉じることができます。</p>
+<p>これは、<code>.outside</code> が登録されている要素から発生していないクリックをリッスンしているためです。</p>
+
+<p><code>.outside</code> 式は、それが登録されている要素がページに表示されている場合にのみ評価されることに注意してください。そうしないと、「Toggle」ボタンをクリックすると、表示されていないときに <code>@click.outside</code> ハンドラーも起動するという厄介な競合状態が発生します。</p>
+<p></p>
+<h3>.window</h3>
+
+<p><code>.window</code> 修飾子が存在する場合、Alpine は、要素自体ではなく、ページ上のルート<code>window</code> オブジェクトにイベントリスナーを登録します。</p>
+<pre><code class="language-html">&lt;div @keyup.escape.window=&quot;...&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+
+<p>上記のスニペットは、ページのどこでも押される「escape」キーをリッスンします。</p>
+<p>リスナーに <code>.window</code> を追加すると、マークアップのごく一部がページ全体で発生するイベントに関係しているような場合に非常に役立ちます。</p>
+<p></p>
+<h3>.document</h3>
+
+<p><code>.document</code> は <code>.window</code> と同様に機能しますが、<code>window</code> グローバルではなく <code>document</code> グローバルにリスナーを登録します。</p>
+<p></p>
+<h3>.once</h3>
+
+<p>リスナーに <code>.once</code> を追加することで、ハンドラーが1回だけ呼び出されるようになります。</p>
+<pre><code class="language-html">&lt;button @click.once=&quot;console.log('I will only log once')&quot;&gt;...&lt;/button&gt;
+</code></pre>
+<p></p>
+<h3>.debounce</h3>
+
+
+<p>イベントハンドラーを「デバウンス」して、特定の非アクティブ期間（デフォルトでは250ミリ秒）の後にのみ呼び出されるようにすると便利な場合があります。</p>
+<p>たとえば、ユーザーが入力したときにネットワークリクエストを発生させる検索フィールドがある場合、デバウンスを追加すると、キーストロークごとにネットワークリクエストが発生するのを防ぐことができます。</p>
+<pre><code class="language-html">&lt;input @input.debounce=&quot;fetchResults&quot;&gt;
+</code></pre>
+
+
+<p>これで、すべてのキーストロークの後に <code>fetchResults</code> を呼び出す代わりに、<code>fetchResults</code> はキーストロークがない250ミリ秒後にのみ呼び出されます。</p>
+<p>デバウンス時間を長くしたり短くしたりする場合は、次のように <code>.debounce</code> 修飾子の後に継続時間を追跡することでこれを行うことができます。</p>
+<pre><code class="language-html">&lt;input @input.debounce.500ms=&quot;fetchResults&quot;&gt;
+</code></pre>
+
+<p>現在、<code>fetchResults</code> は、500ミリ秒の非アクティブの後にのみ呼び出されます。</p>
+<p></p>
+<h3>.throttle</h3>
+
+
+<p><code>.throttle</code> は <code>.debounce</code> に似ていますが、ハンドラー呼び出しを無期限に延期するのではなく、250ミリ秒ごとに解放する点が異なります。</p>
+<p>これは、イベントの発生が繰り返されて長時間発生する可能性があり、イベントを頻繁に処理する必要があるため、<code>.debounce</code> の使用が機能しない場合に役立ちます。</p>
+<p>例えば、</p>
+<pre><code class="language-html">&lt;div @scroll.window.throttle=&quot;handleScroll&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+
+
+<p>上記の例は、スロットルの優れたユースケースです。 <code>.throttle</code> がないと、ユーザーがページを下にスクロールするときに、<code>handleScroll</code> メソッドが何百回も起動されます。これにより、サイトの速度が大幅に低下する可能性があります。 <code>.throttle</code> を追加することで、<code>handleScroll</code> が250ミリ秒ごとにのみ呼び出されるようにしています。</p>
+<blockquote>
+<p>おもしろ情報：この正確な戦略は、まさにこのドキュメントサイトで使用され、右側のサイドバーで現在強調表示されているセクションを更新します。</p>
+</blockquote>
+<p><code>.debounce</code> と同様に、スロットルされたイベントにカスタム期間を追加できます。</p>
+<pre><code class="language-html">&lt;div @scroll.window.throttle.750ms=&quot;handleScroll&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<p>Now, <code>handleScroll</code> will only be called every 750 milliseconds.</p>
+<p>ここでは、<code>handleScroll</code> は 750ミリ秒ごとに呼び出されます。</p>
+<p></p>
+<h3>.self</h3>
+
+<p>イベントリスナーに <code>.self</code> を追加することで、イベントが子要素からではなく、宣言された要素から発生したことを確認できます。</p>
+<pre><code class="language-html">&lt;button @click.self=&quot;handleClick&quot;&gt;
+    Click Me
+
+    &lt;img src=&quot;...&quot;&gt;
+&lt;/button&gt;
+</code></pre>
+
+
+<p>上記の例では、<code>&lt;button&gt;</code> タグ内に <code>&lt;img&gt;</code> タグがあります。通常、<code>&lt;button&gt;</code> 要素内で発生したクリック（たとえば <code>&lt;img&gt;</code> など）は、ボタンの <code>@click</code> リスナーによって検出されます。</p>
+<p>ただし、この場合 <code>.self</code> を追加したため、ボタン自体をクリックするだけで <code>handleClick</code> が呼び出されます。<code>&lt;img&gt;</code> 要素で発生したクリックのみが処理されません。</p>
+<p></p>
+<h3>.camel</h3>
+<pre><code class="language-html">&lt;div @custom-event.camel=&quot;handleCustomEvent&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+
+
+<p>この例では、<code>customEvent</code> などのキャメルケースイベントをリッスンしたい場合があります。 HTML属性内のcamelCasingはサポートされていないため、Alpineがイベント名を内部でcamelCaseにするには、<code>.camel</code> 修飾子を追加する必要があります。</p>
+<p>上記の例で <code>.camel</code> を追加することにより、Alpine は <code>custom-event</code> ではなく <code>customEvent</code> をリッスンするようになりました。</p>
+<p></p>
+<h3>.dot</h3>
+<pre><code class="language-html">&lt;div @custom-event.dot=&quot;handleCustomEvent&quot;&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+
+
+<p><code>.camelCase</code> 修飾子と同様に、名前にドットが含まれるイベント（ <code>custom.event</code> など）をリッスンしたい場合があります。イベント名内のドットはAlpineによって予約されているため、ダッシュを使用してドットを記述し、<code>.dot</code> 修飾子を追加する必要があります。</p>
+<p>上記のコード例では、<code>custom-event.dot</code> はイベント名 <code>custom.event</code> に対応しています。</p>
+<p></p>
+<h3>.passive</h3>
+
+
+<p>ブラウザは、JavaScript がページで実行されている場合でも、ページのスクロールを高速かつスムーズに最適化します。ただし、不適切に実装されたタッチおよびホイールリスナーは、この最適化をブロックし、サイトのパフォーマンスを低下させる可能性があります。</p>
+<p>タッチイベントをリッスンしている場合は、スクロールのパフォーマンスを妨げないように、リスナーに <code>.passive</code> を追加することが重要です。</p>
+<pre><code class="language-html">&lt;div @touchstart.passive=&quot;...&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners">→ パッシブリスナーについてもっと読む</a></p>
+<h1>x-text</h1>
+
+
+<p><code>x-text</code>は、要素のテキストコンテンツを特定の式の結果に設定します。</p>
+<p><code>x-text</code>を使用してユーザーのユーザー名を表示する基本的な例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ username: 'calebporzio' }&quot;&gt;
+    Username: &lt;strong x-text=&quot;username&quot;&gt;&lt;/strong&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ username: 'calebporzio' }&quot;&gt;
+        Username: &lt;strong x-text=&quot;username&quot;&gt;&lt;/strong&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>これで、<code>&lt;strong&gt;</code> タグの内部テキストコンテンツが「calebporzio」に設定されます。</p>
+<h1>x-html</h1>
+
+
+
+
+<p><code>x-html</code> は、要素の「 innerHTML 」プロパティを指定された式の結果に設定します。</p>
+<blockquote>
+<p>⚠️ 信頼できるコンテンツにのみ使用し、ユーザー提供のコンテンツには使用しないでください。⚠️</p>
+</blockquote>
+<blockquote>
+<p>サードパーティから HTML を動的にレンダリングすると、XSS の脆弱性が簡単に発生する可能性があります。</p>
+</blockquote>
+<p><code>x-html</code> を使用してユーザーのユーザー名を表示する基本的な例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ username: '&lt;strong&gt;calebporzio&lt;/strong&gt;' }&quot;&gt;
+    Username: &lt;span x-html=&quot;username&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ username: '&lt;strong&gt;calebporzio&lt;/strong&gt;' }&quot;&gt;
+        Username: &lt;span x-html=&quot;username&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>これで、<code>&lt;span&gt;</code>タグの内部HTMLが「calebporzio」に設定されます。</p>
+<h1>x-model</h1>
+
+
+<p><code>x-model</code>を使用すると、入力要素の値を Alpineの データにバインドできます。</p>
+<p>これは、<code>x-model</code> を使用してテキストフィールドの値をAlpine のデータにバインドする簡単な例です。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ message: '' }&quot;&gt;
+    &lt;input type=&quot;text&quot; x-model=&quot;message&quot;&gt;
+
+    &lt;span x-text=&quot;message&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ message: '' }&quot;&gt;
+        &lt;input type=&quot;text&quot; x-model=&quot;message&quot; placeholder=&quot;Type message...&quot;&gt;
+
+        &lt;div class=&quot;pt-4&quot; x-text=&quot;message&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+
+<p>これで、ユーザーがテキストフィールドに入力すると、<code>message</code> プロパティの値が <code>&lt;span&gt;</code> タグに反映されます。</p>
+<p><code>x-model</code> は双方向にバインドされており、「sets (入力)」と「gets (取得)」の両方を意味します。 データの変更に加えて、データ自体が変更された場合、要素は変更を反映します。</p>
+<p>上記と同じ例を使用できますが、今回は、<code>message</code> プロパティの値を変更するためのボタンを追加します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ message: '' }&quot;&gt;
+    &lt;input type=&quot;text&quot; x-model=&quot;message&quot;&gt;
+
+    &lt;button x-on:click=&quot;message = 'changed'&quot;&gt;Change Message&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ message: '' }&quot;&gt;
+        &lt;input type=&quot;text&quot; x-model=&quot;message&quot; placeholder=&quot;Type message...&quot;&gt;
+
+        &lt;button x-on:click=&quot;message = 'changed'&quot;&gt;Change Message&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>これで、 <code>&lt;button&gt;</code> をクリックすると、入力要素の値がすぐに「changed」に更新されます。</p>
+<p><code>x-model</code> は、次の入力要素で機能します。</p>
+<ul>
+<li>
+<code>&lt;input type=&quot;text&quot;&gt;</code>
+</li>
+<li>
+<code>&lt;textarea&gt;</code>
+</li>
+<li>
+<code>&lt;input type=&quot;checkbox&quot;&gt;</code>
+</li>
+<li>
+<code>&lt;input type=&quot;radio&quot;&gt;</code>
+</li>
+<li>
+<code>&lt;select&gt;</code>
+</li>
+</ul>
+<p></p>
+<h2>テキストの入力</h2>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model=&quot;message&quot;&gt;
+
+&lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ message: '' }&quot;&gt;
+        &lt;input type=&quot;text&quot; x-model=&quot;message&quot; placeholder=&quot;Type message&quot;&gt;
+
+        &lt;div class=&quot;pt-4&quot; x-text=&quot;message&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>テキストエリアの入力</h2>
+<pre><code class="language-html">&lt;textarea x-model=&quot;message&quot;&gt;&lt;/textarea&gt;
+
+&lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ message: '' }&quot;&gt;
+        &lt;textarea x-model=&quot;message&quot; placeholder=&quot;Type message&quot;&gt;&lt;/textarea&gt;
+
+        &lt;div class=&quot;pt-4&quot; x-text=&quot;message&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>チェックボックスの入力</h2>
+<p></p>
+<h3>ブール値を含む単一のチェックボックス</h3>
+<pre><code class="language-html">&lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; x-model=&quot;show&quot;&gt;
+
+&lt;label for=&quot;checkbox&quot; x-text=&quot;show&quot;&gt;&lt;/label&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ open: '' }&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; x-model=&quot;open&quot;&gt;
+
+        &lt;label for=&quot;checkbox&quot; x-text=&quot;open&quot;&gt;&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>配列にバインドされた複数のチェックボックス</h3>
+<pre><code class="language-html">&lt;input type=&quot;checkbox&quot; value=&quot;red&quot; x-model=&quot;colors&quot;&gt;
+&lt;input type=&quot;checkbox&quot; value=&quot;orange&quot; x-model=&quot;colors&quot;&gt;
+&lt;input type=&quot;checkbox&quot; value=&quot;yellow&quot; x-model=&quot;colors&quot;&gt;
+
+Colors: &lt;span x-text=&quot;colors&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ colors: [] }&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; value=&quot;red&quot; x-model=&quot;colors&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; value=&quot;orange&quot; x-model=&quot;colors&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; value=&quot;yellow&quot; x-model=&quot;colors&quot;&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Colors: &lt;span x-text=&quot;colors&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>ラジオボタンの入力</h2>
+<pre><code class="language-html">&lt;input type=&quot;radio&quot; value=&quot;yes&quot; x-model=&quot;answer&quot;&gt;
+&lt;input type=&quot;radio&quot; value=&quot;no&quot; x-model=&quot;answer&quot;&gt;
+
+Answer: &lt;span x-text=&quot;answer&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ answer: '' }&quot;&gt;
+        &lt;input type=&quot;radio&quot; value=&quot;yes&quot; x-model=&quot;answer&quot;&gt;
+        &lt;input type=&quot;radio&quot; value=&quot;no&quot; x-model=&quot;answer&quot;&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Answer: &lt;span x-text=&quot;answer&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>単一のインプット</h2>
+<p></p>
+<h3>単一のセレクトボックス</h3>
+<pre><code class="language-html">&lt;select x-model=&quot;color&quot;&gt;
+    &lt;option&gt;Red&lt;/option&gt;
+    &lt;option&gt;Orange&lt;/option&gt;
+    &lt;option&gt;Yellow&lt;/option&gt;
+&lt;/select&gt;
+
+Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ color: '' }&quot;&gt;
+        &lt;select x-model=&quot;color&quot;&gt;
+            &lt;option&gt;Red&lt;/option&gt;
+            &lt;option&gt;Orange&lt;/option&gt;
+            &lt;option&gt;Yellow&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>プレースホルダー付きの単一選択</h3>
+<pre><code class="language-html">&lt;select x-model=&quot;color&quot;&gt;
+    &lt;option value=&quot;&quot; disabled&gt;Select A Color&lt;/option&gt;
+    &lt;option&gt;Red&lt;/option&gt;
+    &lt;option&gt;Orange&lt;/option&gt;
+    &lt;option&gt;Yellow&lt;/option&gt;
+&lt;/select&gt;
+
+Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ color: '' }&quot;&gt;
+        &lt;select x-model=&quot;color&quot;&gt;
+            &lt;option value=&quot;&quot; disabled&gt;Select A Color&lt;/option&gt;
+            &lt;option&gt;Red&lt;/option&gt;
+            &lt;option&gt;Orange&lt;/option&gt;
+            &lt;option&gt;Yellow&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>複数選択のセレクトボックス</h3>
+<pre><code class="language-html">&lt;select x-model=&quot;color&quot; multiple&gt;
+    &lt;option&gt;Red&lt;/option&gt;
+    &lt;option&gt;Orange&lt;/option&gt;
+    &lt;option&gt;Yellow&lt;/option&gt;
+&lt;/select&gt;
+
+Colors: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ color: '' }&quot;&gt;
+        &lt;select x-model=&quot;color&quot; multiple&gt;
+            &lt;option&gt;Red&lt;/option&gt;
+            &lt;option&gt;Orange&lt;/option&gt;
+            &lt;option&gt;Yellow&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>動的に入力される選択オプション</h3>
+<pre><code class="language-html">&lt;select x-model=&quot;color&quot;&gt;
+    &lt;template x-for=&quot;color in ['Red', 'Orange', 'Yellow']&quot;&gt;
+        &lt;option x-text=&quot;color&quot;&gt;&lt;/option&gt;
+    &lt;/template&gt;
+&lt;/select&gt;
+
+Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ color: '' }&quot;&gt;
+        &lt;select x-model=&quot;color&quot;&gt;
+            &lt;template x-for=&quot;color in ['Red', 'Orange', 'Yellow']&quot;&gt;
+                &lt;option x-text=&quot;color&quot;&gt;&lt;/option&gt;
+            &lt;/template&gt;
+        &lt;/select&gt;
+
+        &lt;div class=&quot;pt-4&quot;&gt;Color: &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>修飾子</h2>
+<p></p>
+<h3><code>.lazy</code></h3>
+
+
+<p>テキスト入力では、デフォルトで、<code>x-model</code> はキーストロークごとにプロパティを更新します。 <code>.lazy</code> 修飾子を追加することにより、ユーザーが入力要素から離れてフォーカスした場合にのみ、<code>x-model</code> 入力がプロパティを更新するように強制できます。</p>
+<p>これは、ユーザーがフィールドから「tabs」で移動するまで入力検証エラーを表示したくないリアルタイムのフォーム検証などに便利です。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.lazy=&quot;username&quot;&gt;
+&lt;span x-show=&quot;username.length &gt; 20&quot;&gt;The username is too long.&lt;/span&gt;
+</code></pre>
+<p></p>
+<h3><code>.number</code></h3>
+
+<p>デフォルトでは、<code>x-model</code> を介してプロパティに保存されているデータはすべて文字列として保存されます。 Alpine に値を JavaScript 番号として保存させるには、<code>.number</code> 修飾子を追加します。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.number=&quot;age&quot;&gt;
+&lt;span x-text=&quot;typeof age&quot;&gt;&lt;/span&gt;
+</code></pre>
+<p></p>
+<h3><code>.debounce</code></h3>
+
+
+<p><code>.debounce</code> を <code>x-model</code> に追加することで、バインドされた入力の更新を簡単にデバウンスできます。</p>
+<p>これは、検索プロパティが変更されるたびにサーバーから新しいデータをフェッチするリアルタイム検索入力などに役立ちます。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.debounce=&quot;search&quot;&gt;
+</code></pre>
+
+<p>デフォルトのデバウンス時間は250ミリ秒です。このように時間修飾子を追加することで、これを簡単にカスタマイズできます。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.debounce.500ms=&quot;search&quot;&gt;
+</code></pre>
+<p></p>
+<h3><code>.throttle</code></h3>
+
+<p><code>.debounce</code> と同様に、<code>x-model</code> によってトリガーされるプロパティの更新を指定された間隔でのみ更新するように制限できます。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.throttle=&quot;search&quot;&gt;
+</code></pre>
+
+<p>デフォルトのスロットル間隔は250ミリ秒です。次の例では、時間を付与した修飾子を追加することでカスタマイズもできます。</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; x-model.throttle.500ms=&quot;search&quot;&gt;
+</code></pre>
+<p></p>
+<h2>プログラムによるアクセス</h2>
+
+
+
+
+<p>Alpineは、<code>x-model</code> でバインドされたプロパティを取得および設定するための内部ユーティリティを公開しています。 これは、デフォルトの <code>x-model</code> の動作をオーバーライドしたい複雑な Alpine ユーティリティや、非入力要素で <code>x-model</code> を許可したい場合に便利です。</p>
+<p>これらのユーティリティには、<code>x-model</code> ed要素の <code>_x_model</code> というプロパティを介してアクセスできます。 <code>_x_model</code> には、バインドされたプロパティを取得および設定するための2つのメソッドがあります。</p>
+<ul>
+<li>
+<code>el._x_model.get()</code>（バインドされたプロパティの値を返します）</li>
+<li>
+<code>el._x_model.set()</code>（バインドされたプロパティの値を設定します）</li>
+</ul>
+<pre><code class="language-html">&lt;div x-data=&quot;{ username: 'calebporzio' }&quot;&gt;
+    &lt;div x-ref=&quot;div&quot; x-model=&quot;username&quot;&gt;&lt;/div&gt;
+
+    &lt;button @click=&quot;$refs.div._x_model.set('phantomatrix')&quot;&gt;
+        Change username to: 'phantomatrix'
+    &lt;/button&gt;
+
+    &lt;span x-text=&quot;$refs.div._x_model.get()&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ username: 'calebporzio' }&quot;&gt;
+        &lt;div x-ref=&quot;div&quot; x-model=&quot;username&quot;&gt;&lt;/div&gt;
+
+        &lt;button @click=&quot;$refs.div._x_model.set('phantomatrix')&quot;&gt;
+            Change username to: 'phantomatrix'
+        &lt;/button&gt;
+
+        &lt;span x-text=&quot;$refs.div._x_model.get()&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>x-modelable</h1>
+
+
+<p><code>x-modelable</code> を使用すると、任意の Alpine プロパティを <code>x-model</code> ディレクティブのターゲットとして公開できます。</p>
+<p>これは、<code>x-modelable</code> を使用して <code>x-model</code> とバインドするための変数を公開する簡単な例です。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ number: 5 }&quot;&gt;
+    &lt;div x-data=&quot;{ count: 0 }&quot; x-modelable=&quot;count&quot; x-model=&quot;number&quot;&gt;
+        &lt;button @click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+
+    Number: &lt;span x-text=&quot;number&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ number: 5 }&quot;&gt;
+        &lt;div x-data=&quot;{ count: 0 }&quot; x-modelable=&quot;count&quot; x-model=&quot;number&quot;&gt;
+            &lt;button @click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+        &lt;/div&gt;
+
+        Number: &lt;span x-text=&quot;number&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>ご覧のとおり、外部スコープのプロパティ「number」は内部スコープのプロパティ「count」にバインドされています。</p>
+<p>通常、この機能はLaravelBladeのようなバックエンドテンプレートフレームワークと組み合わせて使用されます。 これは、Alpine コンポーネントをバックエンドテンプレートに抽象化し、ネイティブ入力であるかのように <code>x-model</code> を介して状態を外部に公開するのに役立ちます。</p>
+<h1>x-for</h1>
+
+<p>Alpine の <code>x-for</code> ディレクティブを使用すると、リストを反復処理してDOM要素を作成できます。これを使用して、配列に基づいて色のリストを作成する簡単な例を次に示します。</p>
+<pre><code class="language-html">&lt;ul x-data=&quot;{ colors: ['Red', 'Orange', 'Yellow'] }&quot;&gt;
+    &lt;template x-for=&quot;color in colors&quot;&gt;
+        &lt;li x-text=&quot;color&quot;&gt;&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;ul x-data=&quot;{ colors: ['Red', 'Orange', 'Yellow'] }&quot;&gt;
+        &lt;template x-for=&quot;color in colors&quot;&gt;
+            &lt;li x-text=&quot;color&quot;&gt;&lt;/li&gt;
+        &lt;/template&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+
+<p><code>x-for</code> について注目する価値のある2つのルールがあります。</p>
+<ul>
+<li>
+<code>x-for</code>は <code>&lt;template&gt;</code> 要素で宣言する必要があります</li>
+<li>その <code>&lt;template&gt;</code> 要素は1つのルート要素のみを持たなければなりません</li>
+</ul>
+<p></p>
+<h2>Keys</h2>
+
+<p>アイテムを並べ替える場合は、<code>x-for</code> の反復ごとに一意のキーを指定することが重要です。動的キーがないと、Alpine は何が並べ替えられるかを追跡するのに苦労し、奇妙な副作用を引き起こす可能性があります。</p>
+<pre><code class="language-html">&lt;ul x-data=&quot;{ colors: [
+    { id: 1, label: 'Red' },
+    { id: 2, label: 'Orange' },
+    { id: 3, label: 'Yellow' },
+]}&quot;&gt;
+    &lt;template x-for=&quot;color in colors&quot; :key=&quot;color.id&quot;&gt;
+        &lt;li x-text=&quot;color.label&quot;&gt;&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>これで、色が追加、削除、並べ替えられた場合、またはそれらの「id」が変更された場合、Alpineはそれに応じて繰り返される <code>&lt;li&gt;</code> 要素を保持または破棄します。</p>
+<p></p>
+<h2>インデックスへのアクセス</h2>
+
+<p>反復で各アイテムのインデックスにアクセスする必要がある場合は、次のようにしてアクセスできます。例：「 <code>(color, index) in colors</code> 」</p>
+<pre><code class="language-html">&lt;ul x-data=&quot;{ colors: ['Red', 'Orange', 'Yellow'] }&quot;&gt;
+    &lt;template x-for=&quot;(color, index) in colors&quot;&gt;
+        &lt;li&gt;
+            &lt;span x-text=&quot;index + ': '&quot;&gt;&lt;/span&gt;
+            &lt;span x-text=&quot;color&quot;&gt;&lt;/span&gt;
+        &lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>動的な <code>:key</code> 式内のインデックスにアクセスすることもできます。</p>
+<pre><code class="language-html">&lt;template x-for=&quot;(color, index) in colors&quot; :key=&quot;index&quot;&gt;
+</code></pre>
+<p></p>
+<h2>範囲を反復する</h2>
+<p>配列を反復処理するのではなく、単に <code>n</code> 回ループする必要がある場合、Alpine は短い構文を提供します。</p>
+<pre><code class="language-html">&lt;ul&gt;
+    &lt;template x-for=&quot;i in 10&quot;&gt;
+        &lt;li x-text=&quot;i&quot;&gt;&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>この場合の <code>i</code> には、好きな名前をつけることができます。</p>
+<h1>x-transition</h1>
+
+
+<p>Alpine は、すぐに使用できる堅牢なトランジションユーティリティを提供します。 いくつかの <code>x-transition</code> ディレクティブを使用すると、要素が「表示」または「非表示」になるときの間のスムーズな遷移を作成できます。</p>
+<p>Alpine でトランジションを処理するには、主に2つの方法があります。</p>
+<ul>
+<li>
+<a href="#the-transition-helper">The Transition Helper</a>
+</li>
+<li>
+<a href="#applying-css-classes">Applying CSS Classes</a>
+</li>
+</ul>
+<p></p>
+<h2>トランジション ヘルパー</h2>
+
+<p>Alpine を使用してトランジションを実現する最も簡単な方法は、<code>x-show</code> が含まれる要素に <code>x-transition</code> を追加することです。 例えば：</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;span x-show=&quot;open&quot; x-transition&gt;
+        Hello 👋
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+        &lt;span x-show=&quot;open&quot; x-transition&gt;
+            Hello 👋
+        &lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>ご覧のとおり、デフォルトでは、<code>x-transition</code> は快適なトランジションのデフォルトを適用して、表示要素をフェードおよびスケーリングします。</p>
+<p>これらのデフォルトは、<code>x-transition</code> に付加された修飾子でオーバーライドできます。 それらを見てみましょう。</p>
+<p></p>
+<h3>実行時間のカスタマイズ</h3>
+
+
+<p>初期設定として、トランジションのアニメーション時間は「enter (開始)」に150ミリ秒、「leave (終了)」に75ミリ秒に設定されています。</p>
+<p><code>.duration</code> 修飾子を使用して、トランジションに必要な時間を構成できます。</p>
+<pre><code class="language-html">&lt;div ... x-transition.duration.500ms&gt;
+</code></pre>
+
+<p>上記の <code>&lt;div&gt;</code> は、「開始」と「終了」に、500ミリ秒の間隔を持ってトランジションが実行されます。</p>
+
+<p>もし、個々に「enter (入力時)」「leave (終了時)」の間隔を設定したい場合は、以下のように指定します。</p>
+<pre><code class="language-html">&lt;div ...
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms
+&gt;
+</code></pre>
+<p></p>
+<h3>遅延のカスタマイズ</h3>
+
+<p>以下のように <code>.delay</code> 修飾子を使用して、トランジションを遅延させることもできます。</p>
+<pre><code class="language-html">&lt;div ... x-transition.delay.50ms&gt;
+</code></pre>
+
+<p>上記の例では、要素の「開始」と「終了」のトランジションを50ミリ秒 遅らせて実行されます。</p>
+<p></p>
+<h3>不透明度のカスタマイズ</h3>
+
+
+<p>デフォルトでは、Alpineの <code>x-transition</code> は、スケールと不透明度の両方の遷移を適用して、「フェード」効果を実現します。</p>
+<p>不透明度の遷移（スケールなし）のみを適用する場合は、次のように実行できます。</p>
+<pre><code class="language-html">&lt;div ... x-transition.opacity&gt;
+</code></pre>
+<p></p>
+<h3>スケールのカスタマイズ</h3>
+
+<p><code>.opacity</code> モディファイヤと同様に、次のように、<code> x-transition</code> をスケーリングのみに設定できます（不透明度も遷移しません）。</p>
+<pre><code class="language-html">&lt;div ... x-transition.scale&gt;
+</code></pre>
+
+<p><code>.scale</code> 修飾子は、そのスケール値とその原点値を構成する機能も提供します。</p>
+<pre><code class="language-html">&lt;div ... x-transition.scale.80&gt;
+</code></pre>
+
+
+<p>上記のスニペットは、要素を 80％ 拡大および縮小します。</p>
+<p>繰り返しになりますが、次のように、トランジションの開始と終了のためにこれらの値を個別にカスタマイズできます。</p>
+<pre><code class="language-html">&lt;div ...
+    x-transition:enter.scale.80
+    x-transition:leave.scale.90
+&gt;
+</code></pre>
+
+<p>スケールトランジションの原点をカスタマイズするには、<code>.origin</code> 修飾子を使用できます。</p>
+<pre><code class="language-html">&lt;div ... x-transition.scale.origin.top&gt;
+</code></pre>
+
+
+
+<p>これで、デフォルトでは中心ではなく、要素の上部を原点としてスケールが適用されます。</p>
+<p>ご想像のとおり、このカスタマイズに使用できる値は、 <code>top</code>、<code> bottom</code>、<code>left</code>、および <code>right</code> です。</p>
+<p>必要に応じて、2つの原点の値を組み合わせることもできます。 たとえば、スケールの原点を「top right」にする場合は、修飾子として <code>.origin.top.right</code> を使用できます。</p>
+<p></p>
+<h2>CSSクラスの適用</h2>
+
+
+<p>トランジションに何が入るかを正確に制御するために、トランジションのさまざまな段階で CSS クラスを適用できます。</p>
+<blockquote>
+<p>次の例では、[TailwindCSS]（https://tailwindcss.com/docs/transition-property）ユーティリティクラスを使用しています。</p>
+</blockquote>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div
+        x-show=&quot;open&quot;
+        x-transition:enter=&quot;transition ease-out duration-300&quot;
+        x-transition:enter-start=&quot;opacity-0 scale-90&quot;
+        x-transition:enter-end=&quot;opacity-100 scale-100&quot;
+        x-transition:leave=&quot;transition ease-in duration-300&quot;
+        x-transition:leave-start=&quot;opacity-100 scale-100&quot;
+        x-transition:leave-end=&quot;opacity-0 scale-90&quot;
+    &gt;Hello 👋&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle&lt;/button&gt;
+
+    &lt;div
+        x-show=&quot;open&quot;
+        x-transition:enter=&quot;transition ease-out duration-300&quot;
+        x-transition:enter-start=&quot;opacity-0 transform scale-90&quot;
+        x-transition:enter-end=&quot;opacity-100 transform scale-100&quot;
+        x-transition:leave=&quot;transition ease-in duration-300&quot;
+        x-transition:leave-start=&quot;opacity-100 transform scale-100&quot;
+        x-transition:leave-end=&quot;opacity-0 transform scale-90&quot;
+    &gt;Hello 👋&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Directive (指令)</th>
+<th>Description (説明)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:enter</code></td>
+<td>開始フェーズ全体で適用されます。</td>
+</tr>
+<tr>
+<td><code>:enter-start</code></td>
+<td>要素が挿入される前に追加され、要素が挿入されてから1フレーム後に削除されます。</td>
+</tr>
+<tr>
+<td><code>:enter-end</code></td>
+<td>要素が挿入された後に1フレーム追加され（同時に <code>enter-start</code>が削除されます）、トランジションのアニメーションが終了すると削除されます。</td>
+</tr>
+<tr>
+<td><code>:leave</code></td>
+<td>終了トランジションのフェーズ全体で適用されます。</td>
+</tr>
+<tr>
+<td><code>:leave-start</code></td>
+<td>終了トランジションがトリガーされるとすぐに追加され、1フレーム後に削除されます。</td>
+</tr>
+<tr>
+<td><code>:leave-end</code></td>
+<td>終了トランジションがトリガーされた後に、1フレーム追加され（同時に <code>leave-start</code>が削除されます）、トランジションのアニメーションが終了したときに削除されます。</td>
+</tr>
+</tbody>
+</table>
+<h1>x-effect</h1>
+
+
+<p><code>x-effect</code> は、依存関係の1つが変更されたときに式を再評価するための便利なディレクティブです。 監視するプロパティを指定する必要がなく、その中で使用されているすべてのプロパティを監視するウォッチャーと考えることができます。</p>
+<p>この定義がわかりにくい場合は、問題ありません。 それは例を通してよりよく説明されます：</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ label: 'Hello' }&quot; x-effect=&quot;console.log(label)&quot;&gt;
+    &lt;button @click=&quot;label += ' World!'&quot;&gt;Change Message&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>このコンポーネントがロードされると、 <code>x-effect</code> 式が実行され、「Hello」がコンソールに記録されます。</p>
+<p>Alpine は <code>x-effect</code> に含まれるプロパティ参照を認識しているため、ボタンがクリックされて <code>label</code> が変更されると、エフェクトが再度トリガーされて「HelloWorld！」になり、コンソールに表示されます。</p>
+<h1>x-ignore</h1>
+
+
+<p>デフォルトでは、Alpineは <code>x-init</code> または <code>x-data</code> を含む要素のDOMツリー全体をクロールして初期化します。</p>
+<p>何らかの理由で、Alpine が HTML の特定のセクションに触れないようにする場合は、<code>x-ignore</code> を使用してそれを防ぐことができます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ label: 'From Alpine' }&quot;&gt;
+    &lt;div x-ignore&gt;
+        &lt;span x-text=&quot;label&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In the above example, the <code>&lt;span&gt;</code> tag will not contain &quot;From Alpine&quot; because we told Alpine to ignore the contents of the <code>div</code> completely.</p>
+<p>上記の例では、<code>div</code> の内容を完全に無視するように Alpine に指示したため、<code>&lt;span&gt;</code> タグには&quot;FromAlpine&quot; は含まれません。</p>
+<h1>x-ref</h1>
+
+<p><code>$refs</code> と組み合わせた <code>x-ref</code> は、DOM 要素に直接簡単にアクセスするための便利なユーティリティです。 これは、<code>getElementById</code> や <code>querySelector</code> などの API の代わりとして最も役立ちます。</p>
+<pre><code class="language-html">&lt;button @click=&quot;$refs.text.remove()&quot;&gt;Remove Text&lt;/button&gt;
+
+&lt;span x-ref=&quot;text&quot;&gt;Hello 👋&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data&gt;
+        &lt;button @click=&quot;$refs.text.remove()&quot;&gt;Remove Text&lt;/button&gt;
+
+        &lt;div class=&quot;pt-4&quot; x-ref=&quot;text&quot;&gt;Hello 👋&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>x-cloak</h1>
+
+
+
+<p>テンプレートの一部に Alpine を使用している場合、ページが読み込まれた後、Alpine が読み込まれる前に、初期化されていないテンプレートが表示される「blip ( ブリップ )」が発生することがあります。</p>
+<p><code>x-cloak</code> は、Alpine がページに完全に読み込まれるまで <code>x-cloak</code> が記載されている要素を非表示にすることで、この現象に対処します。</p>
+<p>ただし、 <code>x-cloak</code> を機能させるには、次のCSSをページに追加する必要があります。</p>
+<pre><code class="language-css">[x-cloak] { display: none !important; }
+</code></pre>
+
+<p>以下の例では、Alpine が <code>message</code> プロパティへのテキストがセット完了するまで、<code>s-cloak</code> を指定した <code>&lt;span&gt;</code> タグが表示されません。</p>
+<pre><code class="language-html">&lt;span x-cloak x-text=&quot;message&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+
+<p>Alpineがページに読み込まれると、要素からすべての <code>x-cloak</code>プロパティが削除されます。これにより、CSSによって適用された <code> display:none;</code> も削除されるため、要素が表示されます。</p>
+<p>これと同じ動作を実現したいが、グローバルスタイルを含める必要がない場合は、次のクールな、しかし確かに奇妙なトリックを使用できます。</p>
+<pre><code class="language-html">&lt;template x-if=&quot;true&quot;&gt;
+    &lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+&lt;/template&gt;
+</code></pre>
+
+
+
+<p>これは、<code>x-if</code> の動作方法を利用するだけで、<code>x-cloak</code> と同じ動作を再現しています。</p>
+<p><code>&lt;template&gt;</code> 要素はデフォルトでブラウザに「hidden (非表示)」になっているため、Alpineが <code>x-if=&quot;true&quot;</code> をレンダリングして表示する機会が得られるまで、<code>&lt;span&gt;</code> は表示されません。</p>
+<p>繰り返しになりますが、このソリューションはすべての人に適しているわけではありませんが、特別な場合には言及する価値があります。</p>
+<h1>x-teleport</h1>
+
+
+
+<p><code>x-teleport</code> ディレクティブを使用すると、Alpine テンプレートの一部をページ上の DOM の別の部分に完全に転送できます。</p>
+<p>これは、モーダル（特にそれらをネストする）のようなものに役立ちます。ここでは、現在のアルパインコンポーネントの z-index から抜け出すのに役立ちます。</p>
+<blockquote>
+<p>警告：<a href="https://laravel-livewire.com">Livewire</a> ユーザーの場合、この機能は現在 Livewire コンポーネント内では機能しません。 これに対するサポートはロードマップにあります。</p>
+</blockquote>
+<p></p>
+<h2>x-teleport</h2>
+
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">→ Read more about <code>document.querySelector</code></a></p>
+<p>Here's a contrived modal example:</p>
+<p><code>x-teleport</code> を <code>&lt;template&gt;</code> 要素にアタッチすることにより、Alpine にその要素を提供されたセレクターに「追加」するように指示します。</p>
+<blockquote>
+<p><code>x-teleport</code>セレクターは、通常 <code>document.querySelector</code> のようなものに渡す任意の文字列にすることができます。 タグ名 (<code>body</code>)、クラス名(<code>.my-class</code>)、ID (<code>#my-id</code>)、その他の有効な CSS セレクターなど、一致する最初の要素が検索されます。</p>
+</blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">→<code>document.querySelector</code>についてもっと読む</a></p>
+<p>考案されたモーダルの例を次に示します。</p>
+<pre><code class="language-html">&lt;body&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+        &lt;template x-teleport=&quot;body&quot;&gt;
+            &lt;div x-show=&quot;open&quot;&gt;
+                Modal contents...
+            &lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;Some other content placed AFTER the modal markup.&lt;/div&gt;
+
+    ...
+
+&lt;/body&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-ref=&quot;root&quot; id=&quot;modal2&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+        &lt;template x-teleport=&quot;#modal2&quot;&gt;
+            &lt;div x-show=&quot;open&quot;&gt;
+                Modal contents...
+            &lt;/div&gt;
+        &lt;/template&gt;
+
+    &lt;/div&gt;
+
+    &lt;div class=&quot;py-4&quot;&gt;Some other content placed AFTER the modal markup.&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>モーダルを切り替えると、実際のモーダルコンテンツが「 Some other content... 」要素の後にどのように表示されるかに注意してください。 これは、Alpineが初期化するときに、<code>x-teleport =&quot;body&quot;</code> を認識し、その要素を提供された要素セレクターに追加して初期化するためです。</p>
+<p></p>
+<h2>イベントの転送</h2>
+
+
+
+<p>Alpine はテレポートの体験をシームレスにするために最善を尽くしています。 テンプレートで通常行うことはすべて、<code>x-teleport</code> テンプレート内で実行できるはずです。 テレポートされたコンテンツは、コンポーネントの通常の Alpine スコープだけでなく、 <code>$refs</code>、<code>$root</code>などの他の機能にもアクセスできます。</p>
+<p>ただし、ネイティブ DOM イベントにはテレポートの概念がないため、たとえば、テレポートされた要素の内部から「クリック」イベントをトリガーすると、そのイベントは通常どおり DOM ツリーをバブルアップします。</p>
+<p>このエクスペリエンスをよりシームレスにするために、次のように <code>&lt;templatex-teleport...&gt;</code> 要素自体にイベントリスナーを登録するだけでイベントを「転送」できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+    &lt;template x-teleport=&quot;body&quot; @click=&quot;open = false&quot;&gt;
+        &lt;div x-show=&quot;open&quot;&gt;
+            Modal contents...
+            (click to close)
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-ref=&quot;root&quot; id=&quot;modal3&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+        &lt;template x-teleport=&quot;#modal3&quot; @click=&quot;open = false&quot;&gt;
+            &lt;div x-show=&quot;open&quot;&gt;
+                Modal contents...
+                &lt;div&gt;(click to close)&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>テレポートされた要素の内部から <code>&lt;template&gt;</code> 要素自体の外部からディスパッチされたイベントをどのようにリッスンできるかに注目してください。</p>
+<p>Alpineは、<code>&lt;template x-teleport ...&gt;</code> に登録されているイベントリスナーを探すことでこれを行い、それらのイベントがライブのテレポートされたDOM要素を超えて伝播するのを防ぎます。 次に、そのイベントのコピーを作成し、 <code>&lt;templatex-teleport...&gt;</code> から再ディスパッチします。</p>
+<p></p>
+<h2>Nesting</h2>
+
+<p>テレポートは、あるモーダルを別のモーダル内にネストしようとしている場合に特に役立ちます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+    &lt;template x-teleport=&quot;body&quot;&gt;
+        &lt;div x-show=&quot;open&quot;&gt;
+            Modal contents...
+            
+            &lt;div x-data=&quot;{ open: false }&quot;&gt;
+                &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Nested Modal&lt;/button&gt;
+
+                &lt;template x-teleport=&quot;body&quot;&gt;
+                    &lt;div x-show=&quot;open&quot;&gt;
+                        Nested modal contents...
+                    &lt;/div&gt;
+                &lt;/template&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-ref=&quot;root&quot; id=&quot;modal4&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Modal&lt;/button&gt;
+
+        &lt;template x-teleport=&quot;#modal4&quot;&gt;
+            &lt;div x-show=&quot;open&quot;&gt;
+                &lt;div class=&quot;py-4&quot;&gt;Modal contents...&lt;/div&gt;
+                
+                &lt;div x-data=&quot;{ open: false }&quot;&gt;
+                    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Nested Modal&lt;/button&gt;
+
+                    &lt;template x-teleport=&quot;#modal4&quot;&gt;
+                        &lt;div class=&quot;pt-4&quot; x-show=&quot;open&quot;&gt;
+                            Nested modal contents...
+                        &lt;/div&gt;
+                    &lt;/template&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/div&gt;
+
+    &lt;template x-teleport-target=&quot;modals3&quot;&gt;&lt;/template&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>両方のモーダルを「オン」に切り替えた後、それらは子として作成されますが、ページ上で兄弟要素としてレンダリングされ、相互にレンダリングされません。</p>
+<h1>x-if</h1>
+
+
+<p><code>x-if</code> は、<code>x-show</code> と同様に、ページ上の要素を切り替えるために使用されますが、CSS 表示プロパティを「none」に変更するだけでなく、適用される要素を完全に追加および削除します。</p>
+<p>この動作の違いのため、<code>x-if</code> は要素に直接適用するのではなく、要素を囲む <code>&lt;template&gt;</code> タグに適用する必要があります。 このようにして、Alpine は、ページから削除された要素の記録を保持できます。</p>
+<pre><code class="language-html">&lt;template x-if=&quot;open&quot;&gt;
+    &lt;div&gt;Contents...&lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+
+<blockquote>
+<p><code>x-show</code>とは異なり、<code>x-if</code> は <code>x-transition</code> によるトグルの遷移をサポートしていません。</p>
+</blockquote>
+<blockquote>
+<p>注意： <code>&lt;template&gt;</code> タグには、ルートレベルの要素を1つだけ含めることができます。</p>
+</blockquote>
+<h1>x-id</h1>
+
+
+
+
+<p><code>x-id</code> を使用すると、<code>$id()</code> を使用して生成された新しい ID の新しい「スコープ」を宣言できます。 文字列（ID名）の配列を受け入れ、その中で生成された各 <code>$ id('...')</code>に、ページ上の他の ID に固有の接尾辞を追加します。</p>
+<p><code>x-id</code> は、<code>$id(...)</code>マジックと組み合わせて使用することを目的としています。</p>
+<p>この機能の理解を深めるには、<a href="/magics/id">$id のドキュメントにアクセスしてください</a>。</p>
+<p>使用中のこのディレクティブの簡単な例を次に示します。</p>
+<pre><code class="language-html">&lt;div x-id=&quot;['text-input']&quot;&gt;
+    &lt;label :for=&quot;$id('text-input')&quot;&gt;Username&lt;/label&gt;
+    &lt;!-- for=&quot;text-input-1&quot; --&gt;
+
+    &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt;
+    &lt;!-- id=&quot;text-input-1&quot; --&gt;
+&lt;/div&gt;
+
+&lt;div x-id=&quot;['text-input']&quot;&gt;
+    &lt;label :for=&quot;$id('text-input')&quot;&gt;Username&lt;/label&gt;
+    &lt;!-- for=&quot;text-input-2&quot; --&gt;
+
+    &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt;
+    &lt;!-- id=&quot;text-input-2&quot; --&gt;
+&lt;/div&gt;
+</code></pre>
+<h1>$el</h1>
+
+<p><code>$el</code> は、現在の DOM ノードを取得するために使用できる魔法のプロパティです。</p>
+<pre><code class="language-html">&lt;button @click=&quot;$el.innerHTML = 'Hello World!'&quot;&gt;Replace me with &quot;Hello World!&quot;&lt;/button&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data&gt;
+        &lt;button @click=&quot;$el.textContent = 'Hello World!'&quot;&gt;Replace me with &quot;Hello World!&quot;&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>$refs</h1>
+<p><code>$ refs</code> は、コンポーネント内で <code>x-ref</code> でマークされた DOM 要素を取得するために使用できる魔法のプロパティです。 これは、DOM要素を手動で操作する必要がある場合に役立ちます。 これは、<code>document.querySelector</code> の代わりに、より簡潔でスコープが設定されたものとしてよく使用されます。</p>
+
+<pre><code class="language-html">&lt;button @click=&quot;$refs.text.remove()&quot;&gt;Remove Text&lt;/button&gt;
+
+&lt;span x-ref=&quot;text&quot;&gt;Hello 👋&lt;/span&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data&gt;
+        &lt;button @click=&quot;$refs.text.remove()&quot;&gt;Remove Text&lt;/button&gt;
+
+        &lt;div class=&quot;pt-4&quot; x-ref=&quot;text&quot;&gt;Hello 👋&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p>これで、<code>&lt;button&gt;</code> を押すと、<code>&lt;span&gt;</code> が削除されます。</p>
+
+<h1>$store</h1>
+<p><code>$store</code> を使用すると、<a href="/globals/alpine-store"><code>Alpine.store(...)</code></a> を使用して登録されたグローバル Alpine ストアに簡単にアクセスできます。例えば</p>
+
+<pre><code class="language-html">&lt;button x-data @click=&quot;$store.darkMode.toggle()&quot;&gt;Toggle Dark Mode&lt;/button&gt;
+
+...
+
+&lt;div x-data :class=&quot;$store.darkMode.on &amp;&amp; 'bg-black'&quot;&gt;
+    ...
+&lt;/div&gt;
+
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.store('darkMode', {
+            on: false,
+
+            toggle() {
+                this.on = ! this.on
+            }
+        })
+    })
+&lt;/script&gt;
+</code></pre>
+
+<p>「darkMode」ストアを登録し、「on」を「false」に設定した場合、<code>&lt;button&gt;</code> を押すと、「on」が「true」になり、ページの背景色が黒に変わります。 。</p>
+<p></p>
+<h2>単一値ストア</h2>
+<p>ストアにオブジェクト全体が必要ない場合は、あらゆる種類のデータをストアとして設定して使用できます。</p>
+<p>上記の例を次に示しますが、ブール値としてより単純に使用しています。</p>
+
+
+<pre><code class="language-html">&lt;button x-data @click=&quot;$store.darkMode = ! $store.darkMode&quot;&gt;Toggle Dark Mode&lt;/button&gt;
+
+...
+
+&lt;div x-data :class=&quot;$store.darkMode &amp;&amp; 'bg-black'&quot;&gt;
+    ...
+&lt;/div&gt;
+
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.store('darkMode', false)
+    })
+&lt;/script&gt;
+</code></pre>
+<p><a href="/globals/alpine-store">→ Alpine ストアについてもっと読む</a></p>
+<h1>$watch</h1>
+
+<p><code>$watch</code> マジックメソッドを使用して、コンポーネントプロパティを「watch (監視)」できます。例えば</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot; x-init=&quot;$watch('open', value =&gt; console.log(value))&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Open&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>上記の例では、ボタンが押されて <code>open</code> が変更されると、提供されたコールバックが起動し、<code>console.log</code> に新しい値が表示されます。</p>
+<p>「ドット」表記を使用して、深くネストされたプロパティを監視できます</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ foo: { bar: 'baz' }}&quot; x-init=&quot;$watch('foo.bar', value =&gt; console.log(value))&quot;&gt;
+    &lt;button @click=&quot;foo.bar = 'bob'&quot;&gt;Toggle Open&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><code>&lt;button&gt;</code> を押すと、<code>foo.bar</code> が <code>bob</code> に設定され、<code>bob</code> がコンソールに記録されます。</p>
+<p></p>
+<h3>古い値を取得する</h3>
+<p><code>$watch</code> は、監視されているプロパティの以前の値を追跡します。次のように、コールバックへのオプションの2番目の引数を使用してアクセスできます。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot; x-init=&quot;$watch('open', (value, oldValue) =&gt; console.log(value, oldValue))&quot;&gt;
+    &lt;button @click=&quot;open = ! open&quot;&gt;Toggle Open&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h3>ディープウォッチング</h3>
+<p><code>$watch</code> は任意のレベルの変更を自動的に監視しますが、変更が検出されると、ウォッチャーは変更されたサブプロパティの値ではなく、監視されたプロパティの値を返すことに注意してください。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ foo: { bar: 'baz' }}&quot; x-init=&quot;$watch('foo', (value, oldValue) =&gt; console.log(value, oldValue))&quot;&gt;
+    &lt;button @click=&quot;foo.bar = 'bob'&quot;&gt;Update&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p><code>&lt;button&gt;</code> を押すと、<code>foo.bar</code> が <code>bob</code> に設定され、&quot;{bar: 'bob'} {bar: 'baz'}&quot; がコンソールに記録されます（新旧の値）。</p>
+<blockquote>
+<p>⚠️<code>$watch</code> コールバックの副作用として<code>watched</code> オブジェクトのプロパティを変更すると、無限ループが発生し、最終的にエラーが発生します。</p>
+</blockquote>
+<pre><code class="language-html">&lt;!-- 🚫 Infinite loop --&gt;
+&lt;div x-data=&quot;{ foo: { bar: 'baz', bob: 'lob' }}&quot; x-init=&quot;$watch('foo', value =&gt; foo.bob = foo.bar)&quot;&gt;
+    &lt;button @click=&quot;foo.bar = 'bob'&quot;&gt;Update&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<h1>$dispatch</h1>
+
+<p><code>$dispatch</code> は、ブラウザイベントをディスパッチするための便利なショートカットです。</p>
+<pre><code class="language-html">&lt;div @notify=&quot;alert('Hello World!')&quot;&gt;
+    &lt;button @click=&quot;$dispatch('notify')&quot;&gt;
+        Notify
+    &lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data @notify=&quot;alert('Hello World!')&quot;&gt;
+        &lt;button @click=&quot;$dispatch('notify')&quot;&gt;
+            Notify
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>必要に応じて、ディスパッチされたイベントと一緒にデータを渡すこともできます。 このデータには、イベントの <code>.detail</code> プロパティとしてアクセスできます。</p>
+<pre><code class="language-html">&lt;div @notify=&quot;alert($event.detail.message)&quot;&gt;
+    &lt;button @click=&quot;$dispatch('notify', { message: 'Hello World!' })&quot;&gt;
+        Notify
+    &lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data @notify=&quot;alert($event.detail.message)&quot;&gt;
+        &lt;button @click=&quot;$dispatch('notify', { message: 'Hello World!' })&quot;&gt;Notify&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>内部的には、<code>$dispatch</code> はより詳細な API のラッパーです：<code>element.dispatchEvent(new CustomEvent(...))</code></p>
+
+<p><strong>イベントの伝播に関する注意</strong></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Event_bubbling">イベントバブリング</a> のため、同じネスト階層の下にあるノードからディスパッチされたイベントをキャプチャする必要がある場合は、<a href="https://github.com/alpinejs/alpine#x-on"><code>.window</code></a> 修飾子：</p>
+<p><strong>例 :</strong></p>
+<pre><code class="language-html">&lt;!-- 🚫 Won't work --&gt;
+&lt;div x-data&gt;
+    &lt;span @notify=&quot;...&quot;&gt;&lt;/span&gt;
+    &lt;button @click=&quot;$dispatch('notify')&quot;&gt;Notify&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ Will work (because of .window) --&gt;
+&lt;div x-data&gt;
+    &lt;span @notify.window=&quot;...&quot;&gt;&lt;/span&gt;
+    &lt;button @click=&quot;$dispatch('notify')&quot;&gt;Notify&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<blockquote>
+<p>最初の例は機能しません。これは、 <code>custom-event</code> がディスパッチされると、その兄弟である <code>&lt;span&gt;</code> ではなく共通の祖先である <code>div</code> に伝播するためです。 2番目の例は、兄弟が <code>window</code> レベルで <code>notify</code> をリッスンしているために機能します。これは、カスタムイベントが最終的にバブルアップします。</p>
+</blockquote>
+<p></p>
+<h2>他のコンポーネントへのディスパッチ</h2>
+
+<p>前の手法を利用して、コンポーネントを相互に通信させることもできます。</p>
+<p><strong>例 :</strong></p>
+<pre><code class="language-html">&lt;div
+    x-data=&quot;{ title: 'Hello' }&quot;
+    @set-title.window=&quot;title = $event.detail&quot;
+&gt;
+    &lt;h1 x-text=&quot;title&quot;&gt;&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div x-data&gt;
+    &lt;button @click=&quot;$dispatch('set-title', 'Hello World!')&quot;&gt;Click me&lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- When clicked, the content of the h1 will set to &quot;Hello World!&quot;. --&gt;
+</code></pre>
+<p></p>
+<h2>x-model へのディスパッチ</h2>
+
+<p><code>$dispatch()</code> を使用して、<code>x-model</code> データバインディングのデータ更新をトリガーすることもできます。例えば：</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ title: 'Hello' }&quot;&gt;
+    &lt;span x-model=&quot;title&quot;&gt;
+        &lt;button @click=&quot;$dispatch('input', 'Hello World!')&quot;&gt;Click me&lt;/button&gt;
+        &lt;!-- After the button is pressed, `x-model` will catch the bubbling &quot;input&quot; event, and update title. --&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>これにより、<code>x-model</code> を介して値を設定できるカスタム入力コンポーネントを作成することができます。</p>
+<h1>$nextTick</h1>
+
+<p><code>$nextTick</code> は、Alpine がリアクティブ DOM を更新した後でのみ、特定の式を実行できるようにする魔法のプロパティです。これは、行ったデータ更新が反映された後に DOM 状態を操作する場合に役立ちます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ title: 'Hello' }&quot;&gt;
+    &lt;button
+        @click=&quot;
+            title = 'Hello World!';
+            $nextTick(() =&gt; { console.log($el.innerText) });
+        &quot;
+        x-text=&quot;title&quot;
+    &gt;&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>上記の例では 「Hello」をコンソールに記録するのではなく 「HelloWorld！」 Alpine がDOM の更新を完了するまで待機するために<code>$nextTick</code> が使用されたため、ログに記録されます。</p>
+<p></p>
+<h2>Promises</h2>
+<p><code>$nextTick</code> はpromiseを返し、<code>$nextTick</code> を使用して DOM の更新が保留されるまで非同期関数を一時停止できるようにします。このように使用する場合、<code>$nextTick</code> も引数を渡す必要はありません。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ title: 'Hello' }&quot;&gt;
+    &lt;button
+        @click=&quot;
+            title = 'Hello World!';
+            await $nextTick();
+            console.log($el.innerText);
+        &quot;
+        x-text=&quot;title&quot;
+    &gt;&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<h1>$root</h1>
+<p><code>$root</code>は、任意の Alpine コンポーネントのルート要素を取得するために使用できる魔法のプロパティです。 言い換えると <code>x-data</code> を含む DOM ツリーの最も近い要素です。</p>
+
+<pre><code class="language-html">&lt;div x-data data-message=&quot;Hello World!&quot;&gt;
+    &lt;button @click=&quot;alert($root.dataset.message)&quot;&gt;Say Hi&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data data-message=&quot;Hello World!&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;alert($root.dataset.message)&quot;&gt;Say Hi&lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>$data</h1>
+
+
+
+<p><code>$data</code> は、現在の Alpine データスコープ（通常は <code> x-data</code> によって提供されます）へのアクセスを提供する魔法のプロパティです。</p>
+<p>ほとんどの場合、式内の Alpine のデータに直接アクセスできます。 たとえば、<code>x-data =&quot;{message: 'Hello Caleb！'}&quot;</code> を使用すると、<code>x-text=&quot;message&quot;</code> のようなことができます。</p>
+<p>ただし、他の関数に渡すことができるすべてのスコープをカプセル化する実際のオブジェクトがあると便利な場合があります。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ greeting: 'Hello' }&quot;&gt;
+    &lt;div x-data=&quot;{ name: 'Caleb' }&quot;&gt;
+        &lt;button @click=&quot;sayHello($data)&quot;&gt;Say Hello&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    function sayHello({ greeting, name }) {
+        alert(greeting + ' ' + name + '!')
+    }
+&lt;/script&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ greeting: 'Hello' }&quot; class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ name: 'Caleb' }&quot;&gt;
+        &lt;button @click=&quot;sayHello($data)&quot;&gt;Say Hello&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    function sayHello({ greeting, name }) {
+        alert(greeting + ' ' + name + '!')
+    }
+&lt;/script&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>これで、ボタンが押されると、ブラウザは <code>Hello Caleb！</code> を警告します。これは、ボタンを呼び出した式（ <code>@click = &quot;...&quot;</code>）のすべての Alpine スコープを含むデータオブジェクトが渡されたためです。</p>
+<p>ほとんどのアプリケーションはこの魔法の特性を必要としませんが、より深く、より複雑な Alpine ユーティリティには非常に役立ちます。</p>
+<h1>$id</h1>
+<p><code>$id</code> は、要素の ID を生成し、同じページ上の同じ名前の他の ID と競合しないようにするために使用できる魔法のプロパティです。</p>
+
+<p>このユーティリティは、ページ上で複数回発生する可能性のある再利用可能なコンポーネント（おそらくバックエンドテンプレート内）を構築し、ID 属性を利用する場合に非常に役立ちます。</p>
+
+<p>入力コンポーネント、モーダル、リストボックスなどはすべて、このユーティリティの恩恵を受けます。</p>
+
+<p></p>
+<h2>基本的な使用法</h2>
+<p>ページに2つの入力要素があり、それらに相互に一意の ID を持たせたい場合は、次のように実行できます。</p>
+
+<pre><code class="language-html">&lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt;
+&lt;!-- id=&quot;text-input-1&quot; --&gt;
+
+&lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt;
+&lt;!-- id=&quot;text-input-2&quot; --&gt;
+</code></pre>
+
+<p>ご覧のとおり、<code>$id</code> は文字列を受け取り、ページ上で一意の追加されたサフィックスを吐き出します。</p>
+<p></p>
+<h2>x-id によるグループ化</h2>
+<p>ここで、同じ2つの入力要素が必要であるが、今回はそれぞれに <code>&lt;label&gt;</code> 要素が必要であるとします。</p>
+<p>これには問題があります。同じIDを2回参照できるようにする必要があります。 1つは <code>&lt;label&gt;</code> の <code>for</code> 属性用で、もう1つは入力の <code>id</code> 用です。</p>
+
+
+
+<p>これを達成するためにあなたが考えるかもしれない方法はここにあり、完全に有効です</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ id: $id('text-input') }&quot;&gt;
+    &lt;label :for=&quot;id&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+    &lt;input type=&quot;text&quot; :id=&quot;id&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+&lt;/div&gt;
+
+&lt;div x-data=&quot;{ id: $id('text-input') }&quot;&gt;
+    &lt;label :for=&quot;id&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+    &lt;input type=&quot;text&quot; :id=&quot;id&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>このアプローチは問題ありませんが、ID に名前を付けてコンポーネントスコープに格納するのは面倒です。</p>
+<p>これと同じタスクをより柔軟な方法で実行するために、Alpine の <code>x-id</code> ディレクティブを使用して、一連の ID の「 id スコープ 」を宣言できます。</p>
+<pre><code class="language-html">&lt;div x-id=&quot;['text-input']&quot;&gt;
+    &lt;label :for=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+    &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+&lt;/div&gt;
+
+&lt;div x-id=&quot;['text-input']&quot;&gt;
+    &lt;label :for=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+    &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+&lt;/div&gt;
+</code></pre>
+<p>As you can see, <code>x-id</code> accepts an array of ID names. Now any usages of <code>$id()</code> within that scope, will all use the same ID. Think of them as &quot;id groups&quot;.</p>
+<p>ご覧のとおり、<code>x-id</code> は ID 名の配列を受け入れます。これで、そのスコープ内での <code>$id()</code> の使用は、すべて同じ ID を使用します。それらを「 id グループ」と考えてください。</p>
+<p></p>
+<h2>ネスト</h2>
+<p>直感的に理解できたかもしれませんが、次のように、これらの <code>x-id</code> グループを自由にネストできます。</p>
+
+<pre><code class="language-html">&lt;div x-id=&quot;['text-input']&quot;&gt;
+    &lt;label :for=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+    &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-1&quot; --&gt;
+
+    &lt;div x-id=&quot;['text-input']&quot;&gt;
+        &lt;label :for=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+        &lt;input type=&quot;text&quot; :id=&quot;$id('text-input')&quot;&gt; &lt;!-- &quot;text-input-2&quot; --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>キー付きID（ループ用）</h2>
+<p>ループ内で ID を識別するために、ID の末尾に追加のサフィックスを指定すると便利な場合があります。</p>
+<p>このため、<code>$id()</code> は、生成された ID の最後にサフィックスとして追加されるオプションの2番目のパラメーターを受け入れます。</p>
+<p>この必要性の一般的な例は、<code>aria-activedescendant</code> 属性を使用して、リスト内のどの要素が「アクティブ」であるかを支援技術に伝えるリストボックスコンポーネントのようなものです。</p>
+
+
+
+<pre><code class="language-html">&lt;ul
+    x-id=&quot;['list-item']&quot;
+    :aria-activedescendant=&quot;$id('list-item', activeItem.id)&quot;
+&gt;
+    &lt;template x-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;
+        &lt;li :id=&quot;$id('list-item', item.id)&quot;&gt;...&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>これはリストボックスの不完全な例ですが、グループ内の各 ID がページに固有であるだけでなく、個々の ID を参照できるようにループ内でキー設定される必要があるシナリオを示すのに役立つはずです。そのグループ内。</p>
+<h1>Alpine.data</h1>
+
+
+<p><code>Alpine.data(...)</code> は、アプリケーション内で <code>x-data</code> コンテキストを再利用する方法を提供します。</p>
+<p>たとえば、考案された「ドロップダウン」コンポーネントを次に示します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown&quot;&gt;
+    &lt;button @click=&quot;toggle&quot;&gt;...&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.data('dropdown', () =&gt; ({
+            open: false,
+
+            toggle() {
+                this.open = ! this.open
+            }
+        }))
+    })
+&lt;/script&gt;
+</code></pre>
+
+<p>ご覧のとおり、通常は <code>x-data</code> 内で直接定義するプロパティとメソッドを別の Alpine コンポーネントオブジェクトに抽出しました。</p>
+<p></p>
+<h2>バンドルからの登録</h2>
+<p>Alpine コードのビルドステップを使用することを選択した場合は、次の方法でコンポーネントを登録する必要があります。</p>
+
+<pre><code class="language-js">import Alpine from `alpinejs`
+import dropdown from './dropdown.js'
+
+Alpine.data('dropdown', dropdown)
+
+Alpine.start()
+</code></pre>
+
+<p>これは、次の内容の <code>dropdown.js</code> というファイルがあることを前提としています。</p>
+<pre><code class="language-js">export default () =&gt; ({
+    open: false,
+
+    toggle() {
+        this.open = ! this.open
+    }
+})
+</code></pre>
+<p></p>
+<h2>初期パラメータ</h2>
+<p><code>Alpine.data</code> プロバイダーを名前でわかりやすく参照する（<code>x-data = &quot;dropdown&quot;</code>など）だけでなく、関数として参照することもできます（<code>x-data = &quot;dropdown()&quot;</code>）。それらを関数として直接呼び出すことにより、次のように初期データオブジェクトを作成するときに使用される追加のパラメーターを渡すことができます。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown(true)&quot;&gt;
+</code></pre>
+<pre><code class="language-js">Alpine.data('dropdown', (initialOpenState = false) =&gt; ({
+    open: initialOpenState
+}))
+</code></pre>
+
+<p>これで、<code>dropdown</code> オブジェクトを再利用できますが、必要に応じてさまざまなパラメータを指定できます。</p>
+<p></p>
+<h2>初期化関数</h2>
+<p>コンポーネントに <code>init()</code> メソッドが含まれている場合、Alpine はコンポーネントをレンダリングする前に自動的にそれを実行します。例えば：</p>
+
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    init() {
+        // This code will be executed before Alpine
+        // initializes the rest of the component.
+    }
+}))
+</code></pre>
+<p></p>
+<h2>マジックプロパティを使用する</h2>
+<p>コンポーネントオブジェクトからマジックメソッドまたはプロパティにアクセスする場合は、<code>this</code> コンテキストを使用してアクセスできます。</p>
+
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    open: false,
+
+    init() {
+        this.$watch('open', () =&gt; {...})
+    }
+}))
+</code></pre>
+<p></p>
+<h2><code>x-bind</code>を使用したディレクティブのカプセル化</h2>
+<p>コンポーネントのデータオブジェクト以外のものを再利用したい場合は、<code>x-bind</code> を使用して Alpine テンプレートディレクティブ全体をカプセル化できます。</p>
+<p>以下は、<code>x-bind</code>を使用して前のドロップダウンコンポーネントのテンプレートの詳細を抽出する例です。</p>
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;dropdown&quot;&gt;
+    &lt;button x-bind=&quot;trigger&quot;&gt;&lt;/button&gt;
+
+    &lt;div x-bind=&quot;dialogue&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">Alpine.data('dropdown', () =&gt; ({
+    open: false,
+
+    trigger: {
+        ['@click']() {
+            this.open = ! this.open
+        },
+    },
+
+    dialogue: {
+        ['x-show']() {
+            return this.open
+        },
+    },
+}))
+</code></pre>
+<h1>Alpine.store</h1>
+
+<p>Alpine は、<code>Alpine.store()</code> API を介してグローバルな状態管理を提供します。</p>
+<p></p>
+<h2>ストアの登録</h2>
+<p><code>alpine:init</code> リスナー内に Alpine ストアを定義するか（<code>&lt;script&gt;</code> タグを介して Alpine を含める場合）、手動で <code>Alpine.start()</code> を呼び出す前に定義することができます（ Alpine をビルドにインポートする場合）</p>
+
+<p><strong>タグから</strong></p>
+<pre><code class="language-html">&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.store('darkMode', {
+            on: false,
+
+            toggle() {
+                this.on = ! this.on
+            }
+        })
+    })
+&lt;/script&gt;
+</code></pre>
+<p><strong>バンドルから</strong></p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+
+Alpine.store('darkMode', {
+    on: false,
+
+    toggle() {
+        this.on = ! this.on
+    }
+})
+
+Alpine.start()
+</code></pre>
+<p></p>
+<h2>店舗へのアクセス</h2>
+<p><code>$store</code> マジックプロパティを使用して、Alpine 式内の任意のストアからデータにアクセスできます。</p>
+
+<pre><code class="language-html">&lt;div x-data :class=&quot;$store.darkMode.on &amp;&amp; 'bg-black'&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+<p>ストア内のプロパティを変更することもでき、それらのプロパティに依存するすべてのものが自動的に反応します。例えば</p>
+<pre><code class="language-html">&lt;button x-data @click=&quot;$store.darkMode.toggle()&quot;&gt;Toggle Dark Mode&lt;/button&gt;
+</code></pre>
+
+<p>さらに、次のように2番目のパラメータを省略することで、<code>Alpine.store()</code> を使用して外部からストアにアクセスできます。</p>
+<pre><code class="language-html">&lt;script&gt;
+    Alpine.store('darkMode').toggle()
+&lt;/script&gt;
+</code></pre>
+<p></p>
+<h2>ストアの初期化</h2>
+<p>Alpine ストアで <code>init()</code> メソッドを指定すると、ストアが登録された直後に実行されます。これは、適切な開始値を使用してストア内の状態を初期化する場合に役立ちます。</p>
+
+<pre><code class="language-html">&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.store('darkMode', {
+            init() {
+                this.on = window.matchMedia('(prefers-color-scheme: dark)').matches
+            },
+
+            on: false,
+
+            toggle() {
+                this.on = ! this.on
+            }
+        })
+    })
+&lt;/script&gt;
+</code></pre>
+
+<p>上記の例で新しく追加された <code>init()</code> メソッドに注目してください。この追加により、Alpine がページ上に何かをレンダリングする前に、<code>on</code> ストア変数がブラウザの配色設定に設定されます。</p>
+<p></p>
+<h2>単一値ストア</h2>
+<p>ストアにオブジェクト全体が必要ない場合は、あらゆる種類のデータをストアとして設定して使用できます。</p>
+<p>上記の例を次に示しますが、ブール値としてより単純に使用しています。</p>
+
+
+<pre><code class="language-html">&lt;button x-data @click=&quot;$store.darkMode = ! $store.darkMode&quot;&gt;Toggle Dark Mode&lt;/button&gt;
+
+...
+
+&lt;div x-data :class=&quot;$store.darkMode &amp;&amp; 'bg-black'&quot;&gt;
+    ...
+&lt;/div&gt;
+
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.store('darkMode', false)
+    })
+&lt;/script&gt;
+</code></pre>
+<h1>Alpine.bind</h1>
+
+
+<p><code>Alpine.bind(...)</code>は、アプリケーション内で <a href="/directives/bind#bind-directives"><code>x-bind</code></a>  オブジェクトを再利用する方法を提供します。</p>
+<p>これが簡単な例です。 Alpine で属性を手動でバインドするのではなく：</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot; @click=&quot;doSomething()&quot; :disabled=&quot;shouldDisable&quot;&gt;&lt;/button&gt;
+</code></pre>
+
+<p>これらの属性を再利用可能なオブジェクトにバンドルし、<code>x-bind</code> を使用してそれにバインドできます。</p>
+<pre><code class="language-html">&lt;button x-bind=&quot;SomeButton&quot;&gt;&lt;/button&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.bind('SomeButton', () =&gt; ({
+            type: 'button',
+
+            '@click'() {
+                this.doSomething()
+            },
+
+            ':disabled'() {
+                return this.shouldDisable
+            },
+        }))
+    })
+&lt;/script&gt;
+</code></pre>
+<h1>マスクプラグイン (Mask Plugin)</h1>
+
+
+<p>Alpine の Mask プラグインを使用すると、ユーザーの入力に応じてテキスト入力フィールドを自動的にフォーマットできます。</p>
+<p>これは、電話番号、クレジットカード、金額、口座番号、日付など、さまざまな種類の入力に役立ちます。</p>
+<p></p>
+<h2>インストール</h2>
+<pre><code class="language-html">&lt;div x-data=&quot;{ expanded: false }&quot;&gt;
+    &lt;div class=&quot; relative&quot;&gt;
+        &lt;div 
+            x-show=&quot;!expanded&quot; 
+            class=&quot;absolute inset-0 flex justify-start items-end bg-gradient-to-t from-white to-[#ffffff66]&quot;&gt;&lt;/div&gt;
+        &lt;div 
+            x-show=&quot;expanded&quot; 
+            x-collapse.min.80px 
+            class=&quot;markdown&quot;&gt;
+</code></pre>
+
+<p>このプラグインは、<code>&lt;script&gt;</code> タグから含めるか、NPM 経由でインストールすることで使用できます。</p>
+<h3>CDN 経由</h3>
+<p>このプラグインの CDN ビルドを <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+<p>次のように、バンドル内で使用するために NPM から Mask をインストールできます。</p>
+
+<pre><code class="language-shell">npm install @alpinejs/mask
+</code></pre>
+
+<p>次に、バンドルから初期化します。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import mask from '@alpinejs/mask'
+
+Alpine.plugin(mask)
+
+...
+</code></pre>
+
+<p></p>
+<h2>x-mask</h2>
+
+
+<p>このプラグインを使用するための主要な API は、<code>x-mask</code> ディレクティブです。</p>
+<p>日付フィールドの次の簡単な例を見てみましょう。</p>
+<pre><code class="language-html">&lt;input x-mask=&quot;99/99/9999&quot; placeholder=&quot;MM/DD/YYYY&quot;&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;input x-data x-mask=&quot;99/99/9999&quot; placeholder=&quot;MM/DD/YYYY&quot;&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>入力フィールドに入力するテキストが、<code>x-mask</code> によって提供される形式に準拠している必要があることに注意してください。数字を強制することに加えて、ユーザーが最初に数字を入力しない場合、スラッシュ <code>/</code> も自動的に追加されます。</p>
+<p>次のワイルドカード文字がマスクでサポートされています。</p>
+<table>
+<thead>
+<tr>
+<th>ワイルドカード</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>任意の文字</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>英字のみ (a-z、A-Z)</td>
+</tr>
+<tr>
+<td><code>9</code></td>
+<td>数字のみ (0〜9)</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<h2>ダイナミックマスク</h2>
+<p>単純なマスクリテラル（つまり <code>(999) 999-9999</code>）では不十分な場合があります。このような場合、<code>x-mask:dynamic</code> を使用すると、ユーザー入力に基づいてその場でマスクを動的に生成できます。</p>
+<p>これは、番号が「34」または「37」のどちらで始まるかに基づいてマスクを変更する必要があるクレジットカード入力の例です（つまり、Amexカードであるため、形式が異なります）。</p>
+
+
+<pre><code class="language-html">&lt;input x-mask:dynamic=&quot;
+    $input.startsWith('34') || $input.startsWith('37')
+        ? '9999 999999 99999' : '9999 9999 9999 9999'&quot;&gt;
+</code></pre>
+
+
+<p>上記の例でわかるように、ユーザーが入力を入力するたびに、その値は <code>$input</code> として式に渡されます。 <code>$input</code> に基づいて、フィールドで異なるマスクが使用されます。</p>
+<p>「34」で始まる数字とそうでない数字を入力して、自分で試してみてください。</p>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;input x-data x-mask:dynamic=&quot;
+        $input.startsWith('34') || $input.startsWith('37')
+            ? '9999 999999 99999' : '9999 9999 9999 9999'
+    &quot;&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p><code>x-mask:dynamic</code> は式の結果として関数も受け入れ、最初のパラメーターとして <code>$input</code> を自動的に渡します。例えば：</p>
+<pre><code class="language-html">&lt;input x-mask:dynamic=&quot;creditCardMask&quot;&gt;
+
+&lt;script&gt;
+function creditCardMask(input) {
+    return input.startsWith('34') || input.startsWith('37')
+        ? '9999 999999 99999'
+        : '9999 9999 9999 9999'
+}
+&lt;/script&gt;
+</code></pre>
+<p></p>
+<h2>金額の入力 (Money Inputs)</h2>
+<p>お金の入力用に独自の動的マスク式を作成するのはかなり複雑なため、Alpineは事前に作成されたものを提供し、<code>$money()</code> として利用できるようにします。</p>
+<p>これが完全に機能するお金の入力マスクです：</p>
+
+
+<pre><code class="language-html">&lt;input x-mask:dynamic=&quot;$money($input)&quot;&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-data&gt;
+    &lt;input type=&quot;text&quot; x-mask:dynamic=&quot;$money($input)&quot; placeholder=&quot;0.00&quot;&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>ピリオドをコンマに、またはその逆に交換する場合（特定の通貨で必要な場合）、2番目のオプションのパラメーターを使用して行うことができます。</p>
+<pre><code class="language-html">&lt;input x-mask:dynamic=&quot;$money($input, ',')&quot;&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-data&gt;
+    &lt;input type=&quot;text&quot; x-mask:dynamic=&quot;$money($input, ',')&quot;  placeholder=&quot;0,00&quot;&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>Intersect プラグイン</h1>
+<p>Alpine の Intersect プラグインは、<a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer</a> の便利なラッパーであり、要素がビューポートに入ったときに簡単に反応できます。</p>
+<p>これは、画像やその他のコンテンツの遅延読み込み、アニメーションのトリガー、無限スクロール、コンテンツの「views」のログ記録などに役立ちます。</p>
+
+
+<p></p>
+<h2>インストール</h2>
+<p>このプラグインは、<code>&lt;script&gt;</code> タグから含めるか、NPM 経由でインストールすることで使用できます。</p>
+
+<h3>CDN 経由</h3>
+<p>このプラグインの CDN ビルドを <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+<p>次のように、バンドル内で使用するために NPM から Intersect をインストールできます。</p>
+
+<pre><code class="language-shell">npm install @alpinejs/intersect
+</code></pre>
+<p>Then initialize it from your bundle:</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import intersect from '@alpinejs/intersect'
+
+Alpine.plugin(intersect)
+
+...
+</code></pre>
+<p></p>
+<h2>x-intersect</h2>
+
+
+<p>このプラグインを使用するための主要な API は <code>x-intersect</code> です。 Alpine コンポーネント内の任意の要素に <code>x-intersect</code> を追加でき、そのコンポーネントがビューポートに入ると（ビューにスクロールされると）指定された式が実行されます。</p>
+<p>たとえば、次のスニペットでは、要素がスクロールされて表示されるまで、<code>shown</code> は <code>false</code> のままになります。その時点で、式が実行され、<code>shown</code> は <code>true</code> になります。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ shown: false }&quot; x-intersect=&quot;shown = true&quot;&gt;
+    &lt;div x-show=&quot;shown&quot; x-transition&gt;
+        I'm in the viewport!
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; style=&quot;height: 60px; overflow-y: scroll;&quot; x-data x-ref=&quot;root&quot;&gt;
+    &lt;a href=&quot;#&quot; @click.prevent=&quot;$refs.root.scrollTo({ top: $refs.root.scrollHeight, behavior: 'smooth' })&quot;&gt;Scroll Down 👇&lt;/a&gt;
+    &lt;div style=&quot;height: 50vh&quot;&gt;&lt;/div&gt;
+    &lt;div x-data=&quot;{ shown: false }&quot; x-intersect=&quot;shown = true&quot; id=&quot;yoyo&quot;&gt;
+        &lt;div x-show=&quot;shown&quot; x-transition.duration.1000ms&gt;
+            I'm in the viewport!
+        &lt;/div&gt;
+        &lt;div x-show=&quot;! shown&quot;&gt;&amp;nbsp;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>x-intersect:enter</h3>
+
+<p><code>:enter</code> サフィックスは <code>x-intersect</code> のエイリアスであり、同じように機能します。</p>
+<pre><code class="language-html">&lt;div x-intersect:enter=&quot;shown = true&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+<p><code>:leave</code> サフィックスも使用する場合は、わかりやすくするためにこれを使用することを選択できます。</p>
+<p></p>
+<h3>x-intersect:leave</h3>
+
+<p><code>:leave</code>を追加すると、要素がビューポートを離れるときに式が実行されます。</p>
+<pre><code class="language-html">&lt;div x-intersect:leave=&quot;shown = true&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>Modifiers</h2>
+<p></p>
+<h3>.once</h3>
+
+<p>要素がビューポートに初めて入るときだけ式を評価し、それ以降は評価しないと便利な場合があります。たとえば、「Enter」アニメーションをトリガーする場合です。このような場合、これを実現するために、<code>.once</code> 修飾子を <code>x-intersect</code> に追加できます。</p>
+<pre><code class="language-html">&lt;div x-intersect.once=&quot;shown = true&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<p></p>
+<h3>.half</h3>
+
+
+<p>交差しきい値が <code>0.5</code> を超えると、式を評価します。</p>
+<p>要素の少なくとも一部を表示することが重要な要素に役立ちます。</p>
+<pre><code class="language-html">&lt;div x-intersect.half=&quot;shown = true&quot;&gt;...&lt;/div&gt; // when `0.5` of the element is in the viewport
+</code></pre>
+<p></p>
+<h3>.full</h3>
+
+
+<p>交差しきい値が<code>0.99</code>を超えると、式を評価します。</p>
+<p>要素全体を表示することが重要な要素に役立ちます。</p>
+<pre><code class="language-html">&lt;div x-intersect.full=&quot;shown = true&quot;&gt;...&lt;/div&gt; // when `0.99` of the element is in the viewport
+</code></pre>
+<p></p>
+<h3>.threshold</h3>
+
+
+
+
+<p>基になる <code>IntersectionObserver</code> の <code>threshold</code> プロパティを制御できます。</p>
+<p>この値は「0〜100」の範囲である必要があります。 「0」の値は、要素のいずれかの部分がビューポートに入った場合に「交差」をトリガーすることを意味します（デフォルトの動作）。 「100」の値は次のことを意味します。要素全体がビューポートに入っていない限り、「交差」をトリガーしないでください。</p>
+<p>中間の値は、これら2つの極値のパーセンテージです。</p>
+<p>たとえば、要素の半分がページに入った後に交差をトリガーする場合は、<code>.threshold.50</code> を使用できます。</p>
+<pre><code class="language-html">&lt;div x-intersect.threshold.50=&quot;shown = true&quot;&gt;...&lt;/div&gt; // when 50% of the element is in the viewport
+</code></pre>
+
+<p>要素の 5％ がビューポートに入ったときにのみトリガーする場合は、<code>.threshold.05</code> などを使用できます。</p>
+<p></p>
+<h3>.margin</h3>
+
+<p>基になる <code>IntersectionObserver</code> の <code>rootMargin</code> プロパティを制御できます。
+これにより、ビューポート境界のサイズが効果的に調整されます。 正の値
+ビューポートを超えて境界を拡張し、負の値で境界を内側に縮小します。 その価値
+CSSマージンのように機能します。すべての側面に1つの値、上/下、左/右、または
+上、右、下、左の4つの値。 <code>px</code> と <code>％</code> の値を使用するか、裸の数値を使用して
+ピクセル値を取得します。</p>
+<pre><code class="language-html">&lt;div x-intersect.margin.200px=&quot;loaded = true&quot;&gt;...&lt;/div&gt; // Load when the element is within 200px of the viewport
+</code></pre>
+<pre><code class="language-html">&lt;div x-intersect:leave.margin.10%.25px.25.25px=&quot;loaded = false&quot;&gt;...&lt;/div&gt; // Unload when the element gets within 10% of the top of the viewport, or within 25px of the other three edges
+</code></pre>
+<pre><code class="language-html">&lt;div x-intersect.margin.-100px=&quot;visible = true&quot;&gt;...&lt;/div&gt; // Mark as visible when element is more than 100 pixels into the viewport.
+</code></pre>
+<h1>Persistプラグイン</h1>
+
+
+<p>Alpine の Persist プラグインを使用すると、ページの読み込み全体で Alpine の状態を永続化できます。</p>
+<p>これは、検索フィルター、アクティブなタブ、およびページを更新したり、ページを離れて再訪した後に構成がリセットされた場合にユーザーがイライラするその他の機能を永続化する場合に役立ちます。</p>
+<p></p>
+<h2>インストール</h2>
+
+<p>このプラグインは、<code>&lt;script&gt;</code> タグから取り込むか、NPM 経由でインストールすることで使用できます。</p>
+<h3>CDN 経由</h3>
+
+<p>このプラグインの CDN ビルドを  <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+
+<p>次のように、バンドル内で使用するために NPM から Persist をインストールできます。</p>
+<pre><code class="language-shell">npm install @alpinejs/persist
+</code></pre>
+
+<p>それから、バンドルから初期化をします。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import persist from '@alpinejs/persist'
+
+Alpine.plugin(persist)
+
+...
+</code></pre>
+<p></p>
+<h2>$persist</h2>
+
+
+<p>このプラグインを使用するための主要な API は、魔法の <code>$persist</code> メソッドです。</p>
+<p>以下のように <code>x-data</code> 内の任意の値を <code>$persist</code> でラップして、ページの読み込み間でその値を永続化できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: $persist(0) }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ count: $persist(0) }&quot;&gt;
+        &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+        &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>上記の例では、<code>0</code> を <code>$persist()</code> でラップしたため、Alpineは <code>count</code> に加えられた変更をインターセプトし、ページの読み込み全体でそれらを永続化します。</p>
+<p>上記の例で「count」をインクリメントしてから、このページを更新し、「カウント」がその状態を維持し、「0」にリセットされないことを確認することで、これを自分で試すことができます。</p>
+<p></p>
+<h2>どのように機能しますか？</h2>
+
+
+
+
+
+
+<p>値が <code>$persist</code> でラップされている場合、初期化時に Alpine はその値に対して独自のウォッチャーを登録します。これで、何らかの理由でその値が変更されるたびに、Alpineは新しい値を <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a> に保存します。</p>
+<p>これで、ページがリロードされると、Alpine は localStorageを（プロパティの名前をキーとして使用して）値をチェックします。見つかった場合は、localStorage からプロパティ値をすぐに設定します。</p>
+<p>この動作は、ブラウザの devtool の localStorage ビューアを開くことで確認できます。</p>
+<p></p>
+<p>このページにアクセスするだけで、Alpine は localStorage に「 count 」の値をすでに設定していることがわかります。また、これらの値の名前空間を設定する方法として、プロパティ名「 count 」の前に「 <code>_x_</code> 」を付けて、alpine が localStorage を使用する他のツールと競合しないようにします。</p>
+<p>次に、次の例の「count」を変更し、Alpine によってlocalStorage に加えられた変更を確認します。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: $persist(0) }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ count: $persist(0) }&quot;&gt;
+        &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+        &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<blockquote>
+<p><code>$persist</code> works with primitive values as well as with arrays and objects.</p>
+</blockquote>
+
+
+<blockquote>
+<p><code>$persist</code> は、配列やオブジェクトだけでなく、プリミティブ値でも機能します。
+ただし、変数のタイプが変更された場合は、localStorage をクリアする必要があることに注意してください。</p>
+</blockquote>
+<blockquote>
+<p>前の例で、count を <code>$persist({value: 0})</code> の値に変更する場合は、localStorage をクリアするか、変数'count' の名前を変更する必要があります。</p>
+</blockquote>
+<p></p>
+<h2>カスタムキーの設定</h2>
+
+
+
+
+<p>デフォルトでは、Alpine は <code>$persist(...)</code> が割り当てられているプロパティキー（上記の例では &quot;count&quot;）を使用します。</p>
+<p>ページ間または同じページに複数の Alpine コンポーネントがあり、すべてがプロパティキーとして「 count 」を使用しているシナリオを考えてみます。</p>
+<p>Alpine には、これらのコンポーネントを区別する方法がありません。</p>
+<p>このような場合、次のように <code>.as</code> 修飾子を使用して、永続化された値に独自のカスタムキーを設定できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: $persist(0).as('other-count') }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+<p>これで、Alpine は、キー「 <code>other-count</code> 」を使用して上記の「 count 」値を保存および取得します。</p>
+<p>自分で確認できる ChromeDevtools のビューは次のとおりです。</p>
+
+<p></p>
+<h2>カスタムストレージの使用</h2>
+
+
+<p>デフォルトでは、データは localStorage に保存され、有効期限はなく、ページが閉じられても保持されます。</p>
+<p>ユーザーがタブを閉じたらデータをクリアするシナリオを考えてみましょう。 この場合、次のように <code>.using</code> 修飾子を使用してデータを sessionStorage に永続化できます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ count: $persist(0).using(sessionStorage) }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>getItem 関数と setItem 関数を公開するカスタムストレージオブジェクトを定義することもできます。 たとえば、セッション Cookie をストレージとして使用することを決定できます。</p>
+<pre><code class="language-html">&lt;script&gt;
+    window.cookieStorage = {
+        getItem(key) {
+            let cookies = document.cookie.split(&quot;;&quot;);
+            for (let i = 0; i &lt; cookies.length; i++) {
+                let cookie = cookies[i].split(&quot;=&quot;);
+                if (key == cookie[0].trim()) {
+                    return decodeURIComponent(cookie[1]);
+                }
+            }
+            return null;
+        },
+        setItem(key, value) {
+            document.cookie = key+' = '+encodeURIComponent(value)
+        }
+    }
+&lt;/script&gt;
+
+&lt;div x-data=&quot;{ count: $persist(0).using(cookieStorage) }&quot;&gt;
+    &lt;button x-on:click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<h2>Alpine.data で $persist を使用する</h2>
+
+<p><code>$persist</code> を <code>Alpine.data</code> と一緒に使用する場合は、アロー関数の代わりに標準関数を使用する必要があります。これにより、Alpine は、コンポーネントスコープを最初に評価するときにカスタムの <code>this</code> コンテキストをバインドできます。</p>
+<pre><code class="language-js">Alpine.data('dropdown', function () {
+    return {
+        open: this.$persist(false)
+    }
+})
+</code></pre>
+<p></p>
+<h2>グローバルな Alpine.$persist の使用</h2>
+
+<p><code>Alpine.$persist</code> はグローバルに公開されるため、<code>x-data</code> コンテキストの外部で使用できます。 これは、<code>Alpine.store</code> などの他のソースからのデータを永続化するのに役立ちます。</p>
+<pre><code class="language-js">Alpine.store('darkMode', {
+    on: Alpine.$persist(true).as('darkMode_on')
+});
+</code></pre>
+
+<blockquote>
+<p>注意：このプラグインは以前は「Trap (トラップ)」と呼ばれていました。 Trap の機能は、追加機能とともにこのプラグインに吸収されています。重大な変更を加えることなく、Trap を Focus に交換できます。</p>
+</blockquote>
+<h1>Focus プラグイン</h1>
+<p>Alpine の Focus プラグインを使用すると、ページのフォーカスを管理できます。</p>
+<blockquote>
+<p>このプラグインは、内部的にオープンソースツール<a href="https://github.com/focus-trap/tabbable">Tabbable</a> を多用しています。この問題に非常に必要な解決策を提供してくれたそのチームに大いに感謝します。</p>
+</blockquote>
+
+
+<p></p>
+<h2>インストール</h2>
+<p>このプラグインは、 <code>&lt;script&gt;</code> タグから含めるか、NPM 経由でインストールすることで使用できます。</p>
+<p>You can use this plugin by either including it from a <code>&lt;script&gt;</code> tag or installing it via NPM:</p>
+<h3>CDN 経由</h3>
+<p>このプラグインの CDN ビルドを <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+<p>次のように、バンドル内で使用するために NPM から Focus をインストールできます。</p>
+
+<pre><code class="language-shell">npm install @alpinejs/focus
+</code></pre>
+
+<p>次に、バンドルから初期化します。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import focus from '@alpinejs/focus'
+
+Alpine.plugin(focus)
+
+...
+</code></pre>
+<p></p>
+<h2>x-trap</h2>
+
+
+<p>Focus は、要素内にフォーカスをトラップするための専用API、<code>x-trap</code> ディレクティブを提供します。</p>
+<p><code>x-trap</code> は JS 式を受け入れます。その式の結果がtrueの場合、式が false になるまでフォーカスはその要素内にトラップされ、その時点でフォーカスは以前の場所に戻ります。</p>
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = true&quot;&gt;Open Dialog&lt;/button&gt;
+
+    &lt;span x-show=&quot;open&quot; x-trap=&quot;open&quot;&gt;
+        &lt;p&gt;...&lt;/p&gt;
+
+        &lt;input type=&quot;text&quot; placeholder=&quot;Some input...&quot;&gt;
+
+        &lt;input type=&quot;text&quot; placeholder=&quot;Some other input...&quot;&gt;
+
+        &lt;button @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;div :class=&quot;open &amp;&amp; 'opacity-50'&quot;&gt;
+        &lt;button x-on:click=&quot;open = true&quot;&gt;Open Dialog&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div x-show=&quot;open&quot; x-trap=&quot;open&quot; class=&quot;mt-4 space-y-4 p-4 border bg-yellow-100&quot; @keyup.escape.window=&quot;open = false&quot;&gt;
+        &lt;strong&gt;
+            &lt;div&gt;Focus is now &quot;trapped&quot; inside this dialog, meaning you can only click/focus elements within this yellow dialog. If you press tab repeatedly, the focus will stay within this dialog.&lt;/div&gt;
+        &lt;/strong&gt;
+
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Some input...&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Some other input...&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+            &lt;button @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>ネストダイアログ</h3>
+<p>あるダイアログを別のダイアログの中にネストしたい場合があります。 <code>x-trap</code> はこれを簡単にし、自動的に処理します。</p>
+<p><code>x-trap</code> は、新しく「trapped (トラップされた)」要素を追跡し、最後にアクティブにフォーカスされた要素を格納します。要素が「untrapped (アントラップ)」されると、フォーカスは元の場所に戻ります。</p>
+<p>このメカニズムは再帰的であるため、すでにトラップされている要素内にフォーカスを無限にトラップしてから、各要素を連続して「アントラップ」することができます。</p>
+
+
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button @click=&quot;open = true&quot;&gt;Open Dialog&lt;/button&gt;
+
+    &lt;span x-show=&quot;open&quot; x-trap=&quot;open&quot;&gt;
+
+        ...
+
+        &lt;div x-data=&quot;{ open: false }&quot;&gt;
+            &lt;button @click=&quot;open = true&quot;&gt;Open Nested Dialog&lt;/button&gt;
+
+            &lt;span x-show=&quot;open&quot; x-trap=&quot;open&quot;&gt;
+
+                ...
+
+                &lt;button @click=&quot;open = false&quot;&gt;Close Nested Dialog&lt;/button&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;button @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ open: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;div :class=&quot;open &amp;&amp; 'opacity-50'&quot;&gt;
+        &lt;button x-on:click=&quot;open = true&quot;&gt;Open Dialog&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div x-show=&quot;open&quot; x-trap=&quot;open&quot; class=&quot;mt-4 space-y-4 p-4 border bg-yellow-100&quot; @keyup.escape.window=&quot;open = false&quot;&gt;
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Some input...&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Some other input...&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;div x-data=&quot;{ open: false }&quot;&gt;
+            &lt;div :class=&quot;open &amp;&amp; 'opacity-50'&quot;&gt;
+                &lt;button x-on:click=&quot;open = true&quot;&gt;Open Nested Dialog&lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;div x-show=&quot;open&quot; x-trap=&quot;open&quot; class=&quot;mt-4 space-y-4 p-4 border border-gray-500 bg-yellow-200&quot; @keyup.escape.window=&quot;open = false&quot;&gt;
+                &lt;strong&gt;
+                    &lt;div&gt;Focus is now &quot;trapped&quot; inside this nested dialog. You cannot focus anything inside the outer dialog while this is open. If you close this dialog, focus will be returned to the last known active element.&lt;/div&gt;
+                &lt;/strong&gt;
+
+                &lt;div&gt;
+                    &lt;input type=&quot;text&quot; placeholder=&quot;Some input...&quot;&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                    &lt;input type=&quot;text&quot; placeholder=&quot;Some other input...&quot;&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                    &lt;button @click=&quot;open = false&quot;&gt;Close Nested Dialog&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+            &lt;button @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>修飾子</h3>
+<p></p>
+<h4>.inert</h4>
+<p>ダイアログ / モーダルなどを作成するときは、フォーカスをトラップするときに、ページ上の他のすべての要素をスクリーンリーダーから非表示にすることをお勧めします。</p>
+<p><code>.inert</code> を <code>x-trap</code> に追加することにより、フォーカスがトラップされると、ページ上の他のすべての要素が <code>aria-hidden =&quot;true&quot;</code> 属性を受け取り、フォーカストラップが無効になると、それらの属性も削除されます。</p>
+
+
+<pre><code class="language-html">&lt;!-- When `open` is `false`: --&gt;
+&lt;body x-data=&quot;{ open: false }&quot;&gt;
+    &lt;div x-trap.inert=&quot;open&quot; ...&gt;
+        ...
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        ...
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;!-- When `open` is `true`: --&gt;
+&lt;body x-data=&quot;{ open: true }&quot;&gt;
+    &lt;div x-trap.inert=&quot;open&quot; ...&gt;
+        ...
+    &lt;/div&gt;
+
+    &lt;div aria-hidden=&quot;true&quot;&gt;
+        ...
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p></p>
+<h4>.noscroll</h4>
+<p>Alpine を使用して ダイアログ / モーダルを作成する場合、ダイアログが開いているときに周囲のコンテンツのスクロールを無効にすることをお勧めします。</p>
+<p><code>x-trap</code> を使用すると、<code>.noscroll</code> 修飾子を使用してこれを自動的に行うことができます。</p>
+<p><code>.noscroll</code> を追加することにより、Alpine はページからスクロールバーを削除し、ダイアログが開いている間、ユーザーがページを下にスクロールするのをブロックします。</p>
+
+
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot;&gt;
+    &lt;button&gt;Open Dialog&lt;/button&gt;
+
+    &lt;div x-show=&quot;open&quot; x-trap.noscroll=&quot;open&quot;&gt;
+        Dialog Contents
+
+        &lt;button @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ open: false }&quot;&gt;
+        &lt;button @click=&quot;open = true&quot;&gt;Open Dialog&lt;/button&gt;
+
+        &lt;div x-show=&quot;open&quot; x-trap.noscroll=&quot;open&quot; class=&quot;border mt-4 p-4&quot;&gt;
+            &lt;div class=&quot;mb-4 text-bold&quot;&gt;Dialog Contents&lt;/div&gt;
+
+            &lt;p class=&quot;mb-4 text-gray-600 text-sm&quot;&gt;Notice how you can no longer scroll on this page while this dialog is open.&lt;/p&gt;
+
+            &lt;button class=&quot;mt-4&quot; @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h4>.noreturn</h4>
+<p>以前の場所にフォーカスを戻したくない場合があります。入力のフォーカス時にトリガーされるドロップダウンについて考えてみます。閉じるときにフォーカスを入力に戻すと、ドロップダウンが再び開きます。</p>
+<p><code>x-trap</code> を使用すると、<code>.noreturn</code> 修飾子を使用してこの動作を無効にできます。</p>
+<p><code>.noreturn</code> を追加することにより、Alpine は x-trap 評価のフォーカスを false に戻しません。</p>
+
+
+
+
+<pre><code class="language-html">&lt;div x-data=&quot;{ open: false }&quot; x-trap.noreturn=&quot;open&quot;&gt;
+    &lt;input type=&quot;search&quot; placeholder=&quot;search for something&quot; /&gt;
+
+    &lt;div x-show=&quot;open&quot;&gt;
+        Search results
+
+        &lt;button @click=&quot;open = false&quot;&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div
+        x-data=&quot;{ open: false }&quot;
+        x-trap.noreturn=&quot;open&quot;
+        @click.outside=&quot;open = false&quot;
+        @keyup.escape.prevent.stop=&quot;open = false&quot;
+    &gt;
+        &lt;input type=&quot;search&quot; placeholder=&quot;search for something&quot;
+            @focus=&quot;open = true&quot;
+            @keyup.escape.prevent=&quot;$el.blur()&quot;
+        /&gt;
+
+        &lt;div x-show=&quot;open&quot;&gt;
+            &lt;div class=&quot;mb-4 text-bold&quot;&gt;Search results&lt;/div&gt;
+
+            &lt;p class=&quot;mb-4 text-gray-600 text-sm&quot;&gt;Notice when closing this dropdown, focus is not returned to the input.&lt;/p&gt;
+
+            &lt;button class=&quot;mt-4&quot; @click=&quot;open = false&quot;&gt;Close Dialog&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>$focus</h2>
+<p>このプラグインは、ページ内のフォーカスを管理するための多くの小さなユーティリティを提供します。これらのユーティリティは、<code>$focus</code> マジックを介して公開されます。</p>
+
+<table>
+<thead>
+<tr>
+<th>プロパティ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(el)</code></td>
+<td>渡された要素に焦点を合わせます(内部で煩わしさを処理する：nextTickを使用するなど)</td>
+</tr>
+<tr>
+<td><code>focusable(el)</code></td>
+<td>天気を検出するか、要素がフォーカス可能かどうかを検出します</td>
+</tr>
+<tr>
+<td><code>focusables()</code></td>
+<td>現在の要素内のすべての「フォーカス可能な」要素を取得する</td>
+</tr>
+<tr>
+<td><code>focused()</code></td>
+<td>ページ上で現在フォーカスされている要素を取得する</td>
+</tr>
+<tr>
+<td><code>lastFocused()</code></td>
+<td>ページの最後にフォーカスされた要素を取得する</td>
+</tr>
+<tr>
+<td><code>within(el)</code></td>
+<td><code>$ focus</code>マジックをスコープする要素を指定します(デフォルトでは現在の要素)</td>
+</tr>
+<tr>
+<td><code>first()</code></td>
+<td>最初のフォーカス可能な要素にフォーカスする</td>
+</tr>
+<tr>
+<td><code>last()</code></td>
+<td>最後のフォーカス可能な要素にフォーカスする</td>
+</tr>
+<tr>
+<td><code>next()</code></td>
+<td>次のフォーカス可能な要素にフォーカスする</td>
+</tr>
+<tr>
+<td><code>previous()</code></td>
+<td>前のフォーカス可能な要素にフォーカスする</td>
+</tr>
+<tr>
+<td><code>noscroll()</code></td>
+<td>フォーカスされようとしている要素へのスクロールを防止します</td>
+</tr>
+<tr>
+<td><code>wrap()</code></td>
+<td>「次の」または「前の」を取得するときは、「ラップアラウンド」を使用します(たとえば、最後の要素の「次の」要素を取得する場合は最初の要素を返します)</td>
+</tr>
+<tr>
+<td><code>getFirst()</code></td>
+<td>最初のフォーカス可能な要素を取得する</td>
+</tr>
+<tr>
+<td><code>getLast()</code></td>
+<td>最後のフォーカス可能な要素を取得する</td>
+</tr>
+<tr>
+<td><code>getNext()</code></td>
+<td>次のフォーカス可能な要素を取得する</td>
+</tr>
+<tr>
+<td><code>getPrevious()</code></td>
+<td>前のフォーカス可能な要素を取得する</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>使用中のこれらのユーティリティのいくつかの例を見ていきましょう。以下の例では、ユーザーは矢印キーを使用してボタンのグループ内でフォーカスを制御できます。これをテストするには、ボタンをクリックしてから、矢印キーを使用してフォーカスを移動します。</p>
+<pre><code class="language-html">&lt;div
+    @keydown.right=&quot;$focus.next()&quot;
+    @keydown.left=&quot;$focus.previous()&quot;
+&gt;
+    &lt;button&gt;First&lt;/button&gt;
+    &lt;button&gt;Second&lt;/button&gt;
+    &lt;button&gt;Third&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+<p>最後のボタンがフォーカスされている場合、「right arrow (右矢印)」を押しても何も起こらないことに注意してください。フォーカスが「wraps around (ラップアラウンド)」するように、 <code>.wrap()</code> メソッドを追加しましょう。</p>
+<pre><code class="language-html">&lt;div
+    @keydown.right=&quot;$focus.wrap().next()&quot;
+    @keydown.left=&quot;$focus.wrap().previous()&quot;
+&gt;
+    &lt;button&gt;First&lt;/button&gt;
+    &lt;button&gt;Second&lt;/button&gt;
+    &lt;button&gt;Third&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+&lt;div
+    x-data
+    @keydown.right=&quot;$focus.wrap().next()&quot;
+    @keydown.left=&quot;$focus.wrap().previous()&quot;
+&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;First&lt;/button&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;Second&lt;/button&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;Third&lt;/button&gt;
+&lt;/div&gt;
+(Click a button, then use the arrow keys to move left and right)
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>次に、2つのボタンを追加しましょう。1つはボタングループの最初の要素にフォーカスし、もう1つは最後の要素にフォーカスします。</p>
+<pre><code class="language-html">&lt;button @click=&quot;$focus.within($refs.buttons).first()&quot;&gt;Focus &quot;First&quot;&lt;/button&gt;
+&lt;button @click=&quot;$focus.within($refs.buttons).last()&quot;&gt;Focus &quot;Last&quot;&lt;/button&gt;
+
+&lt;div
+    x-ref=&quot;buttons&quot;
+    @keydown.right=&quot;$focus.wrap().next()&quot;
+    @keydown.left=&quot;$focus.wrap().previous()&quot;
+&gt;
+    &lt;button&gt;First&lt;/button&gt;
+    &lt;button&gt;Second&lt;/button&gt;
+    &lt;button&gt;Third&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot; x-data&gt;
+&lt;button @click=&quot;$focus.within($refs.buttons).first()&quot;&gt;Focus &quot;First&quot;&lt;/button&gt;
+&lt;button @click=&quot;$focus.within($refs.buttons).last()&quot;&gt;Focus &quot;Last&quot;&lt;/button&gt;
+
+&lt;hr class=&quot;mt-2 mb-2&quot;/&gt;
+
+&lt;div
+    x-ref=&quot;buttons&quot;
+    @keydown.right=&quot;$focus.wrap().next()&quot;
+    @keydown.left=&quot;$focus.wrap().previous()&quot;
+&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;First&lt;/button&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;Second&lt;/button&gt;
+    &lt;button class=&quot;focus:outline-none focus:ring-2 focus:ring-cyan-400&quot;&gt;Third&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+<p>各ボタンに <code>.within()</code> メソッドを追加して、<code>$focus</code> がそれ自体を別の要素（ボタンをラップする <code>div</code>）にスコープすることを認識できるようにする必要があることに注意してください。</p>
+<h1>Collapse プラグイン</h1>
+
+
+<p>Alpine の Collapse プラグインを使用すると、スムーズなアニメーションを使用して要素を展開および折りたたむことができます。</p>
+<p>この動作と実装は Alpine の標準の トランジションシステムとは異なるため、この機能は専用のプラグインになりました。</p>
+<p></p>
+<h2>インストール</h2>
+<p>このプラグインは、<code>&lt;script&gt;</code> タグから含めるか、NPM 経由でインストールすることで使用できます。</p>
+
+<h3>CDN 経由</h3>
+<p>このプラグインの CDN ビルドを <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+<p>次のように、バンドル内で使用するために NPM から Collapse をインストールできます。</p>
+
+<pre><code class="language-shell">npm install @alpinejs/collapse
+</code></pre>
+
+<p>次に、バンドルから初期化します。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import collapse from '@alpinejs/collapse'
+
+Alpine.plugin(collapse)
+
+...
+</code></pre>
+<p></p>
+<h2>x-collapse</h2>
+
+
+<p>このプラグインを使用するための主要な API は、<code>x-collapse</code> ディレクティブです。</p>
+<p><code>x-collapse</code> は、すでに <code>x-show</code> ディレクティブを持つ要素にのみ存在できます。 <code>x-show</code> 要素に追加すると、<code> x-collapse</code> は、高さプロパティをアニメーション化することで要素の表示が切り替えられたときに、要素をスムーズに「折りたたむ」および「拡張する」ことができます。</p>
+
+<p>例えば</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ expanded: false }&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;p x-show=&quot;expanded&quot; x-collapse&gt;
+        ...
+    &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ expanded: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;expanded&quot; x-collapse&gt;
+        &lt;div class=&quot;pt-4&quot;&gt;
+            Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>Modifiers (修飾子)</h2>
+<p></p>
+<h3>.duration (間隔)</h3>
+
+<p>次のように <code>.duration</code> 修飾子を追加することで、折りたたみ/展開遷移の期間をカスタマイズできます。</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ expanded: false }&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;p x-show=&quot;expanded&quot; x-collapse.duration.1000ms&gt;
+        ...
+    &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ expanded: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;expanded&quot; x-collapse.duration.1000ms&gt;
+        &lt;div class=&quot;pt-4&quot;&gt;
+            Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>.min</h3>
+
+
+<p>デフォルトでは、<code>x-collapse</code> の &quot;collapsed&quot; 状態は、要素の高さを <code>0px</code> に設定し、 <code>display: none;</code> も設定します。</p>
+<p>要素を完全に非表示にするのではなく、要素を「切り取る」と便利な場合があります。 <code>.min</code> 修飾子を使用すると、<code>x-collapse</code> の「collapsed (折りたたみ)」状態の最小の高さを設定できます。
+例えば</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ expanded: false }&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;p x-show=&quot;expanded&quot; x-collapse.min.50px&gt;
+        ...
+    &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ expanded: false }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;expanded = ! expanded&quot;&gt;Toggle Content&lt;/button&gt;
+
+    &lt;div x-show=&quot;expanded&quot; x-collapse.min.50px&gt;
+        &lt;div class=&quot;pt-4&quot;&gt;
+            Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<h1>モーフ (変形) プラグイン</h1>
+
+
+
+<p>Alpine の モーフプラグインを使用すると、ページ上の要素を提供された HTML テンプレートに「モーフィング」すると同時に、「モーフィング」要素内のブラウザまたは Alpine の状態を保持できます。</p>
+<p>これは、Alpine のページ上の状態を失うことなく、サーバー要求からHTMLを更新する場合に役立ちます。 このようなユーティリティは、<a href="https://laravel-livewire.com/">Laravel Livewire</a> や <a href="https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript">Phoenix LiveView</a> などのフルスタックフレームワークの中核にあります。</p>
+<p>その目的を理解する最良の方法は、次のインタラクティブな視覚化を使用することです。 まずは試してみましょう。</p>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ slide: 1 }&quot; class=&quot;border rounded&quot;&gt;
+    &lt;div&gt;
+        &lt;img :src=&quot;'/img/morphs/morph'+slide+'.png'&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;flex w-full justify-between&quot; style=&quot;padding-bottom: 1rem&quot;&gt;
+        &lt;div class=&quot;w-1/2 px-4&quot;&gt;
+            &lt;button @click=&quot;slide = (slide === 1) ? 13 : slide - 1&quot; class=&quot;w-full bg-cyan-400 rounded-full text-center py-3 font-bold text-white&quot;&gt;Previous&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;w-1/2 px-4&quot;&gt;
+            &lt;button @click=&quot;slide = (slide % 13) + 1&quot; class=&quot;w-full bg-cyan-400 rounded-full text-center py-3 font-bold text-white&quot;&gt;Next&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h2>インストール</h2>
+
+<p>このプラグインは、<code>&lt;script&gt;</code> タグから含めるか、NPM 経由でインストールすることで使用できます。</p>
+<h3>CDN 経由</h3>
+
+<p>このプラグインの CDN ビルドを <code>&lt;script&gt;</code> タグとして含めることができますが、Alpine のコア JS ファイルの前に必ず含めてください。</p>
+<pre><code class="language-html">&lt;!-- Alpine Plugins --&gt;
+&lt;script defer src=&quot;https://unpkg.com/@alpinejs/morph@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Alpine Core --&gt;
+&lt;script defer src=&quot;https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>NPM 経由</h3>
+
+<p>次のように、バンドル内で使用するために NPM から Morph をインストールできます。</p>
+<pre><code class="language-shell">npm install @alpinejs/morph
+</code></pre>
+
+<p>そのあと、バンドルから初期化をします。</p>
+<pre><code class="language-js">import Alpine from 'alpinejs'
+import morph from '@alpinejs/morph'
+
+window.Alpine = Alpine
+Alpine.plugin(morph)
+
+...
+</code></pre>
+<p></p>
+<h2>Alpine.morph()</h2>
+
+
+
+<p><code>Alpine.morph(el, newHtml)</code> を使用すると、渡されたHTML に基づいて DOM ノードを強制的にモーフィングできます。 次のパラメータを受け入れます。</p>
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>el</code></td>
+<td>ページ上のDOM要素。</td>
+</tr>
+<tr>
+<td><code>newHtml</code></td>
+<td>DOM 要素をモーフィングするためのテンプレートとして使用する HTML の文字列。</td>
+</tr>
+<tr>
+<td><code>options</code>(オプション)</td>
+<td>主に<a href="#lifecycle-hooks">ライフサイクルフックの挿入</a> に使用されるオプションオブジェクト。</td>
+</tr>
+</tbody>
+</table>
+<p><code>Alpine.morph()</code> を使用して Alpine コンポーネントを新しい HTML で更新する例を次に示します。(実際のアプリでは、この新しい HTML はサーバーから取得される可能性があります）</p>
+<pre><code class="language-html">&lt;div x-data=&quot;{ message: 'Change me, then press the button!' }&quot;&gt;
+    &lt;input type=&quot;text&quot; x-model=&quot;message&quot;&gt;
+    &lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;button&gt;Run Morph&lt;/button&gt;
+
+&lt;script&gt;
+    document.querySelector('button').addEventListener('click', () =&gt; {
+        let el = document.querySelector('div')
+
+        Alpine.morph(el, `
+            &lt;div x-data=&quot;{ message: 'Change me, then press the button!' }&quot;&gt;
+                &lt;h2&gt;See how new elements have been added&lt;/h2&gt;
+
+                &lt;input type=&quot;text&quot; x-model=&quot;message&quot;&gt;
+                &lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+
+                &lt;h2&gt;but the state of this component hasn't changed? Magical.&lt;/h2&gt;
+            &lt;/div&gt;
+        `)
+    })
+&lt;/script&gt;
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div class=&quot;demo&quot;&gt;
+    &lt;div x-data=&quot;{ message: 'Change me, then press the button!' }&quot; id=&quot;morph-demo-1&quot; class=&quot;space-y-2&quot;&gt;
+        &lt;input type=&quot;text&quot; x-model=&quot;message&quot; class=&quot;w-full&quot;&gt;
+        &lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;button id=&quot;morph-button-1&quot; class=&quot;mt-4&quot;&gt;Run Morph&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    document.querySelector('#morph-button-1').addEventListener('click', () =&gt; {
+        let el = document.querySelector('#morph-demo-1')
+
+        Alpine.morph(el, `
+            &lt;div x-data=&quot;{ message: 'Change me, then press the button!' }&quot; id=&quot;morph-demo-1&quot; class=&quot;space-y-2&quot;&gt;
+                &lt;h4&gt;See how new elements have been added&lt;/h4&gt;
+                &lt;input type=&quot;text&quot; x-model=&quot;message&quot; class=&quot;w-full&quot;&gt;
+                &lt;span x-text=&quot;message&quot;&gt;&lt;/span&gt;
+                &lt;h4&gt;but the state of this component hasn't changed? Magical.&lt;/h4&gt;
+            &lt;/div&gt;
+        `)
+    })
+&lt;/script&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+<p></p>
+<h3>ライフサイクルフック</h3>
+
+
+
+
+<p>「Morph」プラグインは、2つの DOM ツリー、ライブ要素、および渡された HTML を比較することによって機能します。</p>
+<p>モーフは両方のツリーを同時に解析して、各ノードとその子を比較します。違いが見つかった場合は、現在の DOM ツリーを「パッチ」（変更）して、渡された HTML のツリーと一致させます。</p>
+<p>デフォルトのアルゴリズムは非常に機能的ですが、ライフサイクルに接続して、発生中の動作を観察または変更したい場合があります。</p>
+<p>利用可能なライフサイクルフック自体に飛び込む前に、まず、それらが受け取る可能性のあるすべてのパラメーターをリストアップし、それぞれが何であるかを説明しましょう。</p>
+
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>el</code></td>
+<td>これは常に、「パッチが適用される」（モーフによって変更される）ページ上の実際の現在の DOM 要素です。</td>
+</tr>
+<tr>
+<td><code>toEl</code></td>
+<td>これは「テンプレート要素」です。これは、ライブの <code>el</code> にパッチが適用される対象を表す一時的な要素です。実際にページに表示されることはなく、参照目的でのみ使用する必要があります。</td>
+</tr>
+<tr>
+<td><code>childrenOnly()</code></td>
+<td>これは、フック内で呼び出して、現在の要素をスキップし、その子のみを「パッチ」するように Morph に指示できる関数です。</td>
+</tr>
+<tr>
+<td><code>skip()</code></td>
+<td>フック内で呼び出されたときに、それ自体と現在の要素の子を比較/パッチする関数を「スキップ」します。</td>
+</tr>
+</tbody>
+</table>
+<p>使用可能なライフサイクルフックは次のとおりです（  <code>Alpine.morph(..., options)</code> に3番目のパラメーターとして渡されます）。</p>
+
+<table>
+<thead>
+<tr>
+<th>オプション</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>updating（el、toEl、childrenOnly、skip）</code></td>
+<td>比較<code>toEl</code>で<code>el</code>にパッチを当てる前に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>updated（el、toEl）</code></td>
+<td>Morphが<code>el</code>にパッチを適用した後に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>removing（el、skip）</code></td>
+<td>MorphがライブDOMから要素を削除する前に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>removed（el）</code></td>
+<td>MorphがライブDOMから要素を削除した後に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>adding（el、skip）</code></td>
+<td>新しい要素を追加する前に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>added（el）</code></td>
+<td>ライブDOMツリーに新しい要素を追加した後に呼び出されます。</td>
+</tr>
+<tr>
+<td><code>key（el）</code></td>
+<td>比較/パッチ適用の前に、モーフがツリー内の要素をどのように「キー」するかを決定するための再利用可能な関数。 [詳細はこちら]（＃keys）</td>
+</tr>
+<tr>
+<td><code>先読み</code></td>
+<td>削除されようとしているDOM要素が代わりに後の兄弟に「移動」されることを確認するために、アルゴリズムの追加機能を有効にするようにMorphに指示するブール値。</td>
+</tr>
+</tbody>
+</table>
+<p>より具体的なリファレンスとして、これらすべてのライフサイクルフックのコードを次に示します。</p>
+<pre><code class="language-js">Alpine.morph(el, newHtml, {
+    updating(el, toEl, childrenOnly, skip) {
+        //
+    },
+
+    updated(el, toEl) {
+        //
+    },
+
+    removing(el, skip) {
+        //
+    },
+
+    removed(el) {
+        //
+    },
+
+    adding(el, skip) {
+        //
+    },
+
+    added(el) {
+        //
+    },
+
+    key(el) {
+        // By default Alpine uses the `key=&quot;&quot;` HTML attribute.
+        return el.id
+    },
+
+    lookahead: true, // Default: false
+})
+</code></pre>
+<p></p>
+<h3>キー (Keys)</h3>
+
+
+
+<p>Morph のような DOM 差分ユーティリティは、元の DOM を新しい HTML に正確に「モーフィング」するために最善を尽くします。 ただし、要素を変更するだけなのか、完全に置き換えるのかを判断できない場合があります。</p>
+<p>この制限のため、Morph には、開発者が特定の要素を置き換えるのではなく、保存することを「強制」できる「キー」システムがあります。</p>
+<p>それらの最も一般的なユースケースは、ループ内の兄弟のリストです。 以下は、キーが時々必要になる理由の例です。</p>
+<pre><code class="language-html">&lt;!-- &quot;Live&quot; Dom on the page: --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Mark&lt;/li&gt;
+    &lt;li&gt;Tom&lt;/li&gt;
+    &lt;li&gt;Travis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- New HTML to &quot;morph to&quot;: --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Travis&lt;/li&gt;
+    &lt;li&gt;Mark&lt;/li&gt;
+    &lt;li&gt;Tom&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+
+
+<p>上記の状況を考えると、Morph は「Travis」ノードが DOM ツリーで移動されたことを知る方法がありません。 「Mark」が「Travis」に、「Travis」が「Tom」に変わったと思っているだけです。</p>
+<p>これは私たちが実際に望んでいることではありません。Morphに元の要素を保持させ、それらを変更する代わりに、<code>&lt;ul&gt;</code> 内で移動させます。</p>
+<p>各ノードにキーを追加することで、次のように実現できます。</p>
+<pre><code class="language-html">&lt;!-- &quot;Live&quot; Dom on the page: --&gt;
+&lt;ul&gt;
+    &lt;li key=&quot;1&quot;&gt;Mark&lt;/li&gt;
+    &lt;li key=&quot;2&quot;&gt;Tom&lt;/li&gt;
+    &lt;li key=&quot;3&quot;&gt;Travis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- New HTML to &quot;morph to&quot;: --&gt;
+&lt;ul&gt;
+    &lt;li key=&quot;3&quot;&gt;Travis&lt;/li&gt;
+    &lt;li key=&quot;1&quot;&gt;Mark&lt;/li&gt;
+    &lt;li key=&quot;2&quot;&gt;Tom&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+
+<p><code>&lt;li&gt;</code> に「key」があるので、モーフは両方のツリーでそれらを一致させ、それに応じて移動します。</p>
+<p><code>key:</code> 構成オプションを使用して、Morph が「キー」と見なすものを構成できます。 <a href="#lifecycle-hooks">詳細はこちら</a></p>
+<h1>Reactivity ( 反応性 )</h1>
+<p>Alpine は、データを変更すると、そのデータに依存するすべてのものがその変更に自動的に「反応」するという意味で「反応的」です。</p>
+<p>アルパインで発生する反応性のすべてのビットは、アルパインのコアの2つの非常に重要な反応性関数、<code>Alpine.reactive()</code> と <code>Alpine.effect()</code> のために発生します。</p>
+<blockquote>
+<p>Alpine は、これらの機能を提供するために、内部で VueJS の反応性エンジンを使用しています。
+<a href="https://github.com/vuejs/vue-next/tree/master/packages/reactivity">→ @vue/reactivity についてもっと読む</a></p>
+</blockquote>
+<p>これらの2つの機能を理解すると、Alpine 開発者としてだけでなく、一般的な Web 開発者としても非常に強力になります。</p>
+
+<p></p>
+<h2>Alpine.reactive()</h2>
+
+<p>まず、<code>Alpine.reactive()</code> を見てみましょう。この関数は、JavaScriptオブジェクトをパラメーターとして受け入れ、そのオブジェクトの「リアクティブ」バージョンを返します。例えば：</p>
+<pre><code class="language-js">let data = { count: 1 }
+
+let reactiveData = Alpine.reactive(data)
+</code></pre>
+
+
+
+
+<p>内部的には、<code>Alpine.reactive</code>が<code>data</code>を受信すると、カスタムJavaScriptプロキシ内にラップします。</p>
+<p>プロキシはJavaScriptの特殊な種類のオブジェクトであり、JavaScriptオブジェクトへの「get」および「set」呼び出しをインターセプトできます。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">→ JavaScript プロキシの詳細を読む</a></p>
+<p>額面どおり、<code>reactiveData</code> は <code>data</code> とまったく同じように動作する必要があります。例えば：</p>
+<pre><code class="language-js">console.log(data.count) // 1
+console.log(reactiveData.count) // 1
+
+reactiveData.count = 2
+
+console.log(data.count) // 2
+console.log(reactiveData.count) // 2
+</code></pre>
+
+
+
+<p>ここに表示されるのは、<code>reactiveData</code> は <code>data</code> の薄いラッパーであるため、プロパティを取得または設定しようとすると、<code>data</code> を直接操作した場合とまったく同じように動作することです。</p>
+<p>ここでの主な違いは、<code>reactiveData</code> から値を変更または取得（取得または設定）するときはいつでも、Alpine はそれを認識し、このデータに依存する他のロジックを実行できることです。</p>
+<p><code>Alpine.reactive</code> は物語の前半に過ぎません。<code>Alpine.effect</code> は残りの半分です、掘り下げましょう。</p>
+<p></p>
+<h2>Alpine.effect()</h2>
+
+<p><code>Alpine.effect</code> は単一のコールバック関数を受け入れます。 <code>Alpine.effect</code> が呼び出されるとすぐに、提供された関数を実行しますが、リアクティブデータとの相互作用を積極的に探します。インタラクション（前述のリアクティブプロキシからの取得または設定）を検出すると、それを追跡し、リアクティブデータのいずれかが将来変更された場合は、必ずコールバックを再実行します。例えば：</p>
+<pre><code class="language-js">let data = Alpine.reactive({ count: 1 })
+
+Alpine.effect(() =&gt; {
+    console.log(data.count)
+})
+</code></pre>
+<p>このコードを最初に実行すると、「1」がコンソールに記録されます。 <code>data.count</code> が変更されるたびに、その値が再びコンソールに記録されます。</p>
+<p>これは、アルパインのコアですべての反応性を解き放つメカニズムです。</p>
+<p>ドットをさらに接続するために、Alpine構文をまったく使用せず、<code>Alpine.reactive</code> と <code>Alpine.effect</code> のみを使用した単純な「counter」コンポーネントの例を見てみましょう。</p>
+
+
+
+<pre><code class="language-html">&lt;button&gt;Increment&lt;/button&gt;
+
+Count: &lt;span&gt;&lt;/span&gt;
+</code></pre>
+<pre><code class="language-js">let button = document.querySelector('button')
+let span = document.querySelector('span')
+
+let data = Alpine.reactive({ count: 1 })
+
+Alpine.effect(() =&gt; {
+    span.textContent = data.count
+})
+
+button.addEventListener('click', () =&gt; {
+    data.count = data.count + 1
+})
+</code></pre>
+<pre><code class="language-html">&lt;!-- START_VERBATIM --&gt;
+&lt;div x-data=&quot;{ count: 1 }&quot; class=&quot;demo&quot;&gt;
+    &lt;button @click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;div&gt;Count: &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- END_VERBATIM --&gt;
+</code></pre>
+
+
+<p>ご覧のとおり、任意のデータをリアクティブにすることができ、<code>Alpine.effect</code> で任意の機能をラップすることもできます。</p>
+<p>この組み合わせにより、Web 開発のための非常に強力なプログラミングパラダイムが解き放たれます。ワイルドで自由に走りましょう。</p>
+<h1>拡張</h1>
+<p>Alpine には、さまざまな方法で拡張できる非常にオープンなコードベースがあります。 実際、Alpine 自体で利用可能なすべてのディレクティブと魔法は、これらの正確な API を使用しています。 理論的には、Alpine のすべての機能を自分で再構築できます。</p>
+
+<p></p>
+<h2>ライフサイクルの懸念</h2>
+<p>個々の API について詳しく説明する前に、まず、コードベースのどこでこれらの API を使用する必要があるかについて説明しましょう。</p>
+<p>これらの API は、Alpine がページを初期化する方法に影響を与えるため、Alpine がダウンロードされてページで利用可能になった後、ただしページ自体を初期化する前に登録する必要があります。</p>
+<p>Alpine をバンドルにインポートするか、<code>&lt;script&gt;</code> タグを介して直接含めるかによって、2つの異なる手法があります。 それらの両方を見てみましょう</p>
+
+
+
+<p></p>
+<h3>script タグ経由</h3>
+<p>スクリプトタグを介して Alpine を含める場合は、<code>alpine:init</code> イベントリスナー内にカスタム拡張コードを登録する必要があります。</p>
+
+
+<pre><code class="language-html">&lt;html&gt;
+    &lt;script src=&quot;/js/alpine.js&quot; defer&gt;&lt;/script&gt;
+
+    &lt;div x-data x-foo&gt;&lt;/div&gt;
+
+    &lt;script&gt;
+        document.addEventListener('alpine:init', () =&gt; {
+            Alpine.directive('foo', ...)
+        })
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>拡張コードを外部ファイルに抽出する場合は、ファイルの <code>&lt;script&gt;</code> タグが Alpine のようになる前に配置されていることを確認する必要があります。</p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;script src=&quot;/js/foo.js&quot; defer&gt;&lt;/script&gt;
+    &lt;script src=&quot;/js/alpine.js&quot; defer&gt;&lt;/script&gt;
+
+    &lt;div x-data x-foo&gt;&lt;/div&gt;
+&lt;/html&gt;
+</code></pre>
+<p></p>
+<h3>NPM モジュール経由</h3>
+<p>Alpineをバンドルにインポートした場合は、<code>Alpine</code> グローバルオブジェクトをインポートするとき、および <code>Alpine.start()</code> を呼び出して Alpine を初期化するときに、拡張コードを BETWEEN に登録していることを確認する必要があります。</p>
+
+<pre><code class="language-js">import Alpine from 'alpinejs'
+
+Alpine.directive('foo', ...)
+
+window.Alpine = Alpine
+window.Alpine.start()
+</code></pre>
+
+<p>これらの拡張 API の使用場所がわかったので、それぞれの使用方法を詳しく見ていきましょう。</p>
+<p></p>
+<h2>カスタムディレクティブ</h2>
+
+<p>Alpine では、<code>Alpine.directive()</code> APIを使用して独自のカスタムディレクティブを登録できます。</p>
+<p></p>
+<h3>メソッドシグネチャ</h3>
+<pre><code class="language-js">Alpine.directive(
+    '[name]',
+    (
+        el,
+        { value, modifiers, expression },
+        { Alpine, effect, cleanup }
+    ) =&gt; {})
+</code></pre>
+<p>  |  
+--- |
+name | The name of the magic. The name &quot;foo&quot; for example would be consumed as <code>$foo</code>
+el | The DOM element the magic was triggered from
+Alpine | The Alpine global object --&gt;</p>
+<table>
+<thead>
+<tr>
+<th>＆nbsp;</th>
+<th>＆nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>マジックの名前。たとえば、「foo」という名前は「$foo」として使用されます。</td>
+</tr>
+<tr>
+<td>el</td>
+<td>マジックが引き起こされた DOM 要素</td>
+</tr>
+<tr>
+<td>Alpine</td>
+<td>Alpine グローバルオブジェクト</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<h3>マジックプロパティ</h3>
+
+<p>これは、Alpine のどこからでも現在の時刻を簡単に取得できる「$now」マジックヘルパーの基本的な例です。</p>
+<pre><code class="language-js">Alpine.magic('now', () =&gt; {
+    return (new Date).toLocaleTimeString()
+})
+</code></pre>
+<pre><code class="language-html">&lt;span x-text=&quot;$now&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+
+
+<p>これで、<code>&lt;span&gt;</code> タグに現在の時刻が含まれ、「12:00:00PM」のようになります。</p>
+<p>ご覧のとおり、<code>$now</code> は静的プロパティのように動作しますが、実際には、プロパティにアクセスするたびに評価するゲッターが内部にあります。</p>
+<p>このため、ゲッターから関数を返すことで、魔法の「関数」を実装できます。</p>
+<p></p>
+<h3>Magic Functions</h3>
+
+<p>たとえば、クリップボードにコピーする文字列を受け入れる <code>$clipboard()</code> マジック関数を作成したい場合は、次のように実装できます。</p>
+<pre><code class="language-js">Alpine.magic('clipboard', () =&gt; {
+    return subject =&gt; navigator.clipboard.writeText(subject)
+})
+</code></pre>
+<pre><code class="language-html">&lt;button @click=&quot;$clipboard('hello world')&quot;&gt;Copy &quot;Hello World&quot;&lt;/button&gt;
+</code></pre>
+
+
+<p><code>$clipboard</code> にアクセスすると関数自体が返されるので、すぐにそれを呼び出して、<code>$clipboard('hello world')</code> のテンプレートにあるような引数を渡すことができます。</p>
+<p>必要に応じて、関数から関数を返すためのより簡単な構文（二重矢印関数）を使用できます。</p>
+<pre><code class="language-js">Alpine.magic('clipboard', () =&gt; subject =&gt; {
+    navigator.clipboard.writeText(subject)
+})
+</code></pre>
+<p></p>
+<h2>プラグインの作成と共有</h2>
+<p>これで、独自のカスタムディレクティブとマジックをアプリケーションに登録することがいかにフレンドリーでシンプルであるかがわかるはずですが、NPM パッケージなどを介してその機能を他のユーザーと共有するのはどうでしょうか。</p>
+<p>Alpine の公式「プラグインブループリント」パッケージをすぐに使い始めることができます。リポジトリのクローンを作成し、<code>npm install &amp;&amp; npm run build</code> を実行して、プラグインを作成するのと同じくらい簡単です。</p>
+<p>デモンストレーションの目的で、ディレクティブ（<code>x-foo</code>）とマジック（<code>$foo</code>）の両方を含む <code>Foo</code> と呼ばれる 見せかけの Alpine プラグインを最初から作成しましょう。</p>
+<p>Alpine と一緒に単純な <code>&lt;script&gt;</code> タグとして使用するためにこのプラグインの作成を開始し、次にバンドルにインポートするためのモジュールにレベルアップします。</p>
+
+
+
+
+<p></p>
+<h3>スクリプトインクルード</h3>
+
+<p>プラグインがプロジェクトにどのように含まれるかを見て、逆に始めましょう。</p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;script src=&quot;/js/foo.js&quot; defer&gt;&lt;/script&gt;
+    &lt;script src=&quot;/js/alpine.js&quot; defer&gt;&lt;/script&gt;
+
+    &lt;div x-data x-init=&quot;$foo()&quot;&gt;
+        &lt;span x-foo=&quot;'hello world'&quot;&gt;
+    &lt;/div&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<p>Alpine 自体の前にスクリプトがどのように含まれているかに注意してください。これは重要です。そうでない場合、プラグインがロードされるまでに Alpine はすでに初期化されているはずです。</p>
+<p>それでは、<code>/js/foo.js</code> の内容の内部を見てみましょう。</p>
+<pre><code class="language-js">document.addEventListener('alpine:init', () =&gt; {
+    window.Alpine.directive('foo', ...)
+
+    window.Alpine.magic('foo', ...)
+})
+</code></pre>
+
+<p>それでおしまい！スクリプトタグを介してプラグインを含めるためのオーサリングは、Alpine を使用すると非常に簡単です。</p>
+<p></p>
+<h3>バンドルモジュール</h3>
+<p>ここで、誰かが NPM を介してインストールし、バンドルに含めることができるプラグインを作成したいとします。</p>
+<p>最後の例のように、このプラグインを使用するとどのように見えるかから始めて、これを逆に説明します。</p>
+
+
+<pre><code class="language-js">import Alpine from 'alpinejs'
+
+import foo from 'foo'
+Alpine.plugin(foo)
+
+window.Alpine = Alpine
+window.Alpine.start()
+</code></pre>
+
+
+<p>ここに新しい API があります <code>Alpine.plugin()</code> これは、プラグインのコンシューマーが複数の異なるディレクティブやマジックを自分で登録する必要がないようにするために Alpine が公開する便利な方法です。</p>
+<p>次に、プラグインのソースと、<code>foo</code> からエクスポートされるものを見てみましょう。</p>
+<pre><code class="language-js">export default function (Alpine) {
+    Alpine.directive('foo', ...)
+    Alpine.magic('foo', ...)
+}
+</code></pre>
+
+
+<p><code>Alpine.plugin</code> は非常にシンプルであることがわかります。コールバックを受け入れ、すぐに呼び出します。その間、内部で使用するパラメータとして <code>Alpine</code> グローバルを提供します。</p>
+<p>その後、好きなようにアルパインを拡張することができます。</p>
+<h1>Async (非同期)</h1>
+
+
+<p>Alpine は、標準の関数をサポートするほとんどの場所で非同期関数をサポートするように構築されています。</p>
+<p>たとえば、<code>x-text</code> ディレクティブへの入力として使用する <code>getLabel()</code> という単純な関数があるとします。</p>
+<pre><code class="language-js">function getLabel() {
+    return 'Hello World!'
+}
+</code></pre>
+<pre><code class="language-html">&lt;span x-text=&quot;getLabel()&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+
+<p><code>getLabel</code> は同期しているため、すべてが期待どおりに機能します。</p>
+<p>ここで、 <code>getLabel</code> がラベルを取得するためのネットワーク要求を行い、ラベルを瞬時に返すことができない（非同期）と仮定しましょう。<code>getLabel</code> を非同期関数にすることで、JavaScript の <code>await</code> 構文を使用して Alpine から呼び出すことができます。</p>
+<pre><code class="language-js">async function getLabel() {
+    let response = await fetch('/api/label')
+
+    return await response.text()
+}
+</code></pre>
+<pre><code class="language-html">&lt;span x-text=&quot;await getLabel()&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+<p>さらに、末尾に括弧を付けずに Alpine でメソッドを呼び出す場合は、メソッドを省略できます。Alpine 、提供された関数が非同期であることを検出し、それに応じて処理します。 例えば：</p>
+<pre><code class="language-html">&lt;span x-text=&quot;getLabel&quot;&gt;&lt;/span&gt;
+</code></pre>
+<h1>CSP（コンテンツセキュリティポリシー）</h1>
+
+
+
+
+<p>Alpine が HTML 属性から JavaScript 式としてプレーン文字列（ たとえば、<code>x-on:click = &quot;console.log()&quot;</code> ）を実行できるようにするには、「unsafe-eval」に違反するユーティリティに依存する必要があります。 コンテンツセキュリティポリシー。</p>
+<blockquote>
+<p>内部的には、Alpine は遅くて問題があるため、実際には eval() 自体を使用しません。 代わりに、関数宣言を使用します。これははるかに優れていますが、それでも「unsafe-eval」に違反します。</p>
+</blockquote>
+<p>この CSP が必要な環境に対応するために、Alpine は、「unsafe-eval」に違反しないが、構文がより制限された代替ビルドを提供しています。</p>
+<p></p>
+<h2>インストール</h2>
+
+<p>すべての Alpine 拡張機能と同様に、これは <code>&lt;script&gt;</code> タグまたはモジュールインポートのいずれかを介して含めることができます。</p>
+<p></p>
+<h3>Script タグ</h3>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;script src=&quot;alpinejs/alpinejs-csp/cdn.js&quot; defer&gt;&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p></p>
+<h3>モジュールのインポート</h3>
+<pre><code class="language-js">import Alpine from '@alpinejs/csp'
+
+window.Alpine = Alpine
+window.Alpine.start()
+</code></pre>
+<p></p>
+<h2>制限</h2>
+
+
+
+
+<p>Alpine は文字列をプレーンな JavaScript として解釈できなくなったため、文字列から JavaScript 関数を手動で解析および構築する必要があります。</p>
+<p>この制限により、 <code>Alpine.data</code> を使用して <code>x-data</code> オブジェクトを登録し、そこからプロパティとメソッドをキーのみで参照する必要があります。</p>
+<p>たとえば、このようなインラインコンポーネントは機能しません。</p>
+<pre><code class="language-html">&lt;!-- Bad --&gt;
+&lt;div x-data=&quot;{ count: 1 }&quot;&gt;
+    &lt;button @click=&quot;count++&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>ただし、式を外部 API に分割すると、CSP ビルドでは次のことが有効になります。</p>
+<pre><code class="language-html">&lt;!-- Good --&gt;
+&lt;div x-data=&quot;counter&quot;&gt;
+    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;
+
+    &lt;span x-text=&quot;count&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">Alpine.data('counter', () =&gt; ({
+    count: 1,
+
+    increment() { this.count++ }
+}))
+</code></pre>
+
+        </div>
+    </body>
+</html>

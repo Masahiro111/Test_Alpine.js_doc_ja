@@ -13,7 +13,7 @@ title: Alpine.js をはじめよう！
 
 テキストエディターを使用して、以下のようにファイル内を埋めてください。
 
-```html
+```html:i-love-alpine.html
 <html>
 <head>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

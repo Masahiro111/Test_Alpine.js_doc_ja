@@ -9,13 +9,70 @@ use League\CommonMark\GithubFlavoredMarkdownConverter;
 // configure start ---------------------------------
 
 // 1, Check target directory
-$file_dir = "src/ja/";
+$file_dir = "src/jp/";
 
 // configure end ---------------------------------
 
 $filelist = array(
     // Getting started
-    'introduction.md',
+    'start-here.md',
+    'upgrade-guide.md',
+    'essentials/installation.md',
+    'essentials/state.md',
+    'essentials/templating.md',
+    'essentials/events.md',
+    'essentials/lifecycle.md',
+
+    // Directives
+    'directives/data.md',
+    'directives/init.md',
+    'directives/show.md',
+    'directives/bind.md',
+    'directives/on.md',
+    'directives/text.md',
+    'directives/html.md',
+    'directives/model.md',
+    'directives/modelable.md',
+    'directives/for.md',
+    'directives/transition.md',
+    'directives/effect.md',
+    'directives/ignore.md',
+    'directives/ref.md',
+    'directives/cloak.md',
+    'directives/teleport.md',
+    'directives/if.md',
+    'directives/id.md',
+
+    // Magics
+    'magics/el.md',
+    'magics/refs.md',
+    'magics/store.md',
+    'magics/watch.md',
+    'magics/dispatch.md',
+    'magics/nextTick.md',
+    'magics/root.md',
+    'magics/data.md',
+    'magics/id.md',
+
+    // UI
+    // Globals
+    'globals/alpine-data.md',
+    'globals/alpine-store.md',
+    'globals/alpine-bind.md',
+
+    //  Plugins
+    'plugins/mask.md',
+    'plugins/intersect.md',
+    'plugins/persist.md',
+    'plugins/focus.md',
+    'plugins/collapse.md',
+    'plugins/morph.md',
+
+    // Advanced
+    'advanced/reactivity.md',
+    'advanced/extending.md',
+    'advanced/async.md',
+    'advanced/csp.md',
 );
 
 
@@ -32,7 +89,7 @@ foreach ($filelist as $file) {
 
 $converter = new GithubFlavoredMarkdownConverter([
     'html_input' => 'strip',
-    'allow_unsafe_links' => false,
+    'allow_unsafe_links' => true,
 ]);
 
 $src = '
