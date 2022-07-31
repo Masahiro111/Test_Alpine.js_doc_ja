@@ -121,6 +121,12 @@ $src = '
         {
             list-style: disc;
         }
+
+        .markdown-body .highlight pre, .markdown-body pre {
+            padding: 8px;
+            overflow: auto;
+            font-size: 95%;
+        }
         </style>
         <title>Publish html</title>
     </head>
